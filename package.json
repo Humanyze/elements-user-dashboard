@@ -1,0 +1,18 @@
+{
+  "name": "elements-dashboard-react",
+  "version": "1.0.0",
+  "description": "React dashboard for elements",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Humanyze/elements-dashboard-react.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Humanyze/elements-dashboard-react/issues"
+  },
+  "homepage": "https://github.com/Humanyze/elements-dashboard-react#readme"
+}
