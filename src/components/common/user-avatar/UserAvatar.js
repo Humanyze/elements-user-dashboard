@@ -2,7 +2,14 @@ import React, {Component} from 'react';
 import {compose, withState, withHandlers} from 'recompose';
 import './user-avatar.scss';
 
+const user = {
+    username: `matthew@humanyze.com`,
+    avatar: `M`
+};
+
 class UserAvatar extends Component {
+    static propTypes = {};
+
     state = {
         showDropdown: false
     };
@@ -11,37 +18,37 @@ class UserAvatar extends Component {
         showDropdown: !prevState.showDropdown
     }));
 
-    render = () => (
-        <div className='UserAvatar'>
-            <div className='UserAvatar__email'>matthew@humanyze.com</div>
-            <div className='UserAvatar__dropdown-wrapper'>
-                <div className='UserAvatar__image' onClick={this.toggleDropdown}>
-                    M
-                </div>
-                <div className='UserAvatar__dropdown'>
-                    {this.state.showDropdown && [1, 2, 3].map((option) => {
-                        return <div key={option}>Option</div>;
-                    })}
-                </div>
-            </div>
-        </div>
-    );
+    render() {
+        return (
+            <div className='UserAvatar'>
+                <div className='UserAvatar__email'>{user.username}</div>
+                <div className='UserAvatar__dropdown-wrapper'>
+                    <div className='UserAvatar__image' onClick={this.toggleDropdown}>
+                        {user.avatar}
+                    </div>
+                    {this.state.showDropdown && 
+                    <div className='UserAvatar__dropdown'>
+                        {[1, 2, 3].map((option) => {
+                            return <div key={option}>Option</div>;
+                        })}
+                    </div>
 }
-export default UserAvatar;
-
-// Recompose way
-const enhance = compose(
-    withState('showDropdown', 'setShowDropdown', false), 
-    withHandlers({
-        toggleDropdown: ({showDropdown, setShowDropdown}) => e => setShowDropdown(!showDropdown)
-    })
-);
-
+                </div>
+            </div >
+        )
+    };
+}
+export default UserAvatar; // Recompose way 
+const enhance = compose(withState('showDropdown', 'setShowDropdown', false), withHandlers({
+    toggleDropdown: ({showDropdown, setShowDropdown}) => e => setShowDropdown(!showDropdown)
+}));
 const UserAvatarPure = ({showDropdown, toggleDropdown}) => <div className='UserAvatar'>
-    <div className='UserAvatar__email'>matthew@humanyze.com</div>
+    <div className='UserAvatar__email'>{user.username}</div>
     <div className='UserAvatar__dropdown-wrapper'>
-    <div className={`UserAvatar__image ${showDropdown && 'active'}`} onClick={toggleDropdown}>
-            M
+        <div
+            className={`UserAvatar__image ${showDropdown && 'active'}`}
+            onClick={toggleDropdown}>
+            {user.avatar}
         </div>
 
         <div className='UserAvatar__dropdown'>
@@ -51,7 +58,5 @@ const UserAvatarPure = ({showDropdown, toggleDropdown}) => <div className='UserA
         </div>
     </div>
 </div>;
-
 const UserAvatarEnhanced = enhance(UserAvatarPure);
-
-export {UserAvatarEnhanced};
+export {UserAvatarEnhanced}

@@ -1,0 +1,9 @@
+@import '../equipment-table.scss';
+
+.EquipmentTableHeader {
+    th {
+        padding: 10px;
+        border-bottom: 1px solid #aaa;        
+        text-align: left;
+    }
+}
