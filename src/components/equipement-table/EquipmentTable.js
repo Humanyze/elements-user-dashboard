@@ -10,9 +10,8 @@ import {requestParticipantsData} from "../../redux/participants/participantsActi
 
 const withDidMount = lifecycle({
     componentDidMount() {
-        if (!this.props.participants || !this.props.participants.length) {
-            this.props.requestParticipantsData()
-        }
+        // with persistence this will show data, but also ask for fresh stuff on mount
+        this.props.requestParticipantsData();
     }
 });
 
@@ -33,8 +32,12 @@ export const EquipmentTablePure = ({participants}) => (
                     {participants
                         ? participants.length
                             ? participants.map(el => <EquipmentTableRow key={el.id} element={el}/>)
-                            : <tr><td>No data in dataset</td></tr>
-                        : <tr><td>Loading...</td></tr>
+                            : <tr>
+                                <td>No data in dataset</td>
+                            </tr>
+                        : <tr>
+                            <td>Loading...</td>
+                        </tr>
                     }
                     </tbody>
                 </table>
