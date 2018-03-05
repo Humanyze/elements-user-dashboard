@@ -12,17 +12,19 @@ const EquipmentTable = ({elements}) => (
             Equipment
         </div>
         <div className='EquipmentTable__table-padding'>
-        <div className='EquipmentTable__table-wrapper'>
-            <table className='EquipmentTable__table'>
-                <EquipmentTableHeader />        
-                {elements
-                    ? elements.length
-                        ? elements.map(el => <EquipmentTableRow key={el.id} element={el}/>)
-                        : <div>No data in dataset</div>
-                    : <div>Loading...</div>
-}
-            </table>
-        </div>
+            <div className='EquipmentTable__table-wrapper'>
+                <table className='EquipmentTable__table'>
+                    <tbody>
+                    <EquipmentTableHeader/>
+                    {elements
+                        ? elements.length
+                            ? elements.map(el => <EquipmentTableRow key={el.id} element={el}/>)
+                            : <tr><td>No data in dataset</td></tr>
+                        : <tr><td>Loading...</td></tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 );

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './equipment-table-row.scss';
 
 const EquipmentTableRow = ({element}) => {
-    console.log(element);
     return (
         <tr className='EquipmentTableRow'>
             <td >{element.email}</td>

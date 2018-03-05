@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {compose, withState, withHandlers} from 'recompose';
+import {compose, withHandlers, withState} from 'recompose';
 import './user-avatar.scss';
 
 const user = {

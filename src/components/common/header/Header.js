@@ -2,7 +2,7 @@ import React from 'react';
 
 import './header.scss';
 
-import UserAvatar, {UserAvatarEnhanced} from '../user-avatar/UserAvatar';
+import {UserAvatarEnhanced} from '../user-avatar/UserAvatar';
 
 const HeaderPure = () => {
     return (

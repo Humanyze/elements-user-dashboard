@@ -22,37 +22,14 @@ class App extends Component {
     this.setState({elements: participants});
   }
 
-
-
-  // TODO: MOVE THIS TO REDUX
-  openModal = (newModal) => {
-    this.setState((prevState) => {
-      return {
-        openModals: [
-          ...prevState.openModals,
-          newModal
-        ]
-      };
-    });
-  };
-
-  // TODO: MOVE THIS TO REDUX  
-  closeTopModal = () => {
-    this.setState(prevState => {
-      return {
-        openModals: prevState.openModals.slice(0, -1)
-      };
-    });
-  };
-
   render() {
     return (
       <div className="App">
         <Header/>
-        <ActionSubBar/>
+        <ActionSubBar />
         <EquipementTable elements={this.state.elements}/>
 
-        <ModalRoot openModals={this.state.openModals}/>
+        <ModalRoot />
       </div>
     );
   }

@@ -1,24 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {connect} from "react-redux";
 
-// needs to be hooked into redux, 
-// or could be used with context options
-// for now not introducing extra libraries and is called from parent
-
-export const MODAL_TYPES = {
-    EXPORT_DIALOG: 'EXPORT_DIALOG'
-};
+import ImportEquipmentDataModal from "./model-components/import-equpment-data/ImportEquipmentData";
+import MODAL_TYPES from './modalTypes.js';
+import {closeTopModal} from "../../redux/modal/modalActions";
+import {getTopModalType} from '../../redux/modal/modalReducer';
+import ExportEquipmentDataModal from "./model-components/export-equipment-data/exportEquipmentData";
 
 const MODAL_COMPONENTS = {
-    [MODAL_TYPES.EXPORT_DIALOG]: () => {}
+    [MODAL_TYPES.IMPORT_EQUIPMENT_MODAL]: ImportEquipmentDataModal,
+    [MODAL_TYPES.EXPORT_EQUIPMENT_MODAL]: ExportEquipmentDataModal
 };
 
-const ModalRoot = ({openModals}) => {
-    return openModals.length ? <div>Hello World</div>: null;
+export const ModalRootPure = ({openModalType, closeModal}) => {
+    const SelectedModal = openModalType ?
+        MODAL_COMPONENTS[openModalType] :
+        console.warn('Invalid Modal Type passed');
+
+    return SelectedModal ? <SelectedModal closeModal={closeModal}/> : null;
 };
 
-ModalRoot.propTypes = {
-    openModals: PropTypes.arrayOf(PropTypes.string)
-}
+const ModalRoot = connect(
+    (state) => ({
+        openModals: getTopModalType(state)
+    }),
+    {closeModal: closeTopModal}
+)(ModalRootPure);
 
 export default ModalRoot;

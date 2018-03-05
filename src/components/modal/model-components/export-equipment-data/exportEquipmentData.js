@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import LightBoxWrapper from '../LightBoxWrapper/LightBoxWrapper';
 
-class ImportEquipmentDataModal extends Component {
+class ExportEquipmentDataModal extends Component {
     state = {};
 
 
     render() {
         return (
             <LightBoxWrapper>
-                <div className='ImportEquipmentData'>
-                    Hello World ImportEquipmentDataModal
+                <div className='ExportEquipmentData'>
+                    Hello World ExportEquipmentDataModal
                     <button onClick={this.props.closeModal}>Close</button>
                 </div>
             </LightBoxWrapper>
@@ -17,4 +17,4 @@ class ImportEquipmentDataModal extends Component {
     }
 };
 
-export default ImportEquipmentDataModal;
+export default ExportEquipmentDataModal;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import {shallow} from 'enzyme';
 import EquipmentTableRow from './EquipmentTableRow';
 
 const requiredParams = {

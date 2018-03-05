@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import {shallow} from 'enzyme';
 import EquipmentTable from './EquipmentTable';
 
 const wrapper = shallow(<EquipmentTable />);
