@@ -1,12 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './equipment-table.scss';
+import {connect} from "react-redux";
+import {compose, lifecycle} from "recompose";
 
 import EquipmentTableHeader from './equipment-table-header/EquipmentTableHeader';
 import EquipmentTableRow from './equipment-table-row/EquipmentTableRow';
+import {requestParticipantsData} from "../../redux/participants/participantsActions";
 
 
-const EquipmentTable = ({elements}) => (
+const withDidMount = lifecycle({
+    componentDidMount() {
+        if (!this.props.participants || !this.props.participants.length) {
+            this.props.requestParticipantsData()
+        }
+    }
+});
+
+const enhance = compose(
+    withDidMount
+);
+
+export const EquipmentTablePure = ({participants}) => (
     <div className='EquipmentTable'>
         <div className='EquipmentTable__title'>
             Equipment
@@ -16,9 +30,9 @@ const EquipmentTable = ({elements}) => (
                 <table className='EquipmentTable__table'>
                     <tbody>
                     <EquipmentTableHeader/>
-                    {elements
-                        ? elements.length
-                            ? elements.map(el => <EquipmentTableRow key={el.id} element={el}/>)
+                    {participants
+                        ? participants.length
+                            ? participants.map(el => <EquipmentTableRow key={el.id} element={el}/>)
                             : <tr><td>No data in dataset</td></tr>
                         : <tr><td>Loading...</td></tr>
                     }
@@ -29,8 +43,11 @@ const EquipmentTable = ({elements}) => (
     </div>
 );
 
-EquipmentTable.propTypes = {
-    elements: PropTypes.arrayOf(EquipmentTableRow.propTypes.element)
-};
+const EquipmentTable = connect(
+    (state) => ({
+        participants: state.participants.participants
+    }),
+    {requestParticipantsData}
+)(enhance(EquipmentTablePure));
 
 export default EquipmentTable;

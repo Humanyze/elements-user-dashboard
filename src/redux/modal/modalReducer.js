@@ -1,6 +1,6 @@
 import {handleActions} from 'redux-actions';
 import MODAL_ACTION_TYPES from './modalActionTypes';
-import { createSelector } from 'reselect';
+// import { createSelector } from 'reselect';
 
 
 export const initialState = {
@@ -11,21 +11,27 @@ const modalReducer = handleActions({
     [MODAL_ACTION_TYPES.OPEN_MODAL]: (state, action) => ({
         modals: [...state.modals, action.payload]
     }),
-    [MODAL_ACTION_TYPES.CLOSE_TOP_MODAL]: (state, action) => {
-        const newModals = state.modals.splice(0, -1);
-        return {modals: newModals};
+    [MODAL_ACTION_TYPES.CLOSE_TOP_MODAL]: (state) => {
+        return removeTopModal(state)
     },
-    [MODAL_ACTION_TYPES.CLOSE_ALL_MODALS]: (state, action) => ({
+    [MODAL_ACTION_TYPES.CLOSE_ALL_MODALS]: () => ({
         modals: initialState.modals
-    })
+    }),
+    [MODAL_ACTION_TYPES.MODAL_CLICK_OUTSIDE]: (state) => {
+        if (getTopModal(state).exitOnClickElsewhere) {
+            return removeTopModal(state);
+        }
+        return state;
+    }
 }, initialState);
 
-
-export const getTopModalType = state => {
-    return state.modal.modals.slice(-1)[0]
+const removeTopModal = state => {
+    const newModals = state.modals.splice(0, -1);
+    return {modals: newModals};
 };
 
-
+export const getTopModal = state =>
+        state.modals.slice(-1)[0] || {};
 
 
 export default modalReducer;

@@ -1,22 +1,20 @@
 import React from 'react';
-import {shallow} from 'enzyme';
-import UserAvatar from './UserAvatar';
+import {shallow, mount} from 'enzyme';
+import UserAvatar, { UserAvatarPure } from './UserAvatar';
 
-const wrapper = shallow(<UserAvatar />);
+const comp = mount(<UserAvatar />);
 
-const findDropdown = () => wrapper.find('.UserAvatar__dropdown');
+const getShowDropdownValue = () => comp.find(UserAvatarPure).props().showDropdown;
 
-it('should render', () => {
-    expect(wrapper).toHaveLength(1);
-});
+testRender(UserAvatar)();
 
 it('should not show dropdown initially', () => {
-    expect(findDropdown()).toHaveLength(0);
+    expect(getShowDropdownValue()).toBeFalsy();
 });
 
-it('should show show dropdown after clicking avatar', () => {
-    wrapper.find('.UserAvatar__image').simulate('click');
-    expect(findDropdown()).toHaveLength(1);    
-    wrapper.find('.UserAvatar__image').simulate('click');    
-    expect(findDropdown()).toHaveLength(0);        
+it('should show dropdown after clicking avatar', () => {
+    comp.find('.UserAvatar__image').simulate('click');
+    expect(getShowDropdownValue()).toBeTruthy();
+    comp.find('.UserAvatar__image').simulate('click');
+    expect(getShowDropdownValue()).toBeFalsy();
 });

@@ -4,7 +4,9 @@ import * as ModalActions from './modalActions';
 
 describe('modalReducer', () => {
 
-    const modalType = "TEST_MODAL";
+    const modalObject = {
+        type: "TEST_MODAL"
+    };
 
     it('should initialize properly', () => {
         expect(modalReducer(undefined, {})).toEqual(initialState);
@@ -16,31 +18,31 @@ describe('modalReducer', () => {
         it('should handle an addition to new store', () => {
             const expected = {
                 "modals": [
-                    modalType
+                    modalObject
                 ]
             };
 
             expect(
-                modalReducer(undefined, ModalActions.openModal(modalType))
+                modalReducer(undefined, ModalActions.openModal(modalObject))
             ).toEqual(expected);
         });
 
         it('should allow for multiple modals to stack', () => {
             const initialState = {
                 "modals": [
-                    modalType
+                    modalObject
                 ]
             };
 
             const expected = {
                 "modals": [
-                    modalType,
-                    modalType
+                    modalObject,
+                    modalObject
                 ]
             };
 
             expect(
-                modalReducer(initialState, ModalActions.openModal(modalType))
+                modalReducer(initialState, ModalActions.openModal(modalObject))
             ).toEqual(expected);
 
         })
@@ -51,7 +53,7 @@ describe('modalReducer', () => {
 
         const initialState = {
             "modals": [
-                modalType
+                modalObject
             ]
         };
         const expected = {
@@ -69,8 +71,8 @@ describe('modalReducer', () => {
 
         const initialState = {
             "modals": [
-                modalType,
-                modalType
+                modalObject,
+                modalObject
             ]
         };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './action-sub-bar.scss';
-import MODAL_TYPES from "../modal/modalTypes";
+import * as MODAL_CONFIGS from "../modal/modalConfigs";
 import {openModal} from '../../redux/modal/modalActions';
 
 const group = 'Humanyze internal';
@@ -30,8 +30,8 @@ const ActionSubBarPure = ({openImportDialog, openExportDialog}) => {
 const ActionSubBar = connect(
     null,
     (dispatch) => ({
-        openImportDialog: () => dispatch(openModal(MODAL_TYPES.IMPORT_EQUIPMENT_MODAL)),
-        openExportDialog: () => dispatch(openModal(MODAL_TYPES.EXPORT_EQUIPMENT_MODAL))
+        openImportDialog: () => dispatch(openModal(MODAL_CONFIGS.importParticipantsConfig)),
+        openExportDialog: () => dispatch(openModal(MODAL_CONFIGS.exportParticipantsConfig))
     })
 )(ActionSubBarPure);
 

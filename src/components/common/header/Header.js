@@ -2,9 +2,9 @@ import React from 'react';
 
 import './header.scss';
 
-import {UserAvatarEnhanced} from '../user-avatar/UserAvatar';
+import UserAvatar from '../user-avatar/UserAvatar';
 
-const HeaderPure = () => {
+const Header = () => {
     return (
         <div className='Header'>
             <div className='Header__logo-wrapper'>
@@ -12,11 +12,9 @@ const HeaderPure = () => {
                     <img src='/images/logo-full.png' alt='humanyze logo'/>
                 </div>
             </div>
-            <UserAvatarEnhanced />
+            <UserAvatar />
         </div>
     )
 };
-
-const Header = HeaderPure;
 
 export default Header;
