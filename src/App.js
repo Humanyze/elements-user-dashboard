@@ -1,25 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
 
 import './App.css';
 
 import Header from './components/common/header/Header';
-import ActionSubBar from './components/action-sub-bar/ActionSubBar';
-import EquipementTable from './components/equipement-table/EquipmentTable';
-import ModalRoot from './components/modal/ModalRoot';
+import AppRoutes from './components/AppRoutes';
 
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                <Header/>
-                <ActionSubBar/>
-                {/* Move into Route */}
-                <EquipementTable/>
-
-                <ModalRoot/>
-            </div>
-        );
-    }
-}
+const App = () => (
+    <div>
+        <Header/>
+        <Router>
+            <AppRoutes/>
+        </Router>
+    </div>
+);
 
 export default App;

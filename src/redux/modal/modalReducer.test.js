@@ -5,7 +5,7 @@ import * as ModalActions from './modalActions';
 describe('modalReducer', () => {
 
     const modalObject = {
-        type: "TEST_MODAL"
+        type: 'TEST_MODAL'
     };
 
     it('should initialize properly', () => {
@@ -17,7 +17,7 @@ describe('modalReducer', () => {
 
         it('should handle an addition to new store', () => {
             const expected = {
-                "modals": [
+                'modals': [
                     modalObject
                 ]
             };
@@ -29,13 +29,13 @@ describe('modalReducer', () => {
 
         it('should allow for multiple modals to stack', () => {
             const initialState = {
-                "modals": [
+                'modals': [
                     modalObject
                 ]
             };
 
             const expected = {
-                "modals": [
+                'modals': [
                     modalObject,
                     modalObject
                 ]
@@ -52,12 +52,12 @@ describe('modalReducer', () => {
     it('should handle closeTopModal', () => {
 
         const initialState = {
-            "modals": [
+            'modals': [
                 modalObject
             ]
         };
         const expected = {
-            "modals": []
+            'modals': []
         };
 
         expect(
@@ -70,14 +70,14 @@ describe('modalReducer', () => {
     it('should handle closeAllModals', () => {
 
         const initialState = {
-            "modals": [
+            'modals': [
                 modalObject,
                 modalObject
             ]
         };
 
         const expected = {
-            "modals": []
+            'modals': []
         };
 
         expect(

@@ -15,13 +15,12 @@ const ActionSubBarPure = ({openImportDialog, openExportDialog}) => {
             <div className='ActionSubBar__text'>
                 Change Deployment
             </div>
-            <div/>
-            <div className='ActionSubBar__text' onClick={openImportDialog}>
-                Import
-            </div>
-            <div className='ActionSubBar__text' onClick={openExportDialog}>
-                Export
-            </div>
+            {/*<div className='ActionSubBar__text' onClick={openImportDialog}>*/}
+                {/*Import*/}
+            {/*</div>*/}
+            {/*<div className='ActionSubBar__text' onClick={openExportDialog}>*/}
+                {/*Export*/}
+            {/*</div>*/}
         </div>
     );
 };

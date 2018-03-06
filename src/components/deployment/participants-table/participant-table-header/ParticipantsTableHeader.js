@@ -1,5 +1,5 @@
 import React from 'react';
-import './equipment-table-header.scss';
+import './participants-table-header.scss';
 
 const headers = [
     {text: 'Email'},
@@ -14,11 +14,11 @@ const headers = [
     {text: 'Active Badge'},
     {text: 'Active Digital'}
 ];
-const EquipmentTableHeader = () => {
-    return <tr className='EquipmentTableHeader'>
+const ParticipantsTableHeader = () => {
+    return <tr className='ParticipantsTableHeader'>
         {headers.map(header => {
             return (
-                <th className='EquipmentTableHeader__column-header' key={header.text}>
+                <th className='ParticipantsTableHeader__column-header' key={header.text}>
                     {header.text}
                 </th>
             )
@@ -26,4 +26,4 @@ const EquipmentTableHeader = () => {
     </tr>
 };
 
-export default EquipmentTableHeader;
+export default ParticipantsTableHeader;

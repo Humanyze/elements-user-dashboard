@@ -1,11 +1,11 @@
 import React from 'react';
-import './equipment-table.scss';
+import './participants-table.scss';
 import {connect} from "react-redux";
 import {compose, lifecycle} from "recompose";
 
-import EquipmentTableHeader from './equipment-table-header/EquipmentTableHeader';
-import EquipmentTableRow from './equipment-table-row/EquipmentTableRow';
-import {requestParticipantsData} from "../../redux/participants/participantsActions";
+import ParticipantsTableHeader from './participant-table-header/ParticipantsTableHeader';
+import ParticipantsTableRow from './participant-table-row/ParticipantsTableRow';
+import { requestParticipantsData } from "Redux/participants/participantsActions";
 
 
 const withDidMount = lifecycle({
@@ -19,19 +19,19 @@ const enhance = compose(
     withDidMount
 );
 
-export const EquipmentTablePure = ({participants}) => (
-    <div className='EquipmentTable'>
-        <div className='EquipmentTable__title'>
-            Equipment
+export const ParticipantsTablePure = ({participants}) => (
+    <div className='ParticipantsTable'>
+        <div className='ParticipantsTable__title'>
+            Participants
         </div>
-        <div className='EquipmentTable__table-padding'>
-            <div className='EquipmentTable__table-wrapper'>
-                <table className='EquipmentTable__table'>
+        <div className='ParticipantsTable__table-padding'>
+            <div className='ParticipantsTable__table-wrapper'>
+                <table className='ParticipantsTable__table'>
                     <tbody>
-                    <EquipmentTableHeader/>
+                    <ParticipantsTableHeader/>
                     {participants
                         ? participants.length
-                            ? participants.map(el => <EquipmentTableRow key={el.id} element={el}/>)
+                            ? participants.map(el => <ParticipantsTableRow key={el.id} element={el}/>)
                             : <tr>
                                 <td>No data in dataset</td>
                             </tr>
@@ -46,11 +46,11 @@ export const EquipmentTablePure = ({participants}) => (
     </div>
 );
 
-const EquipmentTable = connect(
+const ParticipantsTable = connect(
     (state) => ({
         participants: state.participants.participants
     }),
     {requestParticipantsData}
-)(enhance(EquipmentTablePure));
+)(enhance(ParticipantsTablePure));
 
-export default EquipmentTable;
+export default ParticipantsTable;

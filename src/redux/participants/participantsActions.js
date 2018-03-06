@@ -1,5 +1,5 @@
 import {createAction} from 'redux-actions';
-// import axios from "axios";
+// import axios from 'axios';
 
 import PARTICIPANTS_ACTION_TYPES from './participantsActionTypes';
 import mockRes  from '../../mockParticipantRes.json';

@@ -12,7 +12,7 @@ const participantsReducer = handleActions({
     }),
     [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_SUCCESS]: (state, action) => ({
         fetching: false,
-        participants: action.payload
+        participants: action.payload.sort(() => .5 - Math.random()) // random to make re-fetch obvious
     }),
     [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_ERROR]: (state, action) => ({
         fetching: false,

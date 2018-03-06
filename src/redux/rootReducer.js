@@ -1,11 +1,41 @@
 import {combineReducers} from 'redux';
+import authReducer from './auth/authReducer';
 import modalReducer from './modal/modalReducer';
 import participantsReducer from './participants/participantsReducer';
+import userDataReducer from "./userData/userDataReducer";
 
 
 const RootReducer = combineReducers({
+    auth: authReducer,
+    user: userDataReducer,
     modal: modalReducer,
     participants: participantsReducer
 });
 
 export default RootReducer;
+
+
+
+
+export const postDataRequest = async (url, data) => await fetch(url, {
+    body: JSON.stringify(data),
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+        'user-agent': 'Mozilla/4.0 MDN Example',
+        'content-type': 'application/json'
+    },
+    method: 'POST',
+    mode: 'cors',
+    redirect: 'follow',
+    referrer: 'no-referrer',
+});
+
+
+export const fetchWithAuth = async (url, token) =>
+    await fetch(url, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });

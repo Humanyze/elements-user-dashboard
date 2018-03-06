@@ -1,12 +1,17 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import UserAvatar, { UserAvatarPure } from './UserAvatar';
+import createStore from 'Redux/createStore';
 
-const comp = mount(<UserAvatar />);
+import {Provider} from 'react-redux';
+const { store } = createStore();
+
+
+const comp = mount(<Provider store={store}><UserAvatar/></Provider>);
 
 const getShowDropdownValue = () => comp.find(UserAvatarPure).props().showDropdown;
 
-testRender(UserAvatar)();
+testRender(UserAvatarPure)();
 
 it('should not show dropdown initially', () => {
     expect(getShowDropdownValue()).toBeFalsy();

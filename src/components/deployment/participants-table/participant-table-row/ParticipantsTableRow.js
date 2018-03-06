@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './equipment-table-row.scss';
+import './participants-table-row.scss';
 
-const EquipmentTableRow = ({element}) => {
+const ParticipantsTableRow = ({element}) => {
     return (
-        <tr className='EquipmentTableRow'>
+        <tr className='ParticipantsTableRow'>
             <td >{element.email}</td>
             <td >{element.alias}</td>
             <td >{element.gender}</td>
@@ -20,7 +20,7 @@ const EquipmentTableRow = ({element}) => {
     );
 };
 
-EquipmentTableRow.propTypes = {
+ParticipantsTableRow.propTypes = {
     element: PropTypes.shape({
         email: PropTypes.string,
         alias: PropTypes.string.isRequired,
@@ -36,4 +36,4 @@ EquipmentTableRow.propTypes = {
     })
 };
 
-export default EquipmentTableRow;
+export default ParticipantsTableRow;

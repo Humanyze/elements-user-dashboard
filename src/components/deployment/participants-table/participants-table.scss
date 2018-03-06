@@ -1,8 +1,8 @@
-.EquipmentTable {
+.ParticipantsTable {
     padding: 40px;
 }
 
-.EquipmentTable__title {
+.ParticipantsTable__title {
     background-color: #5ad1e5;
     font-size: 2em;
     color: white;
@@ -10,16 +10,16 @@
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
 }
 
-.EquipmentTable__table-padding {
+.ParticipantsTable__table-padding {
     padding: 40px;
     background-color: #f2f2f2;
 }
-.EquipmentTable__table-wrapper {
+.ParticipantsTable__table-wrapper {
     overflow-x: scroll;
 }
 
 
-.EquipmentTable__table {
+.ParticipantsTable__table {
     background-color: white;
     height: 100%;
     width: 100%;
@@ -30,7 +30,7 @@
 }
 
 
-.EquipmentTable__row-proto {
+.ParticipantsTable__row-proto {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));    
 }

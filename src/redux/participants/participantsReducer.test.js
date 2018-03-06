@@ -1,6 +1,6 @@
 import React from 'react';
 import participantsReducer, {initialState} from './participantsReducer';
-import * as ParticipantsActions from './participantsActions';
+import { participantsFetchStarted } from './participantsActions';
 
 describe('participantsReducer', () => {
 
@@ -18,7 +18,7 @@ describe('participantsReducer', () => {
         };
 
         expect(
-            participantsReducer(null, ParticipantsActions.participantsFetchStarted())
+            participantsReducer(null, participantsFetchStarted())
         )
     })
 });
