@@ -23,16 +23,17 @@ const parseDataSetsFromRoles = (roleUriArray) => {
     roleUriArray.map((roleUri) => {
 
         const role = roleUri.replace(/\/$/, '').split('/').splice(-1)[0];
-        const id = parseInt(role.split('-').splice(-1)[0], 10);
+        const id = role.split('-').splice(-1)[0];
 
         if (role.includes(DataSetTypeFlags.EXECUTIVE)) {
-            executiveDataSetIds.push(id);
+            return executiveDataSetIds.push(id);
         } else if (role.includes(DataSetTypeFlags.DEPLOYMENT)) {
-            deploymentDataSetIds.push(id);
+            return deploymentDataSetIds.push(id);
         }
+        return null;
     });
 
-    return { executiveDataSetIds, deploymentDataSetIds}
+    return { executiveDataSetIds, deploymentDataSetIds };
 };
 
 export {

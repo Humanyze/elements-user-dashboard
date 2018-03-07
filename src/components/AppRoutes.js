@@ -6,8 +6,8 @@ import {Switch, Route} from 'react-router-dom';
 import Deployment from './deployment/Deployment';
 import Login from "../Login";
 
-const AuthenticatedRoutes = ({path}) => {
-    return (
+const AuthenticatedRoutes = ({path, userLoaded}) => {
+    return userLoaded  && (
         <Switch>
             <Route path={`${path}deployments`} component={Deployment}/>
             <Route component={() => <Redirect to='/deployments'/>}/>
@@ -24,14 +24,17 @@ const UnauthenticatedRoutes = ({path}) => (
 );
 
 
-const AppRoutesPure = withRouter(({authenticated, match}) => {
+const AppRoutesPure = withRouter(({authenticated, userLoaded,  match}) => {
     const { path } = match;
-    return authenticated ? <AuthenticatedRoutes path={path}/> : <UnauthenticatedRoutes path={path}/>;
+    return authenticated ?
+        <AuthenticatedRoutes path={path}
+                             userLoaded={userLoaded}/>
+        : <UnauthenticatedRoutes path={path}/>;
 
 });
 
 const AppRoutes = connect(
-    (state) => ({authenticated: !!state.auth.tokenObj}), null, null,
+    (state) => ({authenticated: !!state.auth.tokenObj, userLoaded: !!state.user.user.user }), null, null,
     {pure: false}
 )(AppRoutesPure);
 

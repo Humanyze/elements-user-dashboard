@@ -24,4 +24,7 @@ const participantsReducer = handleActions({
 
 }, initialState);
 
+
+export const getAllParticipants = (state) => Object.values(state.participants.participantsById || {});
+
 export default participantsReducer;

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import './action-sub-bar.scss';
 import * as MODAL_CONFIGS from "../modal/modalConfigs";
 import {openModal} from '../../redux/modal/modalActions';
+import {Link} from "react-router-dom";
 
 const group = 'Humanyze internal';
 
@@ -12,18 +13,20 @@ const ActionSubBarPure = ({openImportDialog, openExportDialog}) => {
             <div className='ActionSubBar__text'>
                 Viewing Data For: {group}
             </div>
-            <div className='ActionSubBar__text'>
+
+            {/* TODO to is incorrect path currently*/}
+            <Link to={`/select-deployment`} className='ActionSubBar__text'>
                 Change Deployment
-            </div>
-            {/*<div className='ActionSubBar__text' onClick={openImportDialog}>*/}
-                {/*Import*/}
-            {/*</div>*/}
-            {/*<div className='ActionSubBar__text' onClick={openExportDialog}>*/}
-                {/*Export*/}
-            {/*</div>*/}
+            </Link>
         </div>
-    );
+    )
 };
+// {/*<div className='ActionSubBar__text' onClick={openImportDialog}>*/}
+// {/*Import*/}
+// {/*</div>*/}
+// {/*<div className='ActionSubBar__text' onClick={openExportDialog}>*/}
+// {/*Export*/}
+// {/*</div>*/}
 
 
 const ActionSubBar = connect(

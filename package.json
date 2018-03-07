@@ -87,11 +87,12 @@
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ],
-    "modulePaths": ["src"],
+    "modulePaths": [
+      "src"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
       "^Redux(.*)$": "<rootDir>/redux"
-
     },
     "moduleFileExtensions": [
       "web.js",
@@ -117,6 +118,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
+    "lodash": "^4.17.5",
     "node-sass": "^4.7.2",
     "react-test-renderer": "^16.2.0",
     "sass-loader": "^6.0.6"

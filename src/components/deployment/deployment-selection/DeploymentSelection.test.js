@@ -1,2 +1,2 @@
-import DeploymentSelection from './DeploymentSelection';
-testRender(DeploymentSelection)();
+import { DeploymentSelectionPure } from './DeploymentSelection';
+testRender(DeploymentSelectionPure)();

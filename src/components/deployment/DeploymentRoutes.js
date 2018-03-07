@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import ParticipantsTable from './participants-table/ParticipantsTable';
+import DeploymentOverview from './deployment-overview/DeploymentOverview';
 import DeploymentSelection from "./deployment-selection/DeploymentSelection";
 import {Redirect, withRouter} from "react-router";
 
@@ -11,7 +11,7 @@ const DeploymentRoutes = ({match}) => {
 
     return (
         <Switch>
-            <Route path={`${path}/participants`} component={ParticipantsTable}/>
+            <Route path={`${path}/deployment/:datasetId`} component={DeploymentOverview}/>
             <Route path={`${path}/select-deployment`} component={DeploymentSelection} />
             <Route component={() => <Redirect to={`${path}/select-deployment`}/> }/>
         </Switch>
