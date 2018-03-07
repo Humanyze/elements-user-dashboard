@@ -3,12 +3,13 @@ import authReducer from './auth/authReducer';
 import modalReducer from './modal/modalReducer';
 import participantsReducer from './participants/participantsReducer';
 import userDataReducer from "./userData/userDataReducer";
-
+import deploymentReducer from "./deployment/deploymentReducer";
 
 const RootReducer = combineReducers({
     auth: authReducer,
     user: userDataReducer,
     modal: modalReducer,
+    deployment: deploymentReducer,
     participants: participantsReducer
 });
 
@@ -17,6 +18,13 @@ export default RootReducer;
 
 
 
+
+
+
+
+
+
+// temporary services
 export const postDataRequest = async (url, data) => await fetch(url, {
     body: JSON.stringify(data),
     cache: 'no-cache',

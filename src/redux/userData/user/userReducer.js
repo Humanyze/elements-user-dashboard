@@ -13,10 +13,13 @@ const userReducer = handleActions({
         fetching: true
     }),
     [USER_ACTION_TYPES.USER_DATA_FETCH_SUCCESSFUL]: (state, action) => ({
-        ...state
+        ...state,
+        user: action.payload,
+        fetching: false
     }),
     [USER_ACTION_TYPES.USER_DATA_FETCH_FAILED]: (state, action) => ({
-        ...state
+        ...state,
+        fetching: false
     })
 }, initialState);
 

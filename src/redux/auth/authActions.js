@@ -1,6 +1,7 @@
 import {createAction} from 'redux-actions';
 import AUTH_ACTION_TYPES from './authActionTypes';
-import { getUserDataById } from '../userData/user/userActions';
+import { setUserDataById } from '../userData/user/userActions';
+import { setParticipantDataById } from '../userData/participant/participantActions';
 import {postDataRequest} from "../rootReducer";
 
 const logout = createAction(AUTH_ACTION_TYPES.LOGOUT);
@@ -14,14 +15,13 @@ const loginUser = (username, password) => async (dispatch) => {
     try {
         const res = await postDataRequest(`api/v1/login`, {username, password});
         const data = await res.json();
-        console.log(data);
         dispatch(loginSuccessful(data));
-        dispatch(getUserDataById(data.user_id));
+        dispatch(setUserDataById(data.user_id));
+        dispatch(setParticipantDataById(data.user_id));
     } catch (e) {
         dispatch(loginFailed(e));
     }
 };
-
 
 
 export {

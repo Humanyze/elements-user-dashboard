@@ -1,14 +1,26 @@
 import { handleActions } from 'redux-actions';
-import USER_ACTION_TYPES from './participantActionTypes';
+import PARTICIPANT_ACTION_TYPES from './participantActionTypes';
 
 
-const initialState = {
-    fetching: false,
-    user: null
+export const initialState = {
+    participantData: null,
+    fetching: false
 };
 
 const participantReducer = handleActions({
-
+    [PARTICIPANT_ACTION_TYPES.PARTICIPANT_DATA_FETCH_REQUESTED]: (state, action) => ({
+        ...state,
+        fetching: true
+    }),
+    [PARTICIPANT_ACTION_TYPES.PARTICIPANT_DATA_FETCH_SUCCESSFUL]: (state, action) => ({
+        ...state,
+        participantData: action.payload,
+        fetching: false
+    }),
+    [PARTICIPANT_ACTION_TYPES.PARTICIPANT_DATA_FETCH_FAILED]: (state, action) => ({
+        ...state,
+        fetching: false
+    })
 }, initialState);
 
 

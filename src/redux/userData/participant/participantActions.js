@@ -7,21 +7,14 @@ const participantDataFetchSuccessful = createAction(PARTICIPANT_ACTION_TYPES.PAR
 const participantDataFetchFailed = createAction(PARTICIPANT_ACTION_TYPES.PARTICIPANT_DATA_FETCH_FAILED, error => error);
 
 
-const getParticipantDataById = (id) => async (dispatch, getState) => {
+const setParticipantDataById = (id) => async (dispatch, getState) => {
     dispatch(participantDataFetchRequested());
     try {
         //    get participant data
         const bearerToken = getState().auth.tokenObj.access_token;
-        const [ participantRes, participantRes ] = await Promise.all([
-            fetchWithAuth(`/api/v1/participant/${id}/`, bearerToken),
-            fetchWithAuth(`/api/v1/participant/?participant=${id}`, bearerToken)
-        ]);
-
-
-        // this flow won't be necessary once we get axios or some other client request libary working
-        const data = await Promise.all[participantRes.json(), participantRes.json()];
-        console.log(data);
-        dispatch(participantDataFetchSuccessful(data));
+        const participantRes= await fetchWithAuth(`/api/v1/participant/?user=${id}`, bearerToken);
+        const data = await participantRes.json();
+        dispatch(participantDataFetchSuccessful(...data.participants));
     } catch (e) {
         dispatch(participantDataFetchFailed(e))
     }
@@ -29,7 +22,7 @@ const getParticipantDataById = (id) => async (dispatch, getState) => {
 
 
 export {
-    getParticipantDataById,
+    setParticipantDataById,
     participantDataFetchRequested,
     participantDataFetchSuccessful,
     participantDataFetchFailed
