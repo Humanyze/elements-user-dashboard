@@ -1,12 +1,12 @@
 import React from 'react';
-import {mount, shallow} from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
-import {ModalRootPure} from "./ModalRoot";
+import { ModalRootPure } from './ModalRoot';
 import MODAL_TYPES from './modalTypes';
 import createStore from '../../redux/createStore';
-import {Provider} from "react-redux";
+import { Provider } from 'react-redux';
 
-describe("ModalRoot", () => {
+describe('ModalRoot', () => {
     it('should return null if no modal is selected', () => {
         const wrapper = shallow(
             <ModalRootPure openModal={{}}
@@ -18,7 +18,7 @@ describe("ModalRoot", () => {
 
     it('should return null if invalid ModalType is passed', () => {
         const wrapper = shallow(
-            <ModalRootPure openModal={{type: 'BAD_MODAL_TYPE_ERROR'}}
+            <ModalRootPure openModal={{ type: 'BAD_MODAL_TYPE_ERROR' }}
                            closeModal={() => {
                            }}/>
         );
@@ -27,11 +27,11 @@ describe("ModalRoot", () => {
     });
 
     it('should return Modal Component if passed valid type', () => {
-        const {store} = createStore();
+        const { store } = createStore();
 
         const wrapper = mount(
             <Provider store={store}>
-                <ModalRootPure openModal={{type: MODAL_TYPES.IMPORT_EQUIPMENT_MODAL}}
+                <ModalRootPure openModal={{ type: MODAL_TYPES.IMPORT_EQUIPMENT_MODAL }}
                                closeModal={() => {
                                }}/>
             </Provider>

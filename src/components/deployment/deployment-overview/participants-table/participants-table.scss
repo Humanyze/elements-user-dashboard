@@ -25,14 +25,9 @@
     background-color: white;
     height: 100%;
     width: 100%;
+    border-spacing: 0;
 
     td {
-        min-width: 200px;
+        min-width: 250px;
     }
-}
-
-
-.ParticipantsTable__row-proto {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));    
 }

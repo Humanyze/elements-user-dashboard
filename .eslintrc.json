@@ -1,7 +1,0 @@
-// TODO: auto-format hasn't been working yet
-{
-  "extends": "react-app",
-  "rules": {
-    "object-curly-spacing": "warn"
-  }
-}

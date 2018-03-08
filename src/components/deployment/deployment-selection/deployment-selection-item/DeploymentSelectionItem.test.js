@@ -6,5 +6,5 @@ describe('DeploymentSelectionItem', () => {
         id: '5',
         // name: 'Humanyze'
     };
-    testRender(DeploymentSelectionItem, {deployment})();
-})
+    testRender(DeploymentSelectionItem, { deployment })();
+});

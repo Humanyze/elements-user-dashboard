@@ -1,6 +1,6 @@
-import deploymentReducer, {initialState} from './deploymentReducer';
-import USER_ACTION_TYPES from "../userData/user/userActionTypes";
-import {deploymentsByIdRequested, deploymentsByIdSuccessful, setSelectedDeploymentId} from './deploymentActions';
+import deploymentReducer, { initialState } from './deploymentReducer';
+import USER_ACTION_TYPES from '../userData/user/userActionTypes';
+import { deploymentsByIdRequested, deploymentsByIdSuccessful, setSelectedDeploymentId } from './deploymentActions';
 
 describe('deploymentReducer', () => {
    it('should initialize properly', () => {
@@ -25,7 +25,7 @@ describe('deploymentReducer', () => {
            };
 
            expect(deploymentReducer(mockAction, initialState)).toEqual(expectedState);
-       })
+       });
    });
 
    it('should set requestPending to be true after deployment data is requested', () => {

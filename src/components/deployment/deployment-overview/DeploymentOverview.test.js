@@ -1,2 +1,2 @@
-import {DeploymentOverviewPure} from './DeploymentOverview';
+import { DeploymentOverviewPure } from './DeploymentOverview';
 testRender(DeploymentOverviewPure)();

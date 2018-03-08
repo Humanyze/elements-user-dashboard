@@ -1,11 +1,11 @@
 .Header {
- background-color: #f2f2f2;
- display: flex;
- justify-content: space-between;   
- align-items: center;
- padding: 10px 20px;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
- img {
-     height: 40px;
- }
+  img {
+    height: 50px;
+    margin: 10px 10px 10px 30px;
+  }
 }

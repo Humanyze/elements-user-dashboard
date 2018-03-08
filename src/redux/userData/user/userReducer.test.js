@@ -1,4 +1,4 @@
-import userReducer, {initialState} from './userReducer';
+import userReducer, { initialState } from './userReducer';
 import * as UserActions from './userActions';
 
 describe('userReducer', () => {
@@ -43,5 +43,5 @@ describe('userReducer', () => {
         };
 
         expect(userReducer(startState, UserActions.userDataFetchFailed())).toEqual(initialState);
-    })
+    });
 });

@@ -1,4 +1,4 @@
-import {handleActions} from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import PARTICIPANT_ACTION_TYPES from './participantActionTypes';
 
 

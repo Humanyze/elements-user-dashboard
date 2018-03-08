@@ -1,4 +1,4 @@
-import {createAction} from 'redux-actions';
+import { createAction } from 'redux-actions';
 import MODAL_ACTIONS_TYPES from './modalActionTypes';
 
 const openModal = createAction(MODAL_ACTIONS_TYPES.OPEN_MODAL, modalData => modalData);

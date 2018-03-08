@@ -1,5 +1,5 @@
-import {createAction} from 'redux-actions';
-import {fetchWithAuth} from "../../rootReducer";
+import { createAction } from 'redux-actions';
+import { fetchWithAuth } from '../../rootReducer';
 import PARTICIPANT_ACTION_TYPES from './participantActionTypes';
 
 const participantDataFetchRequested = createAction(PARTICIPANT_ACTION_TYPES.PARTICIPANT_DATA_FETCH_REQUESTED);
@@ -16,7 +16,7 @@ const setParticipantDataById = (id) => async (dispatch, getState) => {
         const data = await participantRes.json();
         dispatch(participantDataFetchSuccessful(...data.participants));
     } catch (e) {
-        dispatch(participantDataFetchFailed(e))
+        dispatch(participantDataFetchFailed(e));
     }
 };
 
@@ -26,4 +26,4 @@ export {
     participantDataFetchRequested,
     participantDataFetchSuccessful,
     participantDataFetchFailed
-}
+};

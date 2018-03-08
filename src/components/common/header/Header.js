@@ -14,7 +14,7 @@ const Header = () => {
             </div>
             <UserAvatar />
         </div>
-    )
+    );
 };
 
 export default Header;

@@ -1,0 +1,11 @@
+// NOTE: to run eslint fix,
+// npx eslint --fix .
+{
+  "extends": "react-app",
+  "rules": {
+    "object-curly-spacing": ["warn", "always"],
+    "semi": [2, "always"],
+    "quotes": ["warn", "single"],
+    "jsx-quotes": ["warn", "prefer-single"]
+  }
+}

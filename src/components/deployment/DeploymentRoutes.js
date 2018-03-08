@@ -1,13 +1,13 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import DeploymentOverview from './deployment-overview/DeploymentOverview';
-import DeploymentSelection from "./deployment-selection/DeploymentSelection";
-import {Redirect, withRouter} from "react-router";
+import DeploymentSelection from './deployment-selection/DeploymentSelection';
+import { Redirect, withRouter } from 'react-router';
 
 
-const DeploymentRoutes = ({match}) => {
-    const {path} = match;
+const DeploymentRoutes = ({ match }) => {
+    const { path } = match;
 
     return (
         <Switch>
@@ -15,7 +15,7 @@ const DeploymentRoutes = ({match}) => {
             <Route path={`${path}/select-deployment`} component={DeploymentSelection} />
             <Route component={() => <Redirect to={`${path}/select-deployment`}/> }/>
         </Switch>
-    )
+    );
 };
 
 

@@ -1,24 +1,24 @@
 import React from 'react';
-import {compose, withHandlers, withState} from 'recompose';
+import { compose, withHandlers, withState } from 'recompose';
 import './user-avatar.scss';
-import {connect} from 'react-redux';
-import {logout} from 'Redux/auth/authActions';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from 'Redux/auth/authActions';
+import { Link } from 'react-router-dom';
 
-const onLogoutClicked = ({setShowDropdown, logout}) => e => {
+const onLogoutClicked = ({ setShowDropdown, logout }) => e => {
     logout();
     setShowDropdown(false);
 };
 const enhance = compose(
     withState('showDropdown', 'setShowDropdown', false),
     withHandlers({
-        toggleDropdown: ({showDropdown, setShowDropdown}) => e => setShowDropdown(!showDropdown),
+        toggleDropdown: ({ showDropdown, setShowDropdown }) => e => setShowDropdown(!showDropdown),
         onLogoutClicked
     })
 );
 
 
-export const UserAvatarPure = ({username, avatar, showDropdown, toggleDropdown, onLogoutClicked}) => (
+export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown, onLogoutClicked }) => (
     <div className='UserAvatar'>
         <div className='UserAvatar__email'>
             {username}
@@ -48,7 +48,7 @@ const UserAvatar = connect(
         username: state.user.user.user && state.user.user.user.username,
         avatar: state.user.participant.avatar
     }),
-    {logout}
+    { logout }
 )(enhance(UserAvatarPure));
 export default UserAvatar;
 

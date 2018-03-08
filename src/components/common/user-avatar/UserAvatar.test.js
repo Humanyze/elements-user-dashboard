@@ -1,13 +1,13 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
-import UserAvatar, {UserAvatarPure} from './UserAvatar';
+import { shallow, mount } from 'enzyme';
+import UserAvatar, { UserAvatarPure } from './UserAvatar';
 import createStore from 'Redux/createStore';
 
-import {Provider} from 'react-redux';
-import {BrowserRouter} from "react-router-dom";
-const {store} = createStore();
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+const { store } = createStore();
 
-describe("userAvatar", () => {
+describe('userAvatar', () => {
     const component = mount(<Provider store={store}><BrowserRouter><UserAvatar/></BrowserRouter></Provider>);
 
     const getShowDropdownValue = () => component.find(UserAvatarPure).props().showDropdown;
@@ -24,4 +24,4 @@ describe("userAvatar", () => {
         component.find('.UserAvatar__image').simulate('click');
         expect(getShowDropdownValue()).toBeFalsy();
     });
-})
+});

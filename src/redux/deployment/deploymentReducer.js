@@ -1,4 +1,4 @@
-import {handleActions} from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import DEPLOYMENT_ACTION_TYPES from './deploymentActionTypes';
 import USER_ACTION_TYPES from '../userData/user/userActionTypes';
 
@@ -45,4 +45,4 @@ export {
     getSelectedDeployment,
     getAllDeployments,
     initialState
-}
+};

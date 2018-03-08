@@ -1,6 +1,6 @@
-import {createAction} from 'redux-actions';
+import { createAction } from 'redux-actions';
 import PARTICIPANTS_ACTION_TYPES from './participantsActionTypes';
-import {fetchWithAuth} from "../rootReducer";
+import { fetchWithAuth } from '../rootReducer';
 
 const participantsFetchStarted = createAction(PARTICIPANTS_ACTION_TYPES.LOAD_PARTICIPANTS_REQUESTED);
 const participantsFetchSuccess = createAction(PARTICIPANTS_ACTION_TYPES.LOAD_PARTICIPANTS_SUCCESS, data => data);
@@ -25,7 +25,7 @@ const requestParticipantsData = (datasetId) => async (dispatch, getState) => {
         dispatch(participantsFetchSuccess(particiantsById));
 
     } catch (e) {
-        dispatch(participantsFetchError(e.message))
+        dispatch(participantsFetchError(e.message));
     }
 };
 

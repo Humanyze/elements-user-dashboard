@@ -1,4 +1,4 @@
-import {handleActions} from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import EQUIPMENT_ACTION_TYPES from './participantsActionTypes';
 
 export const initialState = {

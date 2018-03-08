@@ -1,11 +1,11 @@
 import React from 'react';
 // TODO: TEMP PAGE, WILL ULTIMATELY REDIRECT TO EMBER AUTH, SHARING TOKEN
-import {compose, withState, withHandlers} from 'recompose';
-import {connect} from "react-redux";
-import {loginUser} from './redux/auth/authActions';
+import { compose, withState, withHandlers } from 'recompose';
+import { connect } from 'react-redux';
+import { loginUser } from './redux/auth/authActions';
 
 
-const onSubmit = ({username, password, loginUser}) => (e) => {
+const onSubmit = ({ username, password, loginUser }) => (e) => {
     e.preventDefault();
     loginUser(username, password);
 };
@@ -14,8 +14,8 @@ const enhance = compose(
     withState('username', 'setUsername', 'demo@humanyze.com'),
     withState('password', 'setPassword', 'Password1!'),
     withHandlers({
-        onUsernameChange: ({setUsername}) => ({target}) => setUsername(target.value),
-        onPasswordChange: ({setPassword}) => ({target}) => setPassword(target.value),
+        onUsernameChange: ({ setUsername }) => ({ target }) => setUsername(target.value),
+        onPasswordChange: ({ setPassword }) => ({ target }) => setPassword(target.value),
         onSubmit
     })
 );
@@ -37,7 +37,7 @@ const LoginPure = ({
 
 const Login = connect(
     null,
-    {loginUser}
+    { loginUser }
 )(enhance(LoginPure));
 
 export default Login;

@@ -1,5 +1,5 @@
 import React from 'react';
-import modalReducer, {initialState} from './modalReducer';
+import modalReducer, { initialState } from './modalReducer';
 import * as ModalActions from './modalActions';
 
 describe('modalReducer', () => {
@@ -45,7 +45,7 @@ describe('modalReducer', () => {
                 modalReducer(initialState, ModalActions.openModal(modalObject))
             ).toEqual(expected);
 
-        })
+        });
     });
 
 

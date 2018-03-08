@@ -6,7 +6,7 @@ import ParticipantsTableHeader from './participant-table-header/ParticipantsTabl
 import ParticipantsTableRow from './participant-table-row/ParticipantsTableRow';
 
 
-const TableData = ({participants}) => {
+const TableData = ({ participants }) => {
     return participants
         ? participants.length
             ? participants.map(el => <ParticipantsTableRow key={el.id} element={el}/>)
@@ -15,11 +15,10 @@ const TableData = ({participants}) => {
             </tr>
         : <tr>
             <td>Loading...</td>
-        </tr>
+        </tr>;
 };
 
 export const ParticipantsTable = (props) => {
-
 
 
     return (
@@ -29,12 +28,14 @@ export const ParticipantsTable = (props) => {
             </div>
             <div className='ParticipantsTable__table-padding'>
                 <div className='ParticipantsTable__table-wrapper'>
-                    <div className='ParticipantsTable__table'>
+                    <table className='ParticipantsTable__table'>
+                        <tbody>
 
                         {/* can set order options*/}
-                        <ParticipantsTableHeader />
+                        <ParticipantsTableHeader/>
                         <TableData {...props}/>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import authReducer, {initialState} from './authReducer';
+import authReducer, { initialState } from './authReducer';
 import * as AuthActions from './authActions';
 
 describe('authReducer', () => {
@@ -19,6 +19,6 @@ describe('authReducer', () => {
 
         expect(
             authReducer(null, AuthActions.loginRequested())
-        )
-    })
+        );
+    });
 });

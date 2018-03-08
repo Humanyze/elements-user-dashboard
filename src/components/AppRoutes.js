@@ -1,14 +1,14 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Redirect, withRouter} from 'react-router';
-import {Switch, Route} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Redirect, withRouter } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
 
 import Deployment from './deployment/Deployment';
-import Login from "../Login";
-import {getCurrentError} from "../redux/error/errorReducer";
-import ErrorPage from "./error-page/ErrorPage";
+import Login from '../Login';
+import { getCurrentError } from '../redux/error/errorReducer';
+import ErrorPage from './error-page/ErrorPage';
 
-const AuthenticatedRoutes = ({path, userLoaded}) => {
+const AuthenticatedRoutes = ({ path, userLoaded }) => {
     return userLoaded && (
         <Switch>
             <Route path={`${path}deployments`} component={Deployment}/>
@@ -18,7 +18,7 @@ const AuthenticatedRoutes = ({path, userLoaded}) => {
 };
 
 
-const UnauthenticatedRoutes = ({path}) => (
+const UnauthenticatedRoutes = ({ path }) => (
     <Switch>
         <Route path={`${path}login`} component={Login}/>
         <Route component={() => <Redirect to='/login'/>}/>
@@ -26,10 +26,10 @@ const UnauthenticatedRoutes = ({path}) => (
 );
 
 
-const AppRoutesPure = withRouter(({authenticated, userLoaded, error, match}) => {
+const AppRoutesPure = withRouter(({ authenticated, userLoaded, error, match }) => {
     if (error) return <ErrorPage error={error}/>;
 
-    const {path} = match;
+    const { path } = match;
 
     return authenticated ?
         <AuthenticatedRoutes path={path}
@@ -46,7 +46,7 @@ const AppRoutes = connect(
             error: getCurrentError(state)
         }
     ), null, null,
-    {pure: false}
+    { pure: false }
 )(AppRoutesPure);
 
 

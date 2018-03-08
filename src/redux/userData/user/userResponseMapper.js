@@ -1,5 +1,5 @@
 const mapUserResponse = (userResponse) => {
-    const {executiveDataSetIds, deploymentDataSetIds} = parseDataSetsFromRoles(userResponse.roles);
+    const { executiveDataSetIds, deploymentDataSetIds } = parseDataSetsFromRoles(userResponse.roles);
     return {
         ...userResponse,
         executiveDataSetIds,
@@ -33,7 +33,7 @@ const parseDataSetsFromRoles = (roleUriArray) => {
         return null;
     });
 
-    return {executiveDataSetIds, deploymentDataSetIds};
+    return { executiveDataSetIds, deploymentDataSetIds };
 };
 
 export {

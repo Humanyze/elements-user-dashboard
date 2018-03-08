@@ -6,7 +6,7 @@ const Deployment = () => {
         <div>
             <DeploymentRoutes/>
         </div>
-    )
+    );
 };
 
 

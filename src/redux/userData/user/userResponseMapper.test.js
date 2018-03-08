@@ -1,4 +1,4 @@
-import {mapUserResponse, parseDataSetsFromRoles} from './userResponseMapper';
+import { mapUserResponse, parseDataSetsFromRoles } from './userResponseMapper';
 
 
 describe.only('userResponseMapper', () => {
@@ -30,7 +30,7 @@ describe.only('userResponseMapper', () => {
 
             expect(result.executiveDataSetIds).toEqual(expected.executiveDataSetIds);
             expect(result.deploymentDataSetIds).toEqual(expected.deploymentDataSetIds);
-        })
+        });
     });
 
 });

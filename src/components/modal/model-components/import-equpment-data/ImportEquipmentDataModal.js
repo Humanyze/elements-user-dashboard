@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import LightBoxWrapper from '../LightBoxWrapper/LightBoxWrapper';
 
 class ImportEquipmentDataModal extends Component {

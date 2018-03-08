@@ -1,4 +1,4 @@
-import {handleActions} from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import AUTH_ACTION_TYPES from './authActionTypes';
 
 export const initialState = JSON.parse(localStorage.getItem('reduxPersist:auth')) || {};

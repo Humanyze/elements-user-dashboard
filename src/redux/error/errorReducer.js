@@ -1,4 +1,4 @@
-import {handleActions} from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import ERROR_ACTION_TYPES from './errorActionTypes';
 
 // returns undefined if no error, easy check for if error is present
@@ -6,7 +6,7 @@ const getCurrentError = (state) =>
     state.error.errors.reduce((highestPriorityError, error) => {
         return (
             (highestPriorityError && highestPriorityError.priority) >= (error && error.priority)
-        ) ? highestPriorityError:error
+        ) ? highestPriorityError:error;
     }, undefined);
 
 
@@ -28,4 +28,4 @@ export default errorReducer;
 
 export {
     getCurrentError
-}
+};

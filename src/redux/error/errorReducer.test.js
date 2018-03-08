@@ -1,16 +1,16 @@
 import * as errorActions from './errorActions';
 
-import errorReducer, {getCurrentError, initialState} from './errorReducer';
+import errorReducer, { getCurrentError, initialState } from './errorReducer';
 
 describe('errorReducer', () => {
 
     const basicError = {
-        message: "This page does not exist",
+        message: 'This page does not exist',
         code: 404,
         priority: 1
     };
 
-    const createErrorWithPriority = (priority) => ({...basicError, priority});
+    const createErrorWithPriority = (priority) => ({ ...basicError, priority });
 
     it('should add  error to state when triggered', () => {
 
@@ -70,5 +70,5 @@ describe('errorReducer', () => {
         it('should return undefined if no errors are present', () => {
            expect(getCurrentError(errorlessRootState)).toEqual(undefined);
         });
-    })
+    });
 });

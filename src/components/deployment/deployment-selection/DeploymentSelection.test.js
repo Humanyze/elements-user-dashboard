@@ -1,5 +1,5 @@
 import React from 'react';
-import {DeploymentSelectionPure} from './DeploymentSelection';
+import { DeploymentSelectionPure } from './DeploymentSelection';
 
 describe('DeploymentSelection', () => {
     testRender(DeploymentSelectionPure)();
@@ -8,10 +8,10 @@ describe('DeploymentSelection', () => {
         const deploymentDataMock = {
             deploymentDataSetIds: ['1', '2', '3', '4'],
             deploymentsById: {
-                '1': {name: 'deplyoment 1', id: '1'},
-                '2': {name: 'deplyoment 2', id: '2'},
-                '3': {name: 'deplyoment 3', id: '3'},
-                '4': {name: 'deplyoment 4', id: '4'}
+                '1': { name: 'deplyoment 1', id: '1' },
+                '2': { name: 'deplyoment 2', id: '2' },
+                '3': { name: 'deplyoment 3', id: '3' },
+                '4': { name: 'deplyoment 4', id: '4' }
             }
         };
 
@@ -25,10 +25,10 @@ describe('DeploymentSelection', () => {
         const deploymentDataMock = {
             deploymentDataSetIds: ['1', '2', '3', '4'],
             deploymentsById: {
-                '1': {name: 'deplyoment 1', id: '1'},
-                '5': {name: 'deplyoment 2', id: '2'},
-                '3': {name: 'deplyoment 3', id: '3'},
-                '9': {name: 'deplyoment 4', id: '4'}
+                '1': { name: 'deplyoment 1', id: '1' },
+                '5': { name: 'deplyoment 2', id: '2' },
+                '3': { name: 'deplyoment 3', id: '3' },
+                '9': { name: 'deplyoment 4', id: '4' }
             }
         };
 
@@ -42,10 +42,10 @@ describe('DeploymentSelection', () => {
         const deploymentDataMock = {
             deploymentDataSetIds: [],
             deploymentsById: {
-                '1': {name: 'deplyoment 1', id: '1'},
-                '5': {name: 'deplyoment 2', id: '2'},
-                '3': {name: 'deplyoment 3', id: '3'},
-                '9': {name: 'deplyoment 4', id: '4'}
+                '1': { name: 'deplyoment 1', id: '1' },
+                '5': { name: 'deplyoment 2', id: '2' },
+                '3': { name: 'deplyoment 3', id: '3' },
+                '9': { name: 'deplyoment 4', id: '4' }
             }
         };
         const wrapper = mount(<WithRouterContext><DeploymentSelectionPure
@@ -53,6 +53,6 @@ describe('DeploymentSelection', () => {
 
         expect(wrapper.find('.DeploymentSelection__no-deployments-message')).toHaveLength(1);
 
-    })
+    });
 });
 

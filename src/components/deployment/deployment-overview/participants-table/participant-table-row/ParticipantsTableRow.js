@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './participants-table-row.scss';
 
-const ParticipantsTableRow = ({element}) => {
+const ParticipantsTableRow = ({ element }) => {
     return (
         <tr className='ParticipantsTableRow'>
             <td >{element.email}</td>

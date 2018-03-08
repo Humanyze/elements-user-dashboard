@@ -3,4 +3,4 @@ export default {
     LOGIN_SUCCESSFUL: 'app/auth/LOGIN_SUCCESSFUL',
     LOGIN_FAILED: 'app/auth/LOGIN_FAILED',
     LOGOUT: 'app/auth/LOGOUT'
-}
+};

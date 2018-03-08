@@ -1,4 +1,4 @@
-import participantReducer, {initialState} from './participantReducer';
+import participantReducer, { initialState } from './participantReducer';
 import * as ParticipantActions from './participantActions';
 
 describe('participantReducer', () => {
@@ -19,5 +19,5 @@ describe('participantReducer', () => {
         expect(
             participantReducer(initialState, ParticipantActions.participantDataFetchRequested())
         ).toEqual(expected);
-    })
+    });
 });
