@@ -1,4 +1,4 @@
-import participantReducer, { initialState } from './participantReducer';
+import participantReducer, {initialState} from './participantReducer';
 import * as ParticipantActions from './participantActions';
 
 describe('participantReducer', () => {
@@ -9,11 +9,11 @@ describe('participantReducer', () => {
     });
 
 
-    it('should handle participantDataRequestw', () => {
+    it('should handle participantDataRequest', () => {
 
         const expected = {
             ...initialState,
-            fetching: true
+            requestPending: true
         };
 
         expect(

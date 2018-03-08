@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 
 import DeploymentOverview from './deployment-overview/DeploymentOverview';
 import DeploymentSelection from "./deployment-selection/DeploymentSelection";
@@ -7,7 +7,7 @@ import {Redirect, withRouter} from "react-router";
 
 
 const DeploymentRoutes = ({match}) => {
-    const { path } = match;
+    const {path} = match;
 
     return (
         <Switch>

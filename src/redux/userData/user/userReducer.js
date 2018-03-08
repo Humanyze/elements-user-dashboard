@@ -1,25 +1,25 @@
-import { handleActions } from 'redux-actions';
+import {handleActions} from 'redux-actions';
 import USER_ACTION_TYPES from './userActionTypes';
 
 
 export const initialState = {
-    fetching: false,
+    requestPending: false,
     user: null
 };
 
 const userReducer = handleActions({
     [USER_ACTION_TYPES.USER_DATA_FETCH_REQUESTED]: (state, action) => ({
         ...state,
-        fetching: true
+        requestPending: true
     }),
     [USER_ACTION_TYPES.USER_DATA_FETCH_SUCCESSFUL]: (state, action) => ({
         ...state,
         user: action.payload,
-        fetching: false
+        requestPending: false
     }),
     [USER_ACTION_TYPES.USER_DATA_FETCH_FAILED]: (state, action) => ({
         ...state,
-        fetching: false
+        requestPending: false
     })
 }, initialState);
 

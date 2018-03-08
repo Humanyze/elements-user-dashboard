@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
-import {compose, lifecycle, withState} from "recompose";
+import {compose, lifecycle} from "recompose";
 
 import './deployment-selection.scss';
 
@@ -11,23 +11,20 @@ import DeploymentSelectionItem from "./deployment-selection-item/DeploymentSelec
 
 const withDidMount = lifecycle({
     componentDidMount() {
-        const {deploymentDataSetIds, deploymentsById, fetching} = this.props.deploymentData;
-        if (!fetching) {
+        const {deploymentDataSetIds, deploymentsById, requestPending} = this.props.deploymentData;
+        if (!requestPending) {
             deploymentDataSetIds.some((id) => { // could do this for only the ones not in storage, but we'll do a total reset
                 if (!deploymentsById[id]) {
                     this.props.setDeploymentsFromStoreDeploymentIds();
                     return true;
                 }
+                return null;
             })
         }
     }
 });
 
-const enhance = compose(
-    withState(),
-
-    withDidMount
-);
+const enhance = compose(withDidMount);
 
 export const DeploymentSelectionPure = withRouter(({deploymentData: {deploymentDataSetIds, deploymentsById}}) => {
     return (
@@ -35,13 +32,18 @@ export const DeploymentSelectionPure = withRouter(({deploymentData: {deploymentD
             <div className='DeploymentSelection'>
                 <div>
                     <div className='DeploymentSelection__header'>Choose a deployment</div>
-                    {
-                        deploymentDataSetIds.map((id) => {
-                            const deployment = deploymentsById[id];
-                                return !!deployment && <DeploymentSelectionItem key={id} deployment={deployment}/>
-                            }
-                        )
-                    }
+                    <div className='DeploymentSelection__deployment-list'>
+                        { deploymentDataSetIds.length ?
+
+                            deploymentDataSetIds.map((id) => {
+                                    const deployment = deploymentsById[id];
+                                    return !!deployment && <DeploymentSelectionItem key={id} deployment={deployment}/>
+                                }
+                            )
+                            :
+                            <div className='DeploymentSelection__no-deployments-message'>No Datasets Available</div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

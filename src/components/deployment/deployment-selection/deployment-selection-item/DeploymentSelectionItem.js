@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './deployment-selection-item.scss';
 
@@ -11,6 +12,13 @@ const DeploymentSelectionItem = ({deployment}) => {
 
         </Link>
     )
+};
+
+DeploymentSelectionItem.propTypes = {
+    deployment: PropTypes.shape({
+        id: PropTypes.string.required,
+        name: PropTypes.string.required
+    })
 };
 
 export default DeploymentSelectionItem;

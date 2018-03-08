@@ -27,7 +27,7 @@ describe("ModalRoot", () => {
     });
 
     it('should return Modal Component if passed valid type', () => {
-        const { store } = createStore();
+        const {store} = createStore();
 
         const wrapper = mount(
             <Provider store={store}>

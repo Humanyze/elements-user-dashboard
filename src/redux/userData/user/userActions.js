@@ -1,7 +1,7 @@
 import {createAction} from 'redux-actions';
 import {fetchWithAuth} from "../../rootReducer";
 import USER_ACTION_TYPES from './userActionTypes';
-import { mapUserResponse } from './userResponseMapper';
+import {mapUserResponse} from './userResponseMapper';
 
 const userDataFetchRequested = createAction(USER_ACTION_TYPES.USER_DATA_FETCH_REQUESTED);
 const userDataFetchSuccessful = createAction(USER_ACTION_TYPES.USER_DATA_FETCH_SUCCESSFUL, userData => userData);

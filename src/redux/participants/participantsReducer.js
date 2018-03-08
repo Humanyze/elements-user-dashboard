@@ -2,22 +2,27 @@ import {handleActions} from 'redux-actions';
 import EQUIPMENT_ACTION_TYPES from './participantsActionTypes';
 
 export const initialState = {
-    fetching: false,
+    requestPending: false,
+    participantIds: [ ],
     participantsById: {
 
+    },
+    // temp, move to sub-reducer
+    UI: {
+        limit: 20
     }
 };
 
 const participantsReducer = handleActions({
     [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_REQUESTED]: (state, action) => ({
-        fetching: true
+        requestPending: true
     }),
     [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_SUCCESS]: (state, action) => ({
-        fetching: false,
+        requestPending: false,
         participantsById: action.payload
     }),
     [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_ERROR]: (state, action) => ({
-        fetching: false,
+        requestPending: false,
         participantsById: initialState.participants
     //    set some sort of error message somewhere
     })

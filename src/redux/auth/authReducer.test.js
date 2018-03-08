@@ -14,7 +14,7 @@ describe('authReducer', () => {
 
         const expected = {
             ...initialState,
-            fetching: true
+            requestPending: true
         };
 
         expect(

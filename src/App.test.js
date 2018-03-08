@@ -5,7 +5,7 @@ import App from './App';
 import {Provider} from 'react-redux';
 import createStore from './redux/createStore';
 
-const { store } = createStore();
+const {store} = createStore();
 
 it('renders without crashing', () => {
     const div = document.createElement('div');

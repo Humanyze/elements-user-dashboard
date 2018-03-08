@@ -5,9 +5,11 @@ import {Switch, Route} from 'react-router-dom';
 
 import Deployment from './deployment/Deployment';
 import Login from "../Login";
+import {getCurrentError} from "../redux/error/errorReducer";
+import ErrorPage from "./error-page/ErrorPage";
 
 const AuthenticatedRoutes = ({path, userLoaded}) => {
-    return userLoaded  && (
+    return userLoaded && (
         <Switch>
             <Route path={`${path}deployments`} component={Deployment}/>
             <Route component={() => <Redirect to='/deployments'/>}/>
@@ -24,8 +26,11 @@ const UnauthenticatedRoutes = ({path}) => (
 );
 
 
-const AppRoutesPure = withRouter(({authenticated, userLoaded,  match}) => {
-    const { path } = match;
+const AppRoutesPure = withRouter(({authenticated, userLoaded, error, match}) => {
+    if (error) return <ErrorPage error={error}/>;
+
+    const {path} = match;
+
     return authenticated ?
         <AuthenticatedRoutes path={path}
                              userLoaded={userLoaded}/>
@@ -34,7 +39,13 @@ const AppRoutesPure = withRouter(({authenticated, userLoaded,  match}) => {
 });
 
 const AppRoutes = connect(
-    (state) => ({authenticated: !!state.auth.tokenObj, userLoaded: !!state.user.user.user }), null, null,
+    (state) => (
+        {
+            authenticated: !!state.auth.tokenObj,
+            userLoaded: !!state.user.user.user,
+            error: getCurrentError(state)
+        }
+    ), null, null,
     {pure: false}
 )(AppRoutesPure);
 

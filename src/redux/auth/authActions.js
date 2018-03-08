@@ -1,7 +1,7 @@
 import {createAction} from 'redux-actions';
 import AUTH_ACTION_TYPES from './authActionTypes';
-import { setUserDataById } from '../userData/user/userActions';
-import { setParticipantDataById } from '../userData/participant/participantActions';
+import {setUserDataById} from '../userData/user/userActions';
+import {setParticipantDataById} from '../userData/participant/participantActions';
 import {postDataRequest} from "../rootReducer";
 
 const logout = createAction(AUTH_ACTION_TYPES.LOGOUT);

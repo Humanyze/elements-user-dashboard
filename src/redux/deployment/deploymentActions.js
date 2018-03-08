@@ -1,7 +1,6 @@
 import {createAction} from 'redux-actions';
 import DEPLOYMENT_ACTION_TYPES from './deploymentActionTypes';
 import {fetchWithAuth} from "../rootReducer";
-import _ from 'lodash';
 
 
 export const deploymentsByIdRequested = createAction(DEPLOYMENT_ACTION_TYPES.DEPLOYMENTS_DATA_REQUESTED);

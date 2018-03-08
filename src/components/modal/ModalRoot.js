@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 
 import ImportEquipmentDataModal from "./model-components/import-equpment-data/ImportEquipmentDataModal";
 import MODAL_TYPES from './modalTypes.js';
-import { closeTopModal } from "../../redux/modal/modalActions";
-import { getTopModal } from '../../redux/modal/modalReducer';
+import {closeTopModal} from "../../redux/modal/modalActions";
+import {getTopModal} from '../../redux/modal/modalReducer';
 import ExportEquipmentDataModal from "./model-components/export-equipment-data/ExportEquipmentDataModal";
 
 const MODAL_COMPONENTS = {

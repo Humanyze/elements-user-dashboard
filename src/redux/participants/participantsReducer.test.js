@@ -1,6 +1,6 @@
 import React from 'react';
 import participantsReducer, {initialState} from './participantsReducer';
-import { participantsFetchStarted } from './participantsActions';
+import {participantsFetchStarted} from './participantsActions';
 
 describe('participantsReducer', () => {
 
@@ -14,7 +14,7 @@ describe('participantsReducer', () => {
 
         const expected = {
             ...initialState,
-            fetching: true
+            requestPending: true
         };
 
         expect(

@@ -1,6 +1,10 @@
 import DeploymentSelectionItem from './DeploymentSelectionItem';
 
-const deployment = {
-    name: ''
-}
-testRender(DeploymentSelectionItem, {deployment})();
+
+describe('DeploymentSelectionItem', () => {
+    const deployment = {
+        id: '5',
+        // name: 'Humanyze'
+    };
+    testRender(DeploymentSelectionItem, {deployment})();
+})

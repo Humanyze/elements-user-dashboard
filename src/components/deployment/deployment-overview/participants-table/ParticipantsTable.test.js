@@ -1,4 +1,4 @@
 import React from 'react';
-import ParticipantsTable, {ParticipantsTablePure} from './ParticipantsTable';
+import ParticipantsTable from './ParticipantsTable';
 
-testRender(ParticipantsTablePure)();
+testRender(ParticipantsTable)();

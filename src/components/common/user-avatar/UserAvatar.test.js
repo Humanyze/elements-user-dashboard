@@ -1,13 +1,14 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import UserAvatar, { UserAvatarPure } from './UserAvatar';
+import UserAvatar, {UserAvatarPure} from './UserAvatar';
 import createStore from 'Redux/createStore';
 
 import {Provider} from 'react-redux';
-const { store } = createStore();
+import {BrowserRouter} from "react-router-dom";
+const {store} = createStore();
 
 describe("userAvatar", () => {
-    const component = mount(<Provider store={store}><UserAvatar/></Provider>);
+    const component = mount(<Provider store={store}><BrowserRouter><UserAvatar/></BrowserRouter></Provider>);
 
     const getShowDropdownValue = () => component.find(UserAvatarPure).props().showDropdown;
 

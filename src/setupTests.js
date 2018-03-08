@@ -1,13 +1,15 @@
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import chai from 'chai';
 import renderer from 'react-test-renderer';
+import {BrowserRouter} from 'react-router-dom';
 
 Enzyme.configure({adapter: new Adapter()});
 
-// global.expect = chai.expect;
+global.shallow = shallow;
+global.mount = mount;
 
 // Add global "should render" test case that takes
 // component export and simple tests
@@ -30,25 +32,26 @@ global.testRender = (Component, props) => {
 };
 
 class LocalStorageMock {
-    constructor() {
-        this.store = {};
-    }
+    store = {};
+    clear=() =>this.store = {};
+    getItem = (key) => this.store[key] || null;
+    setItem = (key, value) => this.store[key] = value.toString();
+    removeItem = (key) => delete this.store[key];
+}
+global.localStorage = new LocalStorageMock();
 
-    clear() {
-        this.store = {};
-    }
 
-    getItem(key) {
-        return this.store[key] || null;
-    }
+// NOTE: doesn't seem to run properly, but this way we can monkeypatch expect
+// const originalExpect = global.expect;
+//
+// global.expect = actual => {
+//     const originalMatchers = originalExpect(actual);
+//     const chaiMatchers = chai.expect(actual);
+//     console.warn(chaiMatchers);
+//     const combinedMatchers = Object.assign(originalMatchers, chaiMatchers);
+//     return combinedMatchers();
+// };
+//
 
-    setItem(key, value) {
-        this.store[key] = value.toString();
-    }
 
-    removeItem(key) {
-        delete this.store[key];
-    }
-};
-
-global.localStorage = new LocalStorageMock;
+global.WithRouterContext = ({children}) => <BrowserRouter>{children}</BrowserRouter>;

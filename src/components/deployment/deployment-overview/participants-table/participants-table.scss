@@ -1,9 +1,11 @@
+@import 'Src/Global.scss';
+
 .ParticipantsTable {
     padding: 40px;
 }
 
 .ParticipantsTable__title {
-    background-color: #5ad1e5;
+    background-color: $humanyze-blue;
     font-size: 2em;
     color: white;
     padding: 10px 30px;

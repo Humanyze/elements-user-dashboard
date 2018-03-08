@@ -10,7 +10,6 @@ const participantsFetchError = createAction(PARTICIPANTS_ACTION_TYPES.LOAD_PARTI
 
 // TODO: LOADING NEEDS TO BE DONE PARTIALLY
 const requestParticipantsData = (datasetId) => async (dispatch, getState) => {
-    console.error(datasetId);
     dispatch(participantsFetchStarted());
 
     try {

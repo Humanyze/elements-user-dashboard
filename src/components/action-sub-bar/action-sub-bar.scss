@@ -1,5 +1,7 @@
+@import 'Src/Global.scss';
+
 .ActionSubBar {
-    background-color: #5ad1e5;
+    background-color: $humanyze-blue;
     height: 50px;
 
     display: grid;

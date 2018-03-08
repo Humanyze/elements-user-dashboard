@@ -1,36 +1,31 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import './action-sub-bar.scss';
-import * as MODAL_CONFIGS from "../modal/modalConfigs";
-import {openModal} from '../../redux/modal/modalActions';
 import {Link} from "react-router-dom";
 
-const group = 'Humanyze internal';
+import './action-sub-bar.scss';
 
-const ActionSubBarPure = ({openImportDialog, openExportDialog}) => {
+import * as MODAL_CONFIGS from "../modal/modalConfigs";
+import {openModal} from '../../redux/modal/modalActions';
+import {getSelectedDeployment} from "../../redux/deployment/deploymentReducer";
+
+
+const ActionSubBarPure = ({openImportDialog, openExportDialog, deploymentName}) => {
     return (
         <div className='ActionSubBar'>
             <div className='ActionSubBar__text'>
-                Viewing Data For: {group}
+                Viewing Data For: {deploymentName}
             </div>
 
             {/* TODO to is incorrect path currently*/}
-            <Link to={`/select-deployment`} className='ActionSubBar__text'>
+            <Link to={`/deployments/select-deployment`} className='ActionSubBar__text'>
                 Change Deployment
             </Link>
         </div>
     )
 };
-// {/*<div className='ActionSubBar__text' onClick={openImportDialog}>*/}
-// {/*Import*/}
-// {/*</div>*/}
-// {/*<div className='ActionSubBar__text' onClick={openExportDialog}>*/}
-// {/*Export*/}
-// {/*</div>*/}
-
 
 const ActionSubBar = connect(
-    null,
+    state => ({deploymentName: getSelectedDeployment(state).name}),
     (dispatch) => ({
         openImportDialog: () => dispatch(openModal(MODAL_CONFIGS.importParticipantsConfig)),
         openExportDialog: () => dispatch(openModal(MODAL_CONFIGS.exportParticipantsConfig))

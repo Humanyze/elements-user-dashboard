@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import authReducer from './auth/authReducer';
+import errorReducer from './error/errorReducer';
 import modalReducer from './modal/modalReducer';
 import participantsReducer from './participants/participantsReducer';
 import userDataReducer from "./userData/userDataReducer";
@@ -7,6 +8,7 @@ import deploymentReducer from "./deployment/deploymentReducer";
 
 const RootReducer = combineReducers({
     auth: authReducer,
+    error: errorReducer,
     user: userDataReducer,
     modal: modalReducer,
     deployment: deploymentReducer,
@@ -14,14 +16,6 @@ const RootReducer = combineReducers({
 });
 
 export default RootReducer;
-
-
-
-
-
-
-
-
 
 
 // temporary services
