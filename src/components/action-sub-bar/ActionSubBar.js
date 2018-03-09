@@ -9,7 +9,7 @@ import { openModal } from '../../redux/modal/modalActions';
 import { getSelectedDeployment } from '../../redux/deployment/deploymentReducer';
 
 
-const ActionSubBarPure = ({ openImportDialog, openExportDialog, deploymentName }) => {
+export const ActionSubBarPure = ({ openImportDialog, openExportDialog, deploymentName }) => {
     return (
         <div className='ActionSubBar'>
             <div className='ActionSubBar__text'>

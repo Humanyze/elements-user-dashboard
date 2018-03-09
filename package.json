@@ -5,6 +5,7 @@
   "proxy": "https://wyze-qa.humanyze.com/",
   "dependencies": {
     "@redux-offline/redux-offline": "^2.3.2",
+    "@storybook/react": "^3.3.15",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
     "babel-core": "6.26.0",
@@ -63,7 +64,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -113,6 +115,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.3.15",
     "chai-as-promised": "^7.1.1",
     "chai-enzyme": "^0.8.0",
     "enzyme": "^3.3.0",
@@ -120,6 +123,7 @@
     "enzyme-to-json": "^3.3.1",
     "node-sass": "^4.7.2",
     "react-test-renderer": "^16.2.0",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "storybook": "^1.0.0"
   }
 }
