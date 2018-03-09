@@ -1,7 +1,5 @@
-import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 import EQUIPMENT_ACTION_TYPES from './participantsActionTypes';
-import participantsUIReducer from './participants-ui/participantsUIReducer';
 
 export const initialState = {
     requestPending  : false,

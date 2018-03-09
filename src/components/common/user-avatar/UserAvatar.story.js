@@ -1,14 +1,19 @@
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { UserAvatarPure } from './UserAvatar';
 import { RouterContext } from '../../../../.storybook/contextWrappers';
 
+
+const defaultProps = {
+    username: 'demo@humanyze.com'
+};
+
+
+const createComp = (props) => <RouterContext><UserAvatarPure {...defaultProps} {...props}/></RouterContext>;
+
 storiesOf('UserAvatar', module)
-    .add('initial', () => (
-        <UserAvatarPure />
-    ))
+    .add('initial', () => createComp())
     .add('dropdown showing', () => (
-        <RouterContext><UserAvatarPure showDropdown={true}/></RouterContext>
+        createComp({ showDropdown: true })
     ));
