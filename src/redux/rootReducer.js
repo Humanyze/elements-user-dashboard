@@ -5,8 +5,9 @@ import modalReducer from './modal/modalReducer';
 import participantsReducer from './participants/participantsReducer';
 import userDataReducer from './userData/userDataReducer';
 import deploymentReducer from './deployment/deploymentReducer';
+import AUTH_ACTION_TYPES from './auth/authActionTypes';
 
-const RootReducer = combineReducers({
+const AppReducer = combineReducers({
     auth: authReducer,
     error: errorReducer,
     user: userDataReducer,
@@ -14,6 +15,14 @@ const RootReducer = combineReducers({
     deployment: deploymentReducer,
     participants: participantsReducer
 });
+
+const RootReducer = (state, action) => {
+    if (action.type === AUTH_ACTION_TYPES.LOGOUT) {
+        state = undefined;
+    }
+    return AppReducer(state, action);
+};
+
 
 export default RootReducer;
 

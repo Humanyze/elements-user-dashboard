@@ -1,32 +1,26 @@
+import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 import EQUIPMENT_ACTION_TYPES from './participantsActionTypes';
+import participantsUIReducer from './participants-ui/participantsUIReducer';
 
 export const initialState = {
-    requestPending: false,
-    participantIds: [ ],
-    participantsById: {
-
-    },
-    // temp, move to sub-reducer
-    UI: {
-        limit: 20
-    }
+    requestPending  : false,
+    participantIds  : [],
+    participantsById: {}
 };
 
 const participantsReducer = handleActions({
     [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_REQUESTED]: (state, action) => ({
         requestPending: true
     }),
-    [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_SUCCESS]: (state, action) => ({
-        requestPending: false,
+    [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_SUCCESS]  : (state, action) => ({
+        requestPending  : false,
         participantsById: action.payload
     }),
-    [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_ERROR]: (state, action) => ({
-        requestPending: false,
+    [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_ERROR]    : (state, action) => ({
+        requestPending  : false,
         participantsById: initialState.participants
-    //    set some sort of error message somewhere
     })
-
 }, initialState);
 
 

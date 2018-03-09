@@ -3,6 +3,7 @@ import React from 'react';
 import { compose, withState, withHandlers } from 'recompose';
 import { connect } from 'react-redux';
 import { loginUser } from './redux/auth/authActions';
+import { getAuthErrorCode } from './redux/auth/authReducer';
 
 
 const onSubmit = ({ username, password, loginUser }) => (e) => {
@@ -12,7 +13,7 @@ const onSubmit = ({ username, password, loginUser }) => (e) => {
 
 const enhance = compose(
     withState('username', 'setUsername', 'demo@humanyze.com'),
-    withState('password', 'setPassword', 'Password1!'),
+    withState('password', 'setPassword', 'Password!1'),
     withHandlers({
         onUsernameChange: ({ setUsername }) => ({ target }) => setUsername(target.value),
         onPasswordChange: ({ setPassword }) => ({ target }) => setPassword(target.value),
@@ -36,7 +37,7 @@ const LoginPure = ({
 
 
 const Login = connect(
-    null,
+    state => ({ errorCode: getAuthErrorCode(state) }),
     { loginUser }
 )(enhance(LoginPure));
 

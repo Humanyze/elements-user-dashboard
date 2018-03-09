@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import USER_ACTION_TYPES from './userActionTypes';
-
+import AUTH_ACTION_TYPES from 'Redux/auth/authActionTypes';
 
 export const initialState = {
     requestPending: false,
@@ -20,7 +20,8 @@ const userReducer = handleActions({
     [USER_ACTION_TYPES.USER_DATA_FETCH_FAILED]: (state, action) => ({
         ...state,
         requestPending: false
-    })
+    }),
+    [AUTH_ACTION_TYPES.LOGOUT]: (state, action) => initialState
 }, initialState);
 
 
