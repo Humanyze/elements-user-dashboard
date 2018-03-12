@@ -94,6 +94,12 @@ Before tests are run, the scripts in `src/setupTests.js` are run.  This is very 
 
 Most react components, specifically presentational components, can quickly be tested by a simple shallow render test.  A global test function `testRender` has been implemented.  Currently, no e2e testing is supported.  Ultimately, we can do integration style work of this using enzyme to mount the root component and simulate interactions
   
+  
+## StoryBook
+[Storybook](https://storybook.js.org/basics/introduction/) is a tool for isolated UI component feedback.  To run the storybook server, run `yarn storybook`.  Storybook has its own webpack configuration and setup files, located in `<rootDir/.storybook`.  At the moment, we are manually copying configs for webpack, but ultimately we'll want to use a common webpack config for this situation. 
+
+This section requires some maintenance as we determine our specific use cases and systems for storybook.
+
 ## Linting
 Standard eslint setup in `/.eslintrc`, any modifications should be accompanied by the proper global fix for that rule.  To run the eslint fix, run `npx eslint --fix .` and run the test suite to make sure changes were safe.
 

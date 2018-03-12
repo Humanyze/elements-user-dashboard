@@ -28,7 +28,7 @@ const deploymentDataMock = {
 const emptyDataMock = {
     deploymentData: {
         deploymentDataSetIds: [],
-        deploymentsById     : {
+        deploymentsById     : {f
         }
     }
 };
