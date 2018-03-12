@@ -13,7 +13,13 @@ module.exports = {
                 loaders: [
                     require.resolve('style-loader'),
                     require.resolve('css-loader'),
-                    require.resolve('sass-loader')
+                    require.resolve('sass-loader'),
+                    {
+                        loader: require.resolve('sass-resources-loader'),
+                        options: {
+                            resources: path.resolve(__dirname, '../src/Global.scss')
+                        }
+                    }
                 ]
             },
         ]
