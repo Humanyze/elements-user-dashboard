@@ -2,7 +2,7 @@ import MODAL_TYPES from './modalTypes.js';
 
 
 export const importParticipantsConfig = {
-    type: MODAL_TYPES.IMPORT_EQUIPMENT_MODAL,
+    type: MODAL_TYPES.IMPORT_PARTICIPANT_MODAL,
     exitOnClickElsewhere: true
 };
 

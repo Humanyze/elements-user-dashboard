@@ -31,7 +31,7 @@ describe('ModalRoot', () => {
 
         const wrapper = mount(
             <Provider store={store}>
-                <ModalRootPure openModal={{ type: MODAL_TYPES.IMPORT_EQUIPMENT_MODAL }}
+                <ModalRootPure openModal={{ type: MODAL_TYPES.IMPORT_PARTICIPANT_MODAL }}
                                closeModal={() => {
                                }}/>
             </Provider>

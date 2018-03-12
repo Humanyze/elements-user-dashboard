@@ -17,6 +17,6 @@ class ImportEquipmentDataModal extends Component {
             </LightBoxWrapper>
         );
     }
-};
+}
 
 export default ImportEquipmentDataModal;
