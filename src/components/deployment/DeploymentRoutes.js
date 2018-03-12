@@ -11,7 +11,7 @@ const DeploymentRoutes = ({ match }) => {
 
     return (
         <Switch>
-            <Route path={`${path}/deployment/:datasetId`} component={DeploymentOverview}/>
+            <Route path={`${path}/deployment/:datasetId/:perPage/:offset`} component={DeploymentOverview}/>
             <Route path={`${path}/select-deployment`} component={DeploymentSelection} />
             <Route component={() => <Redirect to={`${path}/select-deployment`}/> }/>
         </Switch>

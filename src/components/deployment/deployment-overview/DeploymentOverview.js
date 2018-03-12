@@ -40,7 +40,7 @@ const enhance = compose(
 export const DeploymentOverviewPure = ({ participants }) => {
     return (
         <div>
-            <ActionSubBar />
+            <ActionSubBar/>
             {/* ADD SEARCH BAR HERE */}
             <ParticipantsTable participants={participants}/>
         </div>
@@ -48,7 +48,10 @@ export const DeploymentOverviewPure = ({ participants }) => {
 };
 
 const DeploymentOverview = connect(
-    (state) => ({ deployment: getSelectedDeployment(state), participants: getAllParticipants(state) }),
+    (state) => ({
+        deployment  : getSelectedDeployment(state),
+        participants: getAllParticipants(state)
+    }),
     { setSelectedDeploymentId, requestParticipantsData }
 )(withRouter(enhance(DeploymentOverviewPure)));
 

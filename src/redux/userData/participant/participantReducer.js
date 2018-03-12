@@ -1,6 +1,12 @@
 import { handleActions } from 'redux-actions';
 import PARTICIPANT_ACTION_TYPES from './participantActionTypes';
 
+const getCurrentParticipantAvatar = state => state.user.participant.avatar;
+
+
+export {
+    getCurrentParticipantAvatar
+};
 
 export const initialState = {
     participantData: null,

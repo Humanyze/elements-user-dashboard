@@ -4,7 +4,9 @@ import './user-avatar.scss';
 import { connect } from 'react-redux';
 import { logout } from 'Redux/auth/authActions';
 import { Link } from 'react-router-dom';
-import MaterialIcon, { colorPallet } from 'material-icons-react';
+import MaterialIcon from 'material-icons-react';
+import { getCurrentUserName } from 'Redux/userData/user/userReducer';
+import { getCurrentParticipantAvatar } from 'Redux/userData/participant/participantReducer';
 
 
 const onLogoutClicked = ({ setShowDropdown, logout }) => e => {
@@ -13,8 +15,8 @@ const onLogoutClicked = ({ setShowDropdown, logout }) => e => {
 };
 
 const linkClicked = ({ setShowDropdown }) => e => {
+    console.log('here');
     setShowDropdown(false);
-    
 };
 
 const enhance = compose(
@@ -34,13 +36,18 @@ export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown,
         </div>
         <div className='UserAvatar__dropdown-wrapper'>
             <div onClick={toggleDropdown} className='UserAvatar__avatar-icon'>
-                { avatar? <MaterialIcon icon='account_circle' size={45}/>: <MaterialIcon icon='account_circle' size={45}/>}
-            </div >
+                {avatar ? <MaterialIcon icon='account_circle' size={45}/> :
+                    <MaterialIcon icon='account_circle' size={45}/>}
+            </div>
 
             {showDropdown &&
             <div className='UserAvatar__dropdown'>
                 <div className='UserAvatar__dropdown-body'>
-                    {DropdownLinks.map(link => <Link to={link.to} key={link.text} onClick={linkClicked}>{link.text}</Link>)}
+                    {DropdownLinks.map(link => <Link to={link.to}
+                                                     key={link.text}
+                                                     onClick={linkClicked}>
+                        {link.text}
+                    </Link>)}
                     <div className='UserAvatar__dropdown-divider'/>
                     <Link to={'never'} onClick={onLogoutClicked}>Logout</Link>
                     <div className='UserAvatar__dropdown-version-text'>Elements v2.7.1</div>
@@ -53,39 +60,38 @@ export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown,
 
 const UserAvatar = connect(
     (state) => ({
-        username: state.user.user.user && state.user.user.user.username,
-        avatar: state.user.participant.avatar
+        username: getCurrentUserName(state),
+        avatar  : getCurrentParticipantAvatar(state)
+
     }),
     { logout }
 )(enhance(UserAvatarPure));
 export default UserAvatar;
 
 
-
-
 const DropdownLinks = [
     {
         text: 'Dashboard',
-        to: '/dashboard'
+        to  : '/dashboard'
     },
     {
         text: 'Management',
-        to: '/manage'
+        to  : '/manage'
     },
     {
         text: 'Executive',
-        to: '/select-deployment?for=executive'
+        to  : '/select-deployment?for=executive'
     },
     {
         text: 'Digital',
-        to: '/select-deployment?for=digital'
+        to  : '/select-deployment?for=digital'
     },
     {
         text: 'Profile',
-        to: '/profile'
+        to  : '/profile'
     },
     {
         text: 'Change Password',
-        to: '/profile/change-password'
+        to  : '/profile/change-password'
     }
 ];
