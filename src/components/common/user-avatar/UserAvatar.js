@@ -4,6 +4,8 @@ import './user-avatar.scss';
 import { connect } from 'react-redux';
 import { logout } from 'Redux/auth/authActions';
 import { Link } from 'react-router-dom';
+import MaterialIcon, { colorPallet } from 'material-icons-react';
+
 
 const onLogoutClicked = ({ setShowDropdown, logout }) => e => {
     logout();
@@ -24,10 +26,9 @@ export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown,
             {username}
         </div>
         <div className='UserAvatar__dropdown-wrapper'>
-            <div className={`UserAvatar__image ${showDropdown && 'active'}`}
-                 onClick={toggleDropdown}>
-                M
-            </div>
+            <div onClick={toggleDropdown} className='UserAvatar__avatar-icon'>
+                { avatar? <MaterialIcon icon='account_circle' size={45}/>: <MaterialIcon icon='account_circle' size={45}/>}
+            </div >
 
             {showDropdown &&
             <div className='UserAvatar__dropdown'>

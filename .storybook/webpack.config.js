@@ -1,15 +1,41 @@
+const autoprefixer = require('autoprefixer');
 const path = require('path');
-const fs = require('fs');
-const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
-const root = resolveApp('');
-const appSrc = resolveApp('src');
-const public = resolveApp('public');
 
+const commonConfig = require('../config/webpack.config.common');
 
 module.exports = {
     module: {
         rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    require.resolve('style-loader'),
+                    {
+                        loader: require.resolve('css-loader'),
+                        options: {
+                            importLoaders: 1,
+                        },
+                    },
+                    {
+                        loader: require.resolve('postcss-loader'),
+                        options: {
+                            ident: 'postcss',
+                            plugins: () => [
+                                require('postcss-flexbugs-fixes'),
+                                autoprefixer({
+                                    browsers: [
+                                        '>1%',
+                                        'last 4 versions',
+                                        'Firefox ESR',
+                                        'not ie < 9',
+                                    ],
+                                    flexbox: 'no-2009',
+                                }),
+                            ],
+                        },
+                    },
+                ],
+            },
             {
                 test: /\.scss$/,
                 loaders: [
@@ -38,11 +64,6 @@ module.exports = {
         ]
     },
     resolve: {
-        alias: {
-            'Public': path.resolve(public),
-            'Src': path.resolve(appSrc),
-            'Redux': path.resolve(appSrc + '/redux'),
-            'Story': path.resolve(root + '/.storybook')
-        }
+        ...commonConfig.resolve
     }
 };

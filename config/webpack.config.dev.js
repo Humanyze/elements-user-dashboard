@@ -12,6 +12,10 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 
+const commonConfig = require('./webpack.config.common');
+console.log(commonConfig);
+
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
@@ -26,6 +30,7 @@ const env = getClientEnvironment(publicUrl);
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
 module.exports = {
+    ...commonConfig,
     // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
     // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
     devtool: 'cheap-module-source-map',
@@ -68,6 +73,7 @@ module.exports = {
             path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },
     resolve: {
+        ...commonConfig.resolve,
         // This allows you to set a fallback for where Webpack should look for modules.
         // We placed these paths second because we want `node_modules` to "win"
         // if there are any conflicts. This matches Node resolution mechanism.
@@ -83,15 +89,6 @@ module.exports = {
         // `web` extension prefixes have been added for better support
         // for React Native Web.
         extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
-        alias: {
-
-            // Support React Native Web
-            // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-            'react-native': 'react-native-web',
-            'Redux': path.resolve(paths.appSrc + '/redux'),
-            'Src': path.resolve(paths.appSrc),
-            'Public': path.resolve(paths.appPublic),
-        },
         plugins: [
             // Prevents users from importing files from outside of src/ (or node_modules/).
             // This often causes confusion because we only process files within src/ with babel.
@@ -107,9 +104,6 @@ module.exports = {
             // TODO: Disable require.ensure as it's not a standard language feature.
             // We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
             // { parser: { requireEnsure: false } },
-
-            // First, run the linter.
-            // It's important to do this before Babel processes the JS.
             {
                 test: /\.(js|jsx|mjs)$/,
                 enforce: 'pre',
@@ -126,13 +120,9 @@ module.exports = {
                 include: paths.appSrc,
             },
             {
-                // "oneOf" will traverse all following loaders until one will
-                // match the requirements. When no loader matches it will fall
-                // back to the "file" loader at the end of the loader list.
                 oneOf: [
                     // "url" loader works like "file" loader except that it embeds assets
                     // smaller than specified limit in bytes as data URLs to avoid requests.
-                    // A missing `test` is equivalent to a match.
                     {
                         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
                         loader: require.resolve('url-loader'),
@@ -147,8 +137,6 @@ module.exports = {
                         include: paths.appSrc,
                         loader: require.resolve('babel-loader'),
                         options: {
-
-                            // This is a feature of `babel-loader` for webpack (not Babel itself).
                             // It enables caching results in ./node_modules/.cache/babel-loader/
                             // directory for faster rebuilds.
                             cacheDirectory: true,

@@ -107,7 +107,6 @@ Standard eslint setup in `/.eslintrc`, any modifications should be accompanied b
 
 ### Implement
 * [Axios Middleware](https://github.com/svrcekmichal/redux-axios-middleware)
-* StoryBook 
 * Snapshot testing
 * E2E testing
 * Webpack optimization to a common config, which is extended with dev and prod overrides

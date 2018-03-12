@@ -19,9 +19,9 @@ describe('userAvatar', () => {
     });
 
     it('should show dropdown after clicking avatar', () => {
-        component.find('.UserAvatar__image').simulate('click');
+        component.find('.UserAvatar__avatar-icon').simulate('click');
         expect(getShowDropdownValue()).toBeTruthy();
-        component.find('.UserAvatar__image').simulate('click');
+        component.find('.UserAvatar__avatar-icon').simulate('click');
         expect(getShowDropdownValue()).toBeFalsy();
     });
 });
