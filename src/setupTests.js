@@ -11,8 +11,27 @@ Enzyme.configure({ adapter: new Adapter() });
 global.shallow = shallow;
 global.mount = mount;
 
-// Add global "should render" test case that takes
-// component export and simple tests
+
+class LocalStorageMock {
+    store = {};
+    clear = () => this.store = {};
+    getItem = (key) => this.store[key] || null;
+    setItem = (key, value) => this.store[key] = value.toString();
+    removeItem = (key) => delete this.store[key];
+}
+global.localStorage = new LocalStorageMock();
+
+
+const WithRouterContext = ({ children }) => <BrowserRouter>{children}</BrowserRouter>;
+global.WithRouterContext = WithRouterContext;
+
+// const StoreContext = ({children}) => {
+//  const store = createStore();
+//  return <Provider store={store}>{children}</Provider>
+// }
+// global.WithStoreContext = StoreContext;
+
+// Simple Render test for components
 global.testRender = (Component, props) => {
     const wrapper = shallow(<Component {...props} />);
 
@@ -22,23 +41,18 @@ global.testRender = (Component, props) => {
         });
 
         // TODO: add default snapshot testing
+        // TODO: current issue is store context
         // it('should match snapshot', () => {
         //     const tree = renderer.create(
-        //         <Component {...props} />
-        //     ).toJson();
+        //         <WithRouterContext><Component {...props} /></WithRouterContext>
+        //     ).toJSON();
         //     expect(tree).toMatchSnapshot()
         // })
     };
 };
 
-class LocalStorageMock {
-    store = {};
-    clear=() =>this.store = {};
-    getItem = (key) => this.store[key] || null;
-    setItem = (key, value) => this.store[key] = value.toString();
-    removeItem = (key) => delete this.store[key];
-}
-global.localStorage = new LocalStorageMock();
+
+
 
 
 // NOTE: doesn't seem to run properly, but this way we can monkeypatch expect
@@ -54,4 +68,3 @@ global.localStorage = new LocalStorageMock();
 //
 
 
-global.WithRouterContext = ({ children }) => <BrowserRouter>{children}</BrowserRouter>;
