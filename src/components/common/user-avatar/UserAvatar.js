@@ -11,16 +11,23 @@ const onLogoutClicked = ({ setShowDropdown, logout }) => e => {
     logout();
     setShowDropdown(false);
 };
+
+const linkClicked = ({ setShowDropdown }) => e => {
+    setShowDropdown(false);
+    
+};
+
 const enhance = compose(
     withState('showDropdown', 'setShowDropdown', false),
     withHandlers({
         toggleDropdown: ({ showDropdown, setShowDropdown }) => e => setShowDropdown(!showDropdown),
-        onLogoutClicked
+        onLogoutClicked,
+        linkClicked
     })
 );
 
 
-export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown, onLogoutClicked }) => (
+export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown, onLogoutClicked, linkClicked }) => (
     <div className='UserAvatar'>
         <div className='UserAvatar__email'>
             {username}
@@ -33,7 +40,7 @@ export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown,
             {showDropdown &&
             <div className='UserAvatar__dropdown'>
                 <div className='UserAvatar__dropdown-body'>
-                    {DropdownLinks.map(link => <Link to={link.to} key={link.text}>{link.text}</Link>)}
+                    {DropdownLinks.map(link => <Link to={link.to} key={link.text} onClick={linkClicked}>{link.text}</Link>)}
                     <div className='UserAvatar__dropdown-divider'/>
                     <Link to={'never'} onClick={onLogoutClicked}>Logout</Link>
                     <div className='UserAvatar__dropdown-version-text'>Elements v2.7.1</div>

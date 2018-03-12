@@ -2,7 +2,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import ImportEquipmentDataModal from './ImportParticipantDataModal';
-import { RouterContext, StoreContext } from 'Story/contextWrappers';
+import { RouterContext, StoreContext } from 'TestUtils/contextCreators';
 
 
 const defaultProps = {

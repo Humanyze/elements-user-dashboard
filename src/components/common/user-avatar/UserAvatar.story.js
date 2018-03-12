@@ -2,7 +2,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { UserAvatarPure } from './UserAvatar';
-import { RouterContext } from '../../../../.storybook/contextWrappers';
+import { RouterContext } from 'TestUtils/contextCreators';
 
 
 const defaultProps = {

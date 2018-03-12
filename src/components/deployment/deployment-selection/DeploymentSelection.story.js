@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { RouterContext, StoreContext } from 'Story/contextWrappers.js';
+import { RouterContext, StoreContext } from 'TestUtils/contextCreators.js';
 import  { DeploymentSelectionPure } from './DeploymentSelection';
 
 const defaultProps = {
