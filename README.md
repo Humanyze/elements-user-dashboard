@@ -1,7 +1,7 @@
 # Humanyze React Elements Page
 
 
-##Getting Started 
+## Getting Started 
 ### Prerequisites
 
 You will need the following things properly installed on your computer.
@@ -29,7 +29,7 @@ You will need the following things properly installed on your computer.
 
 ## Development 
 
-###View creation
+### View creation
 Each base route path should have its own folder in `src/components`.  The folder paths should try to reflect the route configuration where possible, as this matches how [react-router](https://reacttraining.com/react-router/web) generally handles routing.  
 
 At the root of each view directory, there frequently will be a wrapper component that will handle appropriate dispatches on switching to that view.  It will simply render a react-router switch that will then handle the sub-routing for that path.  All unique sub-routes should be created within that view folder. 
@@ -43,7 +43,7 @@ Each component folder will have at least 3 files:
 Any unique components that are used within that parent component will be located in that parent directory.  Refactoring common components for reusability is highly encouraged, although you'll generally need to have a comtainer component for Redux connections at a minimum. 
 
 
-##Redux Overview
+## Redux Overview
 
 To get familiar, documentation from redux is very thorough and well written.  View it [here](https://redux.js.org/).  Note that redux is a standard state-management library, and can be learned in full without a react context.  Ultimately, viewing it in this way can help write more modular redux code. 
 
@@ -54,7 +54,7 @@ To get familiar, documentation from redux is very thorough and well written.  Vi
 * [redux-thunk](https://github.com/gaearon/redux-thunk)
 * [redux-offline](https://github.com/redux-offline/redux-offline)
 
-####Folder Structure 
+#### Folder Structure 
 We currently have implemented a spin on a domain-driven design approach to redux.  The directory structure should match the structure of the store itself.  Each folder for redux will generally have 4 files (unless it's a [combineReducer level reducer](https://redux.js.org/recipes/structuring-reducers/beyond-combinereducers)).  All file names are camelCased, and are as follows:
 
 * Domain action types, e.g. `authActionTypes.js`
@@ -87,19 +87,19 @@ We currently have implemented a spin on a domain-driven design approach to redux
 * Response Mappers (Optional), e.g. `authResponseMapper.js`
     * Your thunks will often need to manipulate the data received to be more normalized (long-term look into using redux-normalizer).  In order to modularize this logic of response => storeshape, we'll utilize a collection of utility functions in a mapper file.  All of these functions should be pure, and heavily unit tested.  
     
-##Testing
+## Testing
 We're utilizing [Jest](https://facebook.github.io/jest/) for our test suites, as well as [Enzyme](http://airbnb.io/enzyme/).  To run tests, simply run `yarn test` from the project directory.  By default, Jest runs files that are associated with your most recent change.  You can change this by pressing `a` from the test window, and it will run all tests on any changes. Using p, 
 
 Before tests are run, the scripts in `src/setupTests.js` are run.  This is very helpful for setting up global references, mocking services, or monkey-patching functions. 
 
 Most react components, specifically presentational components, can quickly be tested by a simple shallow render test.  A global test function `testRender` has been implemented.  Currently, no e2e testing is supported.  Ultimately, we can do integration style work of this using enzyme to mount the root component and simulate interactions
   
-##Linting
+## Linting
 Standard eslint setup in `/.eslintrc`, any modifications should be accompanied by the proper global fix for that rule.  To run the eslint fix, run `npx eslint --fix .` and run the test suite to make sure changes were safe.
 
-##Things to implement/look into
+## Things to implement/look into
 
-###Implement
+### Implement
 * [Axios Middleware](https://github.com/svrcekmichal/redux-axios-middleware)
 * StoryBook 
 * Snapshot testing
@@ -107,7 +107,7 @@ Standard eslint setup in `/.eslintrc`, any modifications should be accompanied b
 * Webpack optimization to a common config, which is extended with dev and prod overrides
 
 
-###Research
+### Research
 * redux-observable vs. saga (if desired)
 
 
