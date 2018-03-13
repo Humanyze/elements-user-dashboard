@@ -4,7 +4,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:9.6.1
+      - image: circleci/node:9.7.1
       - image: mongo:3.4.4
       # documented at https://circleci.com/docs/2.0/circleci-images/
 
@@ -13,7 +13,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-          - "c1:14:95:95:a1:2d:da:72:6a:df:c1:cf:b6:6e:b8:cd" 
+          - "c1:14:95:95:a1:2d:da:72:6a:df:c1:cf:b6:6e:b8:cd"
       - checkout
 
       # Download and cache dependencies
