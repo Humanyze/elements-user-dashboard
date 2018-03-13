@@ -96,7 +96,8 @@
 
     "modulePaths": [
       "src",
-      "src/components"
+      "src/components",
+      "src/*"
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
