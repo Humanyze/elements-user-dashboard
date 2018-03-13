@@ -144,7 +144,7 @@ module.exports = {
             'Src'         : paths.appSrc,
             'Public'      : path.resolve(paths.appPublic),
             'Redux'       : path.resolve(paths.appSrc + '/redux'),
-            'common'      : path.resolve(paths.appSrc + '/components/common'),
+            'Common'      : path.resolve(paths.appSrc + '/components/common'),
             'Story'       : path.resolve(paths.storybookConfig),
             'TestUtils'   : path.resolve(paths.appSrc + '/tests'),
         },
