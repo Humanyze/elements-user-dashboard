@@ -20,7 +20,7 @@ jobs:
           - v1-dependencies-
 
       - run: yarn install
-
+      - run: echo "yarn successful"
       - save_cache:
           paths:
             - node_modules
