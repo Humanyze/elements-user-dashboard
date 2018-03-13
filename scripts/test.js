@@ -22,7 +22,7 @@ const argv = process.argv.slice(2);
 if (!process.env.CI && argv.indexOf('--coverage') < 0) {
   argv.push('--watch');
 } else {
-    argv.push('--showConfig');
+    // argv.push('--showConfig');
 }
 
 
