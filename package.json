@@ -98,7 +98,6 @@
       "src",
       "src/components"
     ],
-    "moduleNameMapperComments": "need to add module path to just above any aliases that are deeper than one level",
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
       "^Common(.*)$": "<rootDir>/components/common",
