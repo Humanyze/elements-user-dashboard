@@ -99,6 +99,9 @@
       "src/components",
       "src/"
     ],
+    "moduleDirectories" : [
+      "src/"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
       "^common(.*)$": "<rootDir>/components/common/$1",
