@@ -15,16 +15,16 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx|mjs)$/,
+                test   : /\.(js|jsx|mjs)$/,
                 enforce: 'pre',
-                use: [
+                use    : [
                     {
                         options: {
-                            formatter: eslintFormatter,
+                            formatter : eslintFormatter,
                             eslintPath: require.resolve('eslint'),
 
                         },
-                        loader: require.resolve('eslint-loader'),
+                        loader : require.resolve('eslint-loader'),
                     },
                 ],
                 include: paths.appSrc,
@@ -34,18 +34,18 @@ module.exports = {
                     // "url" loader works like "file" loader except that it embeds assets
                     // smaller than specified limit in bytes as data URLs to avoid requests.
                     {
-                        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-                        loader: require.resolve('url-loader'),
+                        test   : [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+                        loader : require.resolve('url-loader'),
                         options: {
                             limit: 10000,
-                            name: 'static/media/[name].[hash:8].[ext]',
+                            name : 'static/media/[name].[hash:8].[ext]',
                         },
                     },
                     // Process JS with Babel.
                     {
-                        test: /\.(js|jsx|mjs)$/,
+                        test   : /\.(js|jsx|mjs)$/,
                         include: paths.appSrc,
-                        loader: require.resolve('babel-loader'),
+                        loader : require.resolve('babel-loader'),
                         options: {
                             // It enables caching results in ./node_modules/.cache/babel-loader/
                             // directory for faster rebuilds.
@@ -59,20 +59,20 @@ module.exports = {
                     // in development "style" loader enables hot editing of CSS.
                     {
                         test: /\.css$/,
-                        use: [
+                        use : [
                             require.resolve('style-loader'),
                             {
-                                loader: require.resolve('css-loader'),
+                                loader : require.resolve('css-loader'),
                                 options: {
                                     importLoaders: 1,
                                 },
                             },
                             {
-                                loader: require.resolve('postcss-loader'),
+                                loader : require.resolve('postcss-loader'),
                                 options: {
                                     // Necessary for external CSS imports to work
                                     // https://github.com/facebookincubator/create-react-app/issues/2677
-                                    ident: 'postcss',
+                                    ident  : 'postcss',
                                     plugins: () => [
                                         require('postcss-flexbugs-fixes'),
                                         autoprefixer({
@@ -82,7 +82,7 @@ module.exports = {
                                                 'Firefox ESR',
                                                 'not ie < 9', // React doesn't support IE8 anyway
                                             ],
-                                            flexbox: 'no-2009',
+                                            flexbox : 'no-2009',
                                         }),
                                     ],
                                 },
@@ -90,7 +90,7 @@ module.exports = {
                         ],
                     },
                     {
-                        test: /\.scss$/,
+                        test   : /\.scss$/,
                         include: paths.appSrc,
                         loaders: [
                             require.resolve('style-loader'),
@@ -109,7 +109,7 @@ module.exports = {
                         // Also exclude `html` and `json` extensions so they get processed
                         // by webpacks internal loaders.
                         exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
-                        loader: require.resolve('file-loader'),
+                        loader : require.resolve('file-loader'),
                         options: {
                             name: 'static/media/[name].[hash:8].[ext]',
                         },
@@ -121,7 +121,7 @@ module.exports = {
         ]
     },
 
-    resolve    : {
+    resolve: {
         // This allows you to set a fallback for where Webpack should look for modules.
         // We placed these paths second because we want `node_modules` to "win"
         // if there are any conflicts. This matches Node resolution mechanism.
@@ -137,15 +137,16 @@ module.exports = {
         // `web` extension prefixes have been added for better support
         // for React Native Web.
         extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
-        alias: {
+        alias     : {
             // Support React Native Web
             // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
             'react-native': 'react-native-web',
-            'Redux'       : path.resolve(paths.appSrc + '/redux'),
-            'Src'         : path.resolve(paths.appSrc),
+            'Src'         : paths.appSrc,
             'Public'      : path.resolve(paths.appPublic),
+            'Redux'       : path.resolve(paths.appSrc + '/redux'),
+            'Common'      : path.resolve(paths.appSrc + '/components/common'),
             'Story'       : path.resolve(paths.storybookConfig),
-            'TestUtils'       : path.resolve(paths.appSrc + '/tests'),
+            'TestUtils'   : path.resolve(paths.appSrc + '/tests'),
         },
         plugins   : [
             // Prevents users from importing files from outside of src/ (or node_modules/).

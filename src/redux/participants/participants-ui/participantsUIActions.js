@@ -6,4 +6,4 @@ const setSortData = createAction(PARTICIPANT_UI_ACTION_TYPES.SET_SORT, sortObj =
 
 export {
 
-}
+};

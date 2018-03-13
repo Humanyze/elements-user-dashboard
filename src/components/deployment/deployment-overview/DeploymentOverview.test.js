@@ -1,2 +1,10 @@
 import { DeploymentOverviewPure } from './DeploymentOverview';
-testRender(DeploymentOverviewPure)();
+
+const mockProps = {
+    match: {
+        params: {
+            datasetid: 5
+        }
+    }
+};
+testRender(DeploymentOverviewPure, mockProps)();

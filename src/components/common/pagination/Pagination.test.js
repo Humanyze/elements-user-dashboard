@@ -1,4 +1,4 @@
-import Pagination, {getVisiblePageList,getArrayFromStartEndIndex } from './Pagination';
+import Pagination, { getVisiblePageList,getArrayFromStartEndIndex } from './Pagination';
 
 // testRender(Pagination)();
 
@@ -38,7 +38,6 @@ describe('Pagination', () => {
             const lastPage = visiblePageLimit - 2;
             const pageList = getVisiblePageList(1, lastPage);
             // expected [1...7], 9 items
-            console.error(lastPage, pageList.length);
             expect(pageList[0]).toEqual(1);
             expect([...pageList].splice(-1)[0]).toEqual(lastPage);
             expect(pageList.length).toEqual(lastPage);
@@ -75,7 +74,7 @@ describe('Pagination', () => {
         it('should handle single value', () => {
             const array = getArrayFromStartEndIndex(1, 1);
             expect(array).toEqual([1]);
-        })
+        });
 
         it('should return expected array from standard input', () => {
            const array = getArrayFromStartEndIndex(1, 5);
@@ -87,5 +86,5 @@ describe('Pagination', () => {
             const array = getArrayFromStartEndIndex(4, 10);
             expect(array).toEqual([4, 5, 6, 7, 8, 9, 10]);
         });
-    })
+    });
 });

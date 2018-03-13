@@ -20,13 +20,16 @@ const withDidMount = lifecycle({
                 requestParticipantsData,
                 match: {
                     params: {
-                        datasetId
+                        datasetId,
+                        perPage,
+                        page
+                        //add pagination here
                     }
                 }
             } = this.props;
 
             setSelectedDeploymentId(datasetId);
-            requestParticipantsData(datasetId);
+            requestParticipantsData(datasetId, perPage, page);
         }
     }
 
@@ -37,7 +40,7 @@ const enhance = compose(
     withDidMount
 );
 
-export const DeploymentOverviewPure = ({ participants }) => {
+export const DeploymentOverviewPure = ({ participants, match: { params } }) => {
     return (
         <div>
             <ActionSubBar/>

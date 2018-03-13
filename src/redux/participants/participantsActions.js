@@ -7,22 +7,23 @@ const participantsFetchSuccess = createAction(PARTICIPANTS_ACTION_TYPES.LOAD_PAR
 const participantsFetchError = createAction(PARTICIPANTS_ACTION_TYPES.LOAD_PARTICIPANTS_ERROR, error => error);
 
 
-
 // TODO: LOADING NEEDS TO BE DONE PARTIALLY
-const requestParticipantsData = (datasetId) => async (dispatch, getState) => {
+const requestParticipantsData = (datasetId, perPage = 20, page = 1) => async (dispatch, getState) => {
     dispatch(participantsFetchStarted());
 
     try {
         // this is just a mock to show loading
+
+        const offset = (page - 1) * perPage;
         const bearerToken = getState().auth.tokenObj.access_token; // temp
-        const res = await fetchWithAuth(`/api/v2/participants?dataset_id=${datasetId}&limit=20`, bearerToken);
+        const res = await fetchWithAuth(`/api/v2/participants?dataset_id=${datasetId}&limit=${perPage}&offset=${offset}`, bearerToken);
         const data = await res.json();
         console.log(data);
-        const particiantsById = data.participants.reduce((acc, participant) => ({
+        const participantsById = data.participants.reduce((acc, participant) => ({
             ...acc,
             [participant.id]: participant
         }), {});
-        dispatch(participantsFetchSuccess(particiantsById));
+        dispatch(participantsFetchSuccess({ participantsById, totalParticipantCount: data.meta.total_count }));
 
     } catch (e) {
         dispatch(participantsFetchError(e.message));

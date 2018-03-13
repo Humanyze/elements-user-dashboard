@@ -52,7 +52,7 @@
     "react-scroll-horizontal": "^1.2.1",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
-    "redux-actions": "^2.2.1",
+    "redux-actions": "^2.3.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
@@ -93,11 +93,15 @@
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ],
+
     "modulePaths": [
-      "src"
+      "src",
+      "src/components"
     ],
+    "moduleNameMapperComments": "need to add module path to just above any aliases that are deeper than one level",
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
+      "^Common(.*)$": "<rootDir>/components/common",
       "^Redux(.*)$": "<rootDir>/redux"
     },
     "moduleFileExtensions": [
@@ -126,9 +130,9 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.8.2",
     "react-test-renderer": "^16.2.0",
-    "sass-loader": "^6.0.6",
+    "sass-loader": "^6.0.7",
     "sass-resources-loader": "^1.3.3",
     "storybook": "^1.0.0"
   }

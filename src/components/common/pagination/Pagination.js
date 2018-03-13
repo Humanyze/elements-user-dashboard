@@ -33,10 +33,12 @@ export const PaginationPure = ({ activePageNumber, numberOfPages }) => {
 
     return (
         <div className='Pagination'>
+            <div> Prev </div>
+            <div> Next </div>
             {pages.map((pageNumber) => {
                 console.log(pageNumber, activePageNumber);
                 return <div key={pageNumber}
-                            className={pageNumber === activePageNumber ? 'active' : 'inactive'}>{pageNumber}</div>
+                            className={pageNumber === activePageNumber ? 'active' : 'inactive'}>{pageNumber}</div>;
             })}
         </div>
     );
