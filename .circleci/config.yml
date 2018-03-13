@@ -4,7 +4,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:9.8-stretch
+      - image: circleci/node:9.6.1
       # documented at https://circleci.com/docs/2.0/circleci-images/
 
     working_directory: ~/repo
