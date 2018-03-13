@@ -21,6 +21,7 @@ jobs:
 
       - run: yarn install
       - run: echo "yarn successful"
+      - run: cat package.json
       - save_cache:
           paths:
             - node_modules
