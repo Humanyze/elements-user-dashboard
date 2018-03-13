@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import USER_ACTION_TYPES from './userActionTypes';
-import AUTH_ACTION_TYPES from 'redux/auth/authActionTypes';
+import AUTH_ACTION_TYPES from 'Redux/auth/authActionTypes';
 
 
 const getCurrentUser = (state) => state.user.user.user;

@@ -2,11 +2,11 @@ import React from 'react';
 import { compose, withHandlers, withState } from 'recompose';
 import './user-avatar.scss';
 import { connect } from 'react-redux';
-import { logout } from 'redux/auth/authActions';
+import { logout } from 'Redux/auth/authActions';
 import { Link } from 'react-router-dom';
 import MaterialIcon from 'material-icons-react';
-import { getCurrentUserName } from 'redux/userData/user/userReducer';
-import { getCurrentParticipantAvatar } from 'redux/userData/participant/participantReducer';
+import { getCurrentUserName } from 'Redux/userData/user/userReducer';
+import { getCurrentParticipantAvatar } from 'Redux/userData/participant/participantReducer';
 
 
 const onLogoutClicked = ({ setShowDropdown, logout }) => e => {

@@ -5,7 +5,7 @@ import { compose, lifecycle } from 'recompose';
 
 import './deployment-selection.scss';
 
-import { setDeploymentsFromStoreDeploymentIds } from 'redux/deployment/deploymentActions';
+import { setDeploymentsFromStoreDeploymentIds } from 'Redux/deployment/deploymentActions';
 import DeploymentSelectionItem from './deployment-selection-item/DeploymentSelectionItem';
 
 
