@@ -3,8 +3,9 @@
 version: 2
 jobs:
   build:
-    machine:
-      - node: 9.6.1
+    docker:
+      - image: circleci/node:9.6.1
+      - image: mongo:3.4.4
       # documented at https://circleci.com/docs/2.0/circleci-images/
 
     working_directory: ~/repo
