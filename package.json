@@ -100,8 +100,8 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "^Common(.*)$": "<rootDir>/components/common$1",
-      "^Redux(.*)$": "<rootDir>/redux$1"
+      "^Common(.*)$": "<rootDir>/components/common/$1",
+      "^Redux(.*)$": "<rootDir>/redux/$1"
     },
     "moduleFileExtensions": [
       "web.js",
