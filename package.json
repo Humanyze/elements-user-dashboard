@@ -66,9 +66,9 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "node scripts/start.js --env=jsdom",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
+    "test": "CI=true node scripts/test.js --env=jsdom",
     "storybook": "start-storybook -p 9001 -c .storybook -s ./public"
   },
   "jest": {
