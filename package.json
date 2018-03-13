@@ -68,7 +68,7 @@
   "scripts": {
     "start": "node scripts/start.js --env=jsdom",
     "build": "node scripts/build.js",
-    "test": "CI=true node scripts/test.js --env=jsdom",
+    "test": "node scripts/test.js --env=jsdom",
     "storybook": "start-storybook -p 9001 -c .storybook -s ./public"
   },
   "jest": {
