@@ -2,19 +2,24 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 version: 2
 jobs:
-  yarn_packages:
+
+  yarn:
     working_directory: ~/repo
     docker:
       - image: circleci/node:9.7.1
+
     steps:
       - checkout
+
       # Cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
+
       - run: yarn install
+
       - save_cache:
           paths:
             - node_modules
@@ -26,25 +31,17 @@ jobs:
 
     steps:
       -run: yarn test
+
   build:
     working_directory: ~/repo
     docker:
     -image: circleci/node:9.7.1
-    steps:
-      -run:
-        name: Building
-        command: |
-          if [ "${CIRCLE_BRANCH}"] == "develop"]; then
-            yarn build
-          elif [ "${CIRCLE_BRANCH}"] == "develop"]; then
-            yarn build --production
-          fi
+
 workflows:
   version: 2
   build_and_deploy:
     - yarn
     - test
-    - build
-    - deploy
+    -deploy
 
 
