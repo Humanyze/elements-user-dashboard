@@ -23,12 +23,6 @@ module.exports = {
 
     'modulePaths'         : [
         'src',
-        'src/components',
-        'src/'
-    ],
-    'moduleDirectories'   : [
-        'node_modules',
-        'src/'
     ],
     'moduleNameMapper'    : {
         '^react-native$': 'react-native-web',
