@@ -131,7 +131,7 @@ module.exports = {
             process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
         ),
         // These are the reasonable defaults supported by the Node ecosystem.
-        // We also include JSX as a common component filename extension to support
+        // We also include JSX as a common-components component filename extension to support
         // some tools, although we do not recommend using it, see:
         // https://github.com/facebookincubator/create-react-app/issues/290
         // `web` extension prefixes have been added for better support
@@ -143,8 +143,8 @@ module.exports = {
             'react-native': 'react-native-web',
             'Src'         : paths.appSrc,
             'Public'      : path.resolve(paths.appPublic),
-            'Redux'       : path.resolve(paths.appSrc + '/redux'),
-            'Common'      : path.resolve(paths.appSrc + '/components/common'),
+            '@redux'       : path.resolve(paths.appSrc + '/redux'),
+            '@common'      : path.resolve(paths.appSrc + '/components/common-components'),
             'Story'       : path.resolve(paths.storybookConfig),
             'TestUtils'   : path.resolve(paths.appSrc + '/tests'),
         },

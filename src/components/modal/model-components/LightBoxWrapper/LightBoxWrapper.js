@@ -1,7 +1,7 @@
 import React from 'react';
 import './light-box-wrapper.scss';
 import { connect } from 'react-redux';
-import { modalClickedOutside } from 'Redux/modal/modalActions';
+import { modalClickedOutside } from '@redux/modal/modalActions';
 import { compose, withHandlers } from 'recompose';
 
 

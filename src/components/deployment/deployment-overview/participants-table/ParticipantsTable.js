@@ -5,7 +5,7 @@ import './participants-table.scss';
 
 import ParticipantsTableHeader from './participant-table-header/ParticipantsTableHeader';
 import ParticipantsTableRow from './participant-table-row/ParticipantsTableRow';
-import Pagination from 'Common/pagination/Pagination';
+import Pagination from '@common/pagination/Pagination';
 
 
 const TableData = ({ participants }) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import UserAvatar, { UserAvatarPure } from './UserAvatar';
-import createStore from 'Redux/createStore';
+import createStore from '@redux/createStore';
 
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
