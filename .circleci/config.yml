@@ -39,11 +39,3 @@ jobs:
           elif [ "${CIRCLE_BRANCH}"] == "develop"]; then
             yarn build --production
           fi
-workflows:
-  version: 2
-  build_and_deploy:
-    jobs:
-      - yarn
-      - test
-      - build
-      - deploy
