@@ -24,6 +24,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
   test:
     working_directory: ~/repo
     docker:
