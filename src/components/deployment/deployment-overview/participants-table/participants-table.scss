@@ -1,33 +1,33 @@
-//@import 'Src/Global.scss';
-//
-//.ParticipantsTable {
-//    padding: 40px;
-//}
-//
-//.ParticipantsTable__title {
-//    background-color: $humanyze-blue;
-//    font-size: 2em;
-//    color: white;
-//    padding: 10px 30px;
-//    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
-//}
-//
-//.ParticipantsTable__table-padding {
-//    padding: 40px;
-//    background-color: #f2f2f2;
-//}
-//.ParticipantsTable__table-wrapper {
-//    overflow-x: scroll;
-//}
-//
-//
-//.ParticipantsTable__table {
-//    background-color: white;
-//    height: 100%;
-//    width: 100%;
-//    border-spacing: 0;
-//
-//    td {
-//        min-width: 250px;
-//    }
-//}
+@import 'Src/Global.scss';
+
+.ParticipantsTable {
+    padding: 40px;
+}
+
+.ParticipantsTable__title {
+    background-color: $humanyze-blue;
+    font-size: 2em;
+    color: white;
+    padding: 10px 30px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
+}
+
+.ParticipantsTable__table-padding {
+    padding: 40px;
+    background-color: #f2f2f2;
+}
+.ParticipantsTable__table-wrapper {
+    overflow-x: scroll;
+}
+
+
+.ParticipantsTable__table {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    border-spacing: 0;
+
+    td {
+        min-width: 250px;
+    }
+}
