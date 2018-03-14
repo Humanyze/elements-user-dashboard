@@ -26,6 +26,7 @@ jobs:
 
     steps:
       -run: yarn test
+      -run: echo "Test Successful"
   build:
     working_directory: ~/repo
     docker:
@@ -39,3 +40,6 @@ jobs:
           elif [ "${CIRCLE_BRANCH}"] == "develop"]; then
             yarn build --production
           fi
+      --run:
+        name: Echo Build Type
+        command: echo "${CIRCLE_BRANCH}"
