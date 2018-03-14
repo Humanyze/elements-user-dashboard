@@ -42,6 +42,6 @@ workflows:
   build_and_deploy:
     - yarn
     - test
-    -deploy
+    - deploy
 
 
