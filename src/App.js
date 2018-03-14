@@ -7,7 +7,7 @@ import ModalRoot from './components/modal/ModalRoot';
 
 const App = () => (
     <div>
-        <Router>
+        <Router basename={'/deployment'}>
             <div>
                 <Header/>
                 <AppRoutes/>
