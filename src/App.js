@@ -16,5 +16,5 @@ const App = () => (
         </Router>
     </div>
 );
-console.error('something ehre');
+console.error('something here');
 export default App;
