@@ -32,7 +32,7 @@ module.exports = {
     ],
     'moduleNameMapper'    : {
         '^react-native$': 'react-native-web',
-        '^common(.*)$'  : '<rootDir>/components/common$1',
+        '^Common(.*)$'  : '<rootDir>/components/common$1',
         '^Redux(.*)$'   : '<rootDir>/redux$1'
     },
     'moduleFileExtensions': [
