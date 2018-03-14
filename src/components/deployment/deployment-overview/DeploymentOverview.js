@@ -6,10 +6,10 @@ import { compose, lifecycle } from 'recompose';
 import { withRouter } from 'react-router';
 
 
-import { getSelectedDeployment } from '@redux/deployment/deploymentReducer';
-import { setSelectedDeploymentId } from '@redux/deployment/deploymentActions';
-import { requestParticipantsData } from '@redux/participants/participantsActions';
-import { getAllParticipants } from '@redux/participants/participantsReducer';
+import { getSelectedDeployment } from 'Redux/deployment/deploymentReducer';
+import { setSelectedDeploymentId } from 'Redux/deployment/deploymentActions';
+import { requestParticipantsData } from 'Redux/participants/participantsActions';
+import { getAllParticipants } from 'Redux/participants/participantsReducer';
 
 
 const withDidMount = lifecycle({
