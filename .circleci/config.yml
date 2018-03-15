@@ -22,9 +22,15 @@ workflows:
       - deploy_dev:
           requires:
             - build-conditional
+          filters:
+            branches:
+              only: develop
       - deploy_prod:
           requires:
             - build-conditional
+          filters:
+            branches:
+              only: develop
 jobs:
   build:
     working_directory: ~/project
