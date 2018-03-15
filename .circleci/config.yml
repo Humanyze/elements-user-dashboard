@@ -22,7 +22,7 @@ jobs:
   test:
     working_directory: ~/repo
     docker:
-    - image: circleci/node:9.7.1
+      - image: circleci/node:9.7.1
 
     steps:
       - run: yarn test
@@ -30,16 +30,14 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-    -image: circleci/node:9.7.1
+      - image: circleci/node:9.7.1
     steps:
-      - run:
-        name: Building
-        command: |
-          if [ "${CIRCLE_BRANCH}"] == "develop"]; then
-            yarn build
-          elif [ "${CIRCLE_BRANCH}"] == "develop"]; then
-            yarn build --production
-          fi
+      - run: |
+           if [[ "${CIRCLE_BRANCH}"] == "develop"]]; then
+             yarn build;
+           elif [[ "${CIRCLE_BRANCH}"] == "develop"]]; then
+             yarn build --production;
+           fi
       - run:
         name: Echo Build Type
         command: echo "${CIRCLE_BRANCH}"
