@@ -3,6 +3,7 @@ import authReducer from './auth/authReducer';
 import errorReducer from './error/errorReducer';
 import modalReducer from './modal/modalReducer';
 import participantsReducer from './participants/participantsReducer';
+import participantsUIReducer from './participants-ui/participantsUIReducer';
 import userDataReducer from './userData/userDataReducer';
 import deploymentReducer from './deployment/deploymentReducer';
 import AUTH_ACTION_TYPES from './auth/authActionTypes';
@@ -13,7 +14,10 @@ const AppReducer = combineReducers({
     user: userDataReducer,
     modal: modalReducer,
     deployment: deploymentReducer,
-    participants: participantsReducer
+    // note: I want UI to be a field of participants, but I believe
+    // note: that breaks some aspects of redux in terms of diffing productively
+    participants: participantsReducer,
+    participantsUI: participantsUIReducer
 });
 
 const RootReducer = (state, action) => {

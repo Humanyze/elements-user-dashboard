@@ -1,14 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-// import {RouterContext, StoreContext} from 'TestUtils/contextCreators.js';
-import Pagination from './Pagination';
+// import { RouterContext, StoreContext } from 'TestUtils/contextCreators';
+import { PaginationPure } from './Pagination';
 
 
 const defaultProps = {
     activePageNumber: undefined,
     numberOfPages: undefined
 };
-
 
 const onePage = {
     activePageNumber: 1,
@@ -36,7 +35,7 @@ const largePagesEndProps = {
     numberOfPages: 50
 };
 
-const createComp = (props) => <Pagination {...defaultProps} {...props}/>;
+const createComp = (props) => <PaginationPure {...defaultProps} {...props}/>;
 
 storiesOf('Pagination', module)
     .add('initial', () => createComp())

@@ -7,7 +7,7 @@ import ModalRoot from './components/modal/ModalRoot';
 
 const App = () => (
     <div>
-        <Router basename={'/deployment'}>
+        <Router basename={'/deployments'}>
             <div>
                 <Header/>
                 <AppRoutes/>
@@ -16,5 +16,5 @@ const App = () => (
         </Router>
     </div>
 );
-console.error('something here');
+
 export default App;

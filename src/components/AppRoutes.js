@@ -11,8 +11,8 @@ import ErrorPage from './error-page/ErrorPage';
 const AuthenticatedRoutes = ({ path, userLoaded }) => {
     return userLoaded && (
         <Switch>
-            <Route path={`${path}deployments`} component={Deployment}/>
-            <Route component={() => <Redirect to='/deployments'/>}/>
+            <Route component={Deployment}/>
+            {/*<Route component={() => <Redirect to={`${path}`}/>}/>*/}
         </Switch>
     );
 };
