@@ -25,14 +25,14 @@ jobs:
     - image: circleci/node:9.7.1
 
     steps:
-      -run: yarn test
-      -run: echo "Test Successful"
+      - run: yarn test
+      - run: echo "Test Successful"
   build:
     working_directory: ~/repo
     docker:
     -image: circleci/node:9.7.1
     steps:
-      -run:
+      - run:
         name: Building
         command: |
           if [ "${CIRCLE_BRANCH}"] == "develop"]; then
@@ -40,6 +40,6 @@ jobs:
           elif [ "${CIRCLE_BRANCH}"] == "develop"]; then
             yarn build --production
           fi
-      --run:
+      - run:
         name: Echo Build Type
         command: echo "${CIRCLE_BRANCH}"
