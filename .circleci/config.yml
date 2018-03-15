@@ -33,10 +33,10 @@ jobs:
       - image: circleci/node:9.7.1
     steps:
       - run: |
-           if ["${CIRCLE_BRANCH}"] == "develop"]
+           if [ ["${CIRCLE_BRANCH}"] == "develop"]
            then
              yarn build
-           elif [ "${CIRCLE_BRANCH}"] == "master"]
+           elif [ ["${CIRCLE_BRANCH}"] == "master"]
            then
              yarn build --production
            fi
