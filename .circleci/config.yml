@@ -2,8 +2,8 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 version: 2
 jobs:
-  yarn_packages:
-    working_directory: ~/repo
+  yarn:
+    working_directory: ~/project
     docker:
       - image: circleci/node:9.7.1
     steps:
@@ -20,32 +20,62 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
   test:
-    working_directory: ~/repo
+    working_directory: ~/project
     docker:
       - image: circleci/node:9.7.1
 
     steps:
       - run: yarn test
       - run: echo "Test Successful"
-  build:
-    working_directory: ~/repo
+  build-conditional:
+    working_directory: ~/project
     docker:
       - image: circleci/node:9.7.1
     steps:
       - run: |
-           if [ "${CIRCLE_BRANCH}"] == "develop"]
+           if ["${CIRCLE_BRANCH}"] == "develop"]
            then
              yarn build
-           elif [ "${CIRCLE_BRANCH}"] == "develop"]
+           elif [ "${CIRCLE_BRANCH}"] == "master"]
            then
              yarn build --production
            fi
       - run: echo "${CIRCLE_BRANCH}"
+  deploy_dev:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:9.7.1
+    steps:
+      - run: echo 'hello world dev'
+  deploy_prod:
+      working_directory: ~/project
+      docker:
+        - image: circleci/node:9.7.1
+      steps:
+        - run: echo 'hello world prod'
 workflows:
   version: 2
-  test_and_build:
+  build:
+    triggers:
+
     jobs:
-      - yarn_packages
-      - test
-      - build
+      - yarn
+      - test:
+        requires:
+          - yarn
+      - build-conditional:
+        requires:
+          - yarn
+        filters:
+          branches:
+            only:
+              - develop
+              - master
+      - deploy_dev:
+          requires:
+            - build-conditional
+      - deploy_prod:
+          requires:
+            - build-conditional
+
 
