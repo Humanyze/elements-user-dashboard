@@ -38,6 +38,4 @@ jobs:
            elif [[ "${CIRCLE_BRANCH}"] == "develop"]]; then
              yarn build --production;
            fi
-      - run:
-        name: Echo Build Type
-        command: echo "${CIRCLE_BRANCH}"
+      - run: echo "${CIRCLE_BRANCH}"
