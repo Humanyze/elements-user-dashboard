@@ -35,7 +35,6 @@ jobs:
          fi
 
       - run: echo "${CIRCLE_BRANCH}"
-
   deploy_dev:
     working_directory: ~/project
     docker:
@@ -48,34 +47,34 @@ jobs:
         - image: circleci/node:9.7.1
       steps:
         - run: echo 'hello world prod'
-workflows:
-  version: 2
-  build:
-    jobs:
-      - yarn
-      - test:
-        requires:
-          - yarn
-      - build-conditional:
-        requires:
-          - yarn
-        filters:
-          branches:
-            only:
-              - develop
-              - master
-      - deploy_dev:
-          requires:
-            - build-conditional
-          filters:
-            branches:
-              only: develop
-      - deploy_prod:
-          requires:
-            - build-conditional
-          filters:
-            branches:
-              only: develop
+#workflows:
+#  version: 2
+#  build:
+#    jobs:
+#      - yarn
+#      - test:
+#        requires:
+#          - yarn
+#      - build-conditional:
+#        requires:
+#          - yarn
+#        filters:
+#          branches:
+#            only:
+#              - develop
+#              - master
+#      - deploy_dev:
+#          requires:
+#            - build-conditional
+#          filters:
+#            branches:
+#              only: develop
+#      - deploy_prod:
+#          requires:
+#            - build-conditional
+#          filters:
+#            branches:
+#              only: develop
 
 
 
