@@ -41,3 +41,11 @@ jobs:
              yarn build --production
            fi
       - run: echo "${CIRCLE_BRANCH}"
+workflows:
+  version: 2
+  test_and_build:
+    jobs:
+      - yarn_packages
+      - test
+      - build
+
