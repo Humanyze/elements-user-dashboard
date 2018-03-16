@@ -1,9 +1,9 @@
 import React from 'react';
 import './pagination.scss';
-import {connect} from 'react-redux';
-import {compose, withHandlers, withPropsOnChange} from 'recompose';
-import {setPage} from 'Redux/participants-ui/participantsUIActions';
-import {getCurrentPageNumber, getTotalPageCount} from 'Redux/participants-ui/participantsUIReducer';
+import { connect } from 'react-redux';
+import { compose, withHandlers, withPropsOnChange } from 'recompose';
+import { setPage } from 'Redux/participants-ui/participantsUIActions';
+import { getCurrentPageNumber, getTotalPageCount } from 'Redux/participants-ui/participantsUIReducer';
 
 
 export const getArrayFromStartEndIndex = (startIndex, endIndex) => Array.from({ length: (endIndex - startIndex + 1) }, (x, i) => startIndex + i);
@@ -57,7 +57,6 @@ export const PaginationPure = ({
                                }) => {
 
     const pages = getVisiblePageList(activePageNumber, numberOfPages, visiblePageCount);
-    console.log(canClickNext, canClickPrev)
     return (
         <div className='Pagination'>
 

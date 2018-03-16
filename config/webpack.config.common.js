@@ -147,6 +147,8 @@ module.exports = {
             'Common'      : path.resolve(paths.appSrc + '/components/common'),
             'Story'       : path.resolve(paths.storybookConfig),
             'TestUtils'   : path.resolve(paths.appSrc + '/tests'),
+            // file aliases
+            'RouterPaths' : path.resolve(paths.appSrc + '/routerPaths.js')
         },
         plugins   : [
             // Prevents users from importing files from outside of src/ (or node_modules/).

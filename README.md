@@ -39,8 +39,9 @@ Each component folder will have at least 3 files:
   * The component file, named in PascalCase, e.g. `LoginForm.js`
   * The component `.scss` file, named in kebab-case, e.g. `login-form.scss`
   * The component test file, also in PascalCase, with `.test.` extension, e.g. `LoginForm.test.js`
+  * The component storybook file, PascalCased, with `.story.` extension, e.g. `LoginForm.story.js`
   
-Any unique components that are used within that parent component will be located in that parent directory.  Refactoring common components for reusability is highly encouraged, although you'll generally need to have a comtainer component for Redux connections at a minimum. 
+Any unique components that are used within that parent component will be located in that parent directory.  Refactoring common components for reusability is highly encouraged, although you'll generally need to have a container component for Redux connections at a minimum. 
 
 
 ## Redux Overview
@@ -51,6 +52,7 @@ To get familiar, documentation from redux is very thorough and well written.  Vi
 * [Redux](https://redux.js.org/)
 * [react-redux](https://github.com/reactjs/react-redux)
 * [redux-actions](https://redux-actions.js.org/)
+* [reselect](https://github.com/reactjs/reselect)
 * [redux-thunk](https://github.com/gaearon/redux-thunk)
 * [redux-offline](https://github.com/redux-offline/redux-offline)
 
@@ -85,18 +87,34 @@ We currently have implemented a spin on a domain-driven design approach to redux
     
 
 * Response Mappers (Optional), e.g. `authResponseMapper.js`
-    * Your thunks will often need to manipulate the data received to be more normalized (long-term look into using redux-normalizer).  In order to modularize this logic of response => storeshape, we'll utilize a collection of utility functions in a mapper file.  All of these functions should be pure, and heavily unit tested.  
+    * Your thunks will often need to manipulate the data received to be more normalized (long-term look into using redux-normalizer).  In order to modularize this logic of response => storeshape, we'll utilize a collection of utility functions in a mapper file.  All of these functions should be pure, and heavily unit tested.
+
+  
+#### Library Overview
+
+##### [redux-actions](https://redux-actions.js.org/)
+Used to reduce redux action creator boiler plate and reducer syntax.  Does very little besides providing quick abstractions for simple action creators and switch statement alternative for reducers.
+
+##### [reselect](https://github.com/reactjs/reselect)
+Reselect offers performance and consistency gains while enforcing a clean, functional selector pattern for data retrieval.  Easily testable and composable, it should be used where possible to encourage normalized data and memoized selectors.
+
+
+##### [redux-thunk](https://github.com/gaearon/redux-thunk)
+Used as redux middleware to allow for async action dispatch.  As stated above, should be replaced mid-long-term with redux observable, particularly useful for graph management where debounce and other filters will be very useful. 
+
+##### [redux-offline](https://github.com/redux-offline/redux-offline)
+Performs local storage persistence for data, allowing for data that we desire to be stored while blacklisting data that we need to be fresh every time.  Ultimately, we shouldn't even think about this library besides blacklist calls, since we always want to fetch the fresh data, while also having a local backup for offline or poor-connection situations.
     
 ## Testing
 We're utilizing [Jest](https://facebook.github.io/jest/) for our test suites, as well as [Enzyme](http://airbnb.io/enzyme/).  To run tests, simply run `yarn test` from the project directory.  By default, Jest runs files that are associated with your most recent change.  You can change this by pressing `a` from the test window, and it will run all tests on any changes. Using p, 
 
 Before tests are run, the scripts in `src/setupTests.js` are run.  This is very helpful for setting up global references, mocking services, or monkey-patching functions. 
 
-Most react components, specifically presentational components, can quickly be tested by a simple shallow render test.  A global test function `testRender` has been implemented.  Currently, no e2e testing is supported.  Ultimately, we can do integration style work of this using enzyme to mount the root component and simulate interactions
+Most react components, specifically presentational components, can quickly be tested by a simple shallow render test.  A global test function `testRender` has been implemented.  Currently, no e2e testing framework is implemented.  Ultimately, we can do integration style work of this using enzyme to mount the root component and simulate interactions
   
   
 ## StoryBook
-[Storybook](https://storybook.js.org/basics/introduction/) is a tool for isolated UI component feedback.  To run the storybook server, run `yarn storybook`.  Storybook has its own webpack configuration and setup files, located in `<rootDir/.storybook`.  At the moment, we are manually copying configs for webpack, but ultimately we'll want to use a common webpack config for this situation. 
+[Storybook](https://storybook.js.org/basics/introduction/) is a tool for isolated UI component feedback.  To run the storybook server, run `yarn storybook`.  Storybook has its own webpack configuration and setup files, located in `<rootDir>/.storybook`.  At the moment, we are manually copying configs for webpack, but ultimately we'll want to use a common webpack config for this situation. 
 
 This section requires some maintenance as we determine our specific use cases and systems for storybook.
 
@@ -109,11 +127,9 @@ Standard eslint setup in `/.eslintrc`, any modifications should be accompanied b
 * [Axios Middleware](https://github.com/svrcekmichal/redux-axios-middleware)
 * Snapshot testing
 * E2E testing
-* Webpack optimization to a common config, which is extended with dev and prod overrides
-
 
 ### Research
-* redux-observable vs. saga (if desired)
+* redux-observable vs. saga (if desired) [discussion here](https://stackoverflow.com/a/40027778/9468997)
 
 
 ### Extra Notes

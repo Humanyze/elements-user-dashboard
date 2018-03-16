@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "https://wyze-qa.humanyze.com/",
-  "homepage":"http://35.171.228.38/deployment",
+  "homepage": "http://35.171.228.38/deployment",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.4",
     "@fortawesome/react-fontawesome": "^0.0.17",
@@ -54,6 +54,7 @@
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-actions": "^2.3.0",
+    "redux-axios-middleware": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
