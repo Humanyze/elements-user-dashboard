@@ -13,7 +13,7 @@ const onSubmit = ({ username, password, loginUser }) => (e) => {
 
 const enhance = compose(
     withState('username', 'setUsername', 'demo@humanyze.com'),
-    withState('password', 'setPassword', 'Password1!'),
+    withState('password', 'setPassword', 'Password!1'),
     withHandlers({
         onUsernameChange: ({ setUsername }) => ({ target }) => setUsername(target.value),
         onPasswordChange: ({ setPassword }) => ({ target }) => setPassword(target.value),
