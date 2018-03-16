@@ -67,6 +67,9 @@
     "webpack-manifest-plugin": "1.3.2",
     "whatwg-fetch": "2.0.3"
   },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
   "scripts": {
     "start": "node scripts/start.js --env=jsdom",
     "build": "node scripts/build.js",
