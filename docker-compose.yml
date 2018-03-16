@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+  deployment-dashboard:
+    container_name: deployment-dashboard
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/home/node'
+      - '.:/usr/src/deployment-dashboard'
+      - '/usr/src/deployment-dashboard/node_modules'
+    tty: true
+    ports:
+      - '3000'
+      - '35729:35729'
+    environment:
+      - NODE_ENV=deployment
