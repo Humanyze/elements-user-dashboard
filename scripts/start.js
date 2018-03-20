@@ -28,7 +28,8 @@ const {
 } = require('react-dev-utils/WebpackDevServerUtils');
 const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');
-const config = require('../config/webpack.config.dev');
+const config = process.env.IS_DOCKER ? require('../config/webpack.config.docker') : require('../config/webpack.config.dev');
+console.error('docker', process.env.IS_DOCKER);
 const createDevServerConfig = require('../config/webpackDevServer.config');
 
 const useYarn = fs.existsSync(paths.yarnLockFile);

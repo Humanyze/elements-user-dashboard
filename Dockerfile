@@ -7,4 +7,4 @@ RUN yarn
 EXPOSE 3000
 EXPOSE 35729
 
-CMD ["yarn", "run", "start"]
+CMD ["sh", "-c", "IS_DOCKER=true yarn run start"]
