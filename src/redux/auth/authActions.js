@@ -13,7 +13,7 @@ const loginFailed = createAction(AUTH_ACTION_TYPES.LOGIN_FAILED, error => error)
 const loginUser = (username, password) => async (dispatch) => {
     dispatch(loginRequested());
     try {
-        const res = await postDataRequest('api/v1/login', { username, password });
+        const res = await postDataRequest('/api/v1/login', { username, password });
         const data = await res.json();
         dispatch(loginSuccessful(data));
         dispatch(setUserDataById(data.user_id));

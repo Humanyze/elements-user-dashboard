@@ -43,11 +43,10 @@ export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown,
             {showDropdown &&
             <div className='UserAvatar__dropdown'>
                 <div className='UserAvatar__dropdown-body'>
-                    {DropdownLinks.map(link => <Link to={link.to}
-                                                     key={link.text}
-                                                     onClick={linkClicked}>
+                    {DropdownLinks.map(link => <a href={link.to}
+                                                     key={link.text}>
                         {link.text}
-                    </Link>)}
+                    </a>)}
                     <div className='UserAvatar__dropdown-divider'/>
                     <Link to={'never'} onClick={onLogoutClicked}>Logout</Link>
                     <div className='UserAvatar__dropdown-version-text'>Elements v2.7.1</div>
