@@ -12,7 +12,7 @@ You will need the following things properly installed on your computer.
 
 ### Installation
 
-* `git clone https://github.com/Humanyze/elements-dashboard-react`
+* `git clone --recursive https://github.com/Humanyze/elements-dashboard-react.git`
 * cd into the new directory
 * `yarn`
 
