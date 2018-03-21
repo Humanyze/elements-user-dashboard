@@ -23,7 +23,6 @@ const withDidMount = lifecycle({
                         datasetId,
                         perPage,
                         page
-                        //add pagination here
                     }
                 }
             } = this.props;
@@ -40,12 +39,12 @@ const enhance = compose(
     withDidMount
 );
 
-export const DeploymentOverviewPure = ({ participants, match: { params } }) => {
+export const DeploymentOverviewPure = ({ participants, showLoading, match: { params } }) => {
     return (
         <div>
             <ActionSubBar/>
             {/* ADD SEARCH BAR HERE */}
-            <ParticipantsTable participants={participants}/>
+            <ParticipantsTable participants={participants} showLoading={showLoading}/>
         </div>
     );
 };
@@ -53,7 +52,9 @@ export const DeploymentOverviewPure = ({ participants, match: { params } }) => {
 const DeploymentOverview = connect(
     (state) => ({
         deployment  : getSelectedDeployment(state),
-        participants: getAllParticipants(state)
+        participants: getAllParticipants(state),
+        showLoading : state.participants.requestPending
+
     }),
     { setSelectedDeploymentId, requestParticipantsData }
 )(withRouter(enhance(DeploymentOverviewPure)));

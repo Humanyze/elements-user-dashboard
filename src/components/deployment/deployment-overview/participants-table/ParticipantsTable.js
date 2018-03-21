@@ -6,18 +6,19 @@ import './participants-table.scss';
 import ParticipantsTableHeader from './participant-table-header/ParticipantsTableHeader';
 import ParticipantsTableRow from './participant-table-row/ParticipantsTableRow';
 import Pagination from 'Common/pagination/Pagination';
+import LoadingUI from 'Common/loading/LoadingUI';
 
 
-const TableData = ({ participants }) => {
+const TableData = ({ participants, showLoading }) => {
+    console.log(showLoading);
+    if (showLoading) return null;
     return participants
         ? participants.length
             ? participants.map(el => <ParticipantsTableRow key={el.id} element={el}/>)
             : <tr>
                 <td>No data in dataset</td>
             </tr>
-        : <tr>
-            <td>Loading...</td>
-        </tr>;
+        :  null;
 };
 
 export const ParticipantsTable = (props) => {
@@ -37,8 +38,11 @@ export const ParticipantsTable = (props) => {
                         <TableData {...props}/>
                         </tbody>
                     </table>
+                    {
+                        props.showLoading && <div className='ParticipantsTable__loading-wrapper'><LoadingUI/></div>
+                    }
                 </div>
-                <Pagination />
+                <Pagination/>
 
             </div>
         </div>

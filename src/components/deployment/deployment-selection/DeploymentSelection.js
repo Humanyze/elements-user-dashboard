@@ -7,6 +7,7 @@ import './deployment-selection.scss';
 
 import { setDeploymentsFromStoreDeploymentIds } from 'Redux/deployment/deploymentActions';
 import DeploymentSelectionItem from './deployment-selection-item/DeploymentSelectionItem';
+import LoadingUI from 'Common/loading/LoadingUI';
 
 
 const withDidMount = lifecycle({
@@ -41,7 +42,9 @@ export const DeploymentSelectionPure = withRouter(({ deploymentData: { deploymen
                                 }
                             )
                             :
-                            <div className='DeploymentSelection__no-deployments-message'>No Datasets Available</div>
+                            <div className='DeploymentSelection__loading-background'>
+                                <LoadingUI/>
+                            </div>
                         }
                     </div>
                 </div>
@@ -53,6 +56,7 @@ export const DeploymentSelectionPure = withRouter(({ deploymentData: { deploymen
 
 const DeploymentSelection = connect(
     (state) => ({ deploymentData: state.deployment }),
+    // (state) => ({ deploymentData: { deploymentDataSetIds: [] } }),
     { setDeploymentsFromStoreDeploymentIds }
 )(enhance(DeploymentSelectionPure));
 

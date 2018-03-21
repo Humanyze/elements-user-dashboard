@@ -1,3 +1,4 @@
 [submodule "src/styles/humanyze-ui"]
-	path = src/styles/humanyze-ui
+	path = src/assets/scss/humanyze-ui
 	url = https://github.com/Humanyze/humanyze-ui-scss.git
+	branch = master

@@ -23,7 +23,10 @@ const requestParticipantsData = (datasetId, perPage = 20, page = 1) => async (di
             ...acc,
             [participant.id]: participant
         }), {});
-        dispatch(participantsFetchSuccess({ participantsById, totalParticipantCount: data.meta.total_count }));
+        setTimeout(() =>
+            dispatch(participantsFetchSuccess({ participantsById, totalParticipantCount: data.meta.total_count })), 3000);
+        // temp show loading ui
+        // dispatch(participantsFetchSuccess({ participantsById, totalParticipantCount: data.meta.total_count })), 3000);
 
     } catch (e) {
         dispatch(participantsFetchError(e.message));
