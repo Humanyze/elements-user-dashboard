@@ -127,6 +127,8 @@ Standard eslint setup in `/.eslintrc`, any modifications should be accompanied b
 * [Axios Middleware](https://github.com/svrcekmichal/redux-axios-middleware)
 * Snapshot testing
 * E2E testing
+* Submodule documentation 
+* Global config sharing 
 
 ### Research
 * redux-observable vs. saga (if desired) [discussion here](https://stackoverflow.com/a/40027778/9468997)
@@ -134,4 +136,5 @@ Standard eslint setup in `/.eslintrc`, any modifications should be accompanied b
 
 ### Extra Notes
 
-This project was immediately ejected from Create react app for ease.  Long term, look into cleaning up webpack configs and other boilerplate bloat that does not fit our needs.  
+* This project was immediately ejected from Create react app for ease.  Long term, look into cleaning up webpack configs and other boilerplate bloat that does not fit our needs.  
+* We are using git submodules, which can be a bit tricky to use at first.  Will add a section on this long term.
