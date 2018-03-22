@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { fetchWithAuth } from '../../rootReducer';
+import AxiosRequestService from '../../AxiosRequestService';
 import USER_ACTION_TYPES from './userActionTypes';
 import { mapUserResponse } from './userResponseMapper';
 
@@ -13,8 +13,9 @@ const setUserDataById = (id) => async (dispatch, getState) => {
     try {
         //    get user data
         const bearerToken = getState().auth.tokenObj.access_token;
-        const userRes= await fetchWithAuth(`/api/v1/user/${id}/`, bearerToken);
-        const data = await userRes.json();
+        const res = await AxiosRequestService.user.getUserById(id, bearerToken);
+        console.error(res);
+        const { data } = res;
         const User = mapUserResponse(data);
         dispatch(userDataFetchSuccessful(User));
     } catch (e) {
@@ -29,3 +30,7 @@ export {
     userDataFetchSuccessful,
     userDataFetchFailed
 };
+
+
+
+

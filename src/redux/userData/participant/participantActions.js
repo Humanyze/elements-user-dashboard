@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { fetchWithAuth } from '../../rootReducer';
+import AxiosRequestService from '../../AxiosRequestService';
 import PARTICIPANT_ACTION_TYPES from './participantActionTypes';
 
 const participantDataFetchRequested = createAction(PARTICIPANT_ACTION_TYPES.PARTICIPANT_DATA_FETCH_REQUESTED);
@@ -12,8 +12,7 @@ const setParticipantDataById = (id) => async (dispatch, getState) => {
     try {
         //    get participant data
         const bearerToken = getState().auth.tokenObj.access_token;
-        const participantRes= await fetchWithAuth(`/api/v1/participant/?user=${id}`, bearerToken);
-        const data = await participantRes.json();
+        const  { data } = await AxiosRequestService.participants.getParticipantDataById(id, bearerToken);
         dispatch(participantDataFetchSuccessful(...data.participants));
     } catch (e) {
         dispatch(participantDataFetchFailed(e));

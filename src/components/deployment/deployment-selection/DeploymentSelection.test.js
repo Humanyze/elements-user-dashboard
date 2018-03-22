@@ -51,7 +51,7 @@ describe('DeploymentSelection', () => {
         const wrapper = mount(<WithRouterContext><DeploymentSelectionPure
             deploymentData={deploymentDataMock}/></WithRouterContext>);
 
-        expect(wrapper.find('.DeploymentSelection__no-deployments-message')).toHaveLength(1);
+        expect(wrapper.find('.DeploymentSelection__loading-background')).toHaveLength(1);
 
     });
 });

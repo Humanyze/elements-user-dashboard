@@ -108,7 +108,8 @@ module.exports = {
                         // its runtime that would otherwise processed through "file" loader.
                         // Also exclude `html` and `json` extensions so they get processed
                         // by webpacks internal loaders.
-                        exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
+
+                        exclude: [/\.(js|jsx|mjs|ejs)$/, /\.html$/, /\.json$/],
                         loader : require.resolve('file-loader'),
                         options: {
                             name: 'static/media/[name].[hash:8].[ext]',
@@ -143,6 +144,7 @@ module.exports = {
             'react-native': 'react-native-web',
             'Src'         : paths.appSrc,
             'Public'      : path.resolve(paths.appPublic),
+            'Assets'      : path.resolve(paths.appSrc + '/assets'),
             'Redux'       : path.resolve(paths.appSrc + '/redux'),
             'Common'      : path.resolve(paths.appSrc + '/components/common'),
             'Story'       : path.resolve(paths.storybookConfig),

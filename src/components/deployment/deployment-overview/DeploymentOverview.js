@@ -1,5 +1,5 @@
 import React from 'react';
-import ActionSubBar from '../../action-sub-bar/ActionSubBar';
+import ActionSubBar from './action-sub-bar/ActionSubBar';
 import ParticipantsTable from './participants-table/ParticipantsTable';
 import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';

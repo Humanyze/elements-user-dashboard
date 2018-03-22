@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 import PARTICIPANTS_ACTION_TYPES from './participantsActionTypes';
-import { fetchWithAuth } from '../rootReducer';
+import AxiosRequestService from '../AxiosRequestService';
 
 const participantsFetchStarted = createAction(PARTICIPANTS_ACTION_TYPES.LOAD_PARTICIPANTS_REQUESTED);
 const participantsFetchSuccess = createAction(PARTICIPANTS_ACTION_TYPES.LOAD_PARTICIPANTS_SUCCESS, data => data);
@@ -16,17 +16,19 @@ const requestParticipantsData = (datasetId, perPage = 20, page = 1) => async (di
 
         const offset = (page - 1) * perPage;
         const bearerToken = getState().auth.tokenObj.access_token; // temp
-        const res = await fetchWithAuth(`/api/v2/participants?dataset_id=${datasetId}&limit=${perPage}&offset=${offset}`, bearerToken);
-        const data = await res.json();
+        const { data } = await AxiosRequestService.participants.getParticipantsByDatasetId(datasetId, { perPage, offset }, bearerToken);
         console.log(data);
+        // create function for this style of mapping
         const participantsById = data.participants.reduce((acc, participant) => ({
             ...acc,
             [participant.id]: participant
         }), {});
+
+
         setTimeout(() =>
             dispatch(participantsFetchSuccess({ participantsById, totalParticipantCount: data.meta.total_count })), 3000);
         // temp show loading ui
-        // dispatch(participantsFetchSuccess({ participantsById, totalParticipantCount: data.meta.total_count })), 3000);
+        // dispatch(participantsFetchSuccess({ participantsById, totalParticipantCount: data.meta.total_count }));
 
     } catch (e) {
         dispatch(participantsFetchError(e.message));

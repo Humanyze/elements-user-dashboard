@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 import './action-sub-bar.scss';
 
-import * as MODAL_CONFIGS from '../modal/modalConfigs';
-import { openModal } from '../../redux/modal/modalActions';
-import { getSelectedDeployment } from '../../redux/deployment/deploymentReducer';
+import * as MODAL_CONFIGS from 'Src/components/modal/modalConfigs';
+import { openModal } from 'Redux/modal/modalActions';
+import { getSelectedDeployment } from 'Redux/deployment/deploymentReducer';
 
 
 export const ActionSubBarPure = ({ openImportDialog, openExportDialog, deploymentName }) => {
@@ -16,7 +16,7 @@ export const ActionSubBarPure = ({ openImportDialog, openExportDialog, deploymen
                 Viewing Data For: {deploymentName}
             </div>
 
-            {/* TODO to is incorrect path currently*/}
+            {/* TODO: to is incorrect path currently*/}
             <Link to={'/deployments/select-deployment'} className='ActionSubBar__text'>
                 Change Deployment
             </Link>

@@ -56,7 +56,6 @@ export const DeploymentSelectionPure = withRouter(({ deploymentData: { deploymen
 
 const DeploymentSelection = connect(
     (state) => ({ deploymentData: state.deployment }),
-    // (state) => ({ deploymentData: { deploymentDataSetIds: [] } }),
     { setDeploymentsFromStoreDeploymentIds }
 )(enhance(DeploymentSelectionPure));
 
