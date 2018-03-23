@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 import PARTICIPANTS_ACTION_TYPES from './participantsActionTypes';
 import AxiosRequestService from '../AxiosRequestService';
+import { getBearerToken } from '../auth/authReducer';
 
 const participantsFetchStarted = createAction(PARTICIPANTS_ACTION_TYPES.LOAD_PARTICIPANTS_REQUESTED);
 const participantsFetchSuccess = createAction(PARTICIPANTS_ACTION_TYPES.LOAD_PARTICIPANTS_SUCCESS, data => data);
@@ -15,9 +16,8 @@ const requestParticipantsData = (datasetId, perPage = 20, page = 1) => async (di
         // this is just a mock to show loading
 
         const offset = (page - 1) * perPage;
-        const bearerToken = getState().auth.tokenObj.access_token; // temp
+        const bearerToken = getBearerToken(getState());
         const { data } = await AxiosRequestService.participants.getParticipantsByDatasetId(datasetId, { perPage, offset }, bearerToken);
-        console.log(data);
         // create function for this style of mapping
         const participantsById = data.participants.reduce((acc, participant) => ({
             ...acc,

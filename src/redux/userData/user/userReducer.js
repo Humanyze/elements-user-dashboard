@@ -6,7 +6,6 @@ import AUTH_ACTION_TYPES from 'Redux/auth/authActionTypes';
 const getCurrentUser = (state) => state.user.user.user;
 const getCurrentUserName = (state) => getCurrentUser(state) && getCurrentUser(state).username;
 
-
 export {
     getCurrentUser,
     getCurrentUserName

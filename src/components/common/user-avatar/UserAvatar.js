@@ -15,7 +15,6 @@ const onLogoutClicked = ({ setShowDropdown, logout }) => e => {
 };
 
 const linkClicked = ({ setShowDropdown }) => e => {
-    console.log('here');
     setShowDropdown(false);
 };
 

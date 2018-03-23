@@ -6,7 +6,7 @@ import participantsReducer, {
     getParticipantsById,
     getAllParticipants
 } from './participantsReducer';
-import {participantsFetchStarted} from './participantsActions';
+import { participantsFetchStarted } from './participantsActions';
 
 describe('participantsReducer', () => {
     const expectedName = 'oneNameExpected';

@@ -9,3 +9,8 @@ const userDataReducer = combineReducers({
 });
 
 export default userDataReducer ;
+
+
+export const getUserDataLoadStatus = (state) => {
+    return !!state.user.user.user;
+};

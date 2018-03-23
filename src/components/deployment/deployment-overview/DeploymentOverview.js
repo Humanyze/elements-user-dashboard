@@ -10,40 +10,31 @@ import { getSelectedDeployment } from 'Redux/deployment/deploymentReducer';
 import { setSelectedDeploymentId } from 'Redux/deployment/deploymentActions';
 import { requestParticipantsData } from 'Redux/participants/participantsActions';
 import { getAllParticipants } from 'Redux/participants/participantsReducer';
+import { fetchDeploymentById } from 'Redux/deployment/deploymentActions';
 
 
 const withDidMount = lifecycle({
     componentWillMount() {
-        if (!this.props.deployment || true) {
-            const {
-                setSelectedDeploymentId,
-                requestParticipantsData,
-                match: {
-                    params: {
-                        datasetId,
-                        perPage,
-                        page
-                    }
-                }
-            } = this.props;
+        const { match: { params: { datasetId, perPage, page } } } = this.props;
+        this.props.requestParticipantsData(datasetId, perPage, page);
+        this.props.setSelectedDeploymentId(datasetId);
 
-            setSelectedDeploymentId(datasetId);
-            requestParticipantsData(datasetId, perPage, page);
-        }
     }
 
 });
-
 
 const enhance = compose(
     withDidMount
 );
 
-export const DeploymentOverviewPure = ({ participants, showLoading, match: { params } }) => {
+export const DeploymentOverviewPure = ({ selectedDeployment, participants, showLoading, match: { params: { datasetId, perPage, page } }, setSelectedDeploymentId, fetchDeploymentById, requestParticipantsData }) => {
+    if (!selectedDeployment && !showLoading) {
+        fetchDeploymentById(datasetId);
+    }
+
     return (
         <div>
             <ActionSubBar/>
-            {/* ADD SEARCH BAR HERE */}
             <ParticipantsTable participants={participants} showLoading={showLoading}/>
         </div>
     );
@@ -51,12 +42,12 @@ export const DeploymentOverviewPure = ({ participants, showLoading, match: { par
 
 const DeploymentOverview = connect(
     (state) => ({
-        deployment  : getSelectedDeployment(state),
+        selectedDeployment  : getSelectedDeployment(state),
         participants: getAllParticipants(state),
-        showLoading : state.participants.requestPending
+        showLoading : state.participants.requestPending || state.deployment.requestPending
 
     }),
-    { setSelectedDeploymentId, requestParticipantsData }
+    { setSelectedDeploymentId, requestParticipantsData, fetchDeploymentById }
 )(withRouter(enhance(DeploymentOverviewPure)));
 
 export default DeploymentOverview;

@@ -19,10 +19,16 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 
+// note: disable for testing new areas, important that code is oblivious to this, develop without in mind then test that it works after introduction
 const offlineConfig = {
     ...defaultConfig,
     persistOptions: {
-        blacklist: ['modal']
+        // note: may switch this to whitelist over blacklist, although persistence in certain cases doesn't hurt
+        blacklist: [
+            'modal',
+            'error',
+            'deployment'
+        ]
     }
 };
 

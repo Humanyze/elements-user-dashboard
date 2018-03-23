@@ -3,10 +3,15 @@
 .ActionSubBar {
     background-color: $humanyze-blue;
     height: 50px;
-
-    display: grid;
-    grid-template-columns: 4fr 3fr 3fr 1fr 1fr;
     padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+
+    .ActionSubBar__section {
+        display: flex;
+    }
+
+
 
     .ActionSubBar__text {
         font-size: 0.8em;
@@ -15,11 +20,12 @@
         font-style: italic;
         display: flex;
         align-items: center;
-        justify-content: center;
         cursor: pointer;
+        padding: 0 20px;
 
         &:hover {
             background-color: rgba(0, 0, 0, 0.05);
+            color: white;
         }
     }
 }

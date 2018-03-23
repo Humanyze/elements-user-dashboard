@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { compose, lifecycle } from 'recompose';
 
 import './deployment-selection.scss';
 
@@ -9,32 +8,34 @@ import { setDeploymentsFromStoreDeploymentIds } from 'Redux/deployment/deploymen
 import DeploymentSelectionItem from './deployment-selection-item/DeploymentSelectionItem';
 import LoadingUI from 'Common/loading/LoadingUI';
 
-
-const withDidMount = lifecycle({
-    componentDidMount() {
-        const { deploymentDataSetIds, deploymentsById, requestPending } = this.props.deploymentData;
-        if (!requestPending) {
-            deploymentDataSetIds.some((id) => { // could do this for only the ones not in storage, but we'll do a total reset
-                if (!deploymentsById[id]) {
-                    this.props.setDeploymentsFromStoreDeploymentIds();
-                    return true;
-                }
-                return null;
-            });
-        }
+const deploymentDataRequestNeeded = ({ deploymentDataSetIds, deploymentsById, requestPending }) => {
+    if (!requestPending && deploymentDataSetIds) {
+        return deploymentDataSetIds.reduce((needsDispatch, id) => {
+            if (!deploymentsById[id]) {
+                return true;
+            }
+            return needsDispatch;
+        }, false);
     }
-});
+    return false;
+};
 
-const enhance = compose(withDidMount);
 
-export const DeploymentSelectionPure = withRouter(({ deploymentData: { deploymentDataSetIds, deploymentsById } }) => {
+export const DeploymentSelectionPure = withRouter(({ deploymentData, setDeploymentsFromStoreDeploymentIds }) => {
+
+    if (deploymentDataRequestNeeded(deploymentData)) {
+        setDeploymentsFromStoreDeploymentIds();
+    }
+
+    const { deploymentDataSetIds, deploymentsById } = deploymentData;
     return (
         <div className='DeploymentSelection__wrapper'>
             <div className='DeploymentSelection'>
                 <div>
                     <div className='DeploymentSelection__header'>Choose a deployment</div>
                     <div className='DeploymentSelection__deployment-list'>
-                        { deploymentDataSetIds.length ?
+
+                        {deploymentDataSetIds && deploymentDataSetIds.length ?
 
                             deploymentDataSetIds.map((id) => {
                                     const deployment = deploymentsById[id];
@@ -46,6 +47,7 @@ export const DeploymentSelectionPure = withRouter(({ deploymentData: { deploymen
                                 <LoadingUI/>
                             </div>
                         }
+
                     </div>
                 </div>
             </div>
@@ -55,8 +57,10 @@ export const DeploymentSelectionPure = withRouter(({ deploymentData: { deploymen
 
 
 const DeploymentSelection = connect(
-    (state) => ({ deploymentData: state.deployment }),
+    (state) => ({
+        deploymentData: state.deployment,
+    }),
     { setDeploymentsFromStoreDeploymentIds }
-)(enhance(DeploymentSelectionPure));
+)(DeploymentSelectionPure);
 
 export default DeploymentSelection;

@@ -1,6 +1,8 @@
 import React from 'react';
 import { DeploymentSelectionPure } from './DeploymentSelection';
+import {StoreContext} from '../../../tests/contextCreators';
 
+const setDeploymentsFromStoreDeploymentIds = () => {};
 describe('DeploymentSelection', () => {
     testRender(DeploymentSelectionPure)();
 
@@ -33,7 +35,7 @@ describe('DeploymentSelection', () => {
         };
 
         const wrapper = mount(<WithRouterContext><DeploymentSelectionPure
-            deploymentData={deploymentDataMock}/></WithRouterContext>);
+            deploymentData={deploymentDataMock} setDeploymentsFromStoreDeploymentIds={setDeploymentsFromStoreDeploymentIds}/></WithRouterContext>);
 
         expect(wrapper.find('.DeploymentSelection__deployment-list').children()).toHaveLength(2);
     });

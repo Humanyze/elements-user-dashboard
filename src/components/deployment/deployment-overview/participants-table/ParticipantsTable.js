@@ -10,7 +10,6 @@ import LoadingUI from 'Common/loading/LoadingUI';
 
 
 const TableData = ({ participants, showLoading }) => {
-    console.log(showLoading);
     if (showLoading) return null;
     return participants
         ? participants.length
