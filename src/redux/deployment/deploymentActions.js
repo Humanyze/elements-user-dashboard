@@ -27,10 +27,7 @@ export const setDeploymentsFromStoreDeploymentIds = () => async (dispatch, getSt
         }));
 
         // TODO move this logic to testable function
-        const deploymentsById = deploymentsArray.reduce((acc, deployment) => ({
-            ...acc,
-            [deployment.id]: deployment
-        }), {});
+        const deploymentsById = normalizeArrayById(deploymentsArray);
         dispatch(deploymentsByIdSuccessful(deploymentsById));
 
     } catch (e) {
@@ -39,7 +36,6 @@ export const setDeploymentsFromStoreDeploymentIds = () => async (dispatch, getSt
 };
 
 export const fetchDeploymentById = (id) => async (dispatch, getState) => {
-    console.log('starting here');
     dispatch(deploymentsByIdRequested());
     try {
         const bearerToken = getBearerToken(getState());
@@ -48,4 +44,9 @@ export const fetchDeploymentById = (id) => async (dispatch, getState) => {
     } catch (e) {
         console.error(e);
     }
-}
+};
+
+
+
+// todo move to utils lib
+export const normalizeArrayById = (array) => array.reduce((dict, item) => ({...dict, [item.id]: item}), {});

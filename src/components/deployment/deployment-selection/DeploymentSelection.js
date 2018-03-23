@@ -7,6 +7,7 @@ import './deployment-selection.scss';
 import { setDeploymentsFromStoreDeploymentIds } from 'Redux/deployment/deploymentActions';
 import DeploymentSelectionItem from './deployment-selection-item/DeploymentSelectionItem';
 import LoadingUI from 'Common/loading/LoadingUI';
+import { getCurrentTranslations } from 'Redux/language/languageReducer';
 
 const deploymentDataRequestNeeded = ({ deploymentDataSetIds, deploymentsById, requestPending }) => {
     if (!requestPending && deploymentDataSetIds) {
@@ -21,8 +22,8 @@ const deploymentDataRequestNeeded = ({ deploymentDataSetIds, deploymentsById, re
 };
 
 
-export const DeploymentSelectionPure = withRouter(({ deploymentData, setDeploymentsFromStoreDeploymentIds }) => {
-
+export const DeploymentSelectionPure = withRouter(({ deploymentData, setDeploymentsFromStoreDeploymentIds, translations }) => {
+    console.error('here', translations);
     if (deploymentDataRequestNeeded(deploymentData)) {
         setDeploymentsFromStoreDeploymentIds();
     }
@@ -32,7 +33,7 @@ export const DeploymentSelectionPure = withRouter(({ deploymentData, setDeployme
         <div className='DeploymentSelection__wrapper'>
             <div className='DeploymentSelection'>
                 <div>
-                    <div className='DeploymentSelection__header'>Choose a deployment</div>
+                    <div className='DeploymentSelection__header'>{translations.selectDeploymentHeader}</div>
                     <div className='DeploymentSelection__deployment-list'>
 
                         {deploymentDataSetIds && deploymentDataSetIds.length ?
@@ -59,6 +60,7 @@ export const DeploymentSelectionPure = withRouter(({ deploymentData, setDeployme
 const DeploymentSelection = connect(
     (state) => ({
         deploymentData: state.deployment,
+        translations: getCurrentTranslations(state)
     }),
     { setDeploymentsFromStoreDeploymentIds }
 )(DeploymentSelectionPure);

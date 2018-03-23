@@ -27,6 +27,9 @@ export const ActionSubBarPure = ({ openImportDialog, openExportDialog, deploymen
                 <div onClick={openImportDialog} className='ActionSubBar__text'>
                     Import
                 </div>
+                <div onClick={openImportDialog} className='ActionSubBar__text'>
+                    Export
+                </div>
             </div>
         </div>
     );

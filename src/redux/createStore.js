@@ -27,7 +27,8 @@ const offlineConfig = {
         blacklist: [
             'modal',
             'error',
-            'deployment'
+            'deployment',
+            'language'
         ]
     }
 };

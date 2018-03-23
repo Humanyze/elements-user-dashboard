@@ -1,13 +1,10 @@
-import {handleActions} from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import DEPLOYMENT_ACTION_TYPES from './deploymentActionTypes';
 import USER_ACTION_TYPES from '../userData/user/userActionTypes';
-import {createSelector} from 'reselect';
+import { createSelector } from 'reselect';
 
 
-const getSelectedDeployment = (state) => {
-    console.log(state.deployment.deploymentsById);
-    return state.deployment.deploymentsById[state.deployment.selectedDeploymentId];
-}
+const getSelectedDeployment = (state) => state.deployment.deploymentsById[state.deployment.selectedDeploymentId];
 
 const getSelectedDeploymentName = createSelector(
     getSelectedDeployment,
@@ -40,7 +37,6 @@ const deploymentReducer = handleActions({
         requestPending : false
     }),
     [DEPLOYMENT_ACTION_TYPES.DEPLOYMENT_FETCH_SUCCESSFUL]: (state, action) => {
-        console.log(action);
         return ({
             ...state,
             deploymentsById: {

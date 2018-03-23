@@ -9,11 +9,11 @@ import RouterPaths from 'RouterPaths';
 const App = () => (
     <div>
         <Router basename={RouterPaths.basePath}>
-            <div>
-                <Header/>
-                <AppRoutes/>
-                <ModalRoot />
-            </div>
+                <div>
+                    <Header/>
+                    <AppRoutes/>
+                    <ModalRoot/>
+                </div>
         </Router>
     </div>
 );

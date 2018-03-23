@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import authReducer from './auth/authReducer';
+import languageReducer from './language/languageReducer';
 import errorReducer from './error/errorReducer';
 import modalReducer from './modal/modalReducer';
 import participantsReducer from './participants/participantsReducer';
@@ -9,6 +10,7 @@ import deploymentReducer from './deployment/deploymentReducer';
 import AUTH_ACTION_TYPES from './auth/authActionTypes';
 const AppReducer = combineReducers({
     auth: authReducer,
+    language: languageReducer,
     error: errorReducer,
     user: userDataReducer,
     modal: modalReducer,
@@ -23,6 +25,7 @@ const AppReducer = combineReducers({
 
 const RootReducer = (state, action) => {
     if (action.type === AUTH_ACTION_TYPES.LOGOUT) {
+        // for clearing state on logging out
         state = undefined;
     }
     return AppReducer(state, action);
