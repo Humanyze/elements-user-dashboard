@@ -5,6 +5,7 @@ const mockProps = {
         params: {
             datasetid: 5
         }
-    }
+    },
+    fetchDeploymentById: () => {}
 };
 testRender(DeploymentOverviewPure, mockProps)();
