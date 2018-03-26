@@ -49,4 +49,4 @@ export const fetchDeploymentById = (id) => async (dispatch, getState) => {
 
 
 // todo move to utils lib
-export const normalizeArrayById = (array) => array.reduce((dict, item) => ({...dict, [item.id]: item}), {});
+export const normalizeArrayById = (array) => array.reduce((dict, item) => ({ ...dict, [item.id]: item }), {});

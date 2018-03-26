@@ -1,10 +1,25 @@
 import React from 'react';
 import { DeploymentSelectionPure } from './DeploymentSelection';
-import {StoreContext} from '../../../tests/contextCreators';
+// import { StoreContext } from '../../../tests/contextCreators';
+
+
+const translationProps = {
+    selectDeploymentHeader: ''
+};
+const deploymentDataMock = {
+    deploymentDataSetIds: ['1', '2', '3', '4'],
+    deploymentsById: {
+        '1': { name: 'deplyoment 1', id: '1' },
+        '2': { name: 'deplyoment 2', id: '2' },
+        '3': { name: 'deplyoment 3', id: '3' },
+        '4': { name: 'deplyoment 4', id: '4' }
+    }
+};
 
 const setDeploymentsFromStoreDeploymentIds = () => {};
+
 describe('DeploymentSelection', () => {
-    testRender(DeploymentSelectionPure)();
+    testRender(DeploymentSelectionPure, { deploymentData: deploymentDataMock })();
 
     it('should render all deployment paths with valid deploymentData', () => {
         const deploymentDataMock = {
@@ -17,7 +32,7 @@ describe('DeploymentSelection', () => {
             }
         };
 
-        const wrapper = mount(<WithRouterContext><DeploymentSelectionPure
+        const wrapper = mount(<WithRouterContext><DeploymentSelectionPure translations={translationProps}
             deploymentData={deploymentDataMock}/></WithRouterContext>);
 
         expect(wrapper.find('.DeploymentSelection__deployment-list').children()).toHaveLength(4);
@@ -34,7 +49,7 @@ describe('DeploymentSelection', () => {
             }
         };
 
-        const wrapper = mount(<WithRouterContext><DeploymentSelectionPure
+        const wrapper = mount(<WithRouterContext><DeploymentSelectionPure translations={translationProps}
             deploymentData={deploymentDataMock} setDeploymentsFromStoreDeploymentIds={setDeploymentsFromStoreDeploymentIds}/></WithRouterContext>);
 
         expect(wrapper.find('.DeploymentSelection__deployment-list').children()).toHaveLength(2);
@@ -50,10 +65,10 @@ describe('DeploymentSelection', () => {
                 '9': { name: 'deplyoment 4', id: '4' }
             }
         };
-        const wrapper = mount(<WithRouterContext><DeploymentSelectionPure
-            deploymentData={deploymentDataMock}/></WithRouterContext>);
+        const wrapper = mount(<WithRouterContext><DeploymentSelectionPure translations={translationProps}
+                                                                          deploymentData={deploymentDataMock}/></WithRouterContext>);
 
-        expect(wrapper.find('.DeploymentSelection__loading-background')).toHaveLength(1);
+        expect(wrapper.find('.DeploymentSelection__no-data-message')).toHaveLength(1);
 
     });
 });

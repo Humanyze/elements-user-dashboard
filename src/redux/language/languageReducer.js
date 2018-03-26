@@ -11,7 +11,6 @@ const getCurrentTextDictionaryById = (translationDictionary, id) =>
         ...dict,
         [phraseKey]: translationDictionary[phraseKey][id]
     }), {});
-console.log(getCurrentTextDictionaryById(translationDictionary, languages.EN.id));
 
 
 const initialState = {

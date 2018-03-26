@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import './deployment-selection.scss';
@@ -8,6 +7,8 @@ import { setDeploymentsFromStoreDeploymentIds } from 'Redux/deployment/deploymen
 import DeploymentSelectionItem from './deployment-selection-item/DeploymentSelectionItem';
 import LoadingUI from 'Common/loading/LoadingUI';
 import { getCurrentTranslations } from 'Redux/language/languageReducer';
+import { compose, lifecycle } from 'recompose';
+
 
 const deploymentDataRequestNeeded = ({ deploymentDataSetIds, deploymentsById, requestPending }) => {
     if (!requestPending && deploymentDataSetIds) {
@@ -21,13 +22,23 @@ const deploymentDataRequestNeeded = ({ deploymentDataSetIds, deploymentsById, re
     return false;
 };
 
-
-export const DeploymentSelectionPure = withRouter(({ deploymentData, setDeploymentsFromStoreDeploymentIds, translations }) => {
-    console.error('here', translations);
-    if (deploymentDataRequestNeeded(deploymentData)) {
+const withLifecycle = compose(lifecycle({
+    componentWillReceiveProps(nextProps) {
+        const {
+            deploymentData: {
+                deploymentDataSetIds,
+                deploymentsById,
+                requestPending
+            },
+            setDeploymentsFromStoreDeploymentIds
+        } = nextProps;
+        deploymentDataRequestNeeded({ deploymentDataSetIds, deploymentsById, requestPending }) &&
         setDeploymentsFromStoreDeploymentIds();
     }
+}));
 
+
+export const DeploymentSelectionPure = withLifecycle(({ deploymentData, setDeploymentsFromStoreDeploymentIds, translations }) => {
     const { deploymentDataSetIds, deploymentsById } = deploymentData;
     return (
         <div className='DeploymentSelection__wrapper'>
@@ -36,13 +47,14 @@ export const DeploymentSelectionPure = withRouter(({ deploymentData, setDeployme
                     <div className='DeploymentSelection__header'>{translations.selectDeploymentHeader}</div>
                     <div className='DeploymentSelection__deployment-list'>
 
-                        {deploymentDataSetIds && deploymentDataSetIds.length ?
-
-                            deploymentDataSetIds.map((id) => {
-                                    const deployment = deploymentsById[id];
-                                    return !!deployment && <DeploymentSelectionItem key={id} deployment={deployment}/>;
-                                }
-                            )
+                        {deploymentDataSetIds ?
+                            !!deploymentDataSetIds.length ?
+                                deploymentDataSetIds.map((id) => {
+                                        const deployment = deploymentsById[id];
+                                        return !!deployment &&
+                                            <DeploymentSelectionItem key={id} deployment={deployment}/>;
+                                    }
+                                ) : <div className='DeploymentSelection__no-data-message'>No datasets available.</div>
                             :
                             <div className='DeploymentSelection__loading-background'>
                                 <LoadingUI/>
@@ -55,7 +67,6 @@ export const DeploymentSelectionPure = withRouter(({ deploymentData, setDeployme
         </div>
     );
 });
-
 
 const DeploymentSelection = connect(
     (state) => ({

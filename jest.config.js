@@ -1,6 +1,11 @@
 module.exports = {
     'collectCoverageFrom'    : [
-        'src/**/*.{js,jsx,mjs}'
+        'src/**/*.{js,jsx,mjs}',
+        '!src/**/*.story.js',
+        '!src/tests/**',
+    ],
+    'coveragePathIgnorePatterns': [
+        // 'src/**/*.{js,jsx,mjs}'
     ],
     'setupFiles'             : [
         '<rootDir>/config/polyfills.js',
