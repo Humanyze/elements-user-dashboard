@@ -64,7 +64,7 @@ export const DeploymentSelectionPure = withLifecycle(({ deploymentData, setDeplo
                                         return !!deployment &&
                                             <DeploymentSelectionItem key={id} deployment={deployment}/>;
                                     }
-                                ) : <div className='DeploymentSelection__no-data-message'>No datasets available.</div>
+                                ) : <div className='DeploymentSelection__no-data-message'>You don't have access to any deployments.</div>
                             :
                             <div className='DeploymentSelection__loading-background'>
                                 <LoadingUI/>

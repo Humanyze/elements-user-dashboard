@@ -1,7 +1,8 @@
 .ParticipantsTableHeader {
-    th {
+    .ParticipantsTableHeader__column-header {
         padding: 10px;
         border-bottom: 2px solid #aaa;
         text-align: left;
+        text-transform: capitalize;
     }
 }

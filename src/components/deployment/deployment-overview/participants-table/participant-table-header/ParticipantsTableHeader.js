@@ -1,29 +1,27 @@
 import React from 'react';
 import './participants-table-header.scss';
+import { getFormattedHeaders } from 'Src/redux/participants-ui/participantsUIReducer';
+import { connect } from 'react-redux';
 
-const headers = [
-    { text: 'Email' },
-    { text: 'Alias' },
-    { text: 'Gender' },
-    { text: 'Manager' },
-    { text: 'Teams Managed' },
-    { text: 'TimeZone' },
-    { text: 'Working Hours Start' },
-    { text: 'Working Hours End' },
-    { text: 'Primary Team' },
-    { text: 'Active Badge' },
-    { text: 'Active Digital' }
-];
-const ParticipantsTableHeader = () => {
-    return <tr className='ParticipantsTableHeader'>
-        {headers.map(header => {
-            return (
-                <th className='ParticipantsTableHeader__column-header' key={header.text}>
-                    {header.text}
-                </th>
-            );
-        })}
-    </tr>;
+const ParticipantsTableHeaderPure = ({ headers }) => {
+    console.warn('comp' , headers);
+    return (
+        <tr className='ParticipantsTableHeader'>
+            {headers.length && headers.map(header => {
+                return (
+                    <th className='ParticipantsTableHeader__column-header' key={header}>
+                        {header}
+                    </th>
+                );
+            })}
+        </tr>
+    );
 };
+
+const ParticipantsTableHeader = connect(
+    (state) => ({
+        headers: getFormattedHeaders(state)
+    })
+)(ParticipantsTableHeaderPure);
 
 export default ParticipantsTableHeader;

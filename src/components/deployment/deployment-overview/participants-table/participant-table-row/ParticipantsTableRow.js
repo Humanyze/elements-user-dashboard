@@ -1,39 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './participants-table-row.scss';
+import { getViewableParticipantKeys } from 'Redux/participants-ui/participantsUIReducer';
+import { connect } from 'react-redux';
 
-const ParticipantsTableRow = ({ element }) => {
+const ParticipantsTableRowPure = ({ participant, viewableKeys }) => {
     return (
         <tr className='ParticipantsTableRow'>
-            <td >{element.email}</td>
-            <td >{element.alias}</td>
-            <td >{element.gender}</td>
-            <td >{element.manager}</td>
-            <td >{element.teams_managed ? element.teams_managed.join(', '): ''}</td>
-            <td >{element.timezone}</td>
-            <td >{element.working_hours_start}</td>
-            <td >{element.working_hours_end}</td>
-            <td >{element.primary_team}</td>
-            <td >{element.active_badge}</td>
-            <td >{element.active_digital}</td>
+            {viewableKeys.map(key => <TableCell key={key} value={participant[key]}/>)}
         </tr>
     );
 };
 
-ParticipantsTableRow.propTypes = {
-    element: PropTypes.shape({
-        email: PropTypes.string,
-        alias: PropTypes.string.isRequired,
-        gender: PropTypes.string,
-        manager: PropTypes.string,
-        teams_managed: PropTypes.array,
-        timezone: PropTypes.string,
-        working_hours_start: PropTypes.string,
-        working_hours_end: PropTypes.string,
-        primary_team: PropTypes.string,
-        active_badge: PropTypes.string,
-        active_digital: PropTypes.string
+const ParticipantsTableRow = connect(
+    (state) => ({
+        viewableKeys: getViewableParticipantKeys(state)
     })
-};
+)(ParticipantsTableRowPure);
+
 
 export default ParticipantsTableRow;
+
+
+const TableCell = ({ value }) => <td>{value}</td>;

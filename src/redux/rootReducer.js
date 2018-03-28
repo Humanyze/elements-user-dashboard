@@ -8,6 +8,9 @@ import participantsUIReducer from './participants-ui/participantsUIReducer';
 import userDataReducer from './userData/userDataReducer';
 import deploymentReducer from './deployment/deploymentReducer';
 import AUTH_ACTION_TYPES from './auth/authActionTypes';
+import * as _ from 'lodash';
+
+
 const AppReducer = combineReducers({
     auth: authReducer,
     language: languageReducer,
@@ -26,7 +29,10 @@ const AppReducer = combineReducers({
 const RootReducer = (state, action) => {
     if (action.type === AUTH_ACTION_TYPES.LOGOUT) {
         // for clearing state on logging out
+        console.error('we got here');
         state = undefined;
+        // todo: this redirect doesn't work correctly
+        window.location.href = '/logout';
     }
     return AppReducer(state, action);
 };

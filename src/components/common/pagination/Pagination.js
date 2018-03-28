@@ -11,7 +11,7 @@ import QueryString from 'query-string';
 
 export const getArrayFromStartEndIndex = (startIndex, endIndex) => Array.from({ length: (endIndex - startIndex + 1) }, (x, i) => startIndex + i);
 
-const getPageNumbers = (numberOfPages, activePageNumber, offset = 2) => {
+const getPageNumbers = (numberOfPages, activePageNumber, offset = 3) => {
 
     const maxPage = Math.min(activePageNumber + offset, numberOfPages - 1);
     const minPage = Math.max(activePageNumber - offset, 2);

@@ -15,7 +15,7 @@ const TableData = ({ participants, showLoading }) => {
     if (showLoading) return null;
     return participants
         ? participants.length
-            ? participants.map(el => <ParticipantsTableRow key={el.id} element={el}/>)
+            ? participants.map(participant => <ParticipantsTableRow key={participant.id} participant={participant}/>)
             : <tr>
                 <td>No data in dataset</td>
             </tr>
@@ -24,9 +24,7 @@ const TableData = ({ participants, showLoading }) => {
 
 export const ParticipantsTable = withRouter((props) => {
     const { location: { search } } = props;
-    const {
-        // limit = 20,
-        page = '1' } = queryString.parse(search);
+    const { page = '1' } = queryString.parse(search);
     const prePageLink = '';
     const activePageNumber = parseInt(page, 10);
 
