@@ -9,7 +9,7 @@ import queryString from 'query-string';
 import { getSelectedDeployment } from 'Redux/deployment/deploymentReducer';
 import { setSelectedDeploymentId } from 'Redux/deployment/deploymentActions';
 import { requestParticipantsData } from 'Redux/participants/participantsActions';
-import { setPage } from 'Redux/participants-ui/participantsUIActions';
+import { setPage, setLimit  } from 'Redux/participants-ui/participantsUIActions';
 import { getVisibleParticipants } from 'Redux/participants/participantsReducer';
 import { fetchDeploymentById } from 'Redux/deployment/deploymentActions';
 
@@ -24,6 +24,7 @@ const onPropUpdate = (props) => {
     const dataId = parseInt(datasetId, 10);
 
     props.setPage(pageNumber);
+    props.setLimit (limit);
     props.requestParticipantsData(dataId, limit, pageNumber);
     props.setSelectedDeploymentId(dataId);
 };
@@ -70,7 +71,7 @@ const DeploymentOverview = connect(
         showLoading: state.participants.requestPending || state.deployment.requestPending
 
     }),
-    { setSelectedDeploymentId, requestParticipantsData, fetchDeploymentById, setPage },
+    { setSelectedDeploymentId, requestParticipantsData, fetchDeploymentById, setPage, setLimit  },
 )(withRouter(enhance(DeploymentOverviewPure)));
 
 export default DeploymentOverview;

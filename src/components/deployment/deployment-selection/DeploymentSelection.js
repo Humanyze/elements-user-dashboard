@@ -49,7 +49,7 @@ const withLifecycle = compose(lifecycle({
 
 
 export const DeploymentSelectionPure = withLifecycle(({ deploymentData, setDeploymentsFromStoreDeploymentIds, translations }) => {
-    const { deploymentDataSetIds, deploymentsById } = deploymentData;
+    const { deploymentDataSetIds, deploymentsById, requestPending } = deploymentData;
     return (
         <div className='DeploymentSelection__wrapper'>
             <div className='DeploymentSelection'>
@@ -57,7 +57,7 @@ export const DeploymentSelectionPure = withLifecycle(({ deploymentData, setDeplo
                     <div className='DeploymentSelection__header'>{translations.selectDeploymentHeader}</div>
                     <div className='DeploymentSelection__deployment-list'>
 
-                        {deploymentDataSetIds ?
+                        {!requestPending && deploymentDataSetIds  ?
                             !!deploymentDataSetIds.length ?
                                 deploymentDataSetIds.map((id) => {
                                         const deployment = deploymentsById[id];

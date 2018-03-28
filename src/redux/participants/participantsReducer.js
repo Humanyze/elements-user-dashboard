@@ -69,12 +69,13 @@ export const getTotalPageCount = createSelector(
 
 export const getVisibleParticipants = createSelector(
     getCurrentPageNumber,
+    getLimitPerPage,
     isParticipantsFullyLoaded,
     getAllParticipants,
-    (pageNumber, fullyLoaded, loadedParticipants) => {
+    (pageNumber, limit, fullyLoaded, loadedParticipants) => {
         if (!fullyLoaded) return loadedParticipants;
         else {
-           return loadedParticipants.slice((pageNumber - 1) * 20, pageNumber * 20);
+           return loadedParticipants.slice((pageNumber - 1) * limit, pageNumber * limit);
         }
     }
 );
