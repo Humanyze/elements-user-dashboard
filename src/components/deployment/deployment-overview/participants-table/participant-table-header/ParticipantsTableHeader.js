@@ -3,8 +3,7 @@ import './participants-table-header.scss';
 import { getFormattedHeaders } from 'Src/redux/participants-ui/participantsUIReducer';
 import { connect } from 'react-redux';
 
-const ParticipantsTableHeaderPure = ({ headers }) => {
-    console.warn('comp' , headers);
+export const ParticipantsTableHeaderPure = ({ headers = [] }) => {
     return (
         <tr className='ParticipantsTableHeader'>
             {headers.length && headers.map(header => {

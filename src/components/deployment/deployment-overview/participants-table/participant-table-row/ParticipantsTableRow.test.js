@@ -1,4 +1,4 @@
-import ParticipantsTableRow from './ParticipantsTableRow';
+import {ParticipantsTableRowPure }from './ParticipantsTableRow';
 
 const props = {
     element: {
@@ -6,4 +6,4 @@ const props = {
     }
 };
 
-testRender(ParticipantsTableRow, props)();
+testRender(ParticipantsTableRowPure, props)();

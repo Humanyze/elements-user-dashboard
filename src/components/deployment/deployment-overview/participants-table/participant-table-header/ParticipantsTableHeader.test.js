@@ -1,3 +1,3 @@
-import ParticipantsTableHeader from './ParticipantsTableHeader';
+import { ParticipantsTableHeaderPure } from './ParticipantsTableHeader';
 
-testRender(ParticipantsTableHeader)();
+testRender(ParticipantsTableHeaderPure)();
