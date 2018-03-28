@@ -17,24 +17,38 @@ const requestParticipantsData = (datasetId, perPage = 20, page = 1) => async (di
 
         const offset = (page - 1) * perPage;
         const bearerToken = getBearerToken(getState());
+
+        // stage 2: load immediate need
         const { data } = await AxiosRequestService.participants.getParticipantsByDatasetId(datasetId, { perPage, offset }, bearerToken);
         // create function for this style of mapping
         const participantsById = data.participants.reduce((acc, participant) => ({
             ...acc,
             [participant.id]: participant
         }), {});
+        const participantIds = Object.keys(participantsById);
 
+        dispatch(participantsFetchSuccess({ participantsById, participantIds, totalParticipantCount: data.meta.total_count }));
 
-        setTimeout(() =>
-            dispatch(participantsFetchSuccess({ participantsById, totalParticipantCount: data.meta.total_count })), 3000);
-        // temp show loading ui
-        // dispatch(participantsFetchSuccess({ participantsById, totalParticipantCount: data.meta.total_count }));
-
+        dispatch(requestAlParticipants(datasetId));
     } catch (e) {
         dispatch(participantsFetchError(e.message));
     }
 };
 
+
+const requestAlParticipants = (datasetId) => async (dispatch, getState) => {
+    const bearerToken = getBearerToken(getState());
+
+
+    const { data } = await AxiosRequestService.participants.getAllParticipantsByDatasetId(datasetId, bearerToken);
+    // create function for this style of mapping
+    const participantsById = data.participants.reduce((acc, participant) => ({
+        ...acc,
+        [participant.id]: participant
+    }), {});
+    const participantIds = Object.keys(participantsById);
+    dispatch(participantsFetchSuccess({ participantsById, participantIds, totalParticipantCount: data.meta.total_count }));
+};
 export {
     requestParticipantsData,
     participantsFetchStarted,

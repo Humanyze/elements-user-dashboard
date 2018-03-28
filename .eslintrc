@@ -1,11 +1,31 @@
 // NOTE: to run eslint fix,
 // bash: npx eslint --fix .
 {
-  "extends": "react-app",
+  "extends": [
+    "react-app",
+  ],
+  "plugins": [
+    "react"
+  ],
   "rules": {
-    "object-curly-spacing": [1, "always"],
-    "semi": [1, "always"],
-    "quotes": [1, "single"],
-    "jsx-quotes": [1, "prefer-single"]
+    "object-curly-spacing": [
+      1,
+      "always"
+    ],
+    "semi": [
+      1,
+      "always"
+    ],
+    "quotes": [
+      1,
+      "single"
+    ],
+    "jsx-quotes": [
+      1,
+      "prefer-single"
+    ]
+  //,
+    // todo fix: complains on class instead of untranslated text
+    // "react/jsx-no-literals": [2, {"noStrings": true}]
   }
 }

@@ -1,11 +1,7 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const CircularDependencyPlugin = require('circular-dependency-plugin');
+
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
@@ -112,7 +108,7 @@ module.exports = {
                         exclude: [/\.(js|jsx|mjs|ejs)$/, /\.html$/, /\.json$/],
                         loader : require.resolve('file-loader'),
                         options: {
-                            name: 'static/media/[name].[hash:8].[ext]',
+                            name: 'deployments/static/media/[name].[hash:8].[ext]',
                         },
                     },
                 ],
@@ -159,6 +155,14 @@ module.exports = {
             // please link the files into your node_modules/ and let module-resolution kick in.
             // Make sure your source files are compiled, as they will not be processed in any way.
             new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson, paths.storybookConfig]),
+            new CircularDependencyPlugin({
+                // exclude detection of files based on a RegExp
+                exclude: /a\.js|node_modules/,
+                // add errors to webpack instead of warnings
+                failOnError: true,
+                // set the current working directory for displaying module paths
+                cwd: process.cwd(),
+            })
         ],
     },
 };

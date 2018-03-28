@@ -2,12 +2,11 @@ import { handleActions } from 'redux-actions';
 import { createSelector } from 'reselect';
 import EQUIPMENT_ACTION_TYPES from './participantsActionTypes';
 
-
 export const initialState = {
-    requestPending       : false,
-    participantIds       : [],
+    requestPending: false,
+    participantIds: [],
     totalParticipantsCount: null,
-    participantsById     : {}
+    participantsById: {}
 };
 
 const participantsReducer = handleActions({
@@ -15,22 +14,32 @@ const participantsReducer = handleActions({
         ...state,
         requestPending: true
     }),
-    [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_SUCCESS]  : (state, action) => ({
+    [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_SUCCESS]: (state, action) => ({
         ...state,
-        requestPending  : false,
+        requestPending: false,
         participantsById: action.payload.participantsById,
+        participantIds: action.payload.participantIds,
         totalParticipantsCount: action.payload.totalParticipantCount
     }),
-    [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_ERROR]    : (state, action) => ({
+    [EQUIPMENT_ACTION_TYPES.LOAD_PARTICIPANTS_ERROR]: (state, action) => ({
         ...state,
-        requestPending  : false,
+        requestPending: false,
         participantsById: initialState.participants
     })
 }, initialState);
 
 
-
 export const getParticipantsById = state => state.participants.participantsById;
+export const getTotalParticipantsCount = state => state.participants.totalParticipantsCount;
+
+export const getLoadedParticipantsLength = state => state.participants.participantIds.length;
+
+export const isParticipantsFullyLoaded = createSelector(
+    getTotalParticipantsCount,
+    getLoadedParticipantsLength,
+    (totalCount, loadedParticipantsLength) => totalCount === loadedParticipantsLength
+);
+
 
 export const getAllParticipants = createSelector(
     getParticipantsById,
@@ -42,8 +51,32 @@ export const getParticipantSelectedById = id => createSelector(
     (participantsById) => participantsById[id]
 );
 
-export const getTotalParticipantsCount = state => state.participants.totalParticipantsCount;
-
 export const getRequestPendingStatus = state => state.participants.requestPending;
+
+
+// selectors for UI here to prevent circular dependency issue
+export const getCurrentPageNumber = state => state.participantsUI.currentPageNumber;
+
+export const getLimitPerPage = state => state.participantsUI.limitPerPage;
+
+
+export const getTotalPageCount = createSelector(
+    getLimitPerPage,
+    getTotalParticipantsCount,
+    (limitPerPage, totalParticipants) => Math.ceil((totalParticipants || 1)/limitPerPage)
+);
+
+
+export const getVisibleParticipants = createSelector(
+    getCurrentPageNumber,
+    isParticipantsFullyLoaded,
+    getAllParticipants,
+    (pageNumber, fullyLoaded, loadedParticipants) => {
+        if (!fullyLoaded) return loadedParticipants;
+        else {
+           return loadedParticipants.slice((pageNumber - 1) * 20, pageNumber * 20);
+        }
+    }
+);
 
 export default participantsReducer;

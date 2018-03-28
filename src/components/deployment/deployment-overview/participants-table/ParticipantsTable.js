@@ -7,6 +7,8 @@ import ParticipantsTableHeader from './participant-table-header/ParticipantsTabl
 import ParticipantsTableRow from './participant-table-row/ParticipantsTableRow';
 import Pagination from 'Common/pagination/Pagination';
 import LoadingUI from 'Common/loading/LoadingUI';
+import { withRouter } from 'react-router-dom';
+import queryString  from 'query-string';
 
 
 const TableData = ({ participants, showLoading }) => {
@@ -17,11 +19,16 @@ const TableData = ({ participants, showLoading }) => {
             : <tr>
                 <td>No data in dataset</td>
             </tr>
-        :  null;
+        : null;
 };
 
-export const ParticipantsTable = (props) => {
-
+export const ParticipantsTable = withRouter((props) => {
+    const { location: { search } } = props;
+    const {
+        // limit = 20,
+        page = '1' } = queryString.parse(search);
+    const prePageLink = '';
+    const activePageNumber = parseInt(page, 10);
 
     return (
         <div className='ParticipantsTable'>
@@ -41,11 +48,11 @@ export const ParticipantsTable = (props) => {
                         props.showLoading && <div className='ParticipantsTable__loading-wrapper'><LoadingUI/></div>
                     }
                 </div>
-                <Pagination/>
+                {!props.showLoading && <Pagination activePageNumber={activePageNumber} baseLink={prePageLink}/>}
 
             </div>
         </div>
     );
-};
+});
 
 export default ParticipantsTable;

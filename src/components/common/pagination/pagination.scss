@@ -1,18 +1,33 @@
+@import '~Src/Global.scss';
+
 .Pagination {
   display: flex;
-  & > div {
-    padding: 10px;
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.05);
-    }
-    &.active {
-      background-color: rgba(0, 0, 200, 0.1);
-    }
-  }
-  .Pagination__button {
+  justify-content: center;
+  align-items: flex-end;
+  height: 40px;
+
+  .Pagination__nav {
+    font-size: 0.5em;
+    cursor: pointer;
     &.disabled {
       opacity: 0.5;
       pointer-events: none;
+    }
+  }
+
+  .Pagination__ellipses {
+
+  }
+
+  .Pagination__number-link {
+    padding: 4px;
+    cursor: pointer;
+    &.active {
+      color: $humanyze-blue;
+      font-size: 1.2em;
+    }
+    &:hover {
+      color: $humanyze-blue;
     }
   }
 }

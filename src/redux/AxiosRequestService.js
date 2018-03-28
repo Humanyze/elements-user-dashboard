@@ -43,7 +43,7 @@ const getUserById = async (id, token) => await getRequestWithAuth(`/api/v1/user/
 // PARTICIPANT(S) ENDPOINTS
 const getParticipantDataById = async (id, token) => await getRequestWithAuth(`/api/v1/participant/?user=${id}`, token);
 const getParticipantsByDatasetId = async (datasetId, { perPage = 20, offset = 0 }, token) => await getRequestWithAuth(`/api/v2/participants?dataset_id=${datasetId}&limit=${perPage}&offset=${offset}`, token);
-
+const getAllParticipantsByDatasetId = async (datasetId, token) => await getRequestWithAuth(`/api/v2/participants?dataset_id=${datasetId}`, token);
 
 // DATASET ENDPOINTS
 const getDatasetById = (id, token) =>  getRequestWithAuth(`/api/v1/dataset/${id}/`, token);
@@ -63,7 +63,8 @@ const AxiosRequestService = {
     },
     participants: {
         getParticipantDataById,
-        getParticipantsByDatasetId
+        getParticipantsByDatasetId,
+        getAllParticipantsByDatasetId
     },
     datasets: {
         getDatasetById

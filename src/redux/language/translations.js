@@ -12,5 +12,5 @@ export default {
     },
     'selectDeploymentHeader': {
         [EN]: 'Choose a deployment'
-    }
+    },
 };

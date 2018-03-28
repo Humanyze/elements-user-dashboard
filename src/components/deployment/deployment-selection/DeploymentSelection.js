@@ -22,18 +22,28 @@ const deploymentDataRequestNeeded = ({ deploymentDataSetIds, deploymentsById, re
     return false;
 };
 
+
+const onPropReceive = (props) => {
+    const {
+        deploymentData: {
+            deploymentDataSetIds,
+            deploymentsById,
+            requestPending
+        },
+        setDeploymentsFromStoreDeploymentIds
+    } = props;
+    deploymentDataRequestNeeded({ deploymentDataSetIds, deploymentsById, requestPending }) &&
+    setDeploymentsFromStoreDeploymentIds();
+
+};
+
+
 const withLifecycle = compose(lifecycle({
+    componentWillMount() {
+        onPropReceive(this.props);
+    },
     componentWillReceiveProps(nextProps) {
-        const {
-            deploymentData: {
-                deploymentDataSetIds,
-                deploymentsById,
-                requestPending
-            },
-            setDeploymentsFromStoreDeploymentIds
-        } = nextProps;
-        deploymentDataRequestNeeded({ deploymentDataSetIds, deploymentsById, requestPending }) &&
-        setDeploymentsFromStoreDeploymentIds();
+        onPropReceive(nextProps);
     }
 }));
 

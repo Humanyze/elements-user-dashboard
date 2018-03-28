@@ -14,33 +14,56 @@ const onePage = {
     numberOfPages: 1
 };
 
-const simpleProps = {
-    activePageNumber: 2,
-    numberOfPages: 5
+const twoPages = {
+    activePageNumber: 1,
+    numberOfPages: 2
 };
 
-
-const largePagesEarlyProps= {
-    activePageNumber: 3,
-    numberOfPages: 50
+const threePages = {
+    activePageNumber: 1,
+    numberOfPages: 3,
 };
 
+const sixPages = {
+    activePageNumber: 1,
+    numberOfPages: 6
+};
 
-const largePagesMiddleProps = {
-    activePageNumber: 25,
-    numberOfPages: 50
+const twelvePages = {
+    activePageNumber: 1,
+    numberOfPages: 12
 };
-const largePagesEndProps = {
-    activePageNumber: 47,
-    numberOfPages: 50
-};
+
 
 const createComp = (props) => <PaginationPure {...defaultProps} {...props}/>;
 
 storiesOf('Pagination', module)
-    .add('initial', () => createComp())
-    .add('onePage', () => createComp(onePage))
-    .add('simple', () => createComp(simpleProps))
-    .add('large # of Pages, early', () => createComp(largePagesEarlyProps))
-    .add('large # of Pages, middle', () => createComp(largePagesMiddleProps))
-    .add('large # of Pages, late', () => createComp(largePagesEndProps));
+    .add('initial', () => createComp());
+
+storiesOf('Pagination/onePage', module)
+    .add('onePage', () => createComp(onePage));
+
+storiesOf('Pagination/twoPages', module)
+    .add('pageOneSelected', () => createComp(twoPages))
+    .add('pageTwoSelected', () => createComp({ ...twoPages, activePageNumber: 2 }));
+
+
+storiesOf('Pagination/threePages', module)
+    .add('pageOneSelected', () => createComp(threePages))
+    .add('pageTwoSelected', () => createComp({ ...threePages, activePageNumber: 2 }))
+    .add('pageThreeSelected', () => createComp({ ...threePages, activePageNumber: 3 }));
+
+
+// for one sided ellipses/transition case
+storiesOf('Pagination/sixPages', module)
+    .add('pageOneSelected', () => createComp(sixPages))
+    .add('pageTwoSelected', () => createComp({ ...sixPages, activePageNumber: 2 }))
+    .add('pageThreeSelected', () => createComp({ ...sixPages, activePageNumber: 3 }))
+    .add('pageFourSelected', () => createComp({ ...sixPages, activePageNumber: 4 }))
+    .add('pagefiveSelected', () => createComp({ ...sixPages, activePageNumber: 5 }))
+    .add('pageSixSelected', () => createComp({ ...sixPages, activePageNumber: 6 }));
+
+storiesOf('Pagination/twelvePages', module)
+    .add('pageOneSelected', () => createComp(twelvePages))
+    .add('pageSevenSelected', () => createComp({...twelvePages, activePageNumber: 7}))
+    .add('page11Selected', () => createComp({...twelvePages, activePageNumber: 11}));

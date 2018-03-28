@@ -1,9 +1,11 @@
 import participantsUIReducer, {
     initialState,
+} from './participantsUIReducer';
+import {
     getCurrentPageNumber,
     getLimitPerPage,
     getTotalPageCount
-} from './participantsUIReducer';
+} from '../participants/participantsReducer';
 import * as participantsUIActions from './participantsUIActions';
 
 describe('participantsUIReducer', () => {

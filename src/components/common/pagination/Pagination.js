@@ -1,38 +1,38 @@
 import React from 'react';
 import './pagination.scss';
+
 import { connect } from 'react-redux';
 import { compose, withHandlers, withPropsOnChange } from 'recompose';
-import { setPage } from 'Redux/participants-ui/participantsUIActions';
-import { getCurrentPageNumber, getTotalPageCount } from 'Redux/participants-ui/participantsUIReducer';
+import { getTotalPageCount } from 'Redux/participants/participantsReducer';
+import MaterialIcon from 'material-icons-react';
+import { withRouter } from 'react-router-dom';
+import QueryString from 'query-string';
 
 
 export const getArrayFromStartEndIndex = (startIndex, endIndex) => Array.from({ length: (endIndex - startIndex + 1) }, (x, i) => startIndex + i);
 
-export const getVisiblePageList = (activeIndex, numberOfPages, visiblePageLimit = 9) => {
-    const offset = Math.floor(visiblePageLimit / 2);
+const getPageNumbers = (numberOfPages, activePageNumber, offset = 2) => {
 
-    if (numberOfPages < visiblePageLimit) {
-        return getArrayFromStartEndIndex(1, numberOfPages);
+    const maxPage = Math.min(activePageNumber + offset, numberOfPages - 1);
+    const minPage = Math.max(activePageNumber - offset, 2);
+    const hiddenStart = minPage > 2;
+    const hiddenEnd = maxPage < numberOfPages - 1;
 
-    } else if (offset > activeIndex) {
-        return getArrayFromStartEndIndex(1, visiblePageLimit);
+    let PageNumbers = getArrayFromStartEndIndex(minPage, maxPage);
 
-    } else if (offset > (numberOfPages - activeIndex)) {
-        return getArrayFromStartEndIndex(numberOfPages - visiblePageLimit + 1, numberOfPages);
+    return { PageNumbers, hiddenStart, hiddenEnd };
 
-    }
-    return getArrayFromStartEndIndex(activeIndex - offset, activeIndex + offset);
 };
 
-
-const onPreviousPageClicked = ({ activePageNumber, setPage }) => () => {
-    setPage(activePageNumber - 1);
+const goToPage = ({ history, location }) => number => e => {
+    const { pathname, search } = location;
+    const queryObj = QueryString.parse(search);
+    const updatedPageQuery = { ...queryObj, page: number };
+    history.push({
+        pathname,
+        search: QueryString.stringify(updatedPageQuery)
+    });
 };
-
-const onNextPageClicked = ({ activePageNumber, setPage }) => () => {
-    setPage(activePageNumber + 1);
-};
-
 
 const enhance = compose(
     withPropsOnChange(
@@ -43,51 +43,57 @@ const enhance = compose(
         })
     ),
     withHandlers({
-        onPreviousPageClicked,
-        onNextPageClicked
+        goToPage
     })
 );
 
 
-export const PaginationPure = ({
-                                   activePageNumber, numberOfPages,
-                                   onPreviousPageClicked, onNextPageClicked,
-                                   canClickPrev, canClickNext,
-                                   visiblePageCount = 9 // TODO: move to withProps
-                               }) => {
+export const PaginationPure = ({ activePageNumber, goToPage, numberOfPages, canClickPrev, canClickNext }) => {
 
-    const pages = getVisiblePageList(activePageNumber, numberOfPages, visiblePageCount);
+
+    const { PageNumbers, hiddenStart, hiddenEnd } = getPageNumbers(numberOfPages, activePageNumber);
+    const LinkProps = {
+        activePageNumber,
+        goToPage
+    };
+
     return (
         <div className='Pagination'>
 
-            <button onClick={onPreviousPageClicked}
-                 className={ `Pagination__button ${canClickPrev ? '' : 'disabled'}`}>
-                Prev
-            </button>
+            <div onClick={goToPage(activePageNumber - 1)} className={`Pagination__nav ${canClickPrev ? '' : 'disabled'}`}>
+                <MaterialIcon  icon={'chevron_left'} size={'tiny'}/>
+            </div>
 
-            {pages.map((pageNumber) => (
-                <div key={pageNumber}
-                     className={pageNumber === activePageNumber ? 'active' : 'inactive'}>
-                    {pageNumber}
-                </div>
-            ))}
+            <PaginationNumberLink number={1} {...LinkProps}/>
 
-            <button onClick={onNextPageClicked}
-                 className={ `Pagination__button ${canClickNext ? '' : 'disabled'}`}>
-                Next
-            </button>
+            {hiddenStart && <Ellipses/>}
+
+            {PageNumbers.map((number) => <PaginationNumberLink number={number} {...LinkProps} key={number}/>)}
+
+            {hiddenEnd && <Ellipses/>}
+
+            {numberOfPages > 1 && <PaginationNumberLink number={numberOfPages} {...LinkProps}/>}
+
+            <div onClick={goToPage(activePageNumber + 1)}  className={`Pagination__nav ${canClickNext ? '' : 'disabled'}`}>
+                <MaterialIcon icon={'chevron_right'} size={'tiny'}/>
+            </div>
         </div>
     );
 };
 
 
-const Pagination = connect(
+const Pagination = withRouter(connect(
     state => ({
-        activePageNumber: getCurrentPageNumber(state),
-        numberOfPages   : getTotalPageCount(state)
+        numberOfPages: getTotalPageCount(state),
+
     }),
-    { setPage }
-)(enhance(PaginationPure));
+)(enhance(PaginationPure)));
 
 
 export default Pagination;
+
+
+const Ellipses = () => <div className='Pagination__ellipses'>...</div>;
+
+export const PaginationNumberLink = ({ number, activePageNumber, goToPage }) => <div onClick={goToPage(number)}
+                                                                                     className={`Pagination__number-link ${ number === activePageNumber ? 'active' : ''}`}>{number}</div>;
