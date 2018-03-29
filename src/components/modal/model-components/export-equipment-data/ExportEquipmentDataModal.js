@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import LightBoxWrapper from '../LightBoxWrapper/LightBoxWrapper';
 
-const ExportEquipmentDataModal = () => {
+const ExportEquipmentDataModal = (props) => {
     return (
         <LightBoxWrapper>
             <div className='ExportEquipmentData'>
                 Hello World ExportEquipmentDataModal
-                <button onClick={this.props.closeModal}>Close</button>
+                <button onClick={props.closeModal}>Close</button>
             </div>
         </LightBoxWrapper>
     );
