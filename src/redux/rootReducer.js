@@ -8,8 +8,6 @@ import participantsUIReducer from './participants-ui/participantsUIReducer';
 import userDataReducer from './userData/userDataReducer';
 import deploymentReducer from './deployment/deploymentReducer';
 import AUTH_ACTION_TYPES from './auth/authActionTypes';
-import * as _ from 'lodash';
-
 
 const AppReducer = combineReducers({
     auth: authReducer,

@@ -35,7 +35,8 @@ module.exports = {
         '^Redux(.*)$'   : '<rootDir>/src/redux$1',
         '^Assets(.*)$'  : '<rootDir>/src/assets$1',
         '^Src(.*)$'     : '<rootDir>/src$1',
-        '^RouterPaths'  : '<rootDir>/src/routerPaths.js'
+        '^RouterPaths'  : '<rootDir>/src/routerPaths.js',
+        '^appPackageJson'  : '<rootDir>/package.json'
     },
     'moduleFileExtensions': [
         'web.js',
