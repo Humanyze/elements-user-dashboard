@@ -1,20 +1,23 @@
 @import '~Src/Global.scss';
 
 .ParticipantsTable {
-    padding: 40px;
+    padding: 0 40px;
 }
 
 .ParticipantsTable__title {
     background-color: $blue-3;
     position: relative;
-    font-size: 2em;
+    font-size: 36px;
+    letter-spacing: 0.05rem;
+    font-variant-ligatures: no-common-ligatures;
     color: white;
-    padding: 10px 30px;
+    padding: 10px 40px;
+    height: 60px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
 }
 
 .ParticipantsTable__table-padding {
-    padding: 40px;
+    padding: 40px 40px 20px;
     background-color: #f5f5f5;
 }
 .ParticipantsTable__table-wrapper {

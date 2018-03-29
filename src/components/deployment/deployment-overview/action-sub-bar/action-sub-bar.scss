@@ -2,8 +2,9 @@
 
 .ActionSubBar {
     background-color: $blue-3;
-    height: 50px;
+    height: 48px;
     padding: 0 20px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
 
@@ -22,13 +23,14 @@
         cursor: pointer;
         padding: 0 20px;
 
-        &:hover {
+        &:hover:not(.ActionSubBar__description) {
             background-color: rgba(0, 0, 0, 0.05);
             color: white;
         }
 
         &.ActionSubBar__description {
             font-style: italic;
+            cursor: default;
         }
     }
 }

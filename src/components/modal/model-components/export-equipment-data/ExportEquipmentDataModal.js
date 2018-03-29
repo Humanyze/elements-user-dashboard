@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LightBoxWrapper from '../LightBoxWrapper/LightBoxWrapper';
 
 const ExportEquipmentDataModal = (props) => {
