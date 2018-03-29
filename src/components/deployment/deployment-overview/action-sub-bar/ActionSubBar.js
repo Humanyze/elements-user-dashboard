@@ -14,7 +14,7 @@ export const ActionSubBarPure = ({ openImportDialog, openExportDialog, deploymen
     return (
         <div className='ActionSubBar'>
             <div className='ActionSubBar__section ActionSubBar__section-left'>
-                <div className='ActionSubBar__text'>
+                <div className='ActionSubBar__text ActionSubBar__description'>
                     Viewing Data For: {deploymentName}
                 </div>
 

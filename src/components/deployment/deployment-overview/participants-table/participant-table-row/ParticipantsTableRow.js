@@ -21,4 +21,10 @@ const ParticipantsTableRow = connect(
 export default ParticipantsTableRow;
 
 
-const TableCell = ({ value }) => <td>{value}</td>;
+const TableCell = ({ value }) => {
+    let displayValue = value;
+    if (Array.isArray(value)) {
+        displayValue = value.join(', ');
+    }
+    return <td>{displayValue}</td>;
+};

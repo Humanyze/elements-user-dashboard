@@ -28,8 +28,7 @@ const AppReducer = combineReducers({
 
 const RootReducer = (state, action) => {
     if (action.type === AUTH_ACTION_TYPES.LOGOUT) {
-        // for clearing state on logging out
-        console.error('we got here');
+        // note: for clearing state on logging out
         state = undefined;
         // todo: this redirect doesn't work correctly
         window.location.href = '/logout';

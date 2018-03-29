@@ -5,7 +5,8 @@
 }
 
 .ParticipantsTable__title {
-    background-color: $humanyze-blue;
+    background-color: $blue-3;
+    position: relative;
     font-size: 2em;
     color: white;
     padding: 10px 30px;
@@ -18,6 +19,7 @@
 }
 .ParticipantsTable__table-wrapper {
     overflow-x: scroll;
+    margin-bottom: 40px;
 }
 
 
