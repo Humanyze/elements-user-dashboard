@@ -1,13 +1,13 @@
 import React from 'react';
 import { compose, withHandlers, withState } from 'recompose';
 import './user-avatar.scss';
+import packageJson from 'appPackageJson';
 import { connect } from 'react-redux';
 import { logout } from 'Redux/auth/authActions';
 import { Link } from 'react-router-dom';
 import MaterialIcon from 'material-icons-react';
 import { getCurrentUserName } from 'Redux/userData/user/userReducer';
 import { getCurrentParticipantAvatar } from 'Redux/userData/participant/participantReducer';
-
 
 const onLogoutClicked = ({ setShowDropdown, logout }) => e => {
     logout();
@@ -48,7 +48,7 @@ export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown,
                     </a>)}
                     <div className='UserAvatar__dropdown-divider'/>
                     <Link to={'never'} onClick={onLogoutClicked}>Logout</Link>
-                    <div className='UserAvatar__dropdown-version-text'>Elements v2.7.1</div>
+                    <div className='UserAvatar__dropdown-version-text'>Elements { packageJson.version }</div>
                 </div>
             </div>
             }
