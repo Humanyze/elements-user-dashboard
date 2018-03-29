@@ -22,7 +22,6 @@ const requestParticipantsData = (datasetId, perPage = 20, page = 1) => async (di
         const { data } = await AxiosRequestService.participants.getParticipantsByDatasetId(datasetId, { perPage, offset }, bearerToken);
         // create function for this style of mapping
         const fieldSettingParticipant = data.participants[0] || {};
-        console.log(data);
         const viewableFields = getViewableFields(fieldSettingParticipant);
         dispatch(setViewableFields(viewableFields));
         const participantsById = data.participants.reduce((acc, participant) => ({
