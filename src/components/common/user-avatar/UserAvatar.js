@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import MaterialIcon from 'material-icons-react';
 import { getCurrentUserName } from 'Redux/userData/user/userReducer';
 import { getCurrentParticipantAvatar } from 'Redux/userData/participant/participantReducer';
+import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 
 const onLogoutClicked = ({ setShowDropdown, logout }) => e => {
     logout();
@@ -28,7 +29,7 @@ const enhance = compose(
 );
 
 
-export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown, onLogoutClicked, linkClicked }) => (
+export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown, onLogoutClicked, linkClicked, translations }) => (
     <div className='UserAvatar'>
         <div className='UserAvatar__email'>
             {username}
@@ -43,8 +44,8 @@ export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown,
             <div className='UserAvatar__dropdown'>
                 <div className='UserAvatar__dropdown-body'>
                     {DropdownLinks.map(link => <a href={link.to}
-                                                     key={link.text}>
-                        {link.text}
+                                                     key={link.textKey}>
+                        {translations[link.textKey]}
                     </a>)}
                     <div className='UserAvatar__dropdown-divider'/>
                     <Link to={'never'} onClick={onLogoutClicked}>Logout</Link>
@@ -59,7 +60,8 @@ export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown,
 const UserAvatar = connect(
     (state) => ({
         username: getCurrentUserName(state),
-        avatar  : getCurrentParticipantAvatar(state)
+        avatar  : getCurrentParticipantAvatar(state),
+        translations: getCurrentTranslations(state)
 
     }),
     { logout }
@@ -69,27 +71,27 @@ export default UserAvatar;
 
 const DropdownLinks = [
     {
-        text: 'Dashboard',
+        textKey: 'avatarMenu/dashboard',
         to  : '/dashboard'
     },
     {
-        text: 'Management',
+        textKey: 'avatarMenu/management',
         to  : '/manage'
     },
     {
-        text: 'Executive',
+        textKey: 'avatarMenu/executive',
         to  : '/select-deployment?for=executive'
     },
     {
-        text: 'Digital',
+        textKey: 'avatarMenu/digital',
         to  : '/select-deployment?for=digital'
     },
     {
-        text: 'Profile',
+        textKey: 'avatarMenu/profile',
         to  : '/profile'
     },
     {
-        text: 'Change Password',
+        textKey: 'avatarMenu/changePassword',
         to  : '/profile/change-password'
     }
 ];
