@@ -7,6 +7,20 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 const { store } = createStore();
 
+
+const defaultProps = {
+    username: '',
+    avatar: '',
+    dropdownLinks: [],
+    showDropdown: false,
+    toggleDropdown: () => {},
+    onLogoutClicked: () => {},
+    linkClicked: () => {},
+    translations: {
+
+    }
+};
+
 describe('userAvatar', () => {
     const component = mount(<Provider store={store}><BrowserRouter><UserAvatar/></BrowserRouter></Provider>);
 

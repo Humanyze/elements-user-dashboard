@@ -59,45 +59,48 @@ const enhance = compose(
         onLogoutClicked,
         linkClicked,
         handleClickOutside: ({ setShowDropdown }) => e => setShowDropdown(false)
-    })
+    }),
+    onClickOutside
 );
 
+export class UserAvatarPure extends React.Component {
 
-export const UserAvatarPure = ({ username, avatar, dropdownLinks, showDropdown, toggleDropdown, onLogoutClicked, linkClicked, translations }) => {
-
-    return (
-        <div className='UserAvatar'>
-            <div className='UserAvatar__email'>
-                {username}
-            </div>
-            <div className='UserAvatar__dropdown-wrapper'>
-                <div onClick={toggleDropdown} className='UserAvatar__avatar-icon'>
-                    {avatar ? <MaterialIcon icon='account_circle' size={45}/> :
-                        <MaterialIcon icon='account_circle' size={45}/>}
+    render() {
+        const { username, avatar, dropdownLinks, showDropdown, toggleDropdown, onLogoutClicked, linkClicked, translations } = this.props;
+            return (
+            <div className='UserAvatar'>
+                <div className='UserAvatar__email'>
+                    {username}
                 </div>
+                <div className='UserAvatar__dropdown-wrapper'>
+                    <div onClick={toggleDropdown} className='UserAvatar__avatar-icon'>
+                        {avatar ? <MaterialIcon icon='account_circle' size={45}/> :
+                            <MaterialIcon icon='account_circle' size={45}/>}
+                    </div>
 
-                {showDropdown &&
-                <div className='UserAvatar__dropdown'>
-                    <div className='UserAvatar__dropdown-body'>
+                    {showDropdown &&
+                    <div className='UserAvatar__dropdown'>
+                        <div className='UserAvatar__dropdown-body'>
 
-                        {DropdownLinks.map(link => <a href={link.to}
-                                                      key={link.textKey}>{translations[link.textKey]}</a>)}
+                            {DropdownLinks.map(link => <a href={link.to}
+                                                          key={link.textKey}>{translations[link.textKey]}</a>)}
 
-                        <div className='UserAvatar__dropdown-divider'/>
+                            <div className='UserAvatar__dropdown-divider'/>
 
-                        <Link to={'never'} onClick={onLogoutClicked}>
-                            {translations['avatarMenu/logout']}
-                        </Link>
-                        <div className='UserAvatar__dropdown-version-text'>
-                            {translations['avatarMenu/Elements']} v{packageJson.version}
+                            <Link to={'never'} onClick={onLogoutClicked}>
+                                {translations['avatarMenu/logout']}
+                            </Link>
+                            <div className='UserAvatar__dropdown-version-text'>
+                                {translations['avatarMenu/Elements']} v{packageJson.version}
+                            </div>
                         </div>
                     </div>
+                    }
                 </div>
-                }
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 const UserAvatar = connect(
     (state) => ({
