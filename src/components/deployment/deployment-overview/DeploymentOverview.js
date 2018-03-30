@@ -12,6 +12,7 @@ import { requestParticipantsData } from 'Redux/participants/participantsActions'
 import { setPage, setLimit  } from 'Redux/participants-ui/participantsUIActions';
 import { getVisibleParticipants } from 'Redux/participants/participantsReducer';
 import { fetchDeploymentById } from 'Redux/deployment/deploymentActions';
+import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 
 
 const onPropUpdate = (props) => {
@@ -51,7 +52,7 @@ const enhance = compose(
     withDidMount
 );
 
-export const DeploymentOverviewPure = ({ selectedDeployment, participants, showLoading, match: { params: { datasetId, perPage, page } }, setSelectedDeploymentId, fetchDeploymentById, requestParticipantsData }) => {
+export const DeploymentOverviewPure = ({ selectedDeployment, participants, showLoading, match: { params: { datasetId, perPage, page } }, setSelectedDeploymentId, fetchDeploymentById, requestParticipantsData, translations }) => {
     if (!selectedDeployment && !showLoading) {
         fetchDeploymentById(datasetId);
     }
@@ -59,7 +60,7 @@ export const DeploymentOverviewPure = ({ selectedDeployment, participants, showL
     return (
         <div>
             <ActionSubBar/>
-            <ParticipantsTable participants={participants} showLoading={showLoading}/>
+            <ParticipantsTable participants={participants} translations={translations} showLoading={showLoading}/>
         </div>
     );
 };
@@ -68,7 +69,8 @@ const DeploymentOverview = connect(
     (state) => ({
         selectedDeployment: getSelectedDeployment(state),
         participants: getVisibleParticipants(state),
-        showLoading: state.participants.requestPending || state.deployment.requestPending
+        showLoading: state.participants.requestPending || state.deployment.requestPending,
+        translations: getCurrentTranslations(state)
 
     }),
     { setSelectedDeploymentId, requestParticipantsData, fetchDeploymentById, setPage, setLimit  },

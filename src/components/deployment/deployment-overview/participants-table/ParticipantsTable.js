@@ -31,7 +31,7 @@ export const ParticipantsTable = withRouter((props) => {
     return (
         <div className='ParticipantsTable'>
             <div className='ParticipantsTable__title'>
-                Participants
+                {props.translations.participantTable__header}
             </div>
             <div className='ParticipantsTable__table-padding'>
                 <div className='ParticipantsTable__table-wrapper'>

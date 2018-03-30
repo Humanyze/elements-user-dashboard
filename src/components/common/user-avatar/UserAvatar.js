@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { compose, withHandlers, withProps, withState } from 'recompose';
 import './user-avatar.scss';
 import packageJson from 'appPackageJson';
