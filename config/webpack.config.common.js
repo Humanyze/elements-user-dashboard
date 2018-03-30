@@ -155,15 +155,7 @@ module.exports = {
             // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
             // please link the files into your node_modules/ and let module-resolution kick in.
             // Make sure your source files are compiled, as they will not be processed in any way.
-            // new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson, paths.storybookConfig]),
-            new CircularDependencyPlugin({
-                // exclude detection of files based on a RegExp
-                exclude: /a\.js|node_modules/,
-                // add errors to webpack instead of warnings
-                failOnError: true,
-                // set the current working directory for displaying module paths
-                cwd: process.cwd(),
-            })
+            new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson, paths.storybookConfig]),
         ],
     },
 }

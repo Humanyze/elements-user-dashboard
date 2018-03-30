@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { RouterContext, StoreContext } from 'TestUtils/contextCreators.js';
 import  { DeploymentSelectionPure } from './DeploymentSelection';
+import { translations } from 'Src/tests/contextCreators';
 
 const defaultProps = {
     deploymentData: {
@@ -9,7 +10,8 @@ const defaultProps = {
         deploymentsById: {
 
         }
-    }
+    },
+    translations: translations
 };
 
 const deploymentDataMock = {
@@ -34,7 +36,7 @@ const emptyDataMock = {
 };
 
 
-const createComp = (props) => <RouterContext><DeploymentSelectionPure {...defaultProps} {...props}/></RouterContext>;
+const createComp = (props) => <StoreContext><RouterContext><DeploymentSelectionPure {...defaultProps} {...props}/></RouterContext></StoreContext>;
 
 storiesOf('DeploymentSelection', module)
     .add('pre-load', () => createComp())

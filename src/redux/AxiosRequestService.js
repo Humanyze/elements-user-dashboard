@@ -34,7 +34,7 @@ export const getRequestWithAuth = async (url, bearerToken) => {
 
 // AUTH ENDPOINTS
 const login = ({ username, password }) => postRequest('/api/v1/login', { username, password });
-
+const logout = () => postRequest('/api/v1/logout');
 
 // USER ENDPOINTS
 const getUserById = async (id, token) => await getRequestWithAuth(`/api/v1/user/${id}/`, token);
@@ -56,7 +56,8 @@ const getDatasetById = (id, token) =>  getRequestWithAuth(`/api/v1/dataset/${id}
 // NOTE: Not actual service, object containing api calls in organized layout
 const AxiosRequestService = {
     auth: {
-        login
+        login,
+        logout
     },
     user: {
       getUserById

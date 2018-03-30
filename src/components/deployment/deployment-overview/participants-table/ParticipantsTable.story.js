@@ -7,7 +7,7 @@ const defaultProps = {
 
 };
 
-const createComp = (props) => <StoreContext><ParticipantsTable {...defaultProps} {...props}/></StoreContext>;
+const createComp = (props) => <StoreContext><RouterContext><ParticipantsTable {...defaultProps} {...props}/></RouterContext></StoreContext>;
 
 storiesOf('Participants Table', module)
     .add('initial', () => createComp());

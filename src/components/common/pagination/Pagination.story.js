@@ -6,7 +6,8 @@ import { PaginationPure } from './Pagination';
 
 const defaultProps = {
     activePageNumber: undefined,
-    numberOfPages: undefined
+    numberOfPages: undefined,
+    goToPage: () => {}
 };
 
 const onePage = {

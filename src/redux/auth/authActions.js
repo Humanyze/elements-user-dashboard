@@ -22,9 +22,15 @@ const loginUser = (username, password) => async (dispatch) => {
     }
 };
 
+const logoutUser = () => async (dispatch) => {
+    await AxiosRequestService.auth.logout();
+    dispatch(logout());
+};
+
 
 export {
     loginUser,
+    logoutUser,
     loginRequested,
     loginSuccessful,
     loginFailed,

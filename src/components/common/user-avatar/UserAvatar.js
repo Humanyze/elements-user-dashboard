@@ -1,17 +1,49 @@
 import React from 'react';
-import { compose, withHandlers, withState } from 'recompose';
+import { compose, withHandlers, withProps, withState } from 'recompose';
 import './user-avatar.scss';
 import packageJson from 'appPackageJson';
 import { connect } from 'react-redux';
-import { logout } from 'Redux/auth/authActions';
+import { logoutUser } from 'Redux/auth/authActions';
 import { Link } from 'react-router-dom';
 import MaterialIcon from 'material-icons-react';
 import { getCurrentUserName } from 'Redux/userData/user/userReducer';
 import { getCurrentParticipantAvatar } from 'Redux/userData/participant/participantReducer';
 import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 
-const onLogoutClicked = ({ setShowDropdown, logout }) => e => {
-    logout();
+// I royally hate this API style, since you have to name it handleClickOutside for the handler
+import onClickOutside from 'react-onclickoutside';
+
+
+const DropdownLinks = [
+    {
+        textKey: 'avatarMenu/dashboard',
+        to: '/dashboard'
+    },
+    {
+        textKey: 'avatarMenu/management',
+        to: '/manage'
+    },
+    {
+        textKey: 'avatarMenu/executive',
+        to: '/select-deployment?for=executive'
+    },
+    {
+        textKey: 'avatarMenu/digital',
+        to: '/select-deployment?for=digital'
+    },
+    {
+        textKey: 'avatarMenu/profile',
+        to: '/profile'
+    },
+    {
+        textKey: 'avatarMenu/changePassword',
+        to: '/profile/change-password'
+    }
+];
+
+
+const onLogoutClicked = ({ setShowDropdown, logoutUser }) => e => {
+    logoutUser();
     setShowDropdown(false);
 };
 
@@ -20,78 +52,65 @@ const linkClicked = ({ setShowDropdown }) => e => {
 };
 
 const enhance = compose(
+    withProps(() => ({ dropdownLinks: DropdownLinks })),
     withState('showDropdown', 'setShowDropdown', false),
     withHandlers({
         toggleDropdown: ({ showDropdown, setShowDropdown }) => e => setShowDropdown(!showDropdown),
         onLogoutClicked,
-        linkClicked
+        linkClicked,
+        handleClickOutside: ({ setShowDropdown }) => e => setShowDropdown(false)
     })
 );
 
 
-export const UserAvatarPure = ({ username, avatar, showDropdown, toggleDropdown, onLogoutClicked, linkClicked, translations }) => (
-    <div className='UserAvatar'>
-        <div className='UserAvatar__email'>
-            {username}
-        </div>
-        <div className='UserAvatar__dropdown-wrapper'>
-            <div onClick={toggleDropdown} className='UserAvatar__avatar-icon'>
-                {avatar ? <MaterialIcon icon='account_circle' size={45}/> :
-                    <MaterialIcon icon='account_circle' size={45}/>}
-            </div>
+export const UserAvatarPure = ({ username, avatar, dropdownLinks, showDropdown, toggleDropdown, onLogoutClicked, linkClicked, translations }) => {
 
-            {showDropdown &&
-            <div className='UserAvatar__dropdown'>
-                <div className='UserAvatar__dropdown-body'>
-                    {DropdownLinks.map(link => <a href={link.to}
-                                                     key={link.textKey}>
-                        {translations[link.textKey]}
-                    </a>)}
-                    <div className='UserAvatar__dropdown-divider'/>
-                    <Link to={'never'} onClick={onLogoutClicked}>Logout</Link>
-                    <div className='UserAvatar__dropdown-version-text'>Elements { packageJson.version }</div>
-                </div>
+    return (
+        <div className='UserAvatar'>
+            <div className='UserAvatar__email'>
+                {username}
             </div>
-            }
+            <div className='UserAvatar__dropdown-wrapper'>
+                <div onClick={toggleDropdown} className='UserAvatar__avatar-icon'>
+                    {avatar ? <MaterialIcon icon='account_circle' size={45}/> :
+                        <MaterialIcon icon='account_circle' size={45}/>}
+                </div>
+
+                {showDropdown &&
+                <div className='UserAvatar__dropdown'>
+                    <div className='UserAvatar__dropdown-body'>
+
+                        {DropdownLinks.map(link => <a href={link.to}
+                                                      key={link.textKey}>{translations[link.textKey]}</a>)}
+
+                        <div className='UserAvatar__dropdown-divider'/>
+
+                        <Link to={'never'} onClick={onLogoutClicked}>
+                            {translations['avatarMenu/logout']}
+                        </Link>
+                        <div className='UserAvatar__dropdown-version-text'>
+                            {translations['avatarMenu/Elements']} v{packageJson.version}
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 const UserAvatar = connect(
     (state) => ({
         username: getCurrentUserName(state),
-        avatar  : getCurrentParticipantAvatar(state),
+        avatar: getCurrentParticipantAvatar(state),
         translations: getCurrentTranslations(state)
 
     }),
-    { logout }
-)(enhance(UserAvatarPure));
+    { logoutUser }
+)(enhance(onClickOutside(UserAvatarPure)));
+
 export default UserAvatar;
 
 
-const DropdownLinks = [
-    {
-        textKey: 'avatarMenu/dashboard',
-        to  : '/dashboard'
-    },
-    {
-        textKey: 'avatarMenu/management',
-        to  : '/manage'
-    },
-    {
-        textKey: 'avatarMenu/executive',
-        to  : '/select-deployment?for=executive'
-    },
-    {
-        textKey: 'avatarMenu/digital',
-        to  : '/select-deployment?for=digital'
-    },
-    {
-        textKey: 'avatarMenu/profile',
-        to  : '/profile'
-    },
-    {
-        textKey: 'avatarMenu/changePassword',
-        to  : '/profile/change-password'
-    }
-];
+
+
