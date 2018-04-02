@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { compose, withHandlers, withProps, withState } from 'recompose';
 import './user-avatar.scss';
 import packageJson from 'appPackageJson';
@@ -66,7 +66,7 @@ const enhance = compose(
 export class UserAvatarPure extends React.Component {
 
     render() {
-        const { username, avatar, dropdownLinks, showDropdown, toggleDropdown, onLogoutClicked, linkClicked, translations } = this.props;
+        const { username, avatar, dropdownLinks, showDropdown, toggleDropdown, onLogoutClicked, translations } = this.props;
             return (
             <div className='UserAvatar'>
                 <div className='UserAvatar__email'>
@@ -82,7 +82,7 @@ export class UserAvatarPure extends React.Component {
                     <div className='UserAvatar__dropdown'>
                         <div className='UserAvatar__dropdown-body'>
 
-                            {DropdownLinks.map(link => <a href={link.to}
+                            {dropdownLinks.map(link => <a href={link.to}
                                                           key={link.textKey}>{translations[link.textKey]}</a>)}
 
                             <div className='UserAvatar__dropdown-divider'/>

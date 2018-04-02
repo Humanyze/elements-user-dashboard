@@ -43,6 +43,12 @@ Each component folder will have at least 3 files:
   
 Any unique components that are used within that parent component will be located in that parent directory.  Refactoring common components for reusability is highly encouraged, although you'll generally need to have a container component for Redux connections at a minimum. 
 
+#### [recompose](https://github.com/acdlite/recompose)
+HOC library that wraps pure functional components with stateful wrappers, omtimizing parts and reducing the amount of re-rendering due to faster prop diffing.  Aids greatly in creating almost exclusively functional components, which then can be used for rendering and unit tests more easily. 
+
+#### [react-onclickoutside](https://github.com/Pomax/react-onclickoutside)
+HOC library that attaches click listeners to document and element ref to detect when a click fires outside the element.  Note that for jest, the component must be a class based component unfortunately. NOTE: Still follow the recompose system for these class-based components.  For reference for the usage of this library, you can view the `UserAvatar.js` component.
+
 
 ## Redux Overview
 
@@ -55,6 +61,7 @@ To get familiar, documentation from redux is very thorough and well written.  Vi
 * [reselect](https://github.com/reactjs/reselect)
 * [redux-thunk](https://github.com/gaearon/redux-thunk)
 * [redux-offline](https://github.com/redux-offline/redux-offline)
+* [redux-observable](https://github.com/redux-observable/redux-observable)
 
 #### Folder Structure 
 We currently have implemented a spin on a domain-driven design approach to redux.  The directory structure should match the structure of the store itself.  Each folder for redux will generally have 4 files (unless it's a [combineReducer level reducer](https://redux.js.org/recipes/structuring-reducers/beyond-combinereducers)).  All file names are camelCased, and are as follows:
@@ -89,8 +96,13 @@ We currently have implemented a spin on a domain-driven design approach to redux
 * Response Mappers (Optional), e.g. `authResponseMapper.js`
     * Your thunks will often need to manipulate the data received to be more normalized (long-term look into using redux-normalizer).  In order to modularize this logic of response => storeshape, we'll utilize a collection of utility functions in a mapper file.  All of these functions should be pure, and heavily unit tested.
 
+#### Redux Observable
+Link: [redux-observable](https://github.com/redux-observable/redux-observable)
+
+Redux observable is a middleware that allows usage of observable streams to catch and map redux actions.  Currently its usage is specialized, as redux-thunk provides a cleaner solution for simple async needs.  However, cancellable api calls, debounce time,  
+
   
-#### Library Overview
+#### Other Library Overview
 
 ##### [redux-actions](https://redux-actions.js.org/)
 Used to reduce redux action creator boiler plate and reducer syntax.  Does very little besides providing quick abstractions for simple action creators and switch statement alternative for reducers.
@@ -129,10 +141,6 @@ Standard eslint setup in `/.eslintrc`, any modifications should be accompanied b
 * E2E testing
 * Submodule documentation 
 * Global config sharing 
-
-### Research
-* redux-observable vs. saga (if desired) [discussion here](https://stackoverflow.com/a/40027778/9468997)
-
 
 ### Extra Notes
 

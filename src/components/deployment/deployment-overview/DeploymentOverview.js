@@ -13,6 +13,9 @@ import { setPage, setLimit  } from 'Redux/participants-ui/participantsUIActions'
 import { getVisibleParticipants } from 'Redux/participants/participantsReducer';
 import { fetchDeploymentById } from 'Redux/deployment/deploymentActions';
 import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
+import { cancelParticipantDataRequests } from 'Src/redux/participants/participantsActions';
+import { showLoadingOnPageChange } from 'Src/redux/participants/participantsReducer';
+import { setInitialPage } from 'Src/redux/participants-ui/participantsUIActions';
 
 
 const onPropUpdate = (props) => {
@@ -24,7 +27,7 @@ const onPropUpdate = (props) => {
     const limit = parseInt(perPage, 10);
     const dataId = parseInt(datasetId, 10);
 
-    props.setPage(pageNumber);
+    props.setInitialPage(pageNumber);
     props.setLimit (limit);
     props.requestParticipantsData(dataId, limit, pageNumber);
     props.setSelectedDeploymentId(dataId);
@@ -40,10 +43,14 @@ const withDidMount = lifecycle({
         const {
             // perPage = '20',
             page } = queryString.parse(search);
+
         const { page: oldPage } = queryString.parse(this.props.location.search);
         const pageNumber = parseInt(page, 10);
 
         if (pageNumber && parseInt(oldPage, 10) !== pageNumber) props.setPage(pageNumber);
+    },
+    componentWillUnmount() {
+        this.props.cancelParticipantDataRequests();
     }
 
 });
@@ -69,11 +76,11 @@ const DeploymentOverview = connect(
     (state) => ({
         selectedDeployment: getSelectedDeployment(state),
         participants: getVisibleParticipants(state),
-        showLoading: state.participants.requestPending || state.deployment.requestPending,
-        translations: getCurrentTranslations(state)
+        showLoading: state.participants.requestPending || state.deployment.requestPending || showLoadingOnPageChange(state),
+        translations: getCurrentTranslations(state),
 
     }),
-    { setSelectedDeploymentId, requestParticipantsData, fetchDeploymentById, setPage, setLimit  },
+    { setSelectedDeploymentId, requestParticipantsData, cancelParticipantDataRequests, fetchDeploymentById, setPage, setInitialPage, setLimit  },
 )(withRouter(enhance(DeploymentOverviewPure)));
 
 export default DeploymentOverview;

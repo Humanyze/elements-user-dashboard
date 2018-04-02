@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { createSelector } from 'reselect';
 import EQUIPMENT_ACTION_TYPES from './participantsActionTypes';
+import { onNewPage } from 'Src/redux/participants-ui/participantsUIReducer';
 
 export const initialState = {
     requestPending: false,
@@ -41,6 +42,12 @@ export const isParticipantsFullyLoaded = createSelector(
 );
 
 
+export const showLoadingOnPageChange = createSelector(
+    isParticipantsFullyLoaded,
+    onNewPage,
+    (fullyLoaded, onNewPage) => onNewPage && !fullyLoaded
+);
+
 export const getAllParticipants = createSelector(
     getParticipantsById,
     (participantsById) => Object.values(participantsById || {})
@@ -65,6 +72,7 @@ export const getTotalPageCount = createSelector(
     getTotalParticipantsCount,
     (limitPerPage, totalParticipants) => Math.ceil((totalParticipants || 1)/limitPerPage)
 );
+
 
 
 export const getVisibleParticipants = createSelector(

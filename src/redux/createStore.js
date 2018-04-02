@@ -2,13 +2,18 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import { offline } from '@redux-offline/redux-offline';
 import defaultConfig from '@redux-offline/redux-offline/lib/defaults';
 import { createLogger } from 'redux-logger';
-import thunk from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
+import { createEpicMiddleware } from 'redux-observable';
 import rootReducer from './rootReducer';
+import rootEpic  from './rootEpic';
 
 const logger = createLogger({});
 
+const epicMiddleware = createEpicMiddleware(rootEpic);
+
 let middleware = [
-    thunk
+    thunkMiddleware,
+    epicMiddleware
 ];
 
 if (process.env.NODE_ENV === 'development') {
