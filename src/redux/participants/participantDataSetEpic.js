@@ -8,7 +8,7 @@ import { participantsFetchError, participantsFetchSuccess } from 'Src/redux/part
 import { setViewableFields } from 'Src/redux/participants-ui/participantsUIActions';
 import { getBearerToken } from 'Src/redux/auth/authReducer';
 
-const fastLoadEpic = (action$, store) =>
+const initialLoadEpic = (action$, store) =>
     action$.ofType(PARTICIPANTS_ACTION_TYPES.LOAD_PARTICIPANTS_REQUESTED)
         .switchMap(({ payload: { datasetId, perPage = 20, page = 1 } }) => {
 
@@ -40,7 +40,6 @@ const fastLoadEpic = (action$, store) =>
                 .catch(error => Observable.of(participantsFetchError(error)));
         });
 
-
 const loadAllEpic = (action$, store) =>
     action$.ofType(PARTICIPANTS_ACTION_TYPES.LOAD_PARTICIPANTS_REQUESTED)
         .mergeMap(({ payload: { datasetId } }) =>
@@ -61,7 +60,7 @@ const loadAllEpic = (action$, store) =>
         );
 
 
-export default combineEpics(fastLoadEpic, loadAllEpic);
+export default combineEpics(initialLoadEpic, loadAllEpic);
 
 const restrictedFields = [
     'creator',

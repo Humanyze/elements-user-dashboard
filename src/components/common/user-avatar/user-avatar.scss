@@ -1,45 +1,61 @@
+@import '~Src/Global.scss';
 
 .UserAvatar {
   display: flex;
-  margin: 10px 20px;
+  height: 40px;
+  align-items: center;
 }
 
-.UserAvatar__email {
-  display: flex;
-  align-items: center;
-  padding-right: 20px;
-  font-size: 0.8em;
-  color: rgba(0, 0, 0, 0.7);
+.UserAvatar__username {
+  margin-right: 15px;
+  font-size: 14px;
+  line-height: 0;
+  box-sizing: inherit;
+  display: inline-block;
 }
 
 .UserAvatar__dropdown-wrapper {
   position: relative;
   z-index: 1;
+  height: 45px;
 }
 
 .UserAvatar__avatar-icon {
-  .material-icons {
+
+  &:hover {
+    color: $humanyze-blue;
+  }
+  
+  .material-icons.md-dark {
     cursor: pointer;
+    color: inherit;
+    line-height: 1;
   }
 }
 
 .UserAvatar__dropdown {
   position: absolute;
-  right: 0;
-  margin: 5px 0 10px 10px;
-  border: 1px solid #e6e6e6;
-  font-size: 0.9em;
-  padding: 10px;
-  max-width: 200px;
-  background-color: white;
   display: flex;
   flex-direction: column;
+  right: 0;
+  margin: 10px 0 10px 10px;
+  padding: 20px 20px 0;
+  border: 1px solid #e6e6e6;
+  font-size: 0.9em;
+  max-width: 200px;
+  background-color: white;
 }
 
-.UserAvatar__dropdown-body a {
+.UserAvatar__dropdown-link {
   display: block;
   white-space: nowrap;
-  padding: 5px;
+  margin: 5px 0;
+  font-size: 100%;
+  color: #000000;
+  padding: 1px 7px 2px;
+  &:hover {
+    color: $humanyze-blue;
+  }
 }
 
 .UserAvatar__dropdown-divider {
@@ -48,9 +64,12 @@
 }
 
 .UserAvatar__dropdown-version-text {
-  font-size: 0.75em;
-  color: rgba(0, 0, 0, 0.4);
-  margin-top: 10px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #999999;
+  font-size: 12px;
   font-style: italic;
+  cursor: auto;
 }

@@ -28,6 +28,9 @@ export default {
     'avatarMenu/digital': {
         [EN]: 'Digital'
     },
+    'avatarMenu/deployments': {
+        [EN]: 'Deployments'
+    },
     'avatarMenu/profile': {
         [EN]: 'Profile'
     },

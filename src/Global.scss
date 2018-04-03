@@ -1,20 +1,10 @@
 @import './assets/scss/app.scss';
-// once humanyze library is figured out
 
 body {
   margin: 0;
   padding: 0;
   font-family: Lato, Arial, sans-serif;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  &:active, &:visited {
-      color: inherit;
-   }
-  &:hover {
-    color: $humanyze-blue;
-  }
+  color: $grey-5;
+  line-height: 1.15;
 }
 

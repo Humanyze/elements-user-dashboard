@@ -7,7 +7,7 @@ import ParticipantsTableRow from './participant-table-row/ParticipantsTableRow';
 import Pagination from 'Common/pagination/Pagination';
 import LoadingUI from 'Common/loading/LoadingUI';
 import { withRouter } from 'react-router-dom';
-import queryString  from 'query-string';
+import queryString from 'query-string';
 
 
 const TableData = ({ participants, showLoading }) => {
@@ -21,8 +21,7 @@ const TableData = ({ participants, showLoading }) => {
         : null;
 };
 
-export const ParticipantsTable = withRouter((props) => {
-    const { location: { search } } = props;
+export const ParticipantsTable = withRouter(({ location: { search }, showLoading, paginationLoading, participants, translations }) => {
     const { page = '1' } = queryString.parse(search);
     const prePageLink = '';
     const activePageNumber = parseInt(page, 10);
@@ -30,7 +29,7 @@ export const ParticipantsTable = withRouter((props) => {
     return (
         <div className='ParticipantsTable'>
             <div className='ParticipantsTable__title'>
-                {props.translations.participantTable__header}
+                {translations.participantTable__header}
             </div>
             <div className='ParticipantsTable__table-padding'>
                 <div className='ParticipantsTable__table-wrapper'>
@@ -38,14 +37,14 @@ export const ParticipantsTable = withRouter((props) => {
                         <tbody>
                         {/* can set order options*/}
                         <ParticipantsTableHeader/>
-                        <TableData {...props}/>
+                        <TableData showLoading={showLoading || paginationLoading} participants={participants}/>
                         </tbody>
                     </table>
                     {
-                        props.showLoading && <div className='ParticipantsTable__loading-wrapper'><LoadingUI/></div>
+                        (showLoading || paginationLoading) && <div className='ParticipantsTable__loading-wrapper'><LoadingUI/></div>
                     }
                 </div>
-                {!props.showLoading && <Pagination activePageNumber={activePageNumber} baseLink={prePageLink}/>}
+                {!showLoading && <Pagination activePageNumber={activePageNumber} baseLink={prePageLink}/>}
 
             </div>
         </div>

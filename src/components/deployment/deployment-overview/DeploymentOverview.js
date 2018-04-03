@@ -9,7 +9,7 @@ import queryString from 'query-string';
 import { getSelectedDeployment } from 'Redux/deployment/deploymentReducer';
 import { setSelectedDeploymentId } from 'Redux/deployment/deploymentActions';
 import { requestParticipantsData } from 'Redux/participants/participantsActions';
-import { setPage, setLimit  } from 'Redux/participants-ui/participantsUIActions';
+import { setPage, setLimit } from 'Redux/participants-ui/participantsUIActions';
 import { getVisibleParticipants } from 'Redux/participants/participantsReducer';
 import { fetchDeploymentById } from 'Redux/deployment/deploymentActions';
 import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
@@ -28,7 +28,7 @@ const onPropUpdate = (props) => {
     const dataId = parseInt(datasetId, 10);
 
     props.setInitialPage(pageNumber);
-    props.setLimit (limit);
+    props.setLimit(limit);
     props.requestParticipantsData(dataId, limit, pageNumber);
     props.setSelectedDeploymentId(dataId);
 };
@@ -42,7 +42,8 @@ const withDidMount = lifecycle({
 
         const {
             // perPage = '20',
-            page } = queryString.parse(search);
+            page
+        } = queryString.parse(search);
 
         const { page: oldPage } = queryString.parse(this.props.location.search);
         const pageNumber = parseInt(page, 10);
@@ -59,7 +60,7 @@ const enhance = compose(
     withDidMount
 );
 
-export const DeploymentOverviewPure = ({ selectedDeployment, participants, showLoading, match: { params: { datasetId, perPage, page } }, setSelectedDeploymentId, fetchDeploymentById, requestParticipantsData, translations }) => {
+export const DeploymentOverviewPure = ({ selectedDeployment, participants, showLoading, paginationLoading, match: { params: { datasetId, perPage, page } }, setSelectedDeploymentId, fetchDeploymentById, requestParticipantsData, translations }) => {
     if (!selectedDeployment && !showLoading) {
         fetchDeploymentById(datasetId);
     }
@@ -67,7 +68,10 @@ export const DeploymentOverviewPure = ({ selectedDeployment, participants, showL
     return (
         <div>
             <ActionSubBar/>
-            <ParticipantsTable participants={participants} translations={translations} showLoading={showLoading}/>
+            <ParticipantsTable participants={participants}
+                               translations={translations}
+                               showLoading={showLoading}
+                               paginationLoading={paginationLoading}/>
         </div>
     );
 };
@@ -76,11 +80,20 @@ const DeploymentOverview = connect(
     (state) => ({
         selectedDeployment: getSelectedDeployment(state),
         participants: getVisibleParticipants(state),
-        showLoading: state.participants.requestPending || state.deployment.requestPending || showLoadingOnPageChange(state),
+        showLoading: state.participants.requestPending || state.deployment.requestPending,
+        paginationLoading: showLoadingOnPageChange(state),
         translations: getCurrentTranslations(state),
 
     }),
-    { setSelectedDeploymentId, requestParticipantsData, cancelParticipantDataRequests, fetchDeploymentById, setPage, setInitialPage, setLimit  },
+    {
+        setSelectedDeploymentId,
+        requestParticipantsData,
+        cancelParticipantDataRequests,
+        fetchDeploymentById,
+        setPage,
+        setInitialPage,
+        setLimit
+    },
 )(withRouter(enhance(DeploymentOverviewPure)));
 
 export default DeploymentOverview;

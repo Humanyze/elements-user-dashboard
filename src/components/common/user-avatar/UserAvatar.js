@@ -32,6 +32,10 @@ const DropdownLinks = [
         to: '/select-deployment?for=digital'
     },
     {
+        textKey: 'avatarMenu/deployments',
+        to: '/select-deployment?for=digital'
+    },
+    {
         textKey: 'avatarMenu/profile',
         to: '/profile'
     },
@@ -69,9 +73,9 @@ export class UserAvatarPure extends React.Component {
         const { username, avatar, dropdownLinks, showDropdown, toggleDropdown, onLogoutClicked, translations } = this.props;
             return (
             <div className='UserAvatar'>
-                <div className='UserAvatar__email'>
+                <span className='UserAvatar__username'>
                     {username}
-                </div>
+                </span>
                 <div className='UserAvatar__dropdown-wrapper'>
                     <div onClick={toggleDropdown} className='UserAvatar__avatar-icon'>
                         {avatar ? <MaterialIcon icon='account_circle' size={45}/> :
@@ -83,11 +87,14 @@ export class UserAvatarPure extends React.Component {
                         <div className='UserAvatar__dropdown-body'>
 
                             {dropdownLinks.map(link => <a href={link.to}
+                                                          className='UserAvatar__dropdown-link'
                                                           key={link.textKey}>{translations[link.textKey]}</a>)}
 
                             <div className='UserAvatar__dropdown-divider'/>
 
-                            <Link to={'never'} onClick={onLogoutClicked}>
+                            <Link to={'logout user'}
+                                  onClick={onLogoutClicked}
+                                  className='UserAvatar__dropdown-link'>
                                 {translations['avatarMenu/logout']}
                             </Link>
                             <div className='UserAvatar__dropdown-version-text'>

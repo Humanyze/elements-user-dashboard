@@ -3,7 +3,7 @@
 .ActionSubBar {
     background-color: $blue-3;
     height: 48px;
-    padding: 0 20px;
+    padding: 0 40px;
     margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
@@ -21,7 +21,7 @@
         display: flex;
         align-items: center;
         cursor: pointer;
-        padding: 0 20px;
+        padding: 4px 8px;
 
         &:hover:not(.ActionSubBar__description) {
             background-color: rgba(0, 0, 0, 0.05);
