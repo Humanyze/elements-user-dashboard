@@ -19,7 +19,7 @@ jobs:
       - run: bash ./clonerepos.sh
       - run: echo $CIRCLE_BRANCH
 
-  deploy:
+#  deploy:
 
 #workflows:
 #  version: 2
