@@ -17,6 +17,7 @@ jobs:
       - run:
           name: Avoid hosts unknown for github
           command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run: ssh -T git@github.com
       - run: git clone https://github.com/Humanyze/client-docker.git
       - setup_remote_docker
       - run: pwd
