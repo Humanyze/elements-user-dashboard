@@ -6,6 +6,7 @@ jobs:
     steps:
       - checkout
       - yarn
+      - yarn test
   build:
     working_directory: ~/app
     docker:
@@ -20,13 +21,13 @@ jobs:
 
   deploy:
 
-workflows:
-  version: 2
-  test_build_deploy:
-    - test
-    - build
-    # sends notif to repull to server
-    - deploy
+#workflows:
+#  version: 2
+#  test_build_deploy:
+#    - test
+#    - build
+#    # sends notif to repull to server
+#    - deploy
 
 
 
