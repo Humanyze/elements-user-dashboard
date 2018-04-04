@@ -12,7 +12,6 @@ jobs:
     docker:
       - image: circleci/node:8.9.2
     steps:
-      - run: ssh -T git@github.com
       - run: echo $CIRCLE_BRANCH
       # Clone docker repo, always master
       - run:
