@@ -1,80 +1,34 @@
-# Javascript Node CircleCI 2.0 configuration file
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
 version: 2
 jobs:
-  build:
-    working_directory: ~/project
+  test:
     docker:
-      - image: circleci/node:9.7.1
+      - image: circleci/node:8.9.2
     steps:
       - checkout
-
-      # Cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - run: yarn test
-
-      - run: |
-         if [ "${CIRCLE_BRANCH}" == "develop"];
-         then
-           yarn build
-         elif [ "${CIRCLE_BRANCH}" == "master"];
-         then
-           yarn build --production
-         fi
-
-      - run: echo "${CIRCLE_BRANCH}"
-  deploy_dev:
-    working_directory: ~/project
+      - yarn
+  build:
+    working_directory: ~/app
     docker:
-      - image: circleci/node:9.7.1
+      - image: circleci/node:8.9.2
     steps:
-      - run: echo 'hello world dev'
-  deploy_prod:
-      working_directory: ~/project
-      docker:
-        - image: circleci/node:9.7.1
-      steps:
-        - run: echo 'hello world prod'
-#workflows:
-#  version: 2
-#  build_and_deploy:
-#    jobs:
-#      - yarn
-#      - test:
-#        requires:
-#          - yarn
-#      - build-conditional:
-#        requires:
-#          - yarn
-#        filters:
-#          branches:
-#            only:
-#              - develop
-#              - master
-#      - deploy_dev:
-#          requires:
-#            - build-conditional
-#          filters:
-#            branches:
-#              only: develop
-#      - deploy_prod:
-#          requires:
-#            - build-conditional
-#          filters:
-#            branches:
-#              only: develop
+      # Clone docker repo, always master
+      - run: git clone https://github.com/Humanyze/client-docker.git
+      - setup_remote_docker
+      - run: pwd
+      - run: bash ./clonerepos.sh
+      - run: echo $CIRCLE_BRANCH
+
+  deploy:
+
+workflows:
+  version: 2
+  test_build_deploy:
+    - test
+    - build
+    # sends notif to repull to server
+    - deploy
 
 
 
+#$ {CIRCLE_BRANCH}
+# docker login -u $DOCKER_USER -p $DOCKER_PASS
