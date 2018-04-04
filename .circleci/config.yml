@@ -26,6 +26,7 @@ jobs:
       - setup_remote_docker
       - run: pwd
       - run: docker-compose build
+      - run: docker-compose bundle
       - run: echo $CIRCLE_BRANCH
 
 #  deploy:
