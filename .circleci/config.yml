@@ -26,7 +26,8 @@ jobs:
       - setup_remote_docker
       - run: pwd
       - run: docker-compose build
-      - run: docker-compose bundle
+      - run: docker --username mcondit --password $dockerhub_pw
+      - run: docker-compose push
       - run: echo $CIRCLE_BRANCH
 
 #  deploy:
