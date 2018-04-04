@@ -21,7 +21,7 @@ jobs:
       - run: git clone git@github.com:Humanyze/client-docker.git .
       # todo add branch context
       - run: git clone git@github.com:Humanyze/dashboard.git ./ember-dashboard
-      - run: git clone -b $CIRCLE_BRANCH --recursive git@github.com:Humanyze/elements-dashboard-react.git ./deployment-dashboard
+      - run: git clone -b $CIRCLE_BRANCH git@github.com:Humanyze/elements-dashboard-react.git ./deployment-dashboard
 
       - setup_remote_docker
       - run: pwd
