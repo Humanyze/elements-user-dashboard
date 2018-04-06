@@ -4,7 +4,7 @@ import ParticipantsTable from './participants-table/ParticipantsTable';
 import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
 import { withRouter } from 'react-router';
-import queryString from 'query-string';
+import * as queryString from 'Utils/query-string';
 
 import { getSelectedDeployment } from 'Redux/deployment/deploymentReducer';
 import { setSelectedDeploymentId } from 'Redux/deployment/deploymentActions';
@@ -27,6 +27,7 @@ const onPropUpdate = (props) => {
     const pageNumber = parseInt(page, 10);
     const limit = parseInt(perPage, 10);
     const dataId = parseInt(datasetId, 10);
+
 
     props.setInitialPage(pageNumber);
     props.setLimit(limit);

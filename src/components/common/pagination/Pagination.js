@@ -6,7 +6,8 @@ import { compose, withHandlers, withPropsOnChange } from 'recompose';
 import { getTotalPageCount } from 'Redux/participants/participantsReducer';
 import MaterialIcon from 'material-icons-react';
 import { withRouter } from 'react-router-dom';
-import QueryString from 'query-string';
+// todo: remove dependency on routing here
+import * as queryString from 'Utils/query-string';
 
 
 export const getArrayFromStartEndIndex = (startIndex, endIndex) => Array.from({ length: (endIndex - startIndex + 1) }, (x, i) => startIndex + i);
@@ -26,11 +27,11 @@ const getPageNumbers = (numberOfPages, activePageNumber, offset = 3) => {
 
 const goToPage = ({ history, location }) => number => e => {
     const { pathname, search } = location;
-    const queryObj = QueryString.parse(search);
+    const queryObj = queryString.parse(search);
     const updatedPageQuery = { ...queryObj, page: number };
     history.push({
         pathname,
-        search: QueryString.stringify(updatedPageQuery)
+        search: queryString.stringify(updatedPageQuery)
     });
 };
 
