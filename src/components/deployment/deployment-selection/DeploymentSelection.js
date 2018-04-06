@@ -39,7 +39,7 @@ const onPropReceive = (props) => {
 
 
 const withLifecycle = compose(lifecycle({
-    componentWillMount() {
+    componentWillMount() { // todo: use constructor
         onPropReceive(this.props);
     },
     componentWillReceiveProps(nextProps) {

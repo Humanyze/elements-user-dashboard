@@ -1,48 +1,40 @@
 version: 2
 jobs:
-  test:
-    docker:
-      - image: circleci/node:8.9.2
-    steps:
-      - checkout
-      - yarn
-      - yarn test
   build:
     working_directory: ~/app
     docker:
       - image: circleci/node:8.9.2
     steps:
+
       - run: echo $CIRCLE_BRANCH
-      # Clone docker repo, always master
+      - checkout
       - run:
           name: Avoid hosts unknown for github
           command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-#      - run: ssh -T git@github.com
-      - run: git clone git@github.com:Humanyze/client-docker.git .
-      # todo add branch context
-      - run: git clone git@github.com:Humanyze/dashboard.git ./ember-dashboard
-      - run: git clone -b $CIRCLE_BRANCH git@github.com:Humanyze/elements-dashboard-react.git ./deployment-dashboard
+      - run: ssh -T git@github.com
 
-      - setup_remote_docker
-      - run: pwd
-#      - run: docker-compose -f docker-compose.$CIRCLE_BRANCH.yml build
-      - run: docker-compose -f docker-compose.develop.yml build
-      - run: echo $dockerhub_pw
-      - run: docker login --username mcondit04 --password $dockerhub_pw
-      - run: docker-compose push
-      - run: echo $CIRCLE_BRANCH
-
-#  deploy:
-
-#workflows:
-#  version: 2
-#  test_build_deploy:
-#    - test
-#    - build
-#    # sends notif to repull to server
-#    - deploy
+      # submodule repo initialize
+      - run: git submodule init
+      - run: git submodule update
 
 
+      # install block
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is
+      - run: yarn
+      - save_cache:
+                paths:
+                  - node_modules
+                key: v1-dependencies-{{ checksum "package.json" }}
 
-#$ {CIRCLE_BRANCH}
-# docker login -u $DOCKER_USER -p $DOCKER_PASS
+      # test first before attempting to deploy
+      - run: yarn test
+      - run: sudo apt-get update && sudo apt-get install -y python-dev
+      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
+      - run: sudo python get-pip.py
+      - run: sudo pip install awscli --upgrade
+      - run: aws --version
+      - run: aws s3 ls
+      - run: yarn run deploy

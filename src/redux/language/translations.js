@@ -29,7 +29,7 @@ export default {
         [EN]: 'Digital'
     },
     'avatarMenu/deployments': {
-        [EN]: 'Deployments'
+        [EN]: 'Deployment'
     },
     'avatarMenu/profile': {
         [EN]: 'Profile'
@@ -38,7 +38,7 @@ export default {
         [EN]: 'Change Password'
     },
     'avatarMenu/logout': {
-        [EN]: 'Logout'
+        [EN]: 'Log out'
     },
     'avatarMenu/Elements': {
         [EN]: 'Elements'

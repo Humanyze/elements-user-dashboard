@@ -82,12 +82,7 @@ export const PaginationPure = ({ activePageNumber, goToPage, numberOfPages, canC
 };
 
 
-const Pagination = withRouter(connect(
-    state => ({
-        numberOfPages: getTotalPageCount(state),
-
-    }),
-)(enhance(PaginationPure)));
+const Pagination = withRouter((enhance(PaginationPure)));
 
 
 export default Pagination;

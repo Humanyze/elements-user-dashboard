@@ -13,7 +13,8 @@ module.exports = {
     ],
     'testMatch'              : [
         '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}',
-        '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}'
+        '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}',
+        '<rootDir>/src/**/?(*.)(!story).{js,jsx,mjs}',
     ],
     'testEnvironment'        : 'node',
     'testURL'                : 'http://localhost',

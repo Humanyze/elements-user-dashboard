@@ -8,6 +8,7 @@ import Pagination from 'Common/pagination/Pagination';
 import LoadingUI from 'Common/loading/LoadingUI';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
+import LoadingSmiley from 'Src/components/common/loading/loadingSmiley/LoadingSmiley';
 
 
 const TableData = ({ participants, showLoading }) => {
@@ -21,11 +22,7 @@ const TableData = ({ participants, showLoading }) => {
         : null;
 };
 
-export const ParticipantsTable = withRouter(({ location: { search }, showLoading, paginationLoading, participants, translations }) => {
-    const { page = '1' } = queryString.parse(search);
-    const prePageLink = '';
-    const activePageNumber = parseInt(page, 10);
-
+export const ParticipantsTable = withRouter(({ activePageNumber, numberOfPages, showLoading, paginationLoading, participants, translations }) => {
     return (
         <div className='ParticipantsTable'>
             <div className='ParticipantsTable__title'>
@@ -41,10 +38,10 @@ export const ParticipantsTable = withRouter(({ location: { search }, showLoading
                         </tbody>
                     </table>
                     {
-                        (showLoading || paginationLoading) && <div className='ParticipantsTable__loading-wrapper'><LoadingUI/></div>
+                        (showLoading || paginationLoading) && <div className='ParticipantsTable__loading-wrapper'><LoadingSmiley theme={'humanyze-blue-theme'}/></div>
                     }
                 </div>
-                {!showLoading && <Pagination activePageNumber={activePageNumber} baseLink={prePageLink}/>}
+                {!showLoading && <Pagination activePageNumber={activePageNumber} numberOfPages={numberOfPages} />}
 
             </div>
         </div>

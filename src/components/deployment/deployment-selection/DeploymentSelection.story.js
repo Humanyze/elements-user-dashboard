@@ -9,9 +9,10 @@ const defaultProps = {
         deploymentDataSetIds: [],
         deploymentsById: {
 
-        }
+        },
+        requestPending: true
     },
-    translations: translations
+    translations: translations,
 };
 
 const deploymentDataMock = {

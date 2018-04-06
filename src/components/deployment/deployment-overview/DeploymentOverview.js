@@ -16,6 +16,7 @@ import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 import { cancelParticipantDataRequests } from 'Src/redux/participants/participantsActions';
 import { showLoadingOnPageChange } from 'Src/redux/participants/participantsReducer';
 import { setInitialPage } from 'Src/redux/participants-ui/participantsUIActions';
+import { getCurrentPageNumber, getTotalPageCount } from '../../../redux/participants/participantsReducer';
 
 
 const onPropUpdate = (props) => {
@@ -60,18 +61,24 @@ const enhance = compose(
     withDidMount
 );
 
-export const DeploymentOverviewPure = ({ selectedDeployment, participants, showLoading, paginationLoading, match: { params: { datasetId, perPage, page } }, setSelectedDeploymentId, fetchDeploymentById, requestParticipantsData, translations }) => {
+export const DeploymentOverviewPure = ({ selectedDeployment,  activePageNumber, numberOfPages, participants, showLoading, paginationLoading, match: { params: { datasetId } }, fetchDeploymentById, translations }) => {
     if (!selectedDeployment && !showLoading) {
         fetchDeploymentById(datasetId);
     }
 
+    const TableProps = {
+        activePageNumber,
+        numberOfPages,
+        participants,
+        showLoading,
+        paginationLoading,
+        translations
+    };
+
     return (
         <div>
             <ActionSubBar/>
-            <ParticipantsTable participants={participants}
-                               translations={translations}
-                               showLoading={showLoading}
-                               paginationLoading={paginationLoading}/>
+            <ParticipantsTable {...TableProps} />
         </div>
     );
 };
@@ -82,6 +89,8 @@ const DeploymentOverview = connect(
         participants: getVisibleParticipants(state),
         showLoading: state.participants.requestPending || state.deployment.requestPending,
         paginationLoading: showLoadingOnPageChange(state),
+        activePageNumber: getCurrentPageNumber(state),
+        numberOfPages: getTotalPageCount(state),
         translations: getCurrentTranslations(state),
 
     }),

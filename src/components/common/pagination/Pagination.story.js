@@ -2,7 +2,11 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 // import { RouterContext, StoreContext } from 'TestUtils/contextCreators';
 import { PaginationPure } from './Pagination';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs/react';
 
+const stories = storiesOf('Pagination', module);
+
+stories.addDecorator(withKnobs);
 
 const defaultProps = {
     activePageNumber: undefined,
@@ -38,8 +42,8 @@ const twelvePages = {
 
 const createComp = (props) => <PaginationPure {...defaultProps} {...props}/>;
 
-storiesOf('Pagination', module)
-    .add('initial', () => createComp());
+stories
+    .add('initial', () => <PaginationPure goToPage={() => {}} activePageNumber={number('activePageNumber', 1)} numberOfPages={number('numberOfPages', 1)}/>);
 
 storiesOf('Pagination/onePage', module)
     .add('onePage', () => createComp(onePage));
