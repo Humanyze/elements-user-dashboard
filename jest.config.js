@@ -35,6 +35,7 @@ module.exports = {
         '^Common(.*)$'  : '<rootDir>/src/components/common$1',
         '^Redux(.*)$'   : '<rootDir>/src/redux$1',
         '^Assets(.*)$'  : '<rootDir>/src/assets$1',
+        '^Utils(.*)$'  : '<rootDir>/src/assets/utils$1',
         '^Src(.*)$'     : '<rootDir>/src$1',
         '^RouterPaths'  : '<rootDir>/src/routerPaths.js',
         '^appPackageJson'  : '<rootDir>/package.json'
