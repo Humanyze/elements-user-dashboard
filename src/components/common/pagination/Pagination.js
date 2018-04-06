@@ -1,9 +1,9 @@
 import React from 'react';
 import './pagination.scss';
 
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { compose, withHandlers, withPropsOnChange } from 'recompose';
-import { getTotalPageCount } from 'Redux/participants/participantsReducer';
+// import { getTotalPageCount } from 'Redux/participants/participantsReducer';
 import MaterialIcon from 'material-icons-react';
 import { withRouter } from 'react-router-dom';
 // todo: remove dependency on routing here

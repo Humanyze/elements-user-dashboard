@@ -5,9 +5,9 @@ import './participants-table.scss';
 import ParticipantsTableHeader from './participant-table-header/ParticipantsTableHeader';
 import ParticipantsTableRow from './participant-table-row/ParticipantsTableRow';
 import Pagination from 'Common/pagination/Pagination';
-import LoadingUI from 'Common/loading/LoadingUI';
+// import LoadingUI from 'Common/loading/LoadingUI';
 import { withRouter } from 'react-router-dom';
-import * as queryString from 'Utils/query-string';
+// import * as queryString from 'Utils/query-string';
 import LoadingSmiley from 'Src/components/common/loading/loadingSmiley/LoadingSmiley';
 
 
