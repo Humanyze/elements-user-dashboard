@@ -14,8 +14,9 @@ jobs:
 #      - run: ssh -T git@github.com
 
       # submodule repo initialize
-      - run: git submodule init
-      - run: git submodule update
+      # temp
+#      - run: git submodule init
+#      - run: git submodule update
 
 
       # install block
