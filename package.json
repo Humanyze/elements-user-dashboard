@@ -79,7 +79,8 @@
     "test": "node scripts/test.js --env=jsdom",
     "storybook": "start-storybook -p 9001 -c .storybook -s ./public",
     "deploy": "yarn build && aws s3 sync build/ s3://elements-react-develop.humanyze.com --delete",
-    "build-storybook": "build-storybook -c .storybook -o .out"
+    "build-storybook": "build-storybook -c .storybook -o .out",
+    "deploy-storybook": "aws s3 sync .out/ s3://dev-storybook.humanyze.com --delete"
   },
   "babel": {
     "presets": [

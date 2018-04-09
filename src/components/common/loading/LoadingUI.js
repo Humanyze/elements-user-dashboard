@@ -5,7 +5,16 @@ import './loading.scss';
 
 const LoadingUI = () => (
     <div className='container'>
-        <i className='preloader'/>
+        <div className='la-line-spin-clockwise-fade la-2x'>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
 );
 

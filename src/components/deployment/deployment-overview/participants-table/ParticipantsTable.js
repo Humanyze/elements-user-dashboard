@@ -8,7 +8,7 @@ import Pagination from 'Common/pagination/Pagination';
 // import LoadingUI from 'Common/loading/LoadingUI';
 import { withRouter } from 'react-router-dom';
 // import * as queryString from 'Utils/query-string';
-import LoadingSmiley from 'Src/components/common/loading/loadingSmiley/LoadingSmiley';
+import LoadingUI from 'Src/components/common/loading/LoadingUI';
 
 
 const TableData = ({ participants, showLoading }) => {
@@ -38,7 +38,7 @@ export const ParticipantsTable = withRouter(({ activePageNumber, numberOfPages, 
                         </tbody>
                     </table>
                     {
-                        (showLoading || paginationLoading) && <div className='ParticipantsTable__loading-wrapper'><LoadingSmiley theme={'humanyze-blue-theme'}/></div>
+                        (showLoading || paginationLoading) && <div className='ParticipantsTable__loading-wrapper'><LoadingUI  theme={'humanyze-blue-theme'}/></div>
                     }
                 </div>
                 {!showLoading && <Pagination activePageNumber={activePageNumber} numberOfPages={numberOfPages} />}

@@ -17,8 +17,6 @@ jobs:
       - run: git submodule init
       - run: git submodule update
 
-
-
       # install block
       - restore_cache:
           keys:
@@ -32,6 +30,8 @@ jobs:
 
       # test first before attempting to deploy
       - run: yarn test
+
+
       - run: sudo apt-get update && sudo apt-get install -y python-dev
       - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
       - run: sudo python get-pip.py
@@ -39,3 +39,5 @@ jobs:
       - run: aws --version
       - run: aws s3 ls
       - run: yarn run deploy
+
+      - run: yarn run build-storybook && yarn run deploy-storybook

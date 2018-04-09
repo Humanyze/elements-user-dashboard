@@ -1,5 +1,5 @@
-let strictUriEncode = require('strict-uri-encode');
-let objectAssign = require('object-assign');
+import strictUriEncode from 'strict-uri-encode';
+import objectAssign from 'object-assign';
 
 function encoderForArrayFormat(opts) {
     switch (opts.arrayFormat) {
@@ -111,11 +111,11 @@ function keysSorter(input) {
     return input;
 }
 
-exports.extract = function (str) {
+export const extract = function (str) {
     return str.split('?')[1] || '';
 };
 
-exports.parse = function (str, opts) {
+export const parse = function (str, opts) {
     opts = objectAssign({ arrayFormat: 'none' }, opts);
 
     let formatter = parserForArrayFormat(opts);
@@ -161,7 +161,7 @@ exports.parse = function (str, opts) {
     }, Object.create(null));
 };
 
-exports.stringify = function (obj, opts) {
+export const stringify = function (obj, opts) {
     let defaults = {
         encode: true,
         strict: true,
