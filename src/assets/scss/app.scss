@@ -1,0 +1,33 @@
+// global
+@import '../../../node_modules/normalize-scss/sass/normalize';
+
+// in-repo-addons
+@import './humanyze-ui/humanyze-ui.scss';
+
+// sass variables & mixins
+@import 'variables';
+@import 'mixins';
+
+// general
+@import 'base';
+
+// structured
+
+// TODO: give these proper homes
+@import 'management-chart';
+
+.disabled {
+  cursor: default;
+  color: $grey-4;
+  pointer-events: none;
+}
+
+// via https://stackoverflow.com/questions/826782
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}

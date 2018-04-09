@@ -1,0 +1,28 @@
+@import '~Src/Global.scss';
+
+.DeploymentSelection__wrapper {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.DeploymentSelection {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 15px;
+  padding: 20px;
+  background-color: $grey-2;
+  color: #676767;
+  border-radius: 2px;
+}
+
+.DeploymentSelection__header {
+  height: 60px;
+  font-weight: bold;
+}
+
+.DeploymentSelection__loading-background {
+  position: relative;
+  height: 200px;
+}

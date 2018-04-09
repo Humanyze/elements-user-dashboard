@@ -1,0 +1,75 @@
+@import '~Src/Global.scss';
+
+.UserAvatar {
+  display: flex;
+  height: 40px;
+  align-items: center;
+}
+
+.UserAvatar__username {
+  margin-right: 15px;
+  font-size: 14px;
+  line-height: 0;
+  box-sizing: inherit;
+  display: inline-block;
+}
+
+.UserAvatar__dropdown-wrapper {
+  position: relative;
+  z-index: 1;
+  height: 45px;
+}
+
+.UserAvatar__avatar-icon {
+
+  &:hover {
+    color: $humanyze-blue;
+  }
+
+  .material-icons.md-dark {
+    cursor: pointer;
+    color: inherit;
+    line-height: 1;
+  }
+}
+
+.UserAvatar__dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 0;
+  margin: 10px 0 10px 10px;
+  padding: 20px 20px 0;
+  border: 1px solid #e6e6e6;
+  font-size: 0.9em;
+  max-width: 200px;
+  background-color: white;
+}
+
+.UserAvatar__dropdown-link {
+  display: block;
+  white-space: nowrap;
+  margin: 5px 0;
+  font-size: 100%;
+  color: #000000;
+  padding: 1px 7px 2px;
+  &:hover {
+    color: $humanyze-blue;
+  }
+}
+
+.UserAvatar__dropdown-divider {
+  height: 0;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.UserAvatar__dropdown-version-text {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #999999;
+  font-size: 12px;
+  font-style: italic;
+  cursor: auto;
+}

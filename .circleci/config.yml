@@ -1,35 +1,43 @@
-# Javascript Node CircleCI 2.0 configuration file
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
 version: 2
 jobs:
   build:
+    working_directory: ~/app
     docker:
-      - image: circleci/node:9.6.1
-      - image: mongo:3.4.4
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-
-    working_directory: ~/repo
-
+      - image: circleci/node:8.9.2
     steps:
+
+      - run: echo $CIRCLE_BRANCH
       - checkout
+#      - run:
+#          name: Avoid hosts unknown for github
+#          command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+#      - run: ssh -T git@github.com
 
-      # Download and cache dependencies
-#      - restore_cache:
-#          keys:
-#          - v1-dependencies-{{ checksum "package.json" }}
-#          # fallback to using the latest cache if no exact match is found
-#          - v1-dependencies-
+      # submodule repo initialize
+      - run: git submodule init
+      - run: git submodule update
 
-      - run: yarn install
-      - run: echo "yarn successful"
-      - run: cat package.json
-#      - save_cache:
-#          paths:
-#            - node_modules
-#          key: v1-dependencies-{{ checksum "package.json" }}
-#
-      # run tests!
+      # install block
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is
+      - run: yarn
+      - save_cache:
+                paths:
+                  - node_modules
+                key: v1-dependencies-{{ checksum "package.json" }}
+
+      # test first before attempting to deploy
       - run: yarn test
 
 
+      - run: sudo apt-get update && sudo apt-get install -y python-dev
+      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
+      - run: sudo python get-pip.py
+      - run: sudo pip install awscli --upgrade
+      - run: aws --version
+      - run: aws s3 ls
+      - run: yarn run deploy
 
+      - run: yarn run build-storybook && yarn run deploy-storybook

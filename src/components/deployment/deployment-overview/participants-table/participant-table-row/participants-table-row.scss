@@ -1,0 +1,13 @@
+.ParticipantsTableRow {
+    border-bottom: 1px solid #e6e6e6;
+    font-size: 0.75em;
+    color: #666;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    td {
+        padding: 10px 20px;    
+    }
+}

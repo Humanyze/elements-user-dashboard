@@ -1,0 +1,40 @@
+@import '~Src/Global.scss';
+
+.Pagination {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 40px;
+
+  .Pagination__nav {
+    font-size: 0.3em;
+    padding: 4px 4px 0;
+    cursor: pointer;
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .material-icons {
+      font-size: 3em;
+    }
+  }
+
+  .Pagination__ellipses {
+    padding: 4px;
+    color: #676767;
+  }
+
+  .Pagination__number-link {
+    padding: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    &.active {
+      color: $humanyze-blue;
+      font-size: 1.3em;
+    }
+    &:hover {
+      color: $humanyze-blue;
+    }
+  }
+}
