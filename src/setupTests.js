@@ -11,7 +11,6 @@ Enzyme.configure({ adapter: new Adapter() });
 global.shallow = shallow;
 global.mount = mount;
 
-
 class LocalStorageMock {
     store = {};
     clear = () => this.store = {};

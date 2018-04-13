@@ -1,17 +1,12 @@
 version: 2
 jobs:
-  build:
+  yarn:
     working_directory: ~/app
     docker:
       - image: circleci/node:8.9.2
     steps:
-
       - run: echo $CIRCLE_BRANCH
       - checkout
-#      - run:
-#          name: Avoid hosts unknown for github
-#          command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-#      - run: ssh -T git@github.com
 
       # submodule repo initialize
       - run: git submodule init
@@ -21,23 +16,98 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is
+
       - run: yarn
+
       - save_cache:
-                paths:
-                  - node_modules
-                key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: .
+          paths: app/build
+  test:
+  working_directory: ~/test
+  docker:
+    - image: circleci/node:8.9.2
+  steps:
+    - run: cp -r app/build .
+    - run: yarn test
 
-      # test first before attempting to deploy
-      - run: yarn test
+  build:
+    working_directory: ~/app
+    docker:
+      - image: circleci/node:8.9.2
+    steps:
+      - run: cp -r app/build .
 
-
+      # AWS CLI Setup
       - run: sudo apt-get update && sudo apt-get install -y python-dev
       - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
       - run: sudo python get-pip.py
       - run: sudo pip install awscli --upgrade
-      - run: aws --version
-      - run: aws s3 ls
-      - run: yarn run deploy
 
-      - run: yarn run build-storybook && yarn run deploy-storybook
+      # Build and S3 Deploy
+      - run: yarn build --production
+      - run: aws s3 sync build/ s3://elements-react-develop.humanyze.com --delete
+
+
+      # Storybook Deploy
+      - run: yarn run build-storybook
+      - run: aws s3 sync .out/ s3://dev-storybook.humanyze.com --delete
+
+  deploy:
+    working_directory: ~/nginx
+    docker:
+      - image: circleci/node:8.9.2
+    steps:
+      - run:
+          name: Avoid hosts unknown for github
+          command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
+      - run: git clone git@github.com:Humanyze/nginx-frontend.git .
+
+      # aws cli usage
+      - run: sudo apt-get update && sudo apt-get install -y python-dev
+      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
+      - run: sudo python get-pip.py
+      - run: sudo pip install awscli --upgrade
+
+      # copy built repos of deployment and ember into folder
+      - run: mkdir ./apps
+      # deployment-react
+      - run: aws s3 sync s3://elements-react-develop.humanyze.com ./apps/deployment-dashboard
+      # ember
+      - run: aws s3 sync s3://humanyze-wyze-development.humanyze.com ./apps/ember-dashboard
+
+      - setup_remote_docker
+
+      - run: ls && ls apps/
+#      - run: docker build -f Dockerfile.prod --build-arg ENV=$CIRCLE_BRANCH -t humanyze/nginx:$CIRCLE_BRANCH -- .
+
+      - run: docker build -f Dockerfile.prod --build-arg ENV=dev -t humanyze/nginx:$ -- .
+      - run: docker login -u mcondit04 -p $DOCKERHUB_PW
+      - run: docker push humanyze/nginx:develop
+
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - yarn
+      - test:
+          requires:
+            - yarn
+      - build:
+          requires:
+            - yarn
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - deploy:
+          requires:
+            - test
+            - deploy
+
+

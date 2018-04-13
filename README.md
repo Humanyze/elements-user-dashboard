@@ -1,14 +1,18 @@
-# Humanyze React Elements Page
+#Humanyze React Elements Page
 
 
 ## Getting Started 
+
 ### Prerequisites
+
 
 You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/) (with NPM)
 * [Yarn](https://yarnpkg.com/) (install with `npm i -g yarn`)
+
+
 
 ### Installation
 
