@@ -1,11 +1,11 @@
 version: 2
 jobs:
-  yarn:
-    working_directory: ~/app
+  build:
+    working_directory: /tmp/app
     docker:
       - image: circleci/node:8.9.2
     steps:
-      - run: echo $CIRCLE_BRANCH
+      - run: echo $CIRCLE_BRANCH && pwd && ls
       - checkout
 
       # submodule repo initialize
@@ -24,22 +24,26 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - persist_to_workspace:
-          root: .
-          paths: app/build
+          root: /tmp
+          paths:
+            - app
   test:
-  working_directory: ~/test
-  docker:
-    - image: circleci/node:8.9.2
-  steps:
-    - run: cp -r app/build .
-    - run: yarn test
-
-  build:
+    working_directory: ~/test
+    docker:
+      - image: circleci/node:8.9.2
+    steps:
+      - attach_workspace:
+          at: /tmp/app
+      - run: cp -r /tmp/app/app/* .
+      - run: yarn test
+  package:
     working_directory: ~/app
     docker:
       - image: circleci/node:8.9.2
     steps:
-      - run: cp -r app/build .
+      - attach_workspace:
+          at: /tmp/app
+      - run: cp -r /tmp/app/app/* .
 
       # AWS CLI Setup
       - run: sudo apt-get update && sudo apt-get install -y python-dev
@@ -56,7 +60,7 @@ jobs:
       - run: yarn run build-storybook
       - run: aws s3 sync .out/ s3://dev-storybook.humanyze.com --delete
 
-  deploy:
+  nginx_build_deploy:
     working_directory: ~/nginx
     docker:
       - image: circleci/node:8.9.2
@@ -85,7 +89,7 @@ jobs:
       - run: ls && ls apps/
 #      - run: docker build -f Dockerfile.prod --build-arg ENV=$CIRCLE_BRANCH -t humanyze/nginx:$CIRCLE_BRANCH -- .
 
-      - run: docker build -f Dockerfile.prod --build-arg ENV=dev -t humanyze/nginx:$ -- .
+      - run: docker build -f Dockerfile.prod --build-arg ENV=dev -t humanyze/nginx:develop -- .
       - run: docker login -u mcondit04 -p $DOCKERHUB_PW
       - run: docker push humanyze/nginx:develop
 
@@ -93,21 +97,24 @@ workflows:
   version: 2
   build_test_deploy:
     jobs:
-      - yarn
+      - build
       - test:
           requires:
-            - yarn
-      - build:
+            - build
+      - package:
           requires:
-            - yarn
+            - build
           filters:
             branches:
               only:
                 - master
                 - develop
-      - deploy:
+      - nginx_build_deploy:
           requires:
             - test
-            - deploy
-
-
+            - package
+          filters:
+            branches:
+              only:
+                - master
+                - develop
