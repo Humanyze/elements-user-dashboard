@@ -16,10 +16,6 @@ const AppReducer = combineReducers({
     user: userDataReducer,
     modal: modalReducer,
     deployment: deploymentReducer,
-
-    // note: I want UI to be a field of participants, but I believe
-    // note: that breaks some aspects of redux in terms of diffing productively,
-    // note: for now, we'll follow this pattern, as ultimately the UI for the participantsTable should be separate from the actual participant data that is fetched
     participants: participantsReducer,
     participantsUI: participantsUIReducer
 });

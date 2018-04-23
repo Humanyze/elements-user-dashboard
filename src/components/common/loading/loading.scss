@@ -1,8 +1,17 @@
 @import "~Src/Global.scss";
 
 .container {
-  background-color: $humanyze-blue;
-  height: 100vh;
+  //background-color: $humanyze-blue;
+  //height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 
 }
 
@@ -23,7 +32,7 @@
 
   // Themes
   &.la-dark {
-    color: #333;
+    color: $humanyze-blue;
   }
 
 

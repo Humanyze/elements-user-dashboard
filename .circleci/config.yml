@@ -34,8 +34,10 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/app
-      - run: cp -r /tmp/app/app/* .
+      - run: cp -r /tmp/app/app/. .
       - run: yarn test
+
+
   package:
     working_directory: ~/app
     docker:
@@ -43,7 +45,8 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/app
-      - run: cp -r /tmp/app/app/* .
+
+      - run: cp -r /tmp/app/app/. .
 
       # AWS CLI Setup
       - run: sudo apt-get update && sudo apt-get install -y python-dev
@@ -86,15 +89,17 @@ jobs:
 
       - setup_remote_docker
 
-      - run: ls && ls apps/
-#      - run: docker build -f Dockerfile.prod --build-arg ENV=$CIRCLE_BRANCH -t humanyze/nginx:$CIRCLE_BRANCH -- .
+      - run: docker build -f Dockerfile.prod --build-arg ENV=dev -t humanyze/nginx:$CIRCLE_BRANCH -- .
 
-      - run: docker build -f Dockerfile.prod --build-arg ENV=dev -t humanyze/nginx:develop -- .
       - run: docker login -u mcondit04 -p $DOCKERHUB_PW
-      - run: docker push humanyze/nginx:develop
+
+      - run: docker push humanyze/nginx:$CIRCLE_BRANCH
+
+
 
 workflows:
   version: 2
+  # linear workflow,
   build_test_deploy:
     jobs:
       - build
@@ -103,7 +108,7 @@ workflows:
             - build
       - package:
           requires:
-            - build
+            - test
           filters:
             branches:
               only:
@@ -111,7 +116,6 @@ workflows:
                 - develop
       - nginx_build_deploy:
           requires:
-            - test
             - package
           filters:
             branches:
