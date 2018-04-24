@@ -16,13 +16,14 @@ const enhance = compose(
     lifecycle({
         componentDidUpdate({ location }) {
             const { location: oldLocation, closeAllModals, openModal } = this.props;
-            console.error(openModal);
+
             if (openModal.type && oldLocation !== location) {
                 closeAllModals();
             }
         }
     })
 );
+
 const MODAL_COMPONENTS = {
     [MODAL_TYPES.IMPORT_PARTICIPANT_MODAL]: ImportParticipantDataModal,
     [MODAL_TYPES.EXPORT_EQUIPMENT_MODAL]: ExportEquipmentDataModal

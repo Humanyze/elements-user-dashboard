@@ -1,17 +1,50 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { compose, withHandlers, withState } from 'recompose';
+
 import RouterPaths from 'RouterPaths';
 
+import fileDownload from 'js-file-download';
+
 import './action-sub-bar.scss';
+
+import ErrorMessages from 'Redux/error/errorMessageTypes';
+import { addFlashErrorWithFadout } from 'Redux/error/errorActions';
 
 import * as MODAL_CONFIGS from 'Src/components/modal/modalConfigs';
 import { openModal } from 'Redux/modal/modalActions';
 import { getSelectedDeploymentName } from 'Redux/deployment/deploymentReducer';
 import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
+import AxiosRequestService from 'Src/redux/AxiosRequestService';
+import { getSelectedDeploymentId } from 'Src/redux/deployment/deploymentReducer';
+import { getBearerToken } from 'Src/redux/auth/authReducer';
 
 
-export const ActionSubBarPure = ({ openImportDialog, openExportDialog, deploymentName, translations }) => {
+const onExportClicked = ({ deploymentId, bearerToken, setIsExporting, showExportError }) => async (e) => {
+    setIsExporting(true);
+
+    try {
+        const res = await AxiosRequestService.participants.getExportedParticipantsByDatasetId(deploymentId, bearerToken);
+        fileDownload(res.data, 'participants.xlsx');
+    } catch (e) {
+        console.log('error');
+        showExportError();
+        // todo: add error bar
+    }
+    setIsExporting(false);
+};
+
+
+const enhance = compose(
+    withState('isExporting', 'setIsExporting', false),
+    withHandlers({
+        onExportClicked
+    })
+);
+
+export const ActionSubBarPure = ({ openImportDialog, onExportClicked, isExporting, deploymentName, translations }) => {
+    console.log(RouterPaths);
     return (
         <div className='ActionSubBar'>
             <div className='ActionSubBar__section ActionSubBar__section-left'>
@@ -28,8 +61,8 @@ export const ActionSubBarPure = ({ openImportDialog, openExportDialog, deploymen
                 <div onClick={openImportDialog} className='ActionSubBar__text'>
                     {translations.actionSubBar__import}
                 </div>
-                <div onClick={openImportDialog} className='ActionSubBar__text'>
-                    {translations.actionSubBar__export}
+                <div onClick={onExportClicked} className='ActionSubBar__text'>
+                    {isExporting ? translations.actionSubBar__exporting: translations.actionSubBar__export}
                 </div>
             </div>
         </div>
@@ -37,11 +70,17 @@ export const ActionSubBarPure = ({ openImportDialog, openExportDialog, deploymen
 };
 
 const ActionSubBar = connect(
-    state => ({ deploymentName: getSelectedDeploymentName(state), translations: getCurrentTranslations(state) }),
+    state => ({
+        deploymentName: getSelectedDeploymentName(state),
+        deploymentId: getSelectedDeploymentId(state),
+        bearerToken: getBearerToken(state),
+        translations: getCurrentTranslations(state)
+    }),
     (dispatch) => ({
         openImportDialog: () => dispatch(openModal(MODAL_CONFIGS.importParticipantsConfig)),
-        openExportDialog: () => dispatch(openModal(MODAL_CONFIGS.exportParticipantsConfig))
+        showExportError: () => dispatch(addFlashErrorWithFadout(ErrorMessages.participantExportFailure))
+
     })
-)(ActionSubBarPure);
+)(enhance(ActionSubBarPure));
 
 export default ActionSubBar;

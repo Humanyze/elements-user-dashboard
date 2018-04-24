@@ -1,31 +1,47 @@
 import { handleActions } from 'redux-actions';
 import ERROR_ACTION_TYPES from './errorActionTypes';
-
-// returns undefined if no error, easy check for if error is present
-const getCurrentError = (state) =>
-    state.error.errors.reduce((highestPriorityError, error) => {
-        return (
-            (highestPriorityError && highestPriorityError.priority) >= (error && error.priority)
-        ) ? highestPriorityError:error;
-    }, undefined);
-
+import { createSelector } from 'reselect';
 
 export const initialState = {
-    errors: []
+    flashErrorIds: [],
+    flashErrorsById: {},
+    fatalErrors: []
 };
 const errorReducer = handleActions({
-    [ERROR_ACTION_TYPES.ADD_ERROR]: (state, action) => ({
+    [ERROR_ACTION_TYPES.ADD_FLASH_ERROR]: (state, { payload }) => ({
         ...state,
-        errors: [...state.errors, action.payload]
+        flashErrorIds: [...state.flashErrorIds, payload.id],
+        flashErrorsById: {
+            ...state.flashErrorsById,
+            [payload.id]: payload
+        }
     }),
-    [ERROR_ACTION_TYPES.CLEAR_ERRORS]: (state, action) => ({
+    [ERROR_ACTION_TYPES.REMOVE_FLASH_ERROR_BY_ID]: (state, { payload: id }) => ({
         ...state,
-        errors: initialState.errors
-    })
+        flashErrorIds: state.flashErrorIds.filter(errorId => errorId !== id),
+        flashErrorsById: Object.keys(state.flashErrorsById).filter(key => key !== id).reduce((obj, key) => ({
+            ...obj,
+            [key]: state.flashErrorsById[key]
+        }), {})
+    }),
 }, initialState);
 
 export default errorReducer;
 
+
+const getFlashErrorIds = (state) => state.error.flashErrorIds;
+const getFlashErrorsById = (state) => state.error.flashErrorsById;
+
+const getAllFlashErrors = createSelector(
+    getFlashErrorIds,
+    getFlashErrorsById,
+    (ids, errorsById) => ids.map(id => errorsById[id])
+);
+
+const getTopFatalError = (state) => {
+};
+
 export {
-    getCurrentError
+    getAllFlashErrors,
+    getTopFatalError
 };

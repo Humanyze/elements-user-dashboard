@@ -25,9 +25,9 @@ const modalReducer = handleActions({
     }
 }, initialState);
 
-const removeTopModal = state => {
-    const newModals = state.modals.splice(0, -1);
-    return { ...state, modals: newModals };
+const removeTopModal = modalState => {
+    const newModals = modalState.modals.splice(0, -1);
+    return { ...modalState, modals: newModals };
 };
 
 export const getTopModal = state =>

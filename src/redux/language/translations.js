@@ -55,6 +55,9 @@ export default {
     'actionSubBar__export': {
         [EN]: 'Export'
     },
+    'actionSubBar__exporting': {
+        [EN]: 'Exporting...'
+    },
     'participantTable__header': {
         [EN]: 'Participants'
     }

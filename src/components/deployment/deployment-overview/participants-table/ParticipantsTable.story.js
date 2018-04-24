@@ -7,8 +7,8 @@ import { translations } from 'Src/tests/contextCreators';
 const defaultProps = {
     translations: translations,
     showLoading: false,
-    numberOfPages: 20,
-    activePageNumber: 10
+    numberOfPages: 30,
+    activePageNumber: 17
 };
 
 const onLoad = {

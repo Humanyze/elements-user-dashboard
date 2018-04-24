@@ -33,8 +33,8 @@ const offlineConfig = {
             'auth', // auth defaults to using ember auth local storage
             'modal',
             'error',
+            'language'
             // 'deployment',
-            // 'language'
         ]
     }
 };
