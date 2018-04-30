@@ -10,6 +10,5 @@ const mockProps = {
 
 
 describe('errorFlashBar', () => {
-    // todo: add error reducer tests after finalization
     testRender(ErrorFlashBarPure, mockProps)();
 });
