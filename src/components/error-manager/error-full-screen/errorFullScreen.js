@@ -25,11 +25,6 @@ const ErrorFullScreenPure = ({ fatalError, flashErrors, onRedirectButtonClicked 
                     fatalError.redirectButton &&
                     <div onClick={onRedirectButtonClicked} className='ErrorFullScreen__redirect-button'>{fatalError.redirectButton.text}</div>
                 }
-                <div>
-                    {
-                        flashErrors.map(flashError => <div>{flashError.message}</div>)
-                    }
-                </div>
         </div>
     );
 };
