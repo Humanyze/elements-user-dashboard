@@ -56,12 +56,15 @@ jobs:
 
       # Build and S3 Deploy
       - run: yarn build --production
-      - run: aws s3 sync build/ s3://elements-react-develop.humanyze.com --delete
+      - run: aws s3 sync build/ s3://elements-deployment-$CIRCLE_BRANCH.humanyze.com --delete
 
 
       # Storybook Deploy
       - run: yarn run build-storybook
-      - run: aws s3 sync .out/ s3://dev-storybook.humanyze.com --delete
+      - run: |
+          if [ "$CIRCLE_BRANCH" == "develop" ]; then
+            aws s3 sync .out/ s3://develop-deployment-storybook.humanyze.com --delete
+          fi
 
   nginx_build_deploy:
     working_directory: ~/nginx
@@ -83,13 +86,13 @@ jobs:
       # copy built repos of deployment and ember into folder
       - run: mkdir ./apps
       # deployment-react
-      - run: aws s3 sync s3://elements-react-develop.humanyze.com ./apps/deployment-dashboard
+      - run: aws s3 sync s3://elements-deployment-$CIRCLE_BRANCH.humanyze.com ./apps/deployment-dashboard
       # ember
       - run: aws s3 sync s3://humanyze-wyze-development.humanyze.com ./apps/ember-dashboard
 
       - setup_remote_docker
 
-      - run: docker build -f Dockerfile.prod --build-arg ENV=dev -t humanyze/nginx:$CIRCLE_BRANCH -- .
+      - run: docker build -f Dockerfile.prod --build-arg ENV=$CIRCLE_BRANCH -t humanyze/nginx:$CIRCLE_BRANCH -- .
 
       - run: docker login -u mcondit04 -p $DOCKERHUB_PW
 
