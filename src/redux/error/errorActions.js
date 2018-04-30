@@ -13,8 +13,11 @@ const addFlashErrorWithFadout = (messageConfig) => async (dispatch) => {
     setTimeout(() => dispatch(removeFlashErrorById(errorId)), messageConfig.timeout || 5000);
 };
 
+const addFatalError = createAction(ERROR_ACTION_TYPES.ADD_FATAL_ERROR, config => config);
 
 export {
+    addFlashError,
     removeFlashErrorById,
-    addFlashErrorWithFadout
+    addFlashErrorWithFadout,
+    addFatalError
 };

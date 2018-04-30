@@ -92,7 +92,7 @@ export class UserAvatarPure extends React.Component {
 
                             <div className='UserAvatar__dropdown-divider'/>
 
-                            <Link to={'logout user'}
+                            <Link to={'logout'}
                                   onClick={onLogoutClicked}
                                   className='UserAvatar__dropdown-link'>
                                 {translations['avatarMenu/logout']}

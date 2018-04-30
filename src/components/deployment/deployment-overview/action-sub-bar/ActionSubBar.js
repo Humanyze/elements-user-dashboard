@@ -19,6 +19,7 @@ import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 import AxiosRequestService from 'Src/redux/AxiosRequestService';
 import { getSelectedDeploymentId } from 'Src/redux/deployment/deploymentReducer';
 import { getBearerToken } from 'Src/redux/auth/authReducer';
+import { addFatalError } from 'Src/redux/error/errorActions';
 
 
 const onExportClicked = ({ deploymentId, bearerToken, setIsExporting, showExportError }) => async (e) => {
@@ -26,11 +27,9 @@ const onExportClicked = ({ deploymentId, bearerToken, setIsExporting, showExport
 
     try {
         const res = await AxiosRequestService.participants.getExportedParticipantsByDatasetId(deploymentId, bearerToken);
-        fileDownload(res.data, 'participants.xlsx');
+        fileDownload(res.data, 'participants.xlsx'); // note: do we want this to be a more descriptive name?
     } catch (e) {
-        console.log('error');
         showExportError();
-        // todo: add error bar
     }
     setIsExporting(false);
 };
@@ -44,7 +43,6 @@ const enhance = compose(
 );
 
 export const ActionSubBarPure = ({ openImportDialog, onExportClicked, isExporting, deploymentName, translations }) => {
-    console.log(RouterPaths);
     return (
         <div className='ActionSubBar'>
             <div className='ActionSubBar__section ActionSubBar__section-left'>
@@ -78,7 +76,7 @@ const ActionSubBar = connect(
     }),
     (dispatch) => ({
         openImportDialog: () => dispatch(openModal(MODAL_CONFIGS.importParticipantsConfig)),
-        showExportError: () => dispatch(addFlashErrorWithFadout(ErrorMessages.participantExportFailure))
+        showExportError: () => dispatch(addFlashErrorWithFadout(ErrorMessages.userFetchFailure))
 
     })
 )(enhance(ActionSubBarPure));

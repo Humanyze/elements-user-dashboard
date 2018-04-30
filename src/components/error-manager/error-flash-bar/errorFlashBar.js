@@ -14,7 +14,7 @@ const enhance = compose(
     })
 );
 
-const ErrorFlashBarPure = ({ error, dismissError }) => (
+export const ErrorFlashBarPure = ({ error, dismissError }) => (
     <div className='ErrorFlashBar'>
         <div>{error.message}</div>
         <div onClick={dismissError} className='ErrorFlashBar__close-button'><MaterialIcon icon='close' color='white' size={25}/></div>

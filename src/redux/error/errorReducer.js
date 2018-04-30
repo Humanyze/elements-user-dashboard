@@ -24,6 +24,10 @@ const errorReducer = handleActions({
             [key]: state.flashErrorsById[key]
         }), {})
     }),
+    [ERROR_ACTION_TYPES.ADD_FATAL_ERROR]: (state, { payload }) => ({
+        ...state,
+        fatalErrors: [...state.fatalErrors, payload]
+    })
 }, initialState);
 
 export default errorReducer;
@@ -38,8 +42,12 @@ const getAllFlashErrors = createSelector(
     (ids, errorsById) => ids.map(id => errorsById[id])
 );
 
-const getTopFatalError = (state) => {
-};
+const getFatalErrors = (state) => state.error.fatalErrors;
+
+const getTopFatalError = createSelector(
+  getFatalErrors,
+    (fatalErrors) => fatalErrors.reduce((topError, error) => (topError.priority > error.priority ? topError: error ), {})
+);
 
 export {
     getAllFlashErrors,

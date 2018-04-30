@@ -17,10 +17,13 @@ const participantExportFailure = {
 };
 
 const userFetchFailure = {
-    message: `It appears your session expired.  Let's get you logged in.`,
+    message: 'It appears your session expired.  Let\'s get you logged in.',
     type: MESSAGE_TYPES.FATAL,
     priority: PRIORITIES.HIGH,
-    goTo: '/logout'
+    redirectButton: {
+        link: '/logout',
+        text: 'Login'
+    }
 };
 
 

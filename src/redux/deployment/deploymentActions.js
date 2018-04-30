@@ -26,7 +26,6 @@ export const setDeploymentsFromStoreDeploymentIds = () => async (dispatch, getSt
             return data;
         }));
 
-        // TODO move this logic to testable function
         const deploymentsById = normalizeArrayById(deploymentsArray);
         dispatch(deploymentsByIdSuccessful(deploymentsById));
 

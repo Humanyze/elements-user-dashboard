@@ -1,4 +1,4 @@
-@import "~Src/Global.scss";
+@import '~Src/Global.scss';
 
 .flashErrorWrapper {
   position: fixed;
@@ -9,7 +9,9 @@
 
 
 .ErrorFlashBar {
-  background-color: $error-red;
+  // todo: add back in once pull in develop
+  //background-color: $error-red;
+  background-color: red;
   display: flex;
   align-items: center;
   justify-content: space-between;

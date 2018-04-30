@@ -10,8 +10,7 @@ import LoadingUI from 'Common/loading/LoadingUI';
 import { compose, lifecycle } from 'recompose';
 import { setUserDataByAuthId } from 'Redux/userData/userDataActions';
 import { getUserDataLoadStatus } from 'Redux/userData/userDataReducer';
-
-// import Login from '../Login';
+import Logout from 'Src/components/action-routes/logout';
 
 
 const onWillMount = lifecycle({
@@ -22,18 +21,18 @@ const onWillMount = lifecycle({
 
 
 const AuthenticatedRoutes = compose(onWillMount)(({ path, userLoaded }) => {
-    return userLoaded && (
+    return userLoaded ? (
         <Switch>
             <Route component={Deployment}/>
-            {/*<Route component={() => <Redirect to={`${path}`}/>}/>*/}
-        </Switch>
-    );
+        </Switch>): null
+        ;
+
 });
 
 
 const LoginRedirect = () => <Route component={() => window.location.href = '/login'}/>;
 
-const AppRoutesPure = withRouter(({ authenticated, userLoaded, error, match, setUserDataByAuthId }) => {
+const AppRoutesPure = withRouter(({ authenticated, userLoaded, match, setUserDataByAuthId }) => {
 
     if (!authenticated) {
         window.location.href = '/login';
@@ -45,7 +44,8 @@ const AppRoutesPure = withRouter(({ authenticated, userLoaded, error, match, set
     return (
         <div>
             <ErrorManager/>
-            {authenticated ?
+            <Route path={'/logout'} component={Logout}/>
+                {authenticated ?
                 <AuthenticatedRoutes path={path}
                                      setUserData={setUserDataByAuthId}
                                      userLoaded={userLoaded}/> || <LoadingUI/>
@@ -61,7 +61,6 @@ const AppRoutes = connect(
         {
             authenticated: isUserAuthenticated(state),
             userLoaded: getUserDataLoadStatus(state),
-            error: true //showError(state)
         }
     ), { setUserDataByAuthId }, null,
     { pure: false }

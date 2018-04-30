@@ -89,7 +89,7 @@ jobs:
 
       - setup_remote_docker
 
-      - run: docker build -f Dockerfile.prod --build-arg ENV=dev -t humanyze/nginx:$CIRCLE_BRANCH -- .
+      - run: docker build -f Dockerfile.prod --build-arg ENV=$CIRCLE_BRANCH -t humanyze/nginx:$CIRCLE_BRANCH -- .
 
       - run: docker login -u mcondit04 -p $DOCKERHUB_PW
 

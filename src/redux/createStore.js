@@ -30,11 +30,13 @@ const offlineConfig = {
     persistOptions: {
         // note: may switch this to whitelist over blacklist, although persistence in certain cases doesn't hurt
         blacklist: [
-            'auth', // auth defaults to using ember auth local storage
+            'auth',
             'modal',
             'error',
-            'language'
-            // 'deployment',
+            'user',
+            'participant',
+            'language',
+            'deployment',
         ]
     }
 };
