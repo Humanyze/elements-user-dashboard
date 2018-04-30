@@ -1,7 +1,6 @@
 
-import ErrorFullScreen from './ErrorFullScreen';
+import ErrorFullScreen from './errorFullScreen';
 
 describe('errorFullScreen', () => {
-    // todo: add error reducer tests after finalization
     testRender(ErrorFullScreen)();
 });

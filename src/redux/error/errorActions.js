@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import ERROR_ACTION_TYPES from './errorActionTypes';
 
-const getInsecureRandomId = () => Math.floor(Math.random() * 100000);
+const getInsecureRandomId = () => Math.floor(Math.random() * 100000).toString();
 
 const addFlashError = createAction(ERROR_ACTION_TYPES.ADD_FLASH_ERROR, config => config);
 const removeFlashErrorById = createAction(ERROR_ACTION_TYPES.REMOVE_FLASH_ERROR_BY_ID, id => id);
