@@ -1,4 +1,4 @@
-#Humanyze React Elements Page
+# Humanyze React Elements Page
 
 
 ## Getting Started 
