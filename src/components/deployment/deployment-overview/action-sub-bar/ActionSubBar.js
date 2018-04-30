@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { compose, withHandlers, withState } from 'recompose';
-
+import contentDisposition from 'content-disposition';
 import RouterPaths from 'RouterPaths';
-
+import * as R from 'ramda';
 import fileDownload from 'js-file-download';
 
 import './action-sub-bar.scss';
@@ -19,7 +19,8 @@ import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 import AxiosRequestService from 'Src/redux/AxiosRequestService';
 import { getSelectedDeploymentId } from 'Src/redux/deployment/deploymentReducer';
 import { getBearerToken } from 'Src/redux/auth/authReducer';
-import { addFatalError } from 'Src/redux/error/errorActions';
+
+
 
 
 const onExportClicked = ({ deploymentId, bearerToken, setIsExporting, showExportError }) => async (e) => {
@@ -27,8 +28,12 @@ const onExportClicked = ({ deploymentId, bearerToken, setIsExporting, showExport
 
     try {
         const res = await AxiosRequestService.participants.getExportedParticipantsByDatasetId(deploymentId, bearerToken);
-        fileDownload(res.data, 'participants.xlsx'); // note: do we want this to be a more descriptive name?
+        const { parameters: { filename } } = contentDisposition.parse(`attachment; ${R.path(['headers', 'content-disposition'], res)}`);
+
+        fileDownload(res.data, filename);
+
     } catch (e) {
+        console.error(e);
         showExportError();
     }
     setIsExporting(false);
@@ -60,7 +65,7 @@ export const ActionSubBarPure = ({ openImportDialog, onExportClicked, isExportin
                     {translations.actionSubBar__import}
                 </div>
                 <div onClick={onExportClicked} className='ActionSubBar__text'>
-                    {isExporting ? translations.actionSubBar__exporting: translations.actionSubBar__export}
+                    {isExporting ? translations.actionSubBar__exporting : translations.actionSubBar__export}
                 </div>
             </div>
         </div>
@@ -76,7 +81,7 @@ const ActionSubBar = connect(
     }),
     (dispatch) => ({
         openImportDialog: () => dispatch(openModal(MODAL_CONFIGS.importParticipantsConfig)),
-        showExportError: () => dispatch(addFlashErrorWithFadout(ErrorMessages.userFetchFailure))
+        showExportError: () => dispatch(addFlashErrorWithFadout(ErrorMessages.participantExportFailure))
 
     })
 )(enhance(ActionSubBarPure));
