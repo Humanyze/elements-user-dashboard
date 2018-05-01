@@ -1,74 +1,108 @@
 import * as errorActions from './errorActions';
-
-import errorReducer, { getCurrentError, initialState } from './errorReducer';
+import ErrorMessageTypes from './errorMessageTypes';
+import errorReducer, { getAllFlashErrors, getTopFatalError, initialState } from './errorReducer';
 
 describe('errorReducer', () => {
-
-    const basicError = {
-        message: 'This page does not exist',
-        code: 404,
-        priority: 1
-    };
-
-    const createErrorWithPriority = (priority) => ({ ...basicError, priority });
-
-    it('should add  error to state when triggered', () => {
-
-        const expectedState = {
-            ...initialState,
-            errors: [...initialState.errors, basicError]
-        };
-
-        expect(
-            errorReducer(initialState, errorActions.addError(basicError))
-        ).toEqual(expectedState);
+    // todo: add error reducer tests after finalization
+    it('should initialize properly', () => {
+        expect(errorReducer(undefined, {})).toEqual(initialState);
     });
 
-    it('should clear all errors on clear Error', () => {
-        // could just expect it to equal initialState
-        const startState = {
+    it('should handle an add Flash', () => {
+
+        const errorAction = errorActions.addFlashError(ErrorMessageTypes.participantExportFailure);
+
+        const { payload } = errorAction;
+        const expected = {
             ...initialState,
-            errors: [
-                basicError,
-                basicError,
-                basicError
-            ]
-        };
-
-        const expectedState = {
-            ...initialState,
-            errors: []
-        };
-
-        expect(errorReducer(startState, errorActions.clearErrors())).toEqual(expectedState);
-    });
-
-
-    describe('getCurrentError', () => {
-
-
-        const errorlessRootState = {
-            error: initialState
-        };
-
-        const multiErrorRootState = {
-            error: {
-                ...initialState,
-                errors: [
-                    createErrorWithPriority(1),
-                    createErrorWithPriority(2),
-                    createErrorWithPriority(4),
-                    createErrorWithPriority(3)
-                ]
+            flashErrorIds: [payload.id],
+            flashErrorsById: {
+                [payload.id]: payload
             }
         };
 
-        it ('should return highest priority error', () => {
-            expect(getCurrentError(multiErrorRootState)).toEqual(createErrorWithPriority(4));
+        expect(errorReducer(
+            initialState, errorAction
+        )).toEqual(expected);
+    });
+
+
+    it('should be able to remove flash errors by Id', () => {
+
+
+        const errorAction = errorActions.addFlashError({ ...ErrorMessageTypes.participantExportFailure, id: "1" });
+
+        const errorActionRep = errorActions.addFlashError({ ...ErrorMessageTypes.participantExportFailure, id: "2"  });
+
+        const { payload } = errorAction;
+        const { payload: payloadRep } = errorActionRep;
+
+        const initial = {
+            ...initialState,
+            flashErrorIds: [payload.id, payloadRep.id],
+            flashErrorsById: {
+                [payload.id]: payload,
+                [payloadRep.id]: payloadRep
+            }
+        };
+
+        const expected = {
+            ...initialState,
+            flashErrorIds: [payload.id],
+            flashErrorsById: {
+                [payload.id]: payload
+            }
+        };
+
+        const removeAction = errorActions.removeFlashErrorById(payloadRep.id);
+
+        expect(errorReducer(
+            initial, removeAction
+        )).toEqual(expected);
+
+    });
+
+
+    it("should be able to create a fatal error", () => {
+
+        const errorAction = errorActions.addFatalError(ErrorMessageTypes.userFetchFailure);
+
+        const { payload } = errorAction;
+        const expected = {
+            ...initialState,
+            fatalErrors: [errorAction.payload]
+        };
+
+        expect(errorReducer(
+            initialState, errorAction
+        )).toEqual(expected);
+    });
+
+
+    describe('getAllFlashErrors', () => {
+
+        it('should return an empty array when no errors are present', () => {
+            expect(getAllFlashErrors({ error: errorReducer(initialState, {})})).toEqual([]);
         });
 
-        it('should return undefined if no errors are present', () => {
-           expect(getCurrentError(errorlessRootState)).toEqual(undefined);
+
+        it('should selected errors when present', () => {
+            const errorAction = errorActions.addFlashError(ErrorMessageTypes.participantExportFailure);
+
+            const state = {error: errorReducer(initialState, errorAction)};
+
+            const expected = [ errorAction.payload ];
+            const flashErrors = getAllFlashErrors(state);
+            expect(flashErrors).toEqual(expected);
         });
     });
+
+    describe('getTopFatalError', () => {
+        it('should return an empty object if no fatal errors are present', () => {
+            expect(getTopFatalError({ error: errorReducer(initialState, {})})).toEqual({});
+        })
+    })
+
+
+
 });

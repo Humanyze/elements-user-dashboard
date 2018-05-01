@@ -13,6 +13,13 @@ const getSelectedDeploymentName = createSelector(
     }
 );
 
+const getSelectedDeploymentId = createSelector(
+    getSelectedDeployment,
+    (selectedDeployment) => {
+        return selectedDeployment && selectedDeployment.id;
+    }
+);
+
 const getAllDeployments = (state) => Object.values(state.deployment.deploymentsById);
 
 const initialState = {
@@ -58,6 +65,7 @@ export default deploymentReducer;
 export {
     getSelectedDeployment,
     getSelectedDeploymentName,
+    getSelectedDeploymentId,
     getAllDeployments,
     initialState
 };

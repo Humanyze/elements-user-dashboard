@@ -30,6 +30,9 @@ const participantsReducer = handleActions({
 }, initialState);
 
 
+
+
+
 export const getParticipantsById = state => state.participants.participantsById;
 export const getTotalParticipantsCount = state => state.participants.totalParticipantsCount;
 

@@ -1,0 +1,33 @@
+@import "~Src/Global.scss";
+
+.ErrorFullScreen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ErrorFullScreen__fatal-message {
+  font-size: 1.2em;
+}
+
+.ErrorFullScreen__redirect-button {
+  background-color: $humanyze-blue;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 10px;
+  &:hover {
+    background-color: lighten($humanyze-blue, 5%);
+
+  }
+}
