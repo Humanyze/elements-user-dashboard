@@ -25,8 +25,6 @@ const RootReducer = (state, action) => {
         // note: for clearing state after logging out
         state = undefined;
         window.localStorage.clear();
-        // todo: this redirect doesn't work correctly
-        window.location.href = '/logout';
     }
     return AppReducer(state, action);
 };

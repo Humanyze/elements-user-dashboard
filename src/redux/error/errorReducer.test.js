@@ -3,7 +3,6 @@ import ErrorMessageTypes from './errorMessageTypes';
 import errorReducer, { getAllFlashErrors, getTopFatalError, initialState } from './errorReducer';
 
 describe('errorReducer', () => {
-    // todo: add error reducer tests after finalization
     it('should initialize properly', () => {
         expect(errorReducer(undefined, {})).toEqual(initialState);
     });

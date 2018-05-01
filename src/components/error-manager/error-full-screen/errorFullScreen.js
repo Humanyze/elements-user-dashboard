@@ -22,11 +22,12 @@ const enhance = compose(
 export const ErrorFullScreenPure = ({ translations, fatalError, flashErrors, onRedirectButtonClicked }) => {
     return (
         <div className='ErrorFullScreen'>
-                <div className='ErrorFullScreen__fatal-message'>{translations[fatalError.messageTranslationKey]}</div>
-                {
-                    fatalError.redirectButton &&
-                    <div onClick={onRedirectButtonClicked} className='ErrorFullScreen__redirect-button'>{translations[fatalError.redirectButton.textKey]}</div>
-                }
+            <div className='ErrorFullScreen__fatal-message'>{translations[fatalError.messageTranslationKey]}</div>
+            {
+                fatalError.redirectButton &&
+                <div onClick={onRedirectButtonClicked}
+                     className='ErrorFullScreen__redirect-button'>{translations[fatalError.redirectButton.textKey]}</div>
+            }
         </div>
     );
 };

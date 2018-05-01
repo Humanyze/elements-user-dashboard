@@ -9,9 +9,7 @@
 
 
 .ErrorFlashBar {
-  // todo: add back in once pull in develop
-  //background-color: $error-red;
-  background-color: red;
+  background-color: $error-red;
   display: flex;
   align-items: center;
   justify-content: space-between;
