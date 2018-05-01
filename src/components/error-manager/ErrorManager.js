@@ -7,7 +7,7 @@ import ErrorFullScreen from './error-full-screen/errorFullScreen';
 import { removeFlashErrorById } from 'Src/redux/error/errorActions';
 
 const ErrorManagerPure = ({ fatalError, flashErrors }) => {
-    return fatalError.message ?
+    return fatalError.type ?
         <ErrorFullScreen fatalError={fatalError} flashErrors={flashErrors}/> :
         <div className='flashErrorWrapper'>
             {

@@ -4,6 +4,8 @@ import { withRouter } from 'react-router';
 import { compose, withHandlers } from 'recompose';
 
 import './error-full-screen.scss';
+import { connect } from 'react-redux';
+import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 
 
 const onRedirectButtonClicked = ({ fatalError, history }) => e => {
@@ -17,19 +19,21 @@ const enhance = compose(
     })
 );
 
-const ErrorFullScreenPure = ({ fatalError, flashErrors, onRedirectButtonClicked }) => {
+export const ErrorFullScreenPure = ({ translations, fatalError, flashErrors, onRedirectButtonClicked }) => {
     return (
         <div className='ErrorFullScreen'>
-                <div className='ErrorFullScreen__fatal-message'>{fatalError.message}</div>
+                <div className='ErrorFullScreen__fatal-message'>{translations[fatalError.messageTranslationKey]}</div>
                 {
                     fatalError.redirectButton &&
-                    <div onClick={onRedirectButtonClicked} className='ErrorFullScreen__redirect-button'>{fatalError.redirectButton.text}</div>
+                    <div onClick={onRedirectButtonClicked} className='ErrorFullScreen__redirect-button'>{translations[fatalError.redirectButton.textKey]}</div>
                 }
         </div>
     );
 };
 
 
-const ErrorFullScreen = withRouter(enhance(ErrorFullScreenPure));
+const ErrorFullScreen = connect(
+    state => ({ translations: getCurrentTranslations(state) })
+)(withRouter(enhance(ErrorFullScreenPure)));
 
 export default ErrorFullScreen;

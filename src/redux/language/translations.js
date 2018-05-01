@@ -60,5 +60,15 @@ export default {
     },
     'participantTable__header': {
         [EN]: 'Participants'
+    },
+
+    'errorMessage__participantExportFailure': {
+        [EN]: 'Failed to export participant data.'
+    },
+    'errorMessage__userFetchFailure': {
+        [EN]: 'It appears your session expired.  Let\'s get you logged in.'
+    },
+    'errorMessage__userFetchFailure--button': {
+        [EN]: 'Login'
     }
 };

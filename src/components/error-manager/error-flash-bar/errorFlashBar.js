@@ -6,6 +6,7 @@ import MaterialIcon from 'material-icons-react';
 import './error-flash-bar.scss';
 import { removeFlashErrorById } from 'Src/redux/error/errorActions';
 import { compose, withHandlers } from 'recompose';
+import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 
 
 const enhance = compose(
@@ -14,16 +15,16 @@ const enhance = compose(
     })
 );
 
-export const ErrorFlashBarPure = ({ error, dismissError }) => (
+export const ErrorFlashBarPure = ({ translations, error, dismissError }) => (
     <div className='ErrorFlashBar'>
-        <div>{error.message}</div>
+        <div>{translations[error.messageTranslationKey]}</div>
         <div onClick={dismissError} className='ErrorFlashBar__close-button'><MaterialIcon icon='close' color='white' size={25}/></div>
     </div>
 );
 
 
 const ErrorFlashBar = connect(
-    null,
+    state => ({ translations: getCurrentTranslations(state) }),
     {
         dismissErrorWithId: removeFlashErrorById
     }

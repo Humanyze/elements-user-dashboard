@@ -10,7 +10,7 @@ import fileDownload from 'js-file-download';
 import './action-sub-bar.scss';
 
 import ErrorMessages from 'Redux/error/errorMessageTypes';
-import { addFlashErrorWithFadout } from 'Redux/error/errorActions';
+import { addFlashErrorWithFadeout } from 'Redux/error/errorActions';
 
 import * as MODAL_CONFIGS from 'Src/components/modal/modalConfigs';
 import { openModal } from 'Redux/modal/modalActions';
@@ -81,7 +81,7 @@ const ActionSubBar = connect(
     }),
     (dispatch) => ({
         openImportDialog: () => dispatch(openModal(MODAL_CONFIGS.importParticipantsConfig)),
-        showExportError: () => dispatch(addFlashErrorWithFadout(ErrorMessages.participantExportFailure))
+        showExportError: () => dispatch(addFlashErrorWithFadeout(ErrorMessages.participantExportFailure))
 
     })
 )(enhance(ActionSubBarPure));

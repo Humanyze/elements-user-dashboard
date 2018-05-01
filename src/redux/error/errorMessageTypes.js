@@ -11,18 +11,18 @@ const MESSAGE_TYPES = {
 
 
 const participantExportFailure = {
-    message: 'participantExportFailure',
+    messageTranslationKey: 'errorMessage__participantExportFailure',
     type: MESSAGE_TYPES.FLASH,
     priority: PRIORITIES.LOW
 };
 
 const userFetchFailure = {
-    message: 'It appears your session expired.  Let\'s get you logged in.',
+    messageTranslationKey: 'errorMessage__userFetchFailure',
     type: MESSAGE_TYPES.FATAL,
     priority: PRIORITIES.HIGH,
     redirectButton: {
         link: '/logout',
-        text: 'Login'
+        textKey: 'errorMessage__userFetchFailure--button'
     }
 };
 

@@ -6,7 +6,7 @@ const getInsecureRandomId = () => Math.floor(Math.random() * 100000).toString();
 const addFlashError = createAction(ERROR_ACTION_TYPES.ADD_FLASH_ERROR, config => config);
 const removeFlashErrorById = createAction(ERROR_ACTION_TYPES.REMOVE_FLASH_ERROR_BY_ID, id => id);
 
-const addFlashErrorWithFadout = (messageConfig) => async (dispatch) => {
+const addFlashErrorWithFadeout = (messageConfig) => async (dispatch) => {
     const errorId = getInsecureRandomId();
     dispatch(addFlashError({ ...messageConfig, id: errorId }));
 
@@ -18,6 +18,6 @@ const addFatalError = createAction(ERROR_ACTION_TYPES.ADD_FATAL_ERROR, config =>
 export {
     addFlashError,
     removeFlashErrorById,
-    addFlashErrorWithFadout,
+    addFlashErrorWithFadeout,
     addFatalError
 };
