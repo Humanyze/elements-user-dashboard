@@ -137,10 +137,12 @@ This section requires some maintenance as we determine our specific use cases an
 ## Linting
 Standard eslint setup in `/.eslintrc`, any modifications should be accompanied by the proper global fix for that rule.  To run the eslint fix, run `npx eslint --fix .` and run the test suite to make sure changes were safe.
 
+## Git submodule Usage
+Git submodules allow for a git dependency to be specified, allowing for sharing of code in builds and development.  At the moment, we just are using `humanyze-ui` as our dependency.  Unfortunately, this can lead to some weird behavior and some confusion.   When originally checking out this repo, you will use the `--recursive` flag.  This will close git submodules as well, but it simply checks out the most recent commit in detached-head mode (one major confusion point initially).  To add to the submodule repo, commit like normal from the directory of the submodule.  From there, return to the parent repo and commit the "changed submodule" to that repo.  Then, to update other repos that are reliant on this info, you can run `git submodule update` and it will check out a fresher branch (in detached-head mode) from the remote repo.  I would recommend reading up on git submodules more on your own, as they can be a tad messy in develop but work very well in build environment management.
+ 
 ## Things to implement/look into
 
 ### Implement
-* [Axios Middleware](https://github.com/svrcekmichal/redux-axios-middleware)
 * Snapshot testing
 * E2E testing
 * Submodule documentation 
@@ -149,4 +151,3 @@ Standard eslint setup in `/.eslintrc`, any modifications should be accompanied b
 ### Extra Notes
 
 * This project was immediately ejected from Create react app for ease.  Long term, look into cleaning up webpack configs and other boilerplate bloat that does not fit our needs.  
-* We are using git submodules, which can be a bit tricky to use at first.  Will add a section on this long term.
