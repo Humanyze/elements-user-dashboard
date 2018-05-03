@@ -1,0 +1,21 @@
+@import '~Src/Global.scss';
+
+.DateSelector {
+  width: 150px;
+  height: 48px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 10px;
+  margin-left: 10px;
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 2px;
+  line-height: 1.75;
+
+  .material-icons {
+    color: $grey-5;
+  }
+}

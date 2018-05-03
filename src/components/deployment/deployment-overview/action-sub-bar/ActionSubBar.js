@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { compose, withHandlers, withState } from 'recompose';
+import { compose, lifecycle, withHandlers, withState } from 'recompose';
 import contentDisposition from 'content-disposition';
 import RouterPaths from 'RouterPaths';
 import * as R from 'ramda';
@@ -42,9 +42,11 @@ const onExportClicked = ({ deploymentId, bearerToken, setIsExporting, showExport
 
 const enhance = compose(
     withState('isExporting', 'setIsExporting', false),
+    lifecycle({ componentDidMount() { this.props.openImportDialog(); } }),
     withHandlers({
         onExportClicked
-    })
+    }),
+
 );
 
 export const ActionSubBarPure = ({ openImportDialog, onExportClicked, isExporting, deploymentName, translations }) => {
