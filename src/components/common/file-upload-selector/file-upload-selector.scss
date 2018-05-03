@@ -3,9 +3,6 @@
 .FileUploadSelector {
   width: 350px;
   height: 48px;
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
   margin-left: 10px;
   padding-right: 10px;
   padding-left: 15px;
@@ -13,9 +10,27 @@
   border: 1px solid #ebebeb;
   border-radius: 2px;
   line-height: 1.75;
-  cursor: pointer;
 
-  .material-icons {
-    color: $grey-5;
+  .FileUploadSelector__label {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+  }
+
+  .FileUploadSelector__file-input {
+    display: none;
+  }
+
+  .FileUploadSelector__text-wrapper {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    .material-icons {
+      color: $grey-5;
+    }
+
   }
 }

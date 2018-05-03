@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, withState } from 'recompose';
+import { compose, withHandlers, withPropsOnChange, withState } from 'recompose';
 import MaterialIcon from 'material-icons-react';
 
 import LightBoxWrapper from '../LightBoxWrapper/LightBoxWrapper';
@@ -16,12 +16,42 @@ import ActionButton from './action-button/actionButton';
 import ImportWizard from 'Src/components/common/import-wizard/importWizard';
 
 
+const acceptedFileTypes = [
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+    'application/vnd.ms-excel.sheet.macroEnabled.12',
+    'application/vnd.ms-excel.template.macroEnabled.12'
+];
+
+const onFileChange = ({ setDataFile }) => ({ target }) => {
+    console.log(target.files);
+    return target.files[0] && setDataFile(target.files[0]);
+}
+
 const enhance = compose(
-    withState('fale', 'fdsadfdsa', false)
+    withState('dataFile', 'setDataFile', null),
+    withPropsOnChange(
+        ['dataFile'],
+        ({ dataFile }) => ({ fileIsSelected: !!dataFile })
+    ),
+    withHandlers({
+        onFileChange
+    })
 );
 
 
-export const ImportEquipmentDataModalPure = ({ deploymentName, translations, closeModal }) => {
+
+
+export const ImportEquipmentDataModalPure = ({ deploymentName, translations, closeModal,
+                                              dataFile, fileIsSelected, onFileChange }) => {
+
+    const fileUploadProps = {
+        fileName: dataFile && dataFile.name,
+        fileIsSelected,
+        onFileChange,
+        acceptedFileTypes
+    };
+
     return (
         <LightBoxWrapper>
             <div className='ImportParticipantDataModal'>
@@ -42,7 +72,8 @@ export const ImportEquipmentDataModalPure = ({ deploymentName, translations, clo
                     <div>
                         <div className='ImportParticipantDataModal__file-upload-block'>
                             <div>{translations['ImportParticipantDataModal__file']}:</div>
-                            <FileUploadSelector/>
+
+                            <FileUploadSelector {...fileUploadProps}/>
                         </div>
 
 
