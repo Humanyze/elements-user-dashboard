@@ -21,7 +21,7 @@ const enhance = compose(
 );
 
 
-const ImportEquipmentDataModalPure = ({ deploymentName, translations, closeModal }) => {
+export const ImportEquipmentDataModalPure = ({ deploymentName, translations, closeModal }) => {
     return (
         <LightBoxWrapper>
             <div className='ImportParticipantDataModal'>

@@ -1,3 +1,3 @@
-import ImportEquipmentDataModal from './ImportParticipantDataModal';
-testRender(ImportEquipmentDataModal)();
+import { ImportEquipmentDataModalPure } from './ImportParticipantDataModal';
+testRender(ImportEquipmentDataModalPure, { translations: {}})();
 
