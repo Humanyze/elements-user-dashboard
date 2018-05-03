@@ -4,7 +4,6 @@ import { compose, lifecycle } from 'recompose';
 import { withRouter } from 'react-router';
 
 import { getTopModal } from 'Redux/modal/modalReducer';
-import ExportEquipmentDataModal from './model-components/export-equipment-data/ExportEquipmentDataModal';
 import { closeAllModals, closeTopModal } from 'Src/redux/modal/modalActions';
 
 import MODAL_TYPES from './modalTypes.js';
@@ -26,7 +25,6 @@ const enhance = compose(
 
 const MODAL_COMPONENTS = {
     [MODAL_TYPES.IMPORT_PARTICIPANT_MODAL]: ImportParticipantDataModal,
-    [MODAL_TYPES.EXPORT_EQUIPMENT_MODAL]: ExportEquipmentDataModal
 };
 
 export const ModalRootPure = ({ openModal, closeModal }) => {

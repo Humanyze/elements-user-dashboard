@@ -1,0 +1,29 @@
+@import "~Src/Global.scss";
+
+
+.ActionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  width: 86px;
+  padding: 6px 14px;
+  margin-left: 10px;
+  background-color: $grey-3;
+  color: $grey-5;
+  border: 1px solid $grey-4b;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+
+
+  &:hover {
+    background-color: darken($grey-3, 2%);
+  }
+
+
+  &.disabled {
+    background-color: $grey-2;
+    opacity: 0.5;
+  }
+}

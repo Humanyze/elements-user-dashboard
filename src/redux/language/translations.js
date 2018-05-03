@@ -70,5 +70,25 @@ export default {
     },
     'errorMessage__userFetchFailure--button': {
         [EN]: 'Login'
+    },
+    'ImportParticipantDataModal__header': {
+        [EN]: 'Import Data'
+    },
+    'ImportParticipantDataModal__footer-deployment': {
+        [EN]: 'Deployment'
+    },
+    'ImportParticipantDataModal__effective-date': {
+        [EN]: 'Effective Date'
+    },
+    'ImportParticipantDataModal__file': {
+        [EN]: 'File'
+    },
+
+    'FileUploadSelector__select-file': {
+        [EN]: 'Select a file'
+    },
+    'DateSelector__select-date': {
+        [EN]: 'Select a date'
     }
+
 };

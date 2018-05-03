@@ -33,7 +33,7 @@ const DropdownLinks = [
     },
     {
         textKey: 'avatarMenu/deployments',
-        to: '/select-deployment?for=digital'
+        to: '/deployments'
     },
     {
         textKey: 'avatarMenu/profile',
@@ -67,6 +67,7 @@ const enhance = compose(
     onClickOutside
 );
 
+// NOTE: must be class to use click outside
 export class UserAvatarPure extends React.Component {
 
     render() {
