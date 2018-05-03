@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { compose, lifecycle, withHandlers, withState } from 'recompose';
+import { compose, withHandlers, withState } from 'recompose';
 import contentDisposition from 'content-disposition';
 import RouterPaths from 'RouterPaths';
 import * as R from 'ramda';
