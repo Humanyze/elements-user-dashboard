@@ -42,7 +42,7 @@ const onExportClicked = ({ deploymentId, bearerToken, setIsExporting, showExport
 
 const enhance = compose(
     withState('isExporting', 'setIsExporting', false),
-    lifecycle({ componentDidMount() { this.props.openImportDialog(); } }),
+    // lifecycle({ componentDidMount() { this.props.openImportDialog(); } }),
     withHandlers({
         onExportClicked
     }),
