@@ -26,7 +26,7 @@ const acceptedFileTypes = [
 const onFileChange = ({ setDataFile }) => ({ target }) => {
     console.log(target.files);
     return target.files[0] && setDataFile(target.files[0]);
-}
+};
 
 const enhance = compose(
     withState('dataFile', 'setDataFile', null),
