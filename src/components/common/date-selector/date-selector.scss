@@ -1,12 +1,10 @@
 @import '~Src/Global.scss';
 
 .DateSelector {
+  position: relative;
   width: 150px;
   height: 48px;
   cursor: pointer;
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
   padding-left: 15px;
   padding-right: 10px;
   margin-left: 10px;
@@ -17,5 +15,60 @@
 
   .material-icons {
     color: $grey-5;
+  }
+}
+
+.DateSelector__dropdown {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  & > div, .react-datepicker-wrapper, .react-datepicker__input-container {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.DateSelector__label-button {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  i {
+    margin-top: 4px;
+  }
+}
+
+.react-datepicker-popper {
+  margin-top: 0 !important;
+}
+
+.react-datepicker {
+  .react-datepicker__triangle {
+    display: none;
+  }
+
+  .react-datepicker__header {
+    background-color: white;
+    border: none;
+  }
+
+  //.react-datepicker__day {
+  //  box-sizing: border-box;
+  //  padding: 2px 4px;
+  //}
+
+  .react-datepicker__day--selected {
+    background-color: $grey-3a;
+    color: black;
+  }
+
+  .react-datepicker__day--today {
+    background-color: transparent;
+    color: inherit;
+    font-weight: inherit;
   }
 }
