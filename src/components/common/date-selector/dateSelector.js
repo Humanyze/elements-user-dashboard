@@ -10,9 +10,9 @@ import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 import './date-selector.scss';
 
 // must be class for ref usage by DatePicker
-class CustomInput extends React.Component {
+class DateToggleButton extends React.Component {
 
-    handleClick = (e) => {
+    handleClick = () => {
         const { container } = this.props;
         const open = container.datepicker.state.open;
         open ? container.datepicker.setOpen(false) : this.props.onClick();
@@ -36,6 +36,7 @@ class CustomInput extends React.Component {
 }
 
 export class DateSelectorPure extends React.Component {
+    // For toggle behavior, customInput needs ref, and both need to be class components
     constructor() {
         super();
         this.datepicker = { state: { open: false } };
@@ -51,7 +52,7 @@ export class DateSelectorPure extends React.Component {
                                 dateFormat={'MMM D, YYYY'}
                                 useWeekdaysShort={true}
                                 ref={datepicker => this.datepicker = datepicker}
-                                customInput={<CustomInput translations={translations} container={this}/>}/>
+                                customInput={<DateToggleButton translations={translations} container={this}/>}/>
                 </div>
             </div>
         );
