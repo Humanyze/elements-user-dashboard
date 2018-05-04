@@ -27,10 +27,7 @@ const onFileChange = ({ setDataFile }) => ({ target }) => {
     return target.files[0] && setDataFile(target.files[0]);
 };
 
-const onDateChange = ({ setEffectiveDate }) => (date) => {
-    console.log(date);
-    setEffectiveDate(date);
-};
+const onDateChange = ({ setEffectiveDate }) => (date) => setEffectiveDate(date);
 
 const enhance = compose(
     withState('dataFile', 'setDataFile', null),
@@ -57,6 +54,11 @@ export const ImportEquipmentDataModalPure = ({ deploymentName, translations, clo
         fileIsSelected,
         onFileChange,
         acceptedFileTypes
+    };
+
+    const dateSelectorProps = {
+        date: effectiveDate,
+        onChange: onDateChange
     };
 
     return (
@@ -86,7 +88,7 @@ export const ImportEquipmentDataModalPure = ({ deploymentName, translations, clo
 
                         <div className='ImportParticipantDataModal__date-block'>
                             <div>{translations['ImportParticipantDataModal__effective-date']}:</div>
-                            <DateSelector date={effectiveDate} onChange={onDateChange}/>
+                            <DateSelector {...dateSelectorProps}/>
                         </div>
                     </div>
 
