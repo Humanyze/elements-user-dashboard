@@ -8,7 +8,7 @@ import { closeAllModals, closeTopModal } from 'Src/redux/modal/modalActions';
 
 import MODAL_TYPES from './modalTypes.js';
 
-import ImportParticipantDataModal from './model-components/import-participant-data/ImportParticipantDataModal';
+import ImportParticipantDataModal from './modal-components/import-participant-data/ImportParticipantDataModal';
 
 
 const enhance = compose(

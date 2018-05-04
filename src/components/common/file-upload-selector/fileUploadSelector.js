@@ -10,11 +10,13 @@ export const FileUploadSelectorPure = ({ translations, fileIsSelected, fileName,
     return (
         <div className='FileUploadSelector'>
             <label htmlFor='fileUploadInput' className='FileUploadSelector__label'>
+
                 <input type='file'
                        id='fileUploadInput'
                        className='FileUploadSelector__file-input'
                        accept={acceptedFileTypes.join(',')}
                        onChange={onFileChange}/>
+
                 <div className='FileUploadSelector__text-wrapper'>
                     {fileIsSelected ?
                         <div className='FileUploadSelector__file-name'>{fileName}</div>:
@@ -22,6 +24,7 @@ export const FileUploadSelectorPure = ({ translations, fileIsSelected, fileName,
                     }
                     <MaterialIcon icon='search' size={18}/>
                 </div>
+
             </label>
         </div>
     );
