@@ -3,18 +3,17 @@ import axios from 'axios/index';
 export const postRequest = async (url, data) => await axios.post(url,
     { ...data },
     {
-        cache: 'no-cache',
+        cache      : 'no-cache',
         credentials: 'same-origin',
-        headers: {
+        headers    : {
             'content-type': 'application/json'
         },
-        method: 'POST',
-        mode: 'cors',
-        redirect: 'follow',
-        referrer: 'no-referrer'
+        method     : 'POST',
+        mode       : 'cors',
+        redirect   : 'follow',
+        referrer   : 'no-referrer'
     }
 );
-
 
 
 export const getRequestWithAuth = async (url, bearerToken) => {
@@ -30,6 +29,23 @@ export const getRequestWithAuth = async (url, bearerToken) => {
     });
 };
 
+export const postWithAuth = async (url, data, bearerToken, headers = {}) => {
+    console.error(data);
+    return await axios.post(url,
+        data,
+        {
+            headers    : {
+                Authorization: `Bearer ${bearerToken}`
+            },
+            cache      : 'no-cache',
+            credentials: 'same-origin',
+            method     : 'POST',
+            mode       : 'cors',
+            redirect   : 'follow',
+            referrer   : 'no-referrer',
+            ...headers
+        });
+};
 
 
 // AUTH ENDPOINTS
@@ -45,33 +61,38 @@ const getParticipantDataById = async (id, token) => await getRequestWithAuth(`/a
 const getParticipantsByDatasetId = async (datasetId, { perPage = 20, offset = 0 }, token) => await getRequestWithAuth(`/api/v2/participants?dataset_id=${datasetId}&limit=${perPage}&offset=${offset}`, token);
 const getAllParticipantsByDatasetId = async (datasetId, token) => await getRequestWithAuth(`/api/v2/participants?dataset_id=${datasetId}`, token);
 
-const getExportedParticipantsByDatasetId = async(datasetId, token) => await getRequestWithAuth(`/api/v1/dataset/${datasetId}/export_participants`, token);
 
 // DATASET ENDPOINTS
-const getDatasetById = (id, token) =>  getRequestWithAuth(`/api/v1/dataset/${id}/`, token);
+const getDatasetById = (id, token) => getRequestWithAuth(`/api/v1/dataset/${id}/`, token);
+const getExportedParticipantsByDatasetId = async (datasetId, token) => await getRequestWithAuth(`/api/v1/dataset/${datasetId}/export_participants`, token);
 
-
-
-
+const validateParticipantDataset = async (datasetId, file, token) => {
+    const data = new FormData();
+    data.append('file', file);
+    return await postWithAuth(`/api/v1/dataset/${datasetId}/import_participants/validate`, data, token, {
+        'Content-Type': 'multipart/form-data'
+    });
+};
 
 
 // NOTE: Not actual service, object containing api calls in organized layout
 const AxiosRequestService = {
-    auth: {
+    auth        : {
         login,
         logout
     },
-    user: {
-      getUserById
+    user        : {
+        getUserById
     },
     participants: {
         getParticipantDataById,
         getParticipantsByDatasetId,
-        getAllParticipantsByDatasetId,
-        getExportedParticipantsByDatasetId
+        getAllParticipantsByDatasetId
     },
-    datasets: {
-        getDatasetById
+    datasets    : {
+        getDatasetById,
+        getExportedParticipantsByDatasetId,
+        validateParticipantDataset
     }
 };
 export default AxiosRequestService;

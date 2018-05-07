@@ -14,11 +14,6 @@ const fontAwesomePathDatabase = 'M896 768q237 0 443-43t325-127v170q0 69-103 128t
 
 const humanyzeUIPathCheckmark = 'M11397.737,473.479c5.533,1.8,10.594,8.521,10.594,8.521l14.638-23.937';
 
-
-const fileState = 'succeeded';
-const validateState = 'succeeded';
-const importState = 'succeeded';
-
 const SVG_WIDTH = 500;
 const SVG_HEIGHT = 125;
 
@@ -28,7 +23,7 @@ const STEPS_VERTICAL = 50;
 
 const STEP_1_HORIZONTAL = 50;
 
-let fileStates = {
+const fileStates = {
     'disabled' : 'Add',
     'ready'    : 'Add',
     'running'  : 'Adding...',
@@ -36,7 +31,7 @@ let fileStates = {
     'failed'   : 'Add'
 };
 
-let validationStates = {
+const validationStates = {
     'disabled' : 'Validate',
     'ready'    : 'Validate',
     'running'  : 'Validating...',
@@ -44,7 +39,7 @@ let validationStates = {
     'failed'   : 'Validate'
 };
 
-let importStates = {
+const importStates = {
     'disabled' : 'Import',
     'ready'    : 'Import',
     'running'  : 'Importing...',
@@ -53,7 +48,7 @@ let importStates = {
 };
 
 
-const ImportWizardPure = ({ translations }) => {
+const ImportWizardPure = ({ translations, fileState = 'ready', validateState = 'ready', importState = 'ready' }) => {
     return (
         <div className='import-wizard-wrapper'>
             <svg className='import-wizard'

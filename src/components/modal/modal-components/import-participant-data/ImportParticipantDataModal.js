@@ -11,11 +11,18 @@ import './import-participant-data-modal.scss';
 import 'Src/Global.scss';
 
 import { getCurrentTranslations } from 'Redux/language/languageReducer';
-import { getSelectedDeploymentName, getSelectedDeploymentStartDate, getSelectedDeploymentEndDate } from 'Redux/deployment/deploymentReducer';
+import {
+    getSelectedDeploymentName,
+    getSelectedDeploymentStartDate,
+    getSelectedDeploymentEndDate, getSelectedDeploymentId
+} from 'Redux/deployment/deploymentReducer';
 import DateSelector from 'Common/date-selector/dateSelector';
 import FileUploadSelector from 'Common/file-upload-selector/fileUploadSelector';
-import ActionButton from './action-button/actionButton';
+import ImportParticipantActionBlock from './import-participant-action-block/importParticipantActionBlock';
 import ImportWizard from 'Src/components/common/import-wizard/importWizard';
+import AxiosRequestService from 'Src/redux/AxiosRequestService';
+import { getBearerToken } from 'Src/redux/auth/authReducer';
+import generateErrorLog from 'Utils/generate-error-log';
 
 
 const acceptedFileTypes = [
@@ -25,22 +32,91 @@ const acceptedFileTypes = [
     'application/vnd.ms-excel.template.macroEnabled.12'
 ];
 
-const onFileChange = ({ setDataFile }) => ({ target }) => {
-    return target.files[0] && setDataFile(target.files[0]);
+const ValidationError = ({ }) => {
+    return (
+        <div>Hello world</div>
+    )
 };
+
+
+const ERRORS = {
+    VALIDATE_ERROR: {
+        type: 'VALIDATE_ERROR',
+        component: ValidationError
+    },
+
+};
+
+const onFileChange = ({ setDataFile }) => ({ target }) => target.files[0] && setDataFile(target.files[0]);
 
 const onDateChange = ({ setEffectiveDate }) => (date) => setEffectiveDate(date);
 
+const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile, setErrorLog, setErrorState }) => async (e) => {
+    try {
+        const res = await AxiosRequestService.datasets.validateParticipantDataset(deploymentId, dataFile, bearerToken);
+
+        let {
+            data
+        } = res;
+
+        console.log(data);
+
+        let {
+            'manager_teams_mapped_errors': teamErrors,
+            'participants_errors'        : participantErrors,
+            'participants_to_create'     : participantsToCreate,
+            'participants_to_update'     : participantsToUpdate
+        } = data;
+
+        const hasNoTeamErrors = !teamErrors.count;
+        const hasNoParticipantErrors = !participantErrors.count;
+
+        const isFileValid = hasNoTeamErrors && hasNoParticipantErrors;
+        if (isFileValid) {
+            console.log('valid file');
+        } else {
+            console.log('invalid', data);
+
+            const log = generateErrorLog(deploymentName, participantErrors, 'Participants');
+            setErrorLog(log);
+            setErrorState({
+                ...ERRORS.VALIDATE_ERROR
+            });
+            log.save('error.pdf'); // todo: remove
+
+        }
+
+    } catch (e) {
+        // 4xx Error Paths
+        console.warn(e);
+    }
+};
+
+const onUploadClicked = ({}) => e => {
+
+};
+
+
 const enhance = compose(
     withState('dataFile', 'setDataFile', null),
+    withState('errorState', 'setErrorState', {}),
+    withState('errorLog', 'setErrorLog', null),
     withState('effectiveDate', 'setEffectiveDate', null),
     withPropsOnChange(
         ['dataFile'],
-        ({ dataFile }) => ({ fileIsSelected: !!dataFile })
+        ({ dataFile }) => ({
+            fileIsSelected: !!dataFile
+        })
+    ),
+    withPropsOnChange(
+        ['fileIsSelected', 'effectiveDate'],
+        ({ fileIsSelected, effectiveDate }) => ({ fileState: ((fileIsSelected && effectiveDate) ? 'succeeded' : 'ready') })
     ),
     withHandlers({
         onFileChange,
-        onDateChange
+        onDateChange,
+        onValidateClicked,
+        onUploadClicked
     })
 );
 
@@ -49,7 +125,9 @@ export const ImportEquipmentDataModalPure = ({
                                                  deploymentName, translations, closeModal,
                                                  dataFile, fileIsSelected, onFileChange,
                                                  startDate, endDate,
-                                                 effectiveDate, onDateChange
+                                                 fileState, errorState,
+                                                 effectiveDate, onDateChange,
+                                                 onValidateClicked, onUploadClicked
                                              }) => {
 
     const fileUploadProps = {
@@ -100,27 +178,21 @@ export const ImportEquipmentDataModalPure = ({
                     {/* PROGRESS INDICATORS */}
 
                     <div className='ImportParticipantDataModal__import-wizard-wrapper'>
-                        <ImportWizard/>
+                        <ImportWizard fileState={fileState}/>
                     </div>
 
 
                     {/* FEEDBACK MESSAGES */}
 
                     <div className='ImportParticipantDataModal__feedback-block'>
-
+                        {errorState.component && errorState.component()}
                     </div>
 
                     {/* ACTION BUTTONS */}
-                    <div className='ImportParticipantDataModal__action-buttons'>
-
-                        {/* REPLACE WITH TRANSLATION INTERP */}
-                        <ActionButton text={'Close'}/>
-
-                        {true && <ActionButton text={'Validate'} disabled={true}/>}
-
-                        {false && <ActionButton text={'Upload'}/>}
-                    </div>
-
+                    <ImportParticipantActionBlock onCloseClicked={closeModal}
+                                                  onValidateClicked={onValidateClicked}
+                                                  onUploadClicked={onUploadClicked}
+                                                  fileState={fileState}/>
 
                 </div>
 
@@ -138,7 +210,9 @@ export const ImportEquipmentDataModalPure = ({
 const ImportEquipmentDataModal = connect(
     state => ({
         translations  : getCurrentTranslations(state),
+        bearerToken   : getBearerToken(state),
         deploymentName: getSelectedDeploymentName(state),
+        deploymentId  : getSelectedDeploymentId(state),
         startDate     : Moment(getSelectedDeploymentStartDate(state)),
         endDate       : Moment(getSelectedDeploymentEndDate(state))
 

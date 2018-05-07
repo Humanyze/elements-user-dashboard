@@ -83,12 +83,18 @@ export default {
     'ImportParticipantDataModal__file': {
         [EN]: 'File'
     },
-
+    'ImportParticipantDataModal__validate': {
+        [EN]: 'Validate'
+    },
+    'ImportParticipantDataModal__upload': {
+        [EN]: 'Upload'
+    },
     'FileUploadSelector__select-file': {
         [EN]: 'Select a file'
     },
     'DateSelector__select-date': {
         [EN]: 'Select a date'
-    }
+    },
+
 
 };
