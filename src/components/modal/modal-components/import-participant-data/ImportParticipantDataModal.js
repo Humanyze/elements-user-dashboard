@@ -11,12 +11,11 @@ import './import-participant-data-modal.scss';
 import 'Src/Global.scss';
 
 import { getCurrentTranslations } from 'Redux/language/languageReducer';
-import { getSelectedDeploymentName, getSelectedDeploymentStartDate } from 'Redux/deployment/deploymentReducer';
+import { getSelectedDeploymentName, getSelectedDeploymentStartDate, getSelectedDeploymentEndDate } from 'Redux/deployment/deploymentReducer';
 import DateSelector from 'Common/date-selector/dateSelector';
 import FileUploadSelector from 'Common/file-upload-selector/fileUploadSelector';
 import ActionButton from './action-button/actionButton';
 import ImportWizard from 'Src/components/common/import-wizard/importWizard';
-import { getSelectedDeploymentEndDate } from 'Src/redux/deployment/deploymentReducer';
 
 
 const acceptedFileTypes = [
