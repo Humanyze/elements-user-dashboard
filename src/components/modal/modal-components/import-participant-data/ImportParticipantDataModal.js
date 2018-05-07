@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose, withHandlers, withPropsOnChange, withState } from 'recompose';
 import MaterialIcon from 'material-icons-react';
+import Moment from 'moment';
+
 
 import LightBoxWrapper from '../LightBoxWrapper/LightBoxWrapper';
 
@@ -9,11 +11,12 @@ import './import-participant-data-modal.scss';
 import 'Src/Global.scss';
 
 import { getCurrentTranslations } from 'Redux/language/languageReducer';
-import { getSelectedDeploymentName } from 'Redux/deployment/deploymentReducer';
+import { getSelectedDeploymentName, getSelectedDeploymentStartDate } from 'Redux/deployment/deploymentReducer';
 import DateSelector from 'Common/date-selector/dateSelector';
 import FileUploadSelector from 'Common/file-upload-selector/fileUploadSelector';
 import ActionButton from './action-button/actionButton';
 import ImportWizard from 'Src/components/common/import-wizard/importWizard';
+import { getSelectedDeploymentEndDate } from 'Src/redux/deployment/deploymentReducer';
 
 
 const acceptedFileTypes = [
@@ -43,11 +46,12 @@ const enhance = compose(
 );
 
 
-
-
-export const ImportEquipmentDataModalPure = ({ deploymentName, translations, closeModal,
-                                              dataFile, fileIsSelected, onFileChange,
-                                              effectiveDate, onDateChange }) => {
+export const ImportEquipmentDataModalPure = ({
+                                                 deploymentName, translations, closeModal,
+                                                 dataFile, fileIsSelected, onFileChange,
+                                                 startDate, endDate,
+                                                 effectiveDate, onDateChange
+                                             }) => {
 
     const fileUploadProps = {
         fileName: dataFile && dataFile.name,
@@ -57,7 +61,9 @@ export const ImportEquipmentDataModalPure = ({ deploymentName, translations, clo
     };
 
     const dateSelectorProps = {
-        date: effectiveDate,
+        date    : effectiveDate,
+        startDate,
+        endDate,
         onChange: onDateChange
     };
 
@@ -134,6 +140,8 @@ const ImportEquipmentDataModal = connect(
     state => ({
         translations  : getCurrentTranslations(state),
         deploymentName: getSelectedDeploymentName(state),
+        startDate     : Moment(getSelectedDeploymentStartDate(state)),
+        endDate       : Moment(getSelectedDeploymentEndDate(state))
 
     }),
 )(enhance(ImportEquipmentDataModalPure));

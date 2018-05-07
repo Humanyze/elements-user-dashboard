@@ -15,9 +15,17 @@ const getSelectedDeploymentName = createSelector(
 
 const getSelectedDeploymentId = createSelector(
     getSelectedDeployment,
-    (selectedDeployment) => {
-        return selectedDeployment && selectedDeployment.id;
-    }
+    (selectedDeployment) => selectedDeployment && selectedDeployment.id
+);
+
+const getSelectedDeploymentStartDate = createSelector(
+  getSelectedDeployment,
+    (selectedDeployment) => selectedDeployment && ( selectedDeployment.start_date || new Date())
+);
+
+const getSelectedDeploymentEndDate = createSelector(
+    getSelectedDeployment,
+    (selectedDeployment) => selectedDeployment && ( selectedDeployment.end_date || new Date())
 );
 
 const getAllDeployments = (state) => Object.values(state.deployment.deploymentsById);
@@ -67,5 +75,7 @@ export {
     getSelectedDeploymentName,
     getSelectedDeploymentId,
     getAllDeployments,
+    getSelectedDeploymentStartDate,
+    getSelectedDeploymentEndDate,
     initialState
 };
