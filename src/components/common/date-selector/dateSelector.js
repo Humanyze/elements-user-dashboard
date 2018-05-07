@@ -9,6 +9,7 @@ import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 
 import './date-selector.scss';
 
+
 // must be class for ref usage by DatePicker
 class DateToggleButton extends React.Component {
 
@@ -43,12 +44,16 @@ export class DateSelectorPure extends React.Component {
     }
 
     render() {
-        const { translations, date, onChange } = this.props;
+        const { translations, date, startDate, endDate, onChange } = this.props;
+
         return (
             <div className='DateSelector'>
                 <div className='DateSelector__dropdown'>
                     <DatePicker onSelect={onChange}
                                 selected={date}
+                                minDate={startDate}
+                                maxDate={endDate}
+                                openToDate={endDate}
                                 dateFormat={'MMM D, YYYY'}
                                 useWeekdaysShort={true}
                                 ref={datepicker => this.datepicker = datepicker}
