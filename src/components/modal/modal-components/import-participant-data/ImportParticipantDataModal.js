@@ -16,6 +16,7 @@ import {
     getSelectedDeploymentStartDate,
     getSelectedDeploymentEndDate, getSelectedDeploymentId
 } from 'Redux/deployment/deploymentReducer';
+
 import DateSelector from 'Common/date-selector/dateSelector';
 import FileUploadSelector from 'Common/file-upload-selector/fileUploadSelector';
 import ImportParticipantActionBlock from './import-participant-action-block/importParticipantActionBlock';
@@ -32,36 +33,24 @@ const acceptedFileTypes = [
     'application/vnd.ms-excel.template.macroEnabled.12'
 ];
 
-const ValidationError = ({ }) => {
+const ValidationError = ({ text, buttonText, onDownloadClicked }) => {
     return (
-        <div>Hello world</div>
-    )
-};
-
-
-const ERRORS = {
-    VALIDATE_ERROR: {
-        type: 'VALIDATE_ERROR',
-        component: ValidationError
-    },
-
+        <div className='ValidationError'>{text}<span className='ValidationError__download-text'
+                                                     onClick={onDownloadClicked}>{buttonText}</span></div>
+    );
 };
 
 const onFileChange = ({ setDataFile }) => ({ target }) => target.files[0] && setDataFile(target.files[0]);
 
 const onDateChange = ({ setEffectiveDate }) => (date) => setEffectiveDate(date);
 
-const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile, setErrorLog, setErrorState }) => async (e) => {
+const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile, setIsValidating, setErrorLog, setParticipantErrorState, setTeamErrorState, setGenericError }) => async (e) => {
+
     try {
-        const res = await AxiosRequestService.datasets.validateParticipantDataset(deploymentId, dataFile, bearerToken);
+        setIsValidating(true);
+        const { data } = await AxiosRequestService.datasets.validateParticipantDataset(deploymentId, dataFile, bearerToken);
 
-        let {
-            data
-        } = res;
-
-        console.log(data);
-
-        let {
+        const {
             'manager_teams_mapped_errors': teamErrors,
             'participants_errors'        : participantErrors,
             'participants_to_create'     : participantsToCreate,
@@ -73,35 +62,58 @@ const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile
 
         const isFileValid = hasNoTeamErrors && hasNoParticipantErrors;
         if (isFileValid) {
-            console.log('valid file');
+            setParticipantErrorState({});
+            setTeamErrorState({});
+            setGenericError(null);
         } else {
-            console.log('invalid', data);
-
-            const log = generateErrorLog(deploymentName, participantErrors, 'Participants');
-            setErrorLog(log);
-            setErrorState({
-                ...ERRORS.VALIDATE_ERROR
+            !!participantErrors.count && setParticipantErrorState({
+                deploymentName,
+                participantErrors,
             });
-            log.save('error.pdf'); // todo: remove
 
+            !!teamErrors.count && setTeamErrorState({
+                deploymentName,
+                teamErrors
+            });
         }
 
     } catch (e) {
+        const { response } = e;
+        const message = response.data && response.data.message;
         // 4xx Error Paths
-        console.warn(e);
+        console.error(response);
+        setGenericError(message);
     }
+    setIsValidating(false);
 };
 
 const onUploadClicked = ({}) => e => {
 
 };
 
+const onParticipantLogDownloadClicked = ({ participantErrorState: { deploymentName, participantErrors } }) => () => {
+    const log = generateErrorLog(deploymentName, participantErrors, 'Participants');
+    log.save('errors-Participants.pdf');
+};
+
+
+const onTeamLogDownloadClicked = ({ teamErrorState: { deploymentName, teamErrors } }) => () => {
+    const log = generateErrorLog(deploymentName, teamErrors, 'Team Managed');
+    log.save('errors-Team Managed.pdf');
+};
+
 
 const enhance = compose(
     withState('dataFile', 'setDataFile', null),
-    withState('errorState', 'setErrorState', {}),
-    withState('errorLog', 'setErrorLog', null),
     withState('effectiveDate', 'setEffectiveDate', null),
+
+    withState('isValidating', 'setIsValidating', false),
+    withState('isValid', 'setIsValid', false),
+
+    withState('participantErrorState', 'setParticipantErrorState', {}),
+    withState('teamErrorState', 'setTeamErrorState', {}),
+    withState('genericError', 'setGenericError', null),
+
     withPropsOnChange(
         ['dataFile'],
         ({ dataFile }) => ({
@@ -116,18 +128,28 @@ const enhance = compose(
         onFileChange,
         onDateChange,
         onValidateClicked,
-        onUploadClicked
+        onUploadClicked,
+        onParticipantLogDownloadClicked,
+        onTeamLogDownloadClicked
     })
 );
 
 
 export const ImportEquipmentDataModalPure = ({
-                                                 deploymentName, translations, closeModal,
+                                                 translations, closeModal,
+                                                 deploymentName,
+
                                                  dataFile, fileIsSelected, onFileChange,
+
                                                  startDate, endDate,
-                                                 fileState, errorState,
                                                  effectiveDate, onDateChange,
-                                                 onValidateClicked, onUploadClicked
+
+                                                 fileState, isValidating,
+                                                 participantErrorState, onParticipantLogDownloadClicked,
+                                                 teamErrorState, onTeamLogDownloadClicked,
+                                                 genericError,
+
+                                                 onValidateClicked, onUploadClicked,
                                              }) => {
 
     const fileUploadProps = {
@@ -146,7 +168,7 @@ export const ImportEquipmentDataModalPure = ({
 
     return (
         <LightBoxWrapper>
-            <div className='ImportParticipantDataModal'>
+            <div className={`ImportParticipantDataModal ${'fdsa'}`}>
 
                 {/* STATIC HEADER */}
                 <div className='ImportParticipantDataModal__header-section'>
@@ -178,14 +200,27 @@ export const ImportEquipmentDataModalPure = ({
                     {/* PROGRESS INDICATORS */}
 
                     <div className='ImportParticipantDataModal__import-wizard-wrapper'>
-                        <ImportWizard fileState={fileState}/>
+                        <ImportWizard fileState={fileState} validateState={isValidating ? 'running': 'ready'} importState={fileState}/>
                     </div>
 
 
                     {/* FEEDBACK MESSAGES */}
 
                     <div className='ImportParticipantDataModal__feedback-block'>
-                        {errorState.component && errorState.component()}
+                        {/* PARTICIPANT ERROR MESSAGE */}
+                        {participantErrorState.deploymentName &&
+                        <ValidationError text={translations['ImportParticipantDataModal__participant-error']}
+                                         buttonText={translations['ImportParticipantDataModal__view-errors']}
+                                         onDownloadClicked={onParticipantLogDownloadClicked}/>}
+
+                        {/* TEAM ERROR MESSAGE */}
+                        {teamErrorState.deploymentName &&
+                        <ValidationError text={translations['ImportParticipantDataModal__team-error']}
+                                         buttonText={translations['ImportParticipantDataModal__view-errors']}
+                                         onDownloadClicked={onTeamLogDownloadClicked}/>}
+
+                        {/* 4XX Errors */}
+                        {genericError && <ValidationError text={genericError}/>}
                     </div>
 
                     {/* ACTION BUTTONS */}

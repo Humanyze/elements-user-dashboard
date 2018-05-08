@@ -32,6 +32,7 @@ const ImportParticipantActionBlockPure = ({ translations,
 
             {validateVisible &&
             <ActionButton text={translations['ImportParticipantDataModal__validate']}
+                          theme={'blue'}
                           onClick={onValidateClicked}
                           disabled={validateDisabled}/>
             }

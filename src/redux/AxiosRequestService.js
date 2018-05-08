@@ -30,7 +30,6 @@ export const getRequestWithAuth = async (url, bearerToken) => {
 };
 
 export const postWithAuth = async (url, data, bearerToken, headers = {}) => {
-    console.error(data);
     return await axios.post(url,
         data,
         {

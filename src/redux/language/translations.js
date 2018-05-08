@@ -89,6 +89,15 @@ export default {
     'ImportParticipantDataModal__upload': {
         [EN]: 'Upload'
     },
+    'ImportParticipantDataModal__participant-error': {
+        [EN]: 'Errors in "Participants" sheet.'
+    },
+    'ImportParticipantDataModal__team-error': {
+        [EN]: 'Errors in "Team Managed" sheet.'
+    },
+    'ImportParticipantDataModal__view-errors': {
+        [EN]: 'View Errors'
+    },
     'FileUploadSelector__select-file': {
         [EN]: 'Select a file'
     },
