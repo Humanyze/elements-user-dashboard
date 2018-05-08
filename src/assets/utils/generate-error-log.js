@@ -40,7 +40,6 @@ function parseErrors(errorsHash) {
         rowErrors.forEach((error) => errors.push([rowNumber, error]));
 
     }
-    console.error(errors);
 
     return errors.sort((errorA, errorB) => {
         const [rowA] = errorA;

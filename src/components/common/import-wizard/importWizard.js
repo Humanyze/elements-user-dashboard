@@ -47,7 +47,7 @@ const importStates = {
     'failed'   : 'Import'
 };
 
-
+// TODO: make above states the keys for
 const ImportWizardPure = ({ translations, fileState = 'ready', validateState = 'ready', importState = 'ready' }) => {
     return (
         <div className='import-wizard-wrapper'>

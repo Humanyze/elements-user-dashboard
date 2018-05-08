@@ -4,12 +4,18 @@ import { compose, withHandlers, withPropsOnChange, withState } from 'recompose';
 import MaterialIcon from 'material-icons-react';
 import Moment from 'moment';
 
-
-import LightBoxWrapper from '../LightBoxWrapper/LightBoxWrapper';
+import generateErrorLog from 'Utils/generate-error-log';
 
 import './import-participant-data-modal.scss';
 import 'Src/Global.scss';
 
+import LightBoxWrapper from '../LightBoxWrapper/LightBoxWrapper';
+
+
+import AxiosRequestService from 'Src/redux/AxiosRequestService';
+
+
+import { getBearerToken } from 'Src/redux/auth/authReducer';
 import { getCurrentTranslations } from 'Redux/language/languageReducer';
 import {
     getSelectedDeploymentName,
@@ -19,11 +25,8 @@ import {
 
 import DateSelector from 'Common/date-selector/dateSelector';
 import FileUploadSelector from 'Common/file-upload-selector/fileUploadSelector';
-import ImportParticipantActionBlock from './import-participant-action-block/importParticipantActionBlock';
 import ImportWizard from 'Src/components/common/import-wizard/importWizard';
-import AxiosRequestService from 'Src/redux/AxiosRequestService';
-import { getBearerToken } from 'Src/redux/auth/authReducer';
-import generateErrorLog from 'Utils/generate-error-log';
+import ImportParticipantActionBlock from './import-participant-action-block/importParticipantActionBlock';
 
 
 const acceptedFileTypes = [
@@ -33,21 +36,105 @@ const acceptedFileTypes = [
     'application/vnd.ms-excel.template.macroEnabled.12'
 ];
 
-const ValidationError = ({ text, buttonText, onDownloadClicked }) => {
-    return (
-        <div className='ValidationError'>{text}<span className='ValidationError__download-text'
-                                                     onClick={onDownloadClicked}>{buttonText}</span></div>
-    );
+
+const stateTypes = {
+    SELECTING       : 'SELECTING',
+    VALIDATING      : 'VALIDATING',
+    VALID           : 'VALID',
+    VALIDATION_ERROR: 'VALIDATION_ERROR',
+    IMPORTING       : 'IMPORTING',
+    IMPORT_TOO_LONG : 'IMPORT_TOO_LONG',
+    IMPORT_ERROR    : 'IMPORT_ERROR',
+    IMPORT_SUCCESS  : 'IMPORT_SUCCESS'
 };
 
-const onFileChange = ({ setDataFile }) => ({ target }) => target.files[0] && setDataFile(target.files[0]);
+const batchStateUpdater = (props) => (updateConfig) => {
+    console.warn(updateConfig);
+    switch (updateConfig.type) {
+        case stateTypes.SELECTING:
+            props.setIsValidating(false);
+            props.setIsValid(false);
+            props.setParticipantError(null);
+            props.setTeamError(null);
+            props.setGenericError(null);
+            props.setSuccessInfo(null);
+            props.setIsUploading(false);
+
+            // updates
+            updateConfig.dataFile && props.setDataFile(updateConfig.dataFile);
+            updateConfig.date && props.setEffectiveDate(updateConfig.date);
+            break;
+        case stateTypes.VALIDATING:
+            // updates
+            props.setIsValidating(true);
+
+            props.setIsValid(false);
+            props.setParticipantError(null);
+            props.setTeamError(null);
+            props.setGenericError(null);
+            props.setSuccessInfo(null);
+            props.setIsUploading(false);
+            break;
+        case stateTypes.VALID:
+            props.setIsValidating(false);
+
+            // updates
+            props.setIsValid(true);
+            props.setSuccessInfo({
+                participantsToCreate: updateConfig.participantsToCreate,
+                participantsToUpdate: updateConfig.participantsToUpdate
+            });
+
+            props.setParticipantError(null);
+            props.setTeamError(null);
+            props.setGenericError(null);
+
+            props.setIsUploading(false);
+            break;
+        case stateTypes.VALIDATION_ERROR:
+            props.setIsValidating(false);
+            props.setIsValid(false);
+
+            updateConfig.participantError && props.setParticipantError(updateConfig.participantError);
+            updateConfig.teamError && props.setTeamError(updateConfig.teamError);
+            updateConfig.genericError && props.setGenericError(updateConfig.genericError);
+
+            props.setSuccessInfo(null);
+            props.setIsUploading(false);
+            break;
+        case stateTypes.IMPORTING:
+            props.setIsUploading(true);
+            break;
+        case stateTypes.IMPORT_TOO_LONG:
+            break;
+        case stateTypes.IMPORT_ERROR:
+            break;
+        case stateTypes.IMPORT_SUCCESS:
+            props.setImportComplete(true);
+            break;
+        default:
+            console.log('default');
+    }
+
+};
+
+
+const onFileChange = ({ batchStateUpdater }) => ({ target }) => target.files[0] && batchStateUpdater({
+    type    : stateTypes.SELECTING,
+    dataFile: target.files[0]
+});
 
 const onDateChange = ({ setEffectiveDate }) => (date) => setEffectiveDate(date);
 
-const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile, setIsValidating, setErrorLog, setParticipantErrorState, setTeamErrorState, setGenericError }) => async (e) => {
+const onValidateClicked = ({
+                               bearerToken, deploymentId, deploymentName,
+                               dataFile, batchStateUpdater
+                           }) => async (e) => {
 
     try {
-        setIsValidating(true);
+
+        batchStateUpdater({ type: stateTypes.VALIDATING });
+
         const { data } = await AxiosRequestService.datasets.validateParticipantDataset(deploymentId, dataFile, bearerToken);
 
         const {
@@ -57,47 +144,62 @@ const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile
             'participants_to_update'     : participantsToUpdate
         } = data;
 
-        const hasNoTeamErrors = !teamErrors.count;
-        const hasNoParticipantErrors = !participantErrors.count;
+        const hasTeamErrors = !!teamErrors.count;
+        const hasParticipantErrors = !!participantErrors.count;
 
-        const isFileValid = hasNoTeamErrors && hasNoParticipantErrors;
+        const isFileValid = !hasTeamErrors && !hasParticipantErrors;
+
         if (isFileValid) {
-            setParticipantErrorState({});
-            setTeamErrorState({});
-            setGenericError(null);
-        } else {
-            !!participantErrors.count && setParticipantErrorState({
-                deploymentName,
-                participantErrors,
+            batchStateUpdater({
+                type                : stateTypes.VALID,
+                participantsToCreate: participantsToCreate.length,
+                participantsToUpdate: participantsToUpdate.length
             });
-
-            !!teamErrors.count && setTeamErrorState({
-                deploymentName,
-                teamErrors
+        } else {
+            batchStateUpdater({
+                type            : stateTypes.VALIDATION_ERROR,
+                participantError: hasParticipantErrors && { deploymentName, participantErrors },
+                teamError       : hasTeamErrors && { deploymentName, teamErrors }
             });
         }
 
     } catch (e) {
+        console.error(e);
         const { response } = e;
-        const message = response.data && response.data.message;
-        // 4xx Error Paths
-        console.error(response);
-        setGenericError(message);
+        const message = (response && response.data && response.data.message) || 'TODO ADD GENERIC MESSAGE';
+
+        batchStateUpdater({
+            type        : stateTypes.VALIDATION_ERROR,
+            genericError: message
+        });
     }
-    setIsValidating(false);
 };
 
-const onUploadClicked = ({}) => e => {
+const onUploadClicked = ({ batchStateUpdater, deploymentId, dataFile, effectiveDate, bearerToken }) => async () => {
+    try {
+        batchStateUpdater({ type: stateTypes.IMPORTING });
+
+        const sanitizedEffectiveDate = Moment(effectiveDate).format('YYYY-MM-DD');
+        const effectiveDateISO = `${sanitizedEffectiveDate}T00:00:00`;
+
+        const res = await AxiosRequestService.datasets.uploadParticipantDataset(deploymentId, dataFile, effectiveDateISO, bearerToken);
+
+        batchStateUpdater({
+            type: stateTypes.IMPORT_SUCCESS,
+        });
+
+        console.error(res);
+    } catch (e) {
+        batchStateUpdater({ type: stateTypes.IMPORT_ERROR });
+    }
 
 };
 
-const onParticipantLogDownloadClicked = ({ participantErrorState: { deploymentName, participantErrors } }) => () => {
+const onParticipantLogDownloadClicked = ({ participantError: { deploymentName, participantErrors } }) => () => {
     const log = generateErrorLog(deploymentName, participantErrors, 'Participants');
     log.save('errors-Participants.pdf');
 };
-
-
-const onTeamLogDownloadClicked = ({ teamErrorState: { deploymentName, teamErrors } }) => () => {
+const onTeamLogDownloadClicked = ({ teamError: { deploymentName, teamErrors } }) => () => {
     const log = generateErrorLog(deploymentName, teamErrors, 'Team Managed');
     log.save('errors-Team Managed.pdf');
 };
@@ -110,9 +212,15 @@ const enhance = compose(
     withState('isValidating', 'setIsValidating', false),
     withState('isValid', 'setIsValid', false),
 
-    withState('participantErrorState', 'setParticipantErrorState', {}),
-    withState('teamErrorState', 'setTeamErrorState', {}),
+    withState('successInfo', 'setSuccessInfo', null),
+
+    withState('participantError', 'setParticipantError', null),
+    withState('teamError', 'setTeamError', null),
     withState('genericError', 'setGenericError', null),
+    withState('isUploading', 'setIsUploading', false),
+    withState('importError', 'setImportError', null),
+    withState('importComplete', 'setImportComplete', false),
+    withState('requestUUID', 'setRequestUUID', null),
 
     withPropsOnChange(
         ['dataFile'],
@@ -125,13 +233,16 @@ const enhance = compose(
         ({ fileIsSelected, effectiveDate }) => ({ fileState: ((fileIsSelected && effectiveDate) ? 'succeeded' : 'ready') })
     ),
     withHandlers({
+        batchStateUpdater
+    }),
+    withHandlers({
         onFileChange,
         onDateChange,
         onValidateClicked,
         onUploadClicked,
         onParticipantLogDownloadClicked,
-        onTeamLogDownloadClicked
-    })
+        onTeamLogDownloadClicked,
+    }),
 );
 
 
@@ -144,10 +255,10 @@ export const ImportEquipmentDataModalPure = ({
                                                  startDate, endDate,
                                                  effectiveDate, onDateChange,
 
-                                                 fileState, isValidating,
-                                                 participantErrorState, onParticipantLogDownloadClicked,
-                                                 teamErrorState, onTeamLogDownloadClicked,
-                                                 genericError,
+                                                 fileState, isValidating, successInfo,
+                                                 participantError, onParticipantLogDownloadClicked,
+                                                 teamError, onTeamLogDownloadClicked,
+                                                 genericError, isValid, importComplete,
 
                                                  onValidateClicked, onUploadClicked,
                                              }) => {
@@ -161,10 +272,11 @@ export const ImportEquipmentDataModalPure = ({
 
     const dateSelectorProps = {
         date    : effectiveDate,
+        onChange: onDateChange,
         startDate,
-        endDate,
-        onChange: onDateChange
+        endDate
     };
+    console.log('rendering');
 
     return (
         <LightBoxWrapper>
@@ -200,7 +312,9 @@ export const ImportEquipmentDataModalPure = ({
                     {/* PROGRESS INDICATORS */}
 
                     <div className='ImportParticipantDataModal__import-wizard-wrapper'>
-                        <ImportWizard fileState={fileState} validateState={isValidating ? 'running': 'ready'} importState={fileState}/>
+                        <ImportWizard fileState={fileState}
+                                      validateState={isValid? 'succeeded': isValidating ? 'running' : 'ready'}
+                                      importState={'ready'}/>
                     </div>
 
 
@@ -208,26 +322,31 @@ export const ImportEquipmentDataModalPure = ({
 
                     <div className='ImportParticipantDataModal__feedback-block'>
                         {/* PARTICIPANT ERROR MESSAGE */}
-                        {participantErrorState.deploymentName &&
+                        {participantError &&
                         <ValidationError text={translations['ImportParticipantDataModal__participant-error']}
                                          buttonText={translations['ImportParticipantDataModal__view-errors']}
                                          onDownloadClicked={onParticipantLogDownloadClicked}/>}
 
                         {/* TEAM ERROR MESSAGE */}
-                        {teamErrorState.deploymentName &&
+                        {teamError &&
                         <ValidationError text={translations['ImportParticipantDataModal__team-error']}
                                          buttonText={translations['ImportParticipantDataModal__view-errors']}
                                          onDownloadClicked={onTeamLogDownloadClicked}/>}
 
                         {/* 4XX Errors */}
                         {genericError && <ValidationError text={genericError}/>}
+
+                        {/* SUCCESS MESSAGE */}
+                        {!genericError && !teamError && !participantError && successInfo &&
+                        <ValidationSuccessMessage translations={translations} {...successInfo}/>
+                        }
                     </div>
 
                     {/* ACTION BUTTONS */}
                     <ImportParticipantActionBlock onCloseClicked={closeModal}
                                                   onValidateClicked={onValidateClicked}
                                                   onUploadClicked={onUploadClicked}
-                                                  fileState={fileState}/>
+                                                  fileState={fileState} isValid={isValid} importComplete={importComplete}/>
 
                 </div>
 
@@ -250,11 +369,27 @@ const ImportEquipmentDataModal = connect(
         deploymentId  : getSelectedDeploymentId(state),
         startDate     : Moment(getSelectedDeploymentStartDate(state)),
         endDate       : Moment(getSelectedDeploymentEndDate(state))
-
     }),
 )(enhance(ImportEquipmentDataModalPure));
 
 
 export default ImportEquipmentDataModal;
+
+
+const ValidationError = ({ text, buttonText, onDownloadClicked }) => {
+    return (
+        <div className='ValidationError'>{text}<span className='ValidationError__download-text'
+                                                     onClick={onDownloadClicked}>{buttonText}</span></div>
+    );
+};
+
+const ValidationSuccessMessage = ({ translations, participantsToCreate, participantsToUpdate }) => {
+    return (
+        <div className='ValidationSuccessMessage'>
+            <div> {participantsToCreate} Participants to Create.</div>
+            <div>{participantsToUpdate} Participants to Update.</div>
+        </div>
+    );
+};
 
 

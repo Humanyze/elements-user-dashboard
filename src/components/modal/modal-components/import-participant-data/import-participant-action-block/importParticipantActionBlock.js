@@ -7,11 +7,11 @@ import { compose, withPropsOnChange } from 'recompose';
 
 const enhance = compose(
     withPropsOnChange(
-        ['fileState'],
-        ({ fileState }) => {
-            console.log(fileState);
+        ['fileState', 'isValid'],
+        ({ fileState, isValid }) => {
+            console.log(fileState, isValid);
             return ({
-                validateVisible : fileState === 'added' || true,
+                validateVisible : !isValid,
                 validateDisabled: fileState !== 'succeeded'
             });
         }
@@ -22,23 +22,23 @@ const enhance = compose(
 const ImportParticipantActionBlockPure = ({ translations,
                                               onCloseClicked, onValidateClicked, onUploadClicked,
                                               validateVisible, validateDisabled,
-                                              fileState, validateState }) => {
-    console.log(fileState);
+                                              isValid, importComplete }) => {
+    // console.log(fileState);
     return (
         <div className='ImportParticipantDataModal__action-buttons'>
 
-            {/* REPLACE WITH TRANSLATION INTERP */}
             <ActionButton text={translations['close']} onClick={onCloseClicked}/>
 
-            {validateVisible &&
+            {!isValid &&
             <ActionButton text={translations['ImportParticipantDataModal__validate']}
                           theme={'blue'}
                           onClick={onValidateClicked}
                           disabled={validateDisabled}/>
             }
 
-            {false &&
-            <ActionButton text={translations['ImportParticipantDataModal__upload']}
+            {isValid && !importComplete &&
+            <ActionButton text={translations['ImportParticipantDataModal__import']}
+                          theme={'blue'}
                           onClick={onUploadClicked}
                           disabled={false}/>}
         </div>

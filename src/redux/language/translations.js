@@ -86,8 +86,8 @@ export default {
     'ImportParticipantDataModal__validate': {
         [EN]: 'Validate'
     },
-    'ImportParticipantDataModal__upload': {
-        [EN]: 'Upload'
+    'ImportParticipantDataModal__import': {
+        [EN]: 'Import'
     },
     'ImportParticipantDataModal__participant-error': {
         [EN]: 'Errors in "Participants" sheet.'

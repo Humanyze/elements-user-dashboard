@@ -73,6 +73,15 @@ const validateParticipantDataset = async (datasetId, file, token) => {
     });
 };
 
+const uploadParticipantDataset = async (datasetId, file, effectiveDate, token) => {
+    const data = new FormData();
+    data.append('file', file);
+    data.append('effective_date', effectiveDate);
+    return await postWithAuth(`/api/v1/dataset/${datasetId}/import_participants`, data, token, {
+        'Content-Type': 'multipart/form-data'
+    });
+};
+
 
 // NOTE: Not actual service, object containing api calls in organized layout
 const AxiosRequestService = {
@@ -91,7 +100,8 @@ const AxiosRequestService = {
     datasets    : {
         getDatasetById,
         getExportedParticipantsByDatasetId,
-        validateParticipantDataset
+        validateParticipantDataset,
+        uploadParticipantDataset
     }
 };
 export default AxiosRequestService;
