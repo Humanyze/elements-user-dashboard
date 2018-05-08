@@ -314,7 +314,7 @@ export const ImportEquipmentDataModalPure = ({
                     <div className='ImportParticipantDataModal__import-wizard-wrapper'>
                         <ImportWizard fileState={fileState}
                                       validateState={isValid? 'succeeded': isValidating ? 'running' : 'ready'}
-                                      importState={'ready'}/>
+                                      importState={importComplete ? 'succeeded': 'ready'}/>
                     </div>
 
 
