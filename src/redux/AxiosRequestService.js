@@ -1,4 +1,5 @@
 import axios from 'axios/index';
+import { parseDataSetsFromRoles } from 'Src/redux/userData/user/userResponseMapper';
 
 export const postRequest = async (url, data) => await axios.post(url,
     { ...data },
@@ -51,14 +52,20 @@ export const postWithAuth = async (url, data, bearerToken, headers = {}) => {
 const login = ({ username, password }) => postRequest('/api/v1/login', { username, password });
 const logout = () => postRequest('/api/v1/logout');
 
+
+
 // USER ENDPOINTS
 const getUserById = async (id, token) => await getRequestWithAuth(`/api/v1/user/${id}/`, token);
+
+
 
 
 // PARTICIPANT(S) ENDPOINTS
 const getParticipantDataById = async (id, token) => await getRequestWithAuth(`/api/v1/participant/?user=${id}`, token);
 const getParticipantsByDatasetId = async (datasetId, { perPage = 20, offset = 0 }, token) => await getRequestWithAuth(`/api/v2/participants?dataset_id=${datasetId}&limit=${perPage}&offset=${offset}`, token);
 const getAllParticipantsByDatasetId = async (datasetId, token) => await getRequestWithAuth(`/api/v2/participants?dataset_id=${datasetId}`, token);
+
+
 
 
 // DATASET ENDPOINTS
@@ -82,6 +89,9 @@ const uploadParticipantDataset = async (datasetId, file, effectiveDate, token) =
     });
 };
 
+const pollParticipantImportStatus = async (datasetId, uuid, token) => await getRequestWithAuth(`/api/v1/dataset/${datasetId}/import_participants/status?uuid=${uuid}`, token);
+const cancelParticipantImport = async (datasetId, uuid, token) => await postWithAuth(`/api/v1/dataset/${datasetId}/import_participants/cancel`, { uuid: uuid }, token);
+
 
 // NOTE: Not actual service, object containing api calls in organized layout
 const AxiosRequestService = {
@@ -95,13 +105,15 @@ const AxiosRequestService = {
     participants: {
         getParticipantDataById,
         getParticipantsByDatasetId,
-        getAllParticipantsByDatasetId
+        getAllParticipantsByDatasetId,
+        cancelParticipantImport
     },
     datasets    : {
         getDatasetById,
         getExportedParticipantsByDatasetId,
         validateParticipantDataset,
-        uploadParticipantDataset
+        uploadParticipantDataset,
+        pollParticipantImportStatus
     }
 };
 export default AxiosRequestService;

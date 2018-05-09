@@ -58,7 +58,7 @@ const batchStateUpdater = (props) => (updateConfig) => {
             props.setTeamError(null);
             props.setGenericError(null);
             props.setSuccessInfo(null);
-            props.setIsUploading(false);
+            props.setIsImporting(false);
 
             // updates
             updateConfig.dataFile && props.setDataFile(updateConfig.dataFile);
@@ -73,7 +73,7 @@ const batchStateUpdater = (props) => (updateConfig) => {
             props.setTeamError(null);
             props.setGenericError(null);
             props.setSuccessInfo(null);
-            props.setIsUploading(false);
+            props.setIsImporting(false);
             break;
         case stateTypes.VALID:
             props.setIsValidating(false);
@@ -89,7 +89,7 @@ const batchStateUpdater = (props) => (updateConfig) => {
             props.setTeamError(null);
             props.setGenericError(null);
 
-            props.setIsUploading(false);
+            props.setIsImporting(false);
             break;
         case stateTypes.VALIDATION_ERROR:
             props.setIsValidating(false);
@@ -100,17 +100,19 @@ const batchStateUpdater = (props) => (updateConfig) => {
             updateConfig.genericError && props.setGenericError(updateConfig.genericError);
 
             props.setSuccessInfo(null);
-            props.setIsUploading(false);
+            props.setIsImporting(false);
             break;
         case stateTypes.IMPORTING:
-            props.setIsUploading(true);
+            props.setIsImporting(true);
             break;
         case stateTypes.IMPORT_TOO_LONG:
             break;
         case stateTypes.IMPORT_ERROR:
+            props.setIsImporting(false);
             break;
         case stateTypes.IMPORT_SUCCESS:
             props.setImportComplete(true);
+            props.setIsImporting(false);
             break;
         default:
             console.log('default');
@@ -175,7 +177,7 @@ const onValidateClicked = ({
     }
 };
 
-const onUploadClicked = ({ batchStateUpdater, deploymentId, dataFile, effectiveDate, bearerToken }) => async () => {
+const onUploadClicked = ({ batchStateUpdater, monitorImportStatus,setRequestUUID,  deploymentId, dataFile, effectiveDate, bearerToken }) => async () => {
     try {
         batchStateUpdater({ type: stateTypes.IMPORTING });
 
@@ -183,17 +185,43 @@ const onUploadClicked = ({ batchStateUpdater, deploymentId, dataFile, effectiveD
         const effectiveDateISO = `${sanitizedEffectiveDate}T00:00:00`;
 
         const res = await AxiosRequestService.datasets.uploadParticipantDataset(deploymentId, dataFile, effectiveDateISO, bearerToken);
-
-        batchStateUpdater({
-            type: stateTypes.IMPORT_SUCCESS,
-        });
-
-        console.error(res);
+        await setRequestUUID(res.data.task.uuid);
+        monitorImportStatus(res.data.task.uuid);
     } catch (e) {
+        console.error(e);
         batchStateUpdater({ type: stateTypes.IMPORT_ERROR });
     }
 
 };
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const monitorImportStatus =  ({ batchStateUpdater, deploymentId, bearerToken }) => async (requestUUID) => {
+    let result = false;
+    while (!result) {
+
+
+        const res = await AxiosRequestService.datasets.pollParticipantImportStatus(deploymentId, requestUUID, bearerToken);
+
+        console.log('monitoring', res.data.state);
+        if (res.data.state === 'SUCCESS') {
+
+            batchStateUpdater({
+                type: stateTypes.IMPORT_SUCCESS,
+            });
+            result = true;
+        } else {
+            await delay(1000);
+        }
+    }
+};
+
+
+
+const cancelImportClicked = ({ }) => async () => {
+
+};
+
 
 const onParticipantLogDownloadClicked = ({ participantError: { deploymentName, participantErrors } }) => () => {
     const log = generateErrorLog(deploymentName, participantErrors, 'Participants');
@@ -217,13 +245,13 @@ const enhance = compose(
     withState('participantError', 'setParticipantError', null),
     withState('teamError', 'setTeamError', null),
     withState('genericError', 'setGenericError', null),
-    withState('isUploading', 'setIsUploading', false),
+    withState('isImporting', 'setIsImporting', false),
     withState('importError', 'setImportError', null),
     withState('importComplete', 'setImportComplete', false),
     withState('requestUUID', 'setRequestUUID', null),
 
     withPropsOnChange(
-        ['dataFile'],
+        ['dataFile', 'is'],
         ({ dataFile }) => ({
             fileIsSelected: !!dataFile
         })
@@ -234,6 +262,9 @@ const enhance = compose(
     ),
     withHandlers({
         batchStateUpdater
+    }),
+    withHandlers({
+        monitorImportStatus
     }),
     withHandlers({
         onFileChange,
