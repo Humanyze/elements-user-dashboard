@@ -9,7 +9,6 @@ const enhance = compose(
     withPropsOnChange(
         ['fileState', 'isValid'],
         ({ fileState, isValid }) => {
-            console.log(fileState, isValid);
             return ({
                 validateVisible : !isValid,
                 validateDisabled: fileState !== 'succeeded'
@@ -23,7 +22,6 @@ const ImportParticipantActionBlockPure = ({ translations,
                                               onCloseClicked, onValidateClicked, onUploadClicked,
                                               validateVisible, validateDisabled,
                                               isValid, importComplete }) => {
-    // console.log(fileState);
     return (
         <div className='ImportParticipantDataModal__action-buttons'>
 

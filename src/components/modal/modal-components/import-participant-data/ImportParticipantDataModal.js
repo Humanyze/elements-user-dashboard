@@ -49,7 +49,7 @@ const stateTypes = {
 };
 
 const batchStateUpdater = (props) => (updateConfig) => {
-    console.warn(updateConfig);
+    console.warn('fakeStateMachine', updateConfig);
     switch (updateConfig.type) {
         case stateTypes.SELECTING:
             props.setIsValidating(false);
@@ -201,16 +201,16 @@ const onUploadClicked = ({ batchStateUpdater, monitorImportStatus, setRequestUUI
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const monitorImportStatus = ({ batchStateUpdater, deploymentId, bearerToken }) => async (requestUUID) => {
-    const TOO_LONG_LIMIT_SECONDS = 1;
+    const TOO_LONG_LIMIT_SECONDS = 60;
     const startMoment = Moment();
 
     let result = false;
+    
     while (!result) {
-
-
         const res = await AxiosRequestService.datasets.pollParticipantImportStatus(deploymentId, requestUUID, bearerToken);
 
         console.log('monitoring', res.data.state);
+
         if (res.data.state === 'SUCCESS') {
 
             batchStateUpdater({
@@ -225,10 +225,7 @@ const monitorImportStatus = ({ batchStateUpdater, deploymentId, bearerToken }) =
             });
             result = true;
         } else {
-            await delay(2001);
-            const diff = Moment().diff(startMoment, 'seconds')
-            console.error(diff);
-            if (diff > TOO_LONG_LIMIT_SECONDS) {
+            if (Moment().diff(startMoment, 'seconds') > TOO_LONG_LIMIT_SECONDS) {
                 batchStateUpdater({
                     type: stateTypes.IMPORT_TOO_LONG,
                 });
@@ -333,8 +330,6 @@ export const ImportEquipmentDataModalPure = ({
         startDate,
         endDate
     };
-
-    console.log('rendering');
 
     return (
         <LightBoxWrapper>
