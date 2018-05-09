@@ -12,6 +12,13 @@
   &.ImportParticipantDataModal__requesting-validation {
 
   }
+
+  &.validating, &.importing {
+    .FileUploadSelector, .DateSelector, .ActionButton__validate, .ActionButton__import  {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+  }
 }
 
 
@@ -26,6 +33,8 @@
     text-transform: uppercase;
     font-size: 22px;
     font-weight: 700;
+
+
   }
 
   .ImportParticipantDataModal__close-icon {

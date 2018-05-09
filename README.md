@@ -1,4 +1,4 @@
-# Humanyze React Elements Page
+# Humanyze Elements Deployment Dashboard Page (REACT)
 
 
 ## Getting Started 
@@ -133,6 +133,7 @@ Most react components, specifically presentational components, can quickly be te
 [Storybook](https://storybook.js.org/basics/introduction/) is a tool for isolated UI component feedback.  To run the storybook server, run `yarn storybook`.  Storybook has its own webpack configuration and setup files, located in `<rootDir>/.storybook`.  At the moment, we are manually copying configs for webpack, but ultimately we'll want to use a common webpack config for this situation. 
 
 This section requires some maintenance as we determine our specific use cases and systems for storybook.
+React Knobs will be very useful in implementing meaningful UI "testing" through storybook.
 
 ## Linting
 Standard eslint setup in `/.eslintrc`, any modifications should be accompanied by the proper global fix for that rule.  To run the eslint fix, run `npx eslint --fix .` and run the test suite to make sure changes were safe.
@@ -143,6 +144,7 @@ Git submodules allow for a git dependency to be specified, allowing for sharing 
 ## Things to implement/look into
 
 ### Implement
+* [Stent](https://github.com/krasimir/stent)
 * Snapshot testing
 * E2E testing
 * Submodule documentation 

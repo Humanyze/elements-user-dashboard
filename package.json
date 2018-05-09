@@ -39,6 +39,7 @@
     "js-file-download": "^0.4.1",
     "jspdf": "^1.3.5",
     "jspdf-autotable": "^2.3.2",
+    "kuker-emitters": "^6.7.4",
     "material-icons-react": "^1.0.0",
     "moment": "^2.22.1",
     "normalize-scss": "^7.0.1",

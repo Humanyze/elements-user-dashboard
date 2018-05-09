@@ -106,13 +106,17 @@ const batchStateUpdater = (props) => (updateConfig) => {
             props.setIsImporting(true);
             break;
         case stateTypes.IMPORT_TOO_LONG:
+            props.setImportTooLong(true);
             break;
         case stateTypes.IMPORT_ERROR:
             props.setIsImporting(false);
+            props.setImportTooLong(false);
             break;
         case stateTypes.IMPORT_SUCCESS:
             props.setImportComplete(true);
             props.setIsImporting(false);
+            props.setImportInfo(updateConfig.importInfo);
+            props.setImportTooLong(false);
             break;
         default:
             console.log('default');
@@ -177,7 +181,7 @@ const onValidateClicked = ({
     }
 };
 
-const onUploadClicked = ({ batchStateUpdater, monitorImportStatus,setRequestUUID,  deploymentId, dataFile, effectiveDate, bearerToken }) => async () => {
+const onUploadClicked = ({ batchStateUpdater, monitorImportStatus, setRequestUUID, deploymentId, dataFile, effectiveDate, bearerToken }) => async () => {
     try {
         batchStateUpdater({ type: stateTypes.IMPORTING });
 
@@ -196,7 +200,10 @@ const onUploadClicked = ({ batchStateUpdater, monitorImportStatus,setRequestUUID
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const monitorImportStatus =  ({ batchStateUpdater, deploymentId, bearerToken }) => async (requestUUID) => {
+const monitorImportStatus = ({ batchStateUpdater, deploymentId, bearerToken }) => async (requestUUID) => {
+    const TOO_LONG_LIMIT_SECONDS = 1;
+    const startMoment = Moment();
+
     let result = false;
     while (!result) {
 
@@ -207,19 +214,33 @@ const monitorImportStatus =  ({ batchStateUpdater, deploymentId, bearerToken }) 
         if (res.data.state === 'SUCCESS') {
 
             batchStateUpdater({
-                type: stateTypes.IMPORT_SUCCESS,
+                type      : stateTypes.IMPORT_SUCCESS,
+                importInfo: res.data.result.participants
+            });
+            result = true;
+        }
+        else if (res.data.state === 'FAILURE') {
+            batchStateUpdater({
+                type: stateTypes.IMPORT_ERROR,
             });
             result = true;
         } else {
+            await delay(2001);
+            const diff = Moment().diff(startMoment, 'seconds')
+            console.error(diff);
+            if (diff > TOO_LONG_LIMIT_SECONDS) {
+                batchStateUpdater({
+                    type: stateTypes.IMPORT_TOO_LONG,
+                });
+            }
             await delay(1000);
         }
     }
 };
 
 
-
-const cancelImportClicked = ({ }) => async () => {
-
+const cancelImportClicked = ({ deploymentId, requestUUID, bearerToken }) => async () => {
+    const res = await AxiosRequestService.datasets.cancelParticipantImport(deploymentId, requestUUID, bearerToken);
 };
 
 
@@ -246,8 +267,10 @@ const enhance = compose(
     withState('teamError', 'setTeamError', null),
     withState('genericError', 'setGenericError', null),
     withState('isImporting', 'setIsImporting', false),
+    withState('importTooLong', 'setImportTooLong', false),
     withState('importError', 'setImportError', null),
     withState('importComplete', 'setImportComplete', false),
+    withState('importInfo', 'setImportInfo', null),
     withState('requestUUID', 'setRequestUUID', null),
 
     withPropsOnChange(
@@ -273,6 +296,7 @@ const enhance = compose(
         onUploadClicked,
         onParticipantLogDownloadClicked,
         onTeamLogDownloadClicked,
+        cancelImportClicked
     }),
 );
 
@@ -282,15 +306,17 @@ export const ImportEquipmentDataModalPure = ({
                                                  deploymentName,
 
                                                  dataFile, fileIsSelected, onFileChange,
+                                                 isImporting,
 
-                                                 startDate, endDate,
+                                                 startDate, endDate, importTooLong,
                                                  effectiveDate, onDateChange,
 
                                                  fileState, isValidating, successInfo,
                                                  participantError, onParticipantLogDownloadClicked,
                                                  teamError, onTeamLogDownloadClicked,
                                                  genericError, isValid, importComplete,
-
+                                                 cancelUploadClicked,
+                                                 importInfo,
                                                  onValidateClicked, onUploadClicked,
                                              }) => {
 
@@ -307,11 +333,12 @@ export const ImportEquipmentDataModalPure = ({
         startDate,
         endDate
     };
+
     console.log('rendering');
 
     return (
         <LightBoxWrapper>
-            <div className={`ImportParticipantDataModal ${'fdsa'}`}>
+            <div className={`ImportParticipantDataModal ${isValidating && 'validating'} ${isImporting && 'importing'}`}>
 
                 {/* STATIC HEADER */}
                 <div className='ImportParticipantDataModal__header-section'>
@@ -344,8 +371,8 @@ export const ImportEquipmentDataModalPure = ({
 
                     <div className='ImportParticipantDataModal__import-wizard-wrapper'>
                         <ImportWizard fileState={fileState}
-                                      validateState={isValid? 'succeeded': isValidating ? 'running' : 'ready'}
-                                      importState={importComplete ? 'succeeded': 'ready'}/>
+                                      validateState={isValid ? 'succeeded' : isValidating ? 'running' : 'ready'}
+                                      importState={importComplete ? 'succeeded' : isImporting ? 'running' : 'ready'}/>
                     </div>
 
 
@@ -367,17 +394,25 @@ export const ImportEquipmentDataModalPure = ({
                         {/* 4XX Errors */}
                         {genericError && <ValidationError text={genericError}/>}
 
+                        {importTooLong && <ImportTooLongMessage cancelHandler={cancelUploadClicked}/>}
+
+                        {importComplete && importInfo &&
+                        <ImportSuccessMessage translations={translations} {...importInfo} />}
+
                         {/* SUCCESS MESSAGE */}
-                        {!genericError && !teamError && !participantError && successInfo &&
+                        {!genericError && !teamError && !participantError && successInfo && !importComplete &&
                         <ValidationSuccessMessage translations={translations} {...successInfo}/>
                         }
+
                     </div>
 
                     {/* ACTION BUTTONS */}
                     <ImportParticipantActionBlock onCloseClicked={closeModal}
                                                   onValidateClicked={onValidateClicked}
                                                   onUploadClicked={onUploadClicked}
-                                                  fileState={fileState} isValid={isValid} importComplete={importComplete}/>
+                                                  fileState={fileState}
+                                                  isValid={isValid}
+                                                  importComplete={importComplete}/>
 
                 </div>
 
@@ -419,6 +454,25 @@ const ValidationSuccessMessage = ({ translations, participantsToCreate, particip
         <div className='ValidationSuccessMessage'>
             <div> {participantsToCreate} Participants to Create.</div>
             <div>{participantsToUpdate} Participants to Update.</div>
+        </div>
+    );
+};
+
+const ImportSuccessMessage = ({ translations, updated, created, unchanged }) => {
+    return (
+        <div className='ValidationSuccessMessage'>
+            <div> {created} participants were created.</div>
+            <div>{updated} participants were created.</div>
+            <div>{unchanged} participants were unchanged.</div>
+        </div>
+    );
+};
+
+const ImportTooLongMessage = ({ translations, cancelHander }) => {
+    return (
+        <div className='ImportTooLongMessage'>
+            <div>Your import is taking a long time and may not complete.</div>
+            <div>Would you like to <span onClick={cancelHander}>cancel?</span></div>
         </div>
     );
 };

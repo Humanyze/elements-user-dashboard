@@ -113,7 +113,8 @@ const AxiosRequestService = {
         getExportedParticipantsByDatasetId,
         validateParticipantDataset,
         uploadParticipantDataset,
-        pollParticipantImportStatus
+        pollParticipantImportStatus,
+        cancelParticipantImport
     }
 };
 export default AxiosRequestService;

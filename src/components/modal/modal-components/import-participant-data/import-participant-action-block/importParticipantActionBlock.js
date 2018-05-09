@@ -31,14 +31,14 @@ const ImportParticipantActionBlockPure = ({ translations,
 
             {!isValid &&
             <ActionButton text={translations['ImportParticipantDataModal__validate']}
-                          theme={'blue'}
+                          theme={'blue ActionButton__validate'}
                           onClick={onValidateClicked}
                           disabled={validateDisabled}/>
             }
 
             {isValid && !importComplete &&
             <ActionButton text={translations['ImportParticipantDataModal__import']}
-                          theme={'blue'}
+                          theme={'blue ActionButton__import'}
                           onClick={onUploadClicked}
                           disabled={false}/>}
         </div>
