@@ -13,6 +13,7 @@
 
   }
 
+  // THESE ARE TO PREVENT INPUT DURING TEMP STATES
   &.validating, &.importing, &.importComplete {
     .FileUploadSelector, .DateSelector, .ActionButton__validate, .ActionButton__import  {
       pointer-events: none;
@@ -75,6 +76,8 @@
 .ImportParticipantDataModal__feedback-block {
   height: 80px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-size: 14px;
   color: $grey-6;
   & > div {

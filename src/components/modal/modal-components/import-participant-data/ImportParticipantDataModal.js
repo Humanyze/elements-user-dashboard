@@ -4,6 +4,7 @@ import { compose, flattenProp, lifecycle, withHandlers, withProps, withPropsOnCh
 import MaterialIcon from 'material-icons-react';
 import Moment from 'moment';
 import { isEmpty } from 'lodash';
+import  delay from 'Utils/delay';
 
 import generateErrorLog from 'Utils/generate-error-log';
 
@@ -170,7 +171,6 @@ const onFileChange = ({ updateMachineState }) => ({ target }) => target.files[0]
 
 const onDateChange = ({ setEffectiveDate }) => (date) => setEffectiveDate(date);
 
-
 const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile, updateMachineState }) => async (e) => {
     try {
 
@@ -200,8 +200,8 @@ const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile
             updateMachineState({
                 type           : machineStateTypes.VALIDATION_ERROR,
                 validationError: {
-                    participantError: { deploymentName, participantErrors },
-                    teamError       : { deploymentName, teamErrors }
+                    participantError: hasParticipantErrors ?{ deploymentName, participantErrors }: null,
+                    teamError       : hasTeamErrors ?{ deploymentName, teamErrors }: null
                 }
             });
         }
@@ -221,8 +221,6 @@ const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile
     }
 };
 
-
-
 const onUploadClicked = ({ updateMachineState, monitorImportStatus, setRequestUUID, deploymentId, dataFile, effectiveDate, bearerToken }) => async () => {
     try {
         updateMachineState({ type: machineStateTypes.IMPORTING });
@@ -241,10 +239,8 @@ const onUploadClicked = ({ updateMachineState, monitorImportStatus, setRequestUU
 
 };
 
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-
 const monitorImportStatus = ({ updateMachineState, deploymentId, bearerToken, requestParticipantsData }) => async (requestUUID) => {
-    const TOO_LONG_LIMIT_SECONDS = 0;
+    const TOO_LONG_LIMIT_SECONDS = 60;
     const startMoment = Moment();
 
     let hasResolved = false;
@@ -327,7 +323,7 @@ const enhance = compose(
     ),
     withPropsOnChange(
         ['fileIsSelected', 'effectiveDate'],
-        ({ fileIsSelected, effectiveDate }) => ({ fileState: ((fileIsSelected && effectiveDate) ? 'succeeded' : 'ready') })
+        ({ fileIsSelected, effectiveDate }) => ({ validationReady: !!(fileIsSelected && effectiveDate) })
     ),
     withHandlers({
         updateMachineState
@@ -342,7 +338,7 @@ const enhance = compose(
         onUploadClicked,
         onParticipantLogDownloadClicked,
         onTeamLogDownloadClicked,
-        cancelImportClicked
+        cancelImportClicked,
     }),
     lifecycle({
         componentWillUnmount() {
@@ -363,7 +359,7 @@ export const ImportEquipmentDataModalPure = ({
                                                  startDate, endDate,
                                                  effectiveDate, onDateChange,
 
-                                                 fileState, isValidating, isValid, validationInfo,
+                                                 validationReady, isValidating, isValid, validationInfo,
 
                                                  participantError, onParticipantLogDownloadClicked,
                                                  teamError, onTeamLogDownloadClicked,
@@ -373,7 +369,6 @@ export const ImportEquipmentDataModalPure = ({
                                                  importInfo, importTooLong,
                                                  importComplete,
                                                  cancelImportClicked,
-
 
                                                  onValidateClicked, onUploadClicked,
                                              }) => {
@@ -390,6 +385,14 @@ export const ImportEquipmentDataModalPure = ({
         onChange: onDateChange,
         startDate,
         endDate
+    };
+
+    const importWizardProps = {
+        validationReady,
+        isValidating,
+        isValid,
+        isImporting,
+        importComplete
     };
 
     return (
@@ -427,15 +430,14 @@ export const ImportEquipmentDataModalPure = ({
                     {/* PROGRESS INDICATORS */}
 
                     <div className='ImportParticipantDataModal__import-wizard-wrapper'>
-                        <ImportWizard fileState={fileState}
-                                      validateState={isValid ? 'succeeded' : isValidating ? 'running' : 'ready'}
-                                      importState={importComplete ? 'succeeded' : isImporting ? 'running' : 'ready'}/>
+                        <ImportWizard {...importWizardProps} />
                     </div>
 
 
                     {/* FEEDBACK MESSAGES */}
 
                     <div className='ImportParticipantDataModal__feedback-block'>
+
                         {/* PARTICIPANT ERROR MESSAGE */}
                         {participantError &&
                         <ValidationError text={translations['ImportParticipantDataModal__participant-error']}
@@ -472,7 +474,7 @@ export const ImportEquipmentDataModalPure = ({
                     <ImportParticipantActionBlock onCloseClicked={closeModal}
                                                   onValidateClicked={onValidateClicked}
                                                   onUploadClicked={onUploadClicked}
-                                                  fileState={fileState}
+                                                  validationReady={validationReady}
                                                   isValid={isValid}
                                                   importComplete={importComplete}/>
 

@@ -1,27 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ActionButton from 'Src/components/modal/modal-components/import-participant-data/action-button/actionButton';
 import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
-import { connect } from 'react-redux';
-import { compose, withPropsOnChange } from 'recompose';
-
-
-const enhance = compose(
-    withPropsOnChange(
-        ['fileState', 'isValid'],
-        ({ fileState, isValid }) => {
-            return ({
-                validateVisible : !isValid,
-                validateDisabled: fileState !== 'succeeded'
-            });
-        }
-    )
-);
-
 
 const ImportParticipantActionBlockPure = ({ translations,
                                               onCloseClicked, onValidateClicked, onUploadClicked,
-                                              validateVisible, validateDisabled,
-                                              isValid, importComplete }) => {
+                                              validationReady, isValid, importComplete }) => {
     return (
         <div className='ImportParticipantDataModal__action-buttons'>
 
@@ -31,7 +15,7 @@ const ImportParticipantActionBlockPure = ({ translations,
             <ActionButton text={translations['ImportParticipantDataModal__validate']}
                           theme={'blue ActionButton__validate'}
                           onClick={onValidateClicked}
-                          disabled={validateDisabled}/>
+                          disabled={!validationReady}/>
             }
 
             {isValid && !importComplete &&
@@ -45,7 +29,7 @@ const ImportParticipantActionBlockPure = ({ translations,
 
 const ImportParticipantActionBlock = connect(
     state => ({ translations: getCurrentTranslations(state) })
-)(enhance(ImportParticipantActionBlockPure));
+)(ImportParticipantActionBlockPure);
 
 
 export default ImportParticipantActionBlock;

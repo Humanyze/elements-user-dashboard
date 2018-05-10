@@ -1,3 +1,8 @@
 import { ImportEquipmentDataModalPure } from './ImportParticipantDataModal';
-testRender(ImportEquipmentDataModalPure, { translations: {}})();
+
+describe('ImportEquipmentDataModal', () => {
+    testRender(ImportEquipmentDataModalPure, { translations: {}})();
+
+
+});
 
