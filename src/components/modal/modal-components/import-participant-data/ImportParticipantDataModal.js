@@ -30,6 +30,7 @@ import DateSelector from 'Common/date-selector/dateSelector';
 import FileUploadSelector from 'Common/file-upload-selector/fileUploadSelector';
 import ImportWizard from 'Src/components/common/import-wizard/importWizard';
 import ImportParticipantActionBlock from './import-participant-action-block/importParticipantActionBlock';
+import { requestParticipantsData } from 'Src/redux/participants/participantsActions';
 
 
 const acceptedFileTypes = [
@@ -242,7 +243,7 @@ const onUploadClicked = ({ updateMachineState, monitorImportStatus, setRequestUU
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const monitorImportStatus = ({ updateMachineState, deploymentId, bearerToken }) => async (requestUUID) => {
+const monitorImportStatus = ({ updateMachineState, deploymentId, bearerToken, requestParticipantsData }) => async (requestUUID) => {
     const TOO_LONG_LIMIT_SECONDS = 0;
     const startMoment = Moment();
 
@@ -260,6 +261,7 @@ const monitorImportStatus = ({ updateMachineState, deploymentId, bearerToken }) 
                 importInfo: res.data.result.participants
             });
             hasResolved = true;
+            requestParticipantsData(deploymentId);
         }
         else if (res.data.state === 'FAILURE') {
             updateMachineState({
@@ -494,8 +496,9 @@ const ImportEquipmentDataModal = connect(
         deploymentName : getSelectedDeploymentName(state),
         deploymentId   : getSelectedDeploymentId(state),
         startDateString: getSelectedDeploymentStartDate(state),
-        endDateString  : getSelectedDeploymentEndDate(state)
+        endDateString  : getSelectedDeploymentEndDate(state),
     }),
+    { requestParticipantsData },
 )(enhance(ImportEquipmentDataModalPure));
 
 
