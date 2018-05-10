@@ -18,10 +18,10 @@ let middleware = [
 ];
 
 if (process.env.NODE_ENV === 'development') {
-    // ReactEmitter();
+    ReactEmitter();
     middleware = [
         ...middleware,
-        // logger
+        logger
     ];
 }
 

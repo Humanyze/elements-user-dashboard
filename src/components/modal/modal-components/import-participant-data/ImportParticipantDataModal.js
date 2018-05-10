@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, withHandlers, withProps, withPropsOnChange, withState } from 'recompose';
+import { compose, flattenProp, lifecycle, withHandlers, withProps, withPropsOnChange, withState } from 'recompose';
 import MaterialIcon from 'material-icons-react';
 import Moment from 'moment';
+import { isEmpty } from 'lodash';
 
 import generateErrorLog from 'Utils/generate-error-log';
 
@@ -17,10 +18,12 @@ import AxiosRequestService from 'Src/redux/AxiosRequestService';
 
 import { getBearerToken } from 'Src/redux/auth/authReducer';
 import { getCurrentTranslations } from 'Redux/language/languageReducer';
+
 import {
     getSelectedDeploymentName,
     getSelectedDeploymentStartDate,
-    getSelectedDeploymentEndDate, getSelectedDeploymentId
+    getSelectedDeploymentEndDate,
+    getSelectedDeploymentId
 } from 'Redux/deployment/deploymentReducer';
 
 import DateSelector from 'Common/date-selector/dateSelector';
@@ -36,9 +39,8 @@ const acceptedFileTypes = [
     'application/vnd.ms-excel.template.macroEnabled.12'
 ];
 
-
-const stateTypes = {
-    SELECTING       : 'SELECTING',
+const machineStateTypes = {
+    INITIAL         : 'INITIAL',
     VALIDATING      : 'VALIDATING',
     VALID           : 'VALID',
     VALIDATION_ERROR: 'VALIDATION_ERROR',
@@ -48,98 +50,130 @@ const stateTypes = {
     IMPORT_SUCCESS  : 'IMPORT_SUCCESS'
 };
 
-const batchStateUpdater = (props) => (updateConfig) => {
-    console.warn('fakeStateMachine', updateConfig);
-    switch (updateConfig.type) {
-        case stateTypes.SELECTING:
-            props.setIsValidating(false);
-            props.setIsValid(false);
-            props.setParticipantError(null);
-            props.setTeamError(null);
-            props.setGenericError(null);
-            props.setSuccessInfo(null);
-            props.setIsImporting(false);
+const machineStates = {
+    [machineStateTypes.INITIAL]         : {
+        isValidating  : false,
+        isValid       : false,
+        isImporting   : false,
+        importTooLong : false,
+        importComplete: false
+    },
+    [machineStateTypes.VALIDATING]      : {
+        isValidating  : true,
+        isValid       : false,
+        isImporting   : false,
+        importTooLong : false,
+        importComplete: false
+    },
+    [machineStateTypes.VALID]           : {
+        isValidating  : false,
+        isValid       : true,
+        isImporting   : false,
+        importTooLong : false,
+        importComplete: false
+    },
+    [machineStateTypes.VALIDATION_ERROR]: {
+        isValidating  : false,
+        isValid       : false,
+        isImporting   : false,
+        importTooLong : false,
+        importComplete: false
+    },
+    [machineStateTypes.IMPORTING]       : {
+        isValidating  : false,
+        isValid       : true,
+        isImporting   : true,
+        importTooLong : false,
+        importComplete: false
+    },
+    [machineStateTypes.IMPORT_TOO_LONG] : {
+        isValidating  : false,
+        isValid       : true,
+        isImporting   : true,
+        importTooLong : true,
+        importComplete: false
+    },
+    [machineStateTypes.IMPORT_ERROR]    : {
+        isValidating  : false,
+        isValid       : true,
+        isImporting   : false,
+        importTooLong : false,
+        importComplete: false
+    },
+    [machineStateTypes.IMPORT_SUCCESS]  : {
+        isValidating  : false,
+        isValid       : true,
+        isImporting   : true,
+        importTooLong : false,
+        importComplete: true
+    }
+};
 
+const updateMachineState = (props) => (updateConfig) => {
+    switch (updateConfig.type) {
+        case machineStateTypes.INITIAL:
             // updates
             updateConfig.dataFile && props.setDataFile(updateConfig.dataFile);
-            updateConfig.date && props.setEffectiveDate(updateConfig.date);
+            props.setMachineStateType(machineStateTypes.INITIAL);
+            props.setValidationInfo(null);
+            props.setValidationErrors({});
             break;
-        case stateTypes.VALIDATING:
-            // updates
-            props.setIsValidating(true);
 
-            props.setIsValid(false);
-            props.setParticipantError(null);
-            props.setTeamError(null);
-            props.setGenericError(null);
-            props.setSuccessInfo(null);
-            props.setIsImporting(false);
+        case machineStateTypes.VALIDATING:
+            props.setMachineStateType(machineStateTypes.VALIDATING);
             break;
-        case stateTypes.VALID:
-            props.setIsValidating(false);
 
-            // updates
-            props.setIsValid(true);
-            props.setSuccessInfo({
+        case machineStateTypes.VALID:
+            props.setMachineStateType(machineStateTypes.VALID);
+
+            props.setValidationInfo({
                 participantsToCreate: updateConfig.participantsToCreate,
                 participantsToUpdate: updateConfig.participantsToUpdate
             });
 
-            props.setParticipantError(null);
-            props.setTeamError(null);
-            props.setGenericError(null);
+            props.setValidationErrors({});
+            break;
 
-            props.setIsImporting(false);
+        case machineStateTypes.VALIDATION_ERROR:
+            props.setMachineStateType(machineStateTypes.VALIDATION_ERROR);
+            props.setValidationErrors(updateConfig.validationError);
             break;
-        case stateTypes.VALIDATION_ERROR:
-            props.setIsValidating(false);
-            props.setIsValid(false);
 
-            updateConfig.participantError && props.setParticipantError(updateConfig.participantError);
-            updateConfig.teamError && props.setTeamError(updateConfig.teamError);
-            updateConfig.genericError && props.setGenericError(updateConfig.genericError);
+        case machineStateTypes.IMPORTING:
+            props.setMachineStateType(machineStateTypes.IMPORTING);
+            break;
+        case machineStateTypes.IMPORT_TOO_LONG:
+            props.setMachineStateType(machineStateTypes.IMPORT_TOO_LONG);
+            break;
+        case machineStateTypes.IMPORT_ERROR:
+            props.setMachineStateType(machineStateTypes.IMPORT_ERROR);
+            props.setRequestUUID(null);
+            break;
 
-            props.setSuccessInfo(null);
-            props.setIsImporting(false);
-            break;
-        case stateTypes.IMPORTING:
-            props.setIsImporting(true);
-            break;
-        case stateTypes.IMPORT_TOO_LONG:
-            props.setImportTooLong(true);
-            break;
-        case stateTypes.IMPORT_ERROR:
-            props.setIsImporting(false);
-            props.setImportTooLong(false);
-            break;
-        case stateTypes.IMPORT_SUCCESS:
-            props.setImportComplete(true);
-            props.setIsImporting(false);
+        case machineStateTypes.IMPORT_SUCCESS:
+            props.setMachineStateType(machineStateTypes.IMPORT_SUCCESS);
             props.setImportInfo(updateConfig.importInfo);
-            props.setImportTooLong(false);
+            props.setRequestUUID(null);
             break;
         default:
-            console.log('default');
+            console.warn('Bad call to updateMachineState');
     }
 
 };
 
 
-const onFileChange = ({ batchStateUpdater }) => ({ target }) => target.files[0] && batchStateUpdater({
-    type    : stateTypes.SELECTING,
+const onFileChange = ({ updateMachineState }) => ({ target }) => target.files[0] && updateMachineState({
+    type    : machineStateTypes.INITIAL,
     dataFile: target.files[0]
 });
 
 const onDateChange = ({ setEffectiveDate }) => (date) => setEffectiveDate(date);
 
-const onValidateClicked = ({
-                               bearerToken, deploymentId, deploymentName,
-                               dataFile, batchStateUpdater
-                           }) => async (e) => {
 
+const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile, updateMachineState }) => async (e) => {
     try {
 
-        batchStateUpdater({ type: stateTypes.VALIDATING });
+        updateMachineState({ type: machineStateTypes.VALIDATING });
 
         const { data } = await AxiosRequestService.datasets.validateParticipantDataset(deploymentId, dataFile, bearerToken);
 
@@ -156,34 +190,41 @@ const onValidateClicked = ({
         const isFileValid = !hasTeamErrors && !hasParticipantErrors;
 
         if (isFileValid) {
-            batchStateUpdater({
-                type                : stateTypes.VALID,
+            updateMachineState({
+                type                : machineStateTypes.VALID,
                 participantsToCreate: participantsToCreate.length,
                 participantsToUpdate: participantsToUpdate.length
             });
         } else {
-            batchStateUpdater({
-                type            : stateTypes.VALIDATION_ERROR,
-                participantError: hasParticipantErrors && { deploymentName, participantErrors },
-                teamError       : hasTeamErrors && { deploymentName, teamErrors }
+            updateMachineState({
+                type           : machineStateTypes.VALIDATION_ERROR,
+                validationError: {
+                    participantError: { deploymentName, participantErrors },
+                    teamError       : { deploymentName, teamErrors }
+                }
             });
         }
 
     } catch (e) {
         console.error(e);
+
         const { response } = e;
         const message = (response && response.data && response.data.message) || 'TODO ADD GENERIC MESSAGE';
 
-        batchStateUpdater({
-            type        : stateTypes.VALIDATION_ERROR,
-            genericError: message
+        updateMachineState({
+            type           : machineStateTypes.VALIDATION_ERROR,
+            validationError: {
+                genericError: message
+            }
         });
     }
 };
 
-const onUploadClicked = ({ batchStateUpdater, monitorImportStatus, setRequestUUID, deploymentId, dataFile, effectiveDate, bearerToken }) => async () => {
+
+
+const onUploadClicked = ({ updateMachineState, monitorImportStatus, setRequestUUID, deploymentId, dataFile, effectiveDate, bearerToken }) => async () => {
     try {
-        batchStateUpdater({ type: stateTypes.IMPORTING });
+        updateMachineState({ type: machineStateTypes.IMPORTING });
 
         const sanitizedEffectiveDate = Moment(effectiveDate).format('YYYY-MM-DD');
         const effectiveDateISO = `${sanitizedEffectiveDate}T00:00:00`;
@@ -193,51 +234,61 @@ const onUploadClicked = ({ batchStateUpdater, monitorImportStatus, setRequestUUI
         monitorImportStatus(res.data.task.uuid);
     } catch (e) {
         console.error(e);
-        batchStateUpdater({ type: stateTypes.IMPORT_ERROR });
+        // TODO: ERROR MESSAGE
+        updateMachineState({ type: machineStateTypes.IMPORT_ERROR });
     }
 
 };
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const monitorImportStatus = ({ batchStateUpdater, deploymentId, bearerToken }) => async (requestUUID) => {
-    const TOO_LONG_LIMIT_SECONDS = 60;
+const monitorImportStatus = ({ updateMachineState, deploymentId, bearerToken }) => async (requestUUID) => {
+    const TOO_LONG_LIMIT_SECONDS = 0;
     const startMoment = Moment();
 
-    let result = false;
+    let hasResolved = false;
 
-    while (!result) {
+    while (!hasResolved) {
         const res = await AxiosRequestService.datasets.pollParticipantImportStatus(deploymentId, requestUUID, bearerToken);
 
-        console.log('monitoring', res.data.state);
+        console.log('Monitoring Import: ', res.data.state);
 
         if (res.data.state === 'SUCCESS') {
 
-            batchStateUpdater({
-                type      : stateTypes.IMPORT_SUCCESS,
+            updateMachineState({
+                type      : machineStateTypes.IMPORT_SUCCESS,
                 importInfo: res.data.result.participants
             });
-            result = true;
+            hasResolved = true;
         }
         else if (res.data.state === 'FAILURE') {
-            batchStateUpdater({
-                type: stateTypes.IMPORT_ERROR,
+            updateMachineState({
+                type: machineStateTypes.IMPORT_ERROR,
             });
-            result = true;
+            hasResolved = true;
         } else {
+
             if (Moment().diff(startMoment, 'seconds') > TOO_LONG_LIMIT_SECONDS) {
-                batchStateUpdater({
-                    type: stateTypes.IMPORT_TOO_LONG,
+                updateMachineState({
+                    type: machineStateTypes.IMPORT_TOO_LONG,
                 });
             }
+
             await delay(1000);
         }
     }
 };
 
 
-const cancelImportClicked = ({ deploymentId, requestUUID, bearerToken }) => async () => {
-    const res = await AxiosRequestService.datasets.cancelParticipantImport(deploymentId, requestUUID, bearerToken);
+const cancelImportClicked = ({ deploymentId, requestUUID, bearerToken, setMachineStateType, setRequestUUID }) => async () => {
+    try {
+        await AxiosRequestService.datasets.cancelParticipantImport(deploymentId, requestUUID, bearerToken);
+        setMachineStateType(machineStateTypes.VALID);
+    } catch (e) {
+        // happens if task completed while cancel was sent, weird race case
+        setMachineStateType(machineStateTypes.IMPORT_ERROR);
+    }
+    setRequestUUID(null);
 };
 
 
@@ -255,36 +306,29 @@ const enhance = compose(
     withState('dataFile', 'setDataFile', null),
     withState('effectiveDate', 'setEffectiveDate', null),
 
-    withState('isValidating', 'setIsValidating', false),
-    withState('isValid', 'setIsValid', false),
+    withState('validationInfo', 'setValidationInfo', null),
 
-    withState('successInfo', 'setSuccessInfo', null),
-
-    withState('participantError', 'setParticipantError', null),
-    withState('teamError', 'setTeamError', null),
-    withState('genericError', 'setGenericError', null),
-    withState('isImporting', 'setIsImporting', false),
-    withState('importTooLong', 'setImportTooLong', false),
+    withState('validationErrors', 'setValidationErrors', {}),
+    flattenProp('validationErrors'),
     withState('importError', 'setImportError', null),
-    withState('importComplete', 'setImportComplete', false),
     withState('importInfo', 'setImportInfo', null),
     withState('requestUUID', 'setRequestUUID', null),
-    withProps(
-        ['startDateString', 'endDateString'],
-        ({ startDateString, endDateString }) => ({ startDate: Moment(startDateString), endDate: Moment(endDateString) })
-    ),
+
+    withState('machineStateType', 'setMachineStateType', machineStateTypes.INITIAL),
+    withProps(({ machineStateType }) => machineStates[machineStateType]),
+    withProps(({ startDateString, endDateString }) => ({
+        startDate: Moment(startDateString), endDate: Moment(endDateString)
+    })),
     withPropsOnChange(
         ['dataFile', 'is'],
-        ({ dataFile }) => ({
-            fileIsSelected: !!dataFile
-        })
+        ({ dataFile }) => ({ fileIsSelected: !!dataFile })
     ),
     withPropsOnChange(
         ['fileIsSelected', 'effectiveDate'],
         ({ fileIsSelected, effectiveDate }) => ({ fileState: ((fileIsSelected && effectiveDate) ? 'succeeded' : 'ready') })
     ),
     withHandlers({
-        batchStateUpdater
+        updateMachineState
     }),
     withHandlers({
         monitorImportStatus
@@ -298,7 +342,13 @@ const enhance = compose(
         onTeamLogDownloadClicked,
         cancelImportClicked
     }),
-);
+    lifecycle({
+        componentWillUnmount() {
+            this.props.requestUUID && AxiosRequestService.datasets.cancelParticipantImport(this.props.deploymentId, this.props.requestUUID, this.props.bearerToken);
+        }
+    })
+    )
+;
 
 
 export const ImportEquipmentDataModalPure = ({
@@ -306,17 +356,23 @@ export const ImportEquipmentDataModalPure = ({
                                                  deploymentName,
 
                                                  dataFile, fileIsSelected, onFileChange,
-                                                 isImporting,
+                                                 validationErrors,
 
-                                                 startDate, endDate, importTooLong,
+                                                 startDate, endDate,
                                                  effectiveDate, onDateChange,
 
-                                                 fileState, isValidating, successInfo,
+                                                 fileState, isValidating, isValid, validationInfo,
+
                                                  participantError, onParticipantLogDownloadClicked,
                                                  teamError, onTeamLogDownloadClicked,
-                                                 genericError, isValid, importComplete,
-                                                 cancelUploadClicked,
-                                                 importInfo,
+                                                 genericError,
+
+                                                 isImporting,
+                                                 importInfo, importTooLong,
+                                                 importComplete,
+                                                 cancelImportClicked,
+
+
                                                  onValidateClicked, onUploadClicked,
                                              }) => {
 
@@ -336,7 +392,8 @@ export const ImportEquipmentDataModalPure = ({
 
     return (
         <LightBoxWrapper>
-            <div className={`ImportParticipantDataModal ${isValidating && 'validating'} ${isImporting && 'importing'}`}>
+            <div
+                className={`ImportParticipantDataModal ${isValidating && 'validating'} ${isImporting && 'importing'} ${importComplete && 'importComplete'}`}>
 
                 {/* STATIC HEADER */}
                 <div className='ImportParticipantDataModal__header-section'>
@@ -392,15 +449,20 @@ export const ImportEquipmentDataModalPure = ({
                         {/* 4XX Errors */}
                         {genericError && <ValidationError text={genericError}/>}
 
-                        {importTooLong && <ImportTooLongMessage cancelHandler={cancelUploadClicked}/>}
 
-                        {importComplete && importInfo &&
-                        <ImportSuccessMessage translations={translations} {...importInfo} />}
+                        {/* FINAL INFO */}
+                        {importComplete && <ImportSuccessMessage translations={translations} {...importInfo} />}
+
+                        {/* TOO LONG SPACING DIV */}
+                        {importTooLong && <div/>}
 
                         {/* SUCCESS MESSAGE */}
-                        {!genericError && !teamError && !participantError && successInfo && !importComplete &&
-                        <ValidationSuccessMessage translations={translations} {...successInfo}/>
+                        {isEmpty(validationErrors) && validationInfo && !importComplete &&
+                        <ValidationSuccessMessage translations={translations} {...validationInfo}/>
                         }
+
+                        {importTooLong && <ImportTooLongMessage cancelHandler={cancelImportClicked}/>}
+
 
                     </div>
 
@@ -466,11 +528,14 @@ const ImportSuccessMessage = ({ translations, updated, created, unchanged }) => 
     );
 };
 
-const ImportTooLongMessage = ({ translations, cancelHander }) => {
+const ImportTooLongMessage = ({ translations, cancelHandler }) => {
     return (
         <div className='ImportTooLongMessage'>
-            <div>Your import is taking a long time and may not complete.</div>
-            <div>Would you like to <span onClick={cancelHander}>cancel?</span></div>
+            <div>
+                <div>Your import is taking a long time and may not complete.</div>
+                <div>Would you like to <span onClick={cancelHandler}
+                                             className='ImportTooLongMessage__cancel'>cancel?</span></div>
+            </div>
         </div>
     );
 };

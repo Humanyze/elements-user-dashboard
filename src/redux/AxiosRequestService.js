@@ -1,5 +1,4 @@
 import axios from 'axios/index';
-import { parseDataSetsFromRoles } from 'Src/redux/userData/user/userResponseMapper';
 
 export const postRequest = async (url, data) => await axios.post(url,
     { ...data },
