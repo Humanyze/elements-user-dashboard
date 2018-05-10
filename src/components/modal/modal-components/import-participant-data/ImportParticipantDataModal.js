@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, withHandlers, withPropsOnChange, withState } from 'recompose';
+import { compose, withHandlers, withProps, withPropsOnChange, withState } from 'recompose';
 import MaterialIcon from 'material-icons-react';
 import Moment from 'moment';
 
@@ -205,7 +205,7 @@ const monitorImportStatus = ({ batchStateUpdater, deploymentId, bearerToken }) =
     const startMoment = Moment();
 
     let result = false;
-    
+
     while (!result) {
         const res = await AxiosRequestService.datasets.pollParticipantImportStatus(deploymentId, requestUUID, bearerToken);
 
@@ -269,7 +269,10 @@ const enhance = compose(
     withState('importComplete', 'setImportComplete', false),
     withState('importInfo', 'setImportInfo', null),
     withState('requestUUID', 'setRequestUUID', null),
-
+    withProps(
+        ['startDateString', 'endDateString'],
+        ({ startDateString, endDateString }) => ({ startDate: Moment(startDateString), endDate: Moment(endDateString) })
+    ),
     withPropsOnChange(
         ['dataFile', 'is'],
         ({ dataFile }) => ({
@@ -424,12 +427,12 @@ export const ImportEquipmentDataModalPure = ({
 
 const ImportEquipmentDataModal = connect(
     state => ({
-        translations  : getCurrentTranslations(state),
-        bearerToken   : getBearerToken(state),
-        deploymentName: getSelectedDeploymentName(state),
-        deploymentId  : getSelectedDeploymentId(state),
-        startDate     : Moment(getSelectedDeploymentStartDate(state)),
-        endDate       : Moment(getSelectedDeploymentEndDate(state))
+        translations   : getCurrentTranslations(state),
+        bearerToken    : getBearerToken(state),
+        deploymentName : getSelectedDeploymentName(state),
+        deploymentId   : getSelectedDeploymentId(state),
+        startDateString: getSelectedDeploymentStartDate(state),
+        endDateString  : getSelectedDeploymentEndDate(state)
     }),
 )(enhance(ImportEquipmentDataModalPure));
 
