@@ -25,28 +25,23 @@ const STEP_CIRCLE_RADIUS = 20;
 const STEPS_VERTICAL = 50;
 const STEP_1_HORIZONTAL = 50;
 
+
 const fileStates = {
-    'disabled' : 'Add',
-    'ready'    : 'Add',
-    'running'  : 'Adding...',
-    'succeeded': 'Added',
-    'failed'   : 'Add'
+    'ready'    : 'ImportWizard__file-ready',
+    'running'  : 'ImportWizard__file-running',
+    'succeeded': 'ImportWizard__file-succeeded'
 };
 
 const validationStates = {
-    'disabled' : 'Validate',
-    'ready'    : 'Validate',
-    'running'  : 'Validating...',
-    'succeeded': 'Validated',
-    'failed'   : 'Validate'
+    'ready'    : 'ImportWizard__validation-ready',
+    'running'  : 'ImportWizard__validation-running',
+    'succeeded': 'ImportWizard__validation-succeeded'
 };
 
 const importStates = {
-    'disabled' : 'Import',
-    'ready'    : 'Import',
-    'running'  : 'Importing...',
-    'succeeded': 'Success',
-    'failed'   : 'Import'
+    'ready'    : 'ImportWizard__import-ready',
+    'running'  : 'ImportWizard__import-running',
+    'succeeded': 'ImportWizard__import-succeeded'
 };
 
 const ImportWizardPure = ({ translations, fileState = 'ready', validateState = 'ready', importState = 'ready' }) => {
@@ -97,7 +92,7 @@ const ImportWizardPure = ({ translations, fileState = 'ready', validateState = '
                         <text className='wizard-step-text'
                               x={STEP_1_HORIZONTAL}
                               y={100}>
-                            {fileStates[fileState]}
+                            { translations[fileStates[fileState]]}
                         </text>
                     </g>
 
@@ -123,7 +118,7 @@ const ImportWizardPure = ({ translations, fileState = 'ready', validateState = '
                         <text className='wizard-step-text'
                               x={250}
                               y={100}>
-                            {validationStates[validateState]}
+                            {translations[validationStates[validateState]]}
                         </text>
                     </g>
 
@@ -153,7 +148,7 @@ const ImportWizardPure = ({ translations, fileState = 'ready', validateState = '
                               x='450'
                               y='100'>
 
-                            {importStates[importState]}
+                            {translations[importStates[importState]]}
 
                         </text>
 

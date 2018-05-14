@@ -98,6 +98,48 @@ export default {
     'ImportParticipantDataModal__view-errors': {
         [EN]: 'View Errors'
     },
+    'ImportWizard__file-ready': {
+        [EN]: 'Add'
+    },
+    'ImportWizard__file-running': {
+        [EN]: 'Adding...'
+    },
+    'ImportWizard__file-succeeded': {
+        [EN]: 'Added'
+    },
+    'ImportWizard__validation-ready': {
+        [EN]: 'Validate'
+    },
+    'ImportWizard__validation-running': {
+        [EN]: 'Validating...'
+    },
+    'ImportWizard__validation-succeeded': {
+        [EN]: 'Validated'
+    },
+    'ImportWizard__import-ready': {
+        [EN]: 'Import'
+    },
+    'ImportWizard__import-running': {
+        [EN]: 'Importing...'
+    },
+    'ImportWizard__import-succeeded': {
+        [EN]: 'Success'
+    },
+    'ValidationSuccess__participants-create': {
+      [EN]: 'participants will be created.'
+    },
+    'ValidationSucess__participants-update': {
+        [EN]: 'participants will be updated.'
+    },
+    'ImportSucess__participants-created': {
+        [EN]: 'participants were created.'
+    },
+    'ImportSuccess__participants-updated': {
+        [EN]: 'participants were updated.'
+    },
+    'ImportSuccess__participants-unchanged': {
+        [EN]: 'participants were unchanged.'
+    },
     'FileUploadSelector__select-file': {
         [EN]: 'Select a file'
     },
