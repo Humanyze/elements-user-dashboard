@@ -8,9 +8,9 @@ const enhance = compose(
     withProps(
         ({ validationReady, isValidating, isValid, isImporting, importComplete }) => {
             return ({
-                fileState: validationReady ? 'succeeded':'ready',
-                validateState: isValid ? 'succeeded': isValidating ? 'running': 'ready',
-                importState: importComplete ? 'succeeded': isImporting ? 'running': 'ready'
+                fileState: validationReady ? 'succeeded' : 'ready',
+                validateState: isValid ? 'succeeded' : isValidating ? 'running' : 'ready',
+                importState: importComplete ? 'succeeded' : isImporting ? 'running' : 'ready'
             });
         }
     )

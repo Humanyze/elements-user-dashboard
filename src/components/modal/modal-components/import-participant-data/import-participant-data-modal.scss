@@ -76,7 +76,6 @@
 .ImportParticipantDataModal__feedback-block {
   height: 80px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   font-size: 14px;
   color: $grey-6;
@@ -99,9 +98,11 @@
   }
 }
 
-.ImportTooLongMessage {
+.ImportTooLongMessage, .ImportErrorMessage {
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   .ImportTooLongMessage__cancel {
     cursor: pointer;
     color: black;

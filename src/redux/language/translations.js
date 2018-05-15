@@ -131,6 +131,9 @@ export default {
     'ValidationSucess__participants-update': {
         [EN]: 'participants will be updated.'
     },
+    'ValidationError__generic-error': {
+        [EN]: 'Something went wrong. Please check your file and try again.'
+    },
     'ImportSucess__participants-created': {
         [EN]: 'participants were created.'
     },
@@ -139,6 +142,18 @@ export default {
     },
     'ImportSuccess__participants-unchanged': {
         [EN]: 'participants were unchanged.'
+    },
+    'ImportError__generic-error': {
+        [EN]: 'Import failed.'
+    },
+    'ImportTooLong__message-one': {
+        [EN]: 'Your import is taking a long time and may not complete.'
+    },
+    'ImportTooLong__message-two': {
+        [EN]: 'Would you like to '
+    },
+    'ImportTooLong__cancel-question': {
+      [EN]: 'cancel?'
     },
     'FileUploadSelector__select-file': {
         [EN]: 'Select a file'

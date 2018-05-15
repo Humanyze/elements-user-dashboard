@@ -21,7 +21,7 @@ const modalReducer = handleActions({
     }),
     [MODAL_ACTION_TYPES.MODAL_CLICK_OUTSIDE]: (state) => {
         return getTopModal(state).exitOnClickElsewhere ?
-            removeTopModal(state): state;
+            removeTopModal(state) : state;
     }
 }, initialState);
 

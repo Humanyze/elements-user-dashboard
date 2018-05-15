@@ -23,6 +23,10 @@
     "jsx-quotes": [
       1,
       "prefer-single"
+    ],
+    "space-infix-ops": [
+      1,
+      {}
     ]
   //,
     // todo fix: complains on class instead of untranslated text

@@ -46,7 +46,7 @@ const getFatalErrors = (state) => state.error.fatalErrors;
 
 const getTopFatalError = createSelector(
   getFatalErrors,
-    (fatalErrors) => fatalErrors.reduce((topError, error) => (topError.priority > error.priority ? topError: error ), {})
+    (fatalErrors) => fatalErrors.reduce((topError, error) => (topError.priority > error.priority ? topError : error ), {})
 );
 
 export {

@@ -4,7 +4,7 @@ import { compose, flattenProp, lifecycle, withHandlers, withProps, withPropsOnCh
 import MaterialIcon from 'material-icons-react';
 import Moment from 'moment';
 import { isEmpty } from 'lodash';
-import  delay from 'Utils/delay';
+import delay from 'Utils/delay';
 
 import generateErrorLog from 'Utils/generate-error-log';
 
@@ -114,7 +114,6 @@ const machineStates = {
 const updateMachineState = (props) => (updateConfig) => {
     switch (updateConfig.type) {
         case machineStateTypes.INITIAL:
-            // updates
             updateConfig.dataFile && props.setDataFile(updateConfig.dataFile);
             props.setMachineStateType(machineStateTypes.INITIAL);
             props.setValidationInfo(null);
@@ -127,12 +126,10 @@ const updateMachineState = (props) => (updateConfig) => {
 
         case machineStateTypes.VALID:
             props.setMachineStateType(machineStateTypes.VALID);
-
             props.setValidationInfo({
                 participantsToCreate: updateConfig.participantsToCreate,
                 participantsToUpdate: updateConfig.participantsToUpdate
             });
-
             props.setValidationErrors({});
             break;
 
@@ -144,19 +141,24 @@ const updateMachineState = (props) => (updateConfig) => {
         case machineStateTypes.IMPORTING:
             props.setMachineStateType(machineStateTypes.IMPORTING);
             break;
+
         case machineStateTypes.IMPORT_TOO_LONG:
             props.setMachineStateType(machineStateTypes.IMPORT_TOO_LONG);
             break;
+
         case machineStateTypes.IMPORT_ERROR:
             props.setMachineStateType(machineStateTypes.IMPORT_ERROR);
             props.setRequestUUID(null);
+            props.setImportError(updateConfig.errorMessage);
             break;
 
         case machineStateTypes.IMPORT_SUCCESS:
             props.setMachineStateType(machineStateTypes.IMPORT_SUCCESS);
             props.setImportInfo(updateConfig.importInfo);
+            props.setImportError(null);
             props.setRequestUUID(null);
             break;
+
         default:
             console.warn('Bad call to updateMachineState');
     }
@@ -171,7 +173,7 @@ const onFileChange = ({ updateMachineState }) => ({ target }) => target.files[0]
 
 const onDateChange = ({ setEffectiveDate }) => (date) => setEffectiveDate(date);
 
-const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile, updateMachineState }) => async (e) => {
+const onValidateClicked = ({ translations, bearerToken, deploymentId, deploymentName, dataFile, updateMachineState }) => async (e) => {
     try {
 
         updateMachineState({ type: machineStateTypes.VALIDATING });
@@ -200,8 +202,8 @@ const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile
             updateMachineState({
                 type           : machineStateTypes.VALIDATION_ERROR,
                 validationError: {
-                    participantError: hasParticipantErrors ?{ deploymentName, participantErrors }: null,
-                    teamError       : hasTeamErrors ?{ deploymentName, teamErrors }: null
+                    participantError: hasParticipantErrors ? { deploymentName, participantErrors } : null,
+                    teamError       : hasTeamErrors ? { deploymentName, teamErrors } : null
                 }
             });
         }
@@ -210,7 +212,7 @@ const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile
         console.error(e);
 
         const { response } = e;
-        const message = (response && response.data && response.data.message) || 'TODO ADD GENERIC MESSAGE';
+        const message = (response && response.data && response.data.message) || translations['ValidationError__generic-error'];
 
         updateMachineState({
             type           : machineStateTypes.VALIDATION_ERROR,
@@ -221,7 +223,7 @@ const onValidateClicked = ({ bearerToken, deploymentId, deploymentName, dataFile
     }
 };
 
-const onUploadClicked = ({ updateMachineState, monitorImportStatus, setRequestUUID, deploymentId, dataFile, effectiveDate, bearerToken }) => async () => {
+const onUploadClicked = ({ translations, updateMachineState, monitorImportStatus, setRequestUUID, deploymentId, dataFile, effectiveDate, bearerToken }) => async () => {
     try {
         updateMachineState({ type: machineStateTypes.IMPORTING });
 
@@ -232,9 +234,11 @@ const onUploadClicked = ({ updateMachineState, monitorImportStatus, setRequestUU
         await setRequestUUID(res.data.task.uuid);
         monitorImportStatus(res.data.task.uuid);
     } catch (e) {
-        console.error(e);
-        // TODO: ERROR MESSAGE
-        updateMachineState({ type: machineStateTypes.IMPORT_ERROR });
+        console.error('here', e);
+        updateMachineState({
+            type        : machineStateTypes.IMPORT_ERROR,
+            errorMessage: translations['ImportError__generic-error']
+        });
     }
 
 };
@@ -265,7 +269,6 @@ const monitorImportStatus = ({ updateMachineState, deploymentId, bearerToken, re
             });
             hasResolved = true;
         } else {
-
             if (Moment().diff(startMoment, 'seconds') > TOO_LONG_LIMIT_SECONDS) {
                 updateMachineState({
                     type: machineStateTypes.IMPORT_TOO_LONG,
@@ -318,7 +321,7 @@ const enhance = compose(
         startDate: Moment(startDateString), endDate: Moment(endDateString)
     })),
     withPropsOnChange(
-        ['dataFile', 'is'],
+        ['dataFile'],
         ({ dataFile }) => ({ fileIsSelected: !!dataFile })
     ),
     withPropsOnChange(
@@ -345,8 +348,7 @@ const enhance = compose(
             this.props.requestUUID && AxiosRequestService.datasets.cancelParticipantImport(this.props.deploymentId, this.props.requestUUID, this.props.bearerToken);
         }
     })
-    )
-;
+);
 
 
 export const ImportEquipmentDataModalPure = ({
@@ -366,7 +368,7 @@ export const ImportEquipmentDataModalPure = ({
                                                  genericError,
 
                                                  isImporting,
-                                                 importInfo, importTooLong,
+                                                 importInfo, importTooLong, importError,
                                                  importComplete,
                                                  cancelImportClicked,
 
@@ -451,22 +453,22 @@ export const ImportEquipmentDataModalPure = ({
                                          onDownloadClicked={onTeamLogDownloadClicked}/>}
 
                         {/* 4XX Errors */}
-                        {genericError && <ValidationError text={genericError}/>}
+                        {genericError && <GenericError text={genericError}/>}
 
 
                         {/* FINAL INFO */}
                         {importComplete && <ImportSuccessMessage translations={translations} {...importInfo} />}
 
                         {/* TOO LONG SPACING DIV */}
-                        {importTooLong && <div/>}
+                        {(importTooLong || importError) && <div/>}
 
                         {/* SUCCESS MESSAGE */}
                         {isEmpty(validationErrors) && validationInfo && !importComplete &&
                         <ValidationSuccessMessage translations={translations} {...validationInfo}/>
                         }
 
-                        {importTooLong && <ImportTooLongMessage cancelHandler={cancelImportClicked}/>}
-
+                        {importTooLong && !importError && <ImportTooLongMessage cancelHandler={cancelImportClicked}/>}
+                        {importError && <ImportErrorMessage text={importError}/>}
 
                     </div>
 
@@ -514,6 +516,10 @@ const ValidationError = ({ text, buttonText, onDownloadClicked }) => {
     );
 };
 
+const GenericError = ({ text }) => {
+    return <div className='ValidationError'>{text}</div>;
+};
+
 const ValidationSuccessMessage = ({ translations, participantsToCreate, participantsToUpdate }) => {
     return (
         <div className='ValidationSuccessMessage'>
@@ -531,6 +537,10 @@ const ImportSuccessMessage = ({ translations, updated, created, unchanged }) => 
             <div>{unchanged} participants were unchanged.</div>
         </div>
     );
+};
+
+const ImportErrorMessage = ({ translations, text }) => {
+    return <div className='ImportErrorMessage'>{text}</div>;
 };
 
 const ImportTooLongMessage = ({ translations, cancelHandler }) => {
