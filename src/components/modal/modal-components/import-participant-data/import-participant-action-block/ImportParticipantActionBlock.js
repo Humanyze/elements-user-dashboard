@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ActionButton from 'Src/components/modal/modal-components/import-participant-data/action-button/actionButton';
+import ActionButton from 'Src/components/modal/modal-components/import-participant-data/action-button/ActionButton';
 import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 
 const ImportParticipantActionBlockPure = ({ translations,

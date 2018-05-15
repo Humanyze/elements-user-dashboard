@@ -1,5 +1,5 @@
 import React from 'react';
-import { DateSelectorPure } from './dateSelector';
+import { DateSelectorPure } from './DateSelector';
 import { mount } from 'enzyme/build/index';
 import Moment from 'moment';
 
