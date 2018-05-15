@@ -9,10 +9,10 @@ import './file-upload-selector.scss';
 export const FileUploadSelectorPure = ({ translations, fileIsSelected, fileName, onFileChange, acceptedFileTypes }) => {
     return (
         <div className='FileUploadSelector'>
-            <label htmlFor='fileUploadInput' className='FileUploadSelector__label'>
+            <label htmlFor='FileUploadInput' className='FileUploadSelector__label'>
 
                 <input type='file'
-                       id='fileUploadInput'
+                       id='FileUploadInput'
                        className='FileUploadSelector__file-input'
                        accept={acceptedFileTypes.join(',')}
                        onChange={onFileChange}/>

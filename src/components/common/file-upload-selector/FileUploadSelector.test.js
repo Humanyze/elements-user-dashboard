@@ -1,8 +1,8 @@
 import React from 'react';
-import { FileUploadSelectorPure } from './fileUploadSelector';
+import { FileUploadSelectorPure } from './FileUploadSelector';
 import { mount } from 'enzyme/build/index';
 
-describe('fileUploadSelector', () => {
+describe('FileUploadSelector', () => {
 
 
     const defaultProps = {

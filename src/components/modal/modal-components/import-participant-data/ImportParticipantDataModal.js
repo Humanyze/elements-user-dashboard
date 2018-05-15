@@ -27,10 +27,10 @@ import {
     getSelectedDeploymentId
 } from 'Redux/deployment/deploymentReducer';
 
-import DateSelector from 'Common/date-selector/dateSelector';
-import FileUploadSelector from 'Common/file-upload-selector/fileUploadSelector';
-import ImportWizard from 'Src/components/common/import-wizard/importWizard';
-import ImportParticipantActionBlock from './import-participant-action-block/importParticipantActionBlock';
+import DateSelector from 'Common/date-selector/DateSelector';
+import FileUploadSelector from 'Common/file-upload-selector/FileUploadSelector';
+import ImportWizard from 'Src/components/common/import-wizard/ImportWizard';
+import ImportParticipantActionBlock from './import-participant-action-block/ImportParticipantActionBlock';
 import { requestParticipantsData } from 'Src/redux/participants/participantsActions';
 
 
@@ -375,7 +375,7 @@ export const ImportEquipmentDataModalPure = ({
                                                  onValidateClicked, onUploadClicked,
                                              }) => {
 
-    const fileUploadProps = {
+    const FileUploadProps = {
         fileName: dataFile && dataFile.name,
         fileIsSelected,
         onFileChange,
@@ -419,7 +419,7 @@ export const ImportEquipmentDataModalPure = ({
                         <div className='ImportParticipantDataModal__file-upload-block'>
                             <div>{translations['ImportParticipantDataModal__file']}:</div>
 
-                            <FileUploadSelector {...fileUploadProps}/>
+                            <FileUploadSelector {...FileUploadProps}/>
                         </div>
 
 
