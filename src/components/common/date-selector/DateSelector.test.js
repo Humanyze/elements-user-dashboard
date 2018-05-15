@@ -3,7 +3,7 @@ import { DateSelectorPure } from './DateSelector';
 import { mount } from 'enzyme/build/index';
 import Moment from 'moment';
 
-describe('fileUploadSelector', () => {
+describe('FileUploadSelector', () => {
 
     const defaultProps = {
         translations: {},

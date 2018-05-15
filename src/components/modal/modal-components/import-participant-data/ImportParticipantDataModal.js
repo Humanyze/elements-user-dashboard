@@ -375,7 +375,7 @@ export const ImportEquipmentDataModalPure = ({
                                                  onValidateClicked, onUploadClicked,
                                              }) => {
 
-    const fileUploadProps = {
+    const FileUploadProps = {
         fileName: dataFile && dataFile.name,
         fileIsSelected,
         onFileChange,
@@ -419,7 +419,7 @@ export const ImportEquipmentDataModalPure = ({
                         <div className='ImportParticipantDataModal__file-upload-block'>
                             <div>{translations['ImportParticipantDataModal__file']}:</div>
 
-                            <FileUploadSelector {...fileUploadProps}/>
+                            <FileUploadSelector {...FileUploadProps}/>
                         </div>
 
 
