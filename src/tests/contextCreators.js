@@ -7,8 +7,8 @@ import translationDictionary from 'Src/redux/language/translations';
 import { getCurrentTextDictionaryById } from 'Src/redux/language/languageReducer';
 
 
-const RouterContext =({ children }) => <BrowserRouter>{children}</BrowserRouter>;
-const StoreContext =({ children }) => {
+const RouterContext = ({ children }) => <BrowserRouter>{children}</BrowserRouter>;
+const StoreContext = ({ children }) => {
     const { store } = customCreateStore();
     return <Provider store={store}>{children}</Provider>;
 };

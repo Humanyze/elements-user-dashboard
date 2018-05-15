@@ -8,6 +8,18 @@
   width: 700px;
   display: flex;
   flex-direction: column;
+
+  &.ImportParticipantDataModal__requesting-validation {
+
+  }
+
+  // THESE ARE TO PREVENT INPUT DURING TEMP STATES
+  &.validating, &.importing, &.importComplete {
+    .FileUploadSelector, .DateSelector, .ActionButton__validate, .ActionButton__import  {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+  }
 }
 
 
@@ -22,6 +34,8 @@
     text-transform: uppercase;
     font-size: 22px;
     font-weight: 700;
+
+
   }
 
   .ImportParticipantDataModal__close-icon {
@@ -62,8 +76,47 @@
 .ImportParticipantDataModal__feedback-block {
   height: 80px;
   display: flex;
+  justify-content: center;
   font-size: 14px;
   color: $grey-6;
+  & > div {
+    flex: 1;
+  }
+}
+
+.ValidationError {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .ValidationError__download-text {
+    cursor: pointer;
+    color: black;
+    margin-left: 7px;
+  }
+}
+
+.ImportTooLongMessage, .ImportErrorMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  .ImportTooLongMessage__cancel {
+    cursor: pointer;
+    color: black;
+  }
+}
+
+
+.ValidationSuccessMessage {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .ImportParticipantDataModal__footer-section {

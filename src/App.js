@@ -6,6 +6,7 @@ import AppRoutes from './components/AppRoutes';
 import ModalRoot from './components/modal/ModalRoot';
 import RouterPaths from 'RouterPaths';
 
+
 const App = () => (
     <div>
         <Router basename={RouterPaths.basePath}>

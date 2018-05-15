@@ -6,6 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import { createEpicMiddleware } from 'redux-observable';
 import rootReducer from './rootReducer';
 import rootEpic  from './rootEpic';
+import { ReactEmitter } from 'kuker-emitters';
 
 const logger = createLogger({});
 
@@ -17,6 +18,7 @@ let middleware = [
 ];
 
 if (process.env.NODE_ENV === 'development') {
+    ReactEmitter();
     middleware = [
         ...middleware,
         logger

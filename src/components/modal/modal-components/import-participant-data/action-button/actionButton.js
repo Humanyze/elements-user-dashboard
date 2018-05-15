@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import './action-button.scss';
 
 
-const ActionButton = ({ text, handler, disabled = '', theme = '' }) => {
+const ActionButton = ({ text, onClick, disabled = '', theme = '' }) => {
     return (
         <div className={classNames(`ActionButton ${theme}`, { 'disabled': disabled })}
-             onClick={() => console.log('text')}>
+             onClick={onClick}>
             {text}
         </div>
     );

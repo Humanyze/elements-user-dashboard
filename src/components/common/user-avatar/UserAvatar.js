@@ -67,7 +67,7 @@ const enhance = compose(
     onClickOutside
 );
 
-// NOTE: must be class to use click outside
+// NOTE: must be class to use click outside, needs component ref
 export class UserAvatarPure extends React.Component {
 
     render() {

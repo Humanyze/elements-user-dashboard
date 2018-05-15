@@ -1,5 +1,5 @@
 import React from 'react';
-// TODO: TEMP PAGE, WILL ULTIMATELY REDIRECT TO EMBER AUTH, SHARING TOKEN
+// NOTE: TEMP PAGE, WILL ULTIMATELY REDIRECT TO EMBER AUTH, SHARING TOKEN
 import { compose, withState, withHandlers } from 'recompose';
 import { connect } from 'react-redux';
 import { loginUser } from './redux/auth/authActions';

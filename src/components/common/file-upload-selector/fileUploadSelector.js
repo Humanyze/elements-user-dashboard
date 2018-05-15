@@ -19,7 +19,7 @@ export const FileUploadSelectorPure = ({ translations, fileIsSelected, fileName,
 
                 <div className='FileUploadSelector__text-wrapper'>
                     {fileIsSelected ?
-                        <div className='FileUploadSelector__file-name'>{fileName}</div>:
+                        <div className='FileUploadSelector__file-name'>{fileName}</div> :
                         <div className='FileUploadSelector__select-file'>{translations['FileUploadSelector__select-file']}</div>
                     }
                     <MaterialIcon icon='search' size={18}/>

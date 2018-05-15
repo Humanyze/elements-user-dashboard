@@ -24,8 +24,7 @@ const AuthenticatedRoutes = compose(onWillMount)(({ path, userLoaded }) => {
     return userLoaded ? (
         <Switch>
             <Route component={Deployment}/>
-        </Switch>): null
-        ;
+        </Switch>) : <LoadingUI/>;
 
 });
 
@@ -45,10 +44,10 @@ const AppRoutesPure = withRouter(({ authenticated, userLoaded, match, setUserDat
         <div>
             <ErrorManager/>
             <Route path={'/logout'} component={Logout}/>
-                {authenticated ?
+            {authenticated ?
                 <AuthenticatedRoutes path={path}
                                      setUserData={setUserDataByAuthId}
-                                     userLoaded={userLoaded}/> || <LoadingUI/>
+                                     userLoaded={userLoaded}/>
                 : <LoginRedirect/>
             }
         </div>
@@ -60,7 +59,7 @@ const AppRoutes = connect(
     (state) => (
         {
             authenticated: isUserAuthenticated(state),
-            userLoaded: getUserDataLoadStatus(state),
+            userLoaded   : getUserDataLoadStatus(state),
         }
     ), { setUserDataByAuthId }, null,
     { pure: false }

@@ -26,4 +26,18 @@
     background-color: $grey-2;
     opacity: 0.5;
   }
+
+  &.blue {
+    color: white;
+    background-color: $blue-3;
+    border-color: $blue-3;
+
+    &.disabled {
+      background-color: $grey-2;
+      opacity: 0.5;
+      color: $grey-5;
+      border: 1px solid $grey-4b;
+
+    }
+  }
 }

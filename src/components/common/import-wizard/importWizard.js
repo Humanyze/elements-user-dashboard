@@ -1,59 +1,50 @@
 import React from 'react';
 import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 import { connect } from 'react-redux';
-import { compose, withState } from 'recompose';
+import { compose, withProps } from 'recompose';
 
 
 const enhance = compose(
-    withState('', '', false)
+    withProps(
+        ({ validationReady, isValidating, isValid, isImporting, importComplete }) => {
+            return ({
+                fileState: validationReady ? 'succeeded' : 'ready',
+                validateState: isValid ? 'succeeded' : isValidating ? 'running' : 'ready',
+                importState: importComplete ? 'succeeded' : isImporting ? 'running' : 'ready'
+            });
+        }
+    )
 );
 
 const fontAwesomePathTable = 'M576 1376v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm128-320v1088q0 66-47 113t-113 47h-1344q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1344q66 0 113 47t47 113z';
-
 const fontAwesomePathDatabase = 'M896 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-384q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-1152q208 0 385 34.5t280 93.5 103 128v128q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-128q0-69 103-128t280-93.5 385-34.5z';
-
 const humanyzeUIPathCheckmark = 'M11397.737,473.479c5.533,1.8,10.594,8.521,10.594,8.521l14.638-23.937';
-
-
-const fileState = 'succeeded';
-const validateState = 'succeeded';
-const importState = 'succeeded';
-
 const SVG_WIDTH = 500;
 const SVG_HEIGHT = 125;
-
 const STEP_CIRCLE_RADIUS = 20;
-
 const STEPS_VERTICAL = 50;
-
 const STEP_1_HORIZONTAL = 50;
 
-let fileStates = {
-    'disabled' : 'Add',
-    'ready'    : 'Add',
-    'running'  : 'Adding...',
-    'succeeded': 'Added',
-    'failed'   : 'Add'
+
+const fileStates = {
+    'ready'    : 'ImportWizard__file-ready',
+    'running'  : 'ImportWizard__file-running',
+    'succeeded': 'ImportWizard__file-succeeded'
 };
 
-let validationStates = {
-    'disabled' : 'Validate',
-    'ready'    : 'Validate',
-    'running'  : 'Validating...',
-    'succeeded': 'Validated',
-    'failed'   : 'Validate'
+const validationStates = {
+    'ready'    : 'ImportWizard__validation-ready',
+    'running'  : 'ImportWizard__validation-running',
+    'succeeded': 'ImportWizard__validation-succeeded'
 };
 
-let importStates = {
-    'disabled' : 'Import',
-    'ready'    : 'Import',
-    'running'  : 'Importing...',
-    'succeeded': 'Success',
-    'failed'   : 'Import'
+const importStates = {
+    'ready'    : 'ImportWizard__import-ready',
+    'running'  : 'ImportWizard__import-running',
+    'succeeded': 'ImportWizard__import-succeeded'
 };
 
-
-const ImportWizardPure = ({ translations }) => {
+const ImportWizardPure = ({ translations, fileState = 'ready', validateState = 'ready', importState = 'ready' }) => {
     return (
         <div className='import-wizard-wrapper'>
             <svg className='import-wizard'
@@ -101,7 +92,7 @@ const ImportWizardPure = ({ translations }) => {
                         <text className='wizard-step-text'
                               x={STEP_1_HORIZONTAL}
                               y={100}>
-                            {fileStates[fileState]}
+                            { translations[fileStates[fileState]]}
                         </text>
                     </g>
 
@@ -127,7 +118,7 @@ const ImportWizardPure = ({ translations }) => {
                         <text className='wizard-step-text'
                               x={250}
                               y={100}>
-                            {validationStates[validateState]}
+                            {translations[validationStates[validateState]]}
                         </text>
                     </g>
 
@@ -157,7 +148,7 @@ const ImportWizardPure = ({ translations }) => {
                               x='450'
                               y='100'>
 
-                            {importStates[importState]}
+                            {translations[importStates[importState]]}
 
                         </text>
 

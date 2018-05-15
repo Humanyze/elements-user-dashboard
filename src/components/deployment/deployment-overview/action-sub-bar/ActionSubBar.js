@@ -27,7 +27,7 @@ const onExportClicked = ({ deploymentId, bearerToken, setIsExporting, showExport
     setIsExporting(true);
 
     try {
-        const res = await AxiosRequestService.participants.getExportedParticipantsByDatasetId(deploymentId, bearerToken);
+        const res = await AxiosRequestService.datasets.getExportedParticipantsByDatasetId(deploymentId, bearerToken);
         const { parameters: { filename } } = contentDisposition.parse(`attachment; ${R.path(['headers', 'content-disposition'], res)}`);
 
         fileDownload(res.data, filename);

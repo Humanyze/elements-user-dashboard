@@ -73,7 +73,7 @@ export const getLimitPerPage = state => state.participantsUI.limitPerPage;
 export const getTotalPageCount = createSelector(
     getLimitPerPage,
     getTotalParticipantsCount,
-    (limitPerPage, totalParticipants) => Math.ceil((totalParticipants || 1)/limitPerPage)
+    (limitPerPage, totalParticipants) => Math.ceil((totalParticipants || 1) / limitPerPage)
 );
 
 
