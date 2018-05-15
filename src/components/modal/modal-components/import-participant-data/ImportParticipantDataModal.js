@@ -287,7 +287,7 @@ const cancelImportClicked = ({ deploymentId, requestUUID, bearerToken, setMachin
         setMachineStateType(machineStateTypes.VALID);
     } catch (e) {
         // happens if task completed while cancel was sent, weird race case
-        setMachineStateType(machineStateTypes.IMPORT_ERROR);
+        setMachineStateType(machineStateTypes.IMPORTING);
     }
     setRequestUUID(null);
 };
