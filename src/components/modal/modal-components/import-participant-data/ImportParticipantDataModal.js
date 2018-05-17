@@ -333,7 +333,7 @@ const enhance = compose(
     ),
     withHandlers({
         updateMachineState,
-        getRequestUUID: ({ requestUUID}) => () => requestUUID
+        getRequestUUID: ({ requestUUID }) => () => requestUUID
     }),
     withHandlers({
         monitorImportStatus,
