@@ -243,13 +243,14 @@ const onUploadClicked = ({ translations, updateMachineState, monitorImportStatus
 
 };
 
-const monitorImportStatus = ({ updateMachineState, deploymentId, bearerToken, requestParticipantsData }) => async (requestUUID) => {
+const monitorImportStatus = ({ updateMachineState, deploymentId, bearerToken, requestParticipantsData, getRequestUUID }) => async () => {
     const TOO_LONG_LIMIT_SECONDS = 60;
     const startMoment = Moment();
 
     let hasResolved = false;
+    let requestUUID = getRequestUUID();
+    while (!hasResolved && requestUUID) {
 
-    while (!hasResolved) {
         const res = await AxiosRequestService.datasets.pollParticipantImportStatus(deploymentId, requestUUID, bearerToken);
 
         console.log('Monitoring Import: ', res.data.state);
@@ -269,6 +270,7 @@ const monitorImportStatus = ({ updateMachineState, deploymentId, bearerToken, re
             });
             hasResolved = true;
         } else {
+            console.log(requestUUID);
             if (Moment().diff(startMoment, 'seconds') > TOO_LONG_LIMIT_SECONDS) {
                 updateMachineState({
                     type: machineStateTypes.IMPORT_TOO_LONG,
@@ -276,6 +278,7 @@ const monitorImportStatus = ({ updateMachineState, deploymentId, bearerToken, re
             }
 
             await delay(1000);
+            requestUUID = getRequestUUID();
         }
     }
 };
@@ -284,11 +287,11 @@ const monitorImportStatus = ({ updateMachineState, deploymentId, bearerToken, re
 const cancelImportClicked = ({ deploymentId, requestUUID, bearerToken, setMachineStateType, setRequestUUID }) => async () => {
     try {
         await AxiosRequestService.datasets.cancelParticipantImport(deploymentId, requestUUID, bearerToken);
-        setMachineStateType(machineStateTypes.VALID);
     } catch (e) {
         // happens if task completed while cancel was sent, weird race case
-        setMachineStateType(machineStateTypes.IMPORTING);
+        console.log('Race Error', e);
     }
+    setMachineStateType(machineStateTypes.VALID);
     setRequestUUID(null);
 };
 
@@ -329,10 +332,11 @@ const enhance = compose(
         ({ fileIsSelected, effectiveDate }) => ({ validationReady: !!(fileIsSelected && effectiveDate) })
     ),
     withHandlers({
-        updateMachineState
+        updateMachineState,
+        getRequestUUID: ({ requestUUID}) => () => requestUUID
     }),
     withHandlers({
-        monitorImportStatus
+        monitorImportStatus,
     }),
     withHandlers({
         onFileChange,
