@@ -76,7 +76,7 @@ const restrictedFields = [
     'uuid'
 ];
 
-const orderedRequiredFields = [
+export const orderedRequiredFields = [
     'email',
     'alias',
     'gender',
@@ -85,7 +85,7 @@ const orderedRequiredFields = [
     'timezone',
     'working_hours_start',
     'working_hours_end',
-    'primary_team_name',
+    'primary_team',
     'active_badge',
     'active_digital'
 ];

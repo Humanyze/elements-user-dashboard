@@ -1,21 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { createSelector } from 'reselect';
 import PARTICIPANT_UI_ACTION_TYPES from './participantsUIActionTypes';
-
-
-let orderedRequiredFields = [
-    'email',
-    'alias',
-    'gender',
-    'manager',
-    'teams_managed',
-    'timezone',
-    'working_hours_start',
-    'working_hours_end',
-    'primary_team_name',
-    'active_badge',
-    'active_digital'
-];
+import { orderedRequiredFields } from '../participants/participantDataSetEpic';
 export const initialState = {
     limitPerPage     : 20,
     currentPageNumber: 1,
