@@ -54,6 +54,7 @@ HOC library that wraps pure functional components with stateful wrappers, omtimi
 HOC library that attaches click listeners to document and element ref to detect when a click fires outside the element.  Note that for jest, the component must be a class based component unfortunately. NOTE: Still follow the recompose system for these class-based components.  For reference for the usage of this library, you can view the `UserAvatar.js` component.
 
 
+
 ## Redux Overview
 
 To get familiar, documentation from redux is very thorough and well written.  View it [here](https://redux.js.org/).  Note that redux is a standard state-management library, and can be learned in full without a react context.  Ultimately, viewing it in this way can help write more modular redux code. 
