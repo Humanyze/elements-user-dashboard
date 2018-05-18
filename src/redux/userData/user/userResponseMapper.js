@@ -17,8 +17,8 @@ const parseDataSetsFromRoles = (roleUriArray) => {
         DEPLOYMENT: 'admin'
     };
 
-    const executiveDataSetIds = [];
-    const deploymentDataSetIds = [];
+    const executiveDataSetIdsDict = {};
+    const deploymentDataSetIdsDict = {};
 
     roleUriArray.map((roleUri) => {
 
@@ -26,12 +26,15 @@ const parseDataSetsFromRoles = (roleUriArray) => {
         const id = role.split('-').splice(-1)[0];
 
         if (role.includes(DataSetTypeFlags.EXECUTIVE)) {
-            return executiveDataSetIds.push(id);
+            return executiveDataSetIdsDict[id] = id;
         } else if (role.includes(DataSetTypeFlags.DEPLOYMENT)) {
-            return deploymentDataSetIds.push(id);
+            return deploymentDataSetIdsDict[id] = id;
         }
         return null;
     });
+
+    const executiveDataSetIds = Object.keys(executiveDataSetIdsDict);
+    const deploymentDataSetIds = Object.keys(deploymentDataSetIdsDict);
 
     return { executiveDataSetIds, deploymentDataSetIds };
 };
