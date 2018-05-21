@@ -2,7 +2,7 @@ import React from 'react';
 import ActionSubBar from './action-sub-bar/ActionSubBar';
 import ParticipantsTable from './participants-table/ParticipantsTable';
 import { connect } from 'react-redux';
-import { compose, lifecycle } from 'recompose';
+import { compose, lifecycle, withHandlers } from 'recompose';
 import { withRouter } from 'react-router';
 import * as queryString from 'Utils/query-string';
 
@@ -58,11 +58,24 @@ const withDidMount = lifecycle({
 
 });
 
+const onPaginationPageClicked = ({ history, location }) => number => e => {
+    const { pathname, search } = location;
+    const queryObj = queryString.parse(search);
+    const updatedPageQuery = { ...queryObj, page: number };
+    history.push({
+        pathname,
+        search: queryString.stringify(updatedPageQuery)
+    });
+};
+
 const enhance = compose(
-    withDidMount
+    withDidMount,
+    withHandlers({
+        onPaginationPageClicked
+    })
 );
 
-export const DeploymentOverviewPure = ({ selectedDeployment,  activePageNumber, numberOfPages, participants, showLoading, paginationLoading, match: { params: { datasetId } }, fetchDeploymentById, translations }) => {
+export const DeploymentOverviewPure = ({ selectedDeployment,  activePageNumber, numberOfPages, onPaginationPageClicked, participants, showLoading, paginationLoading, match: { params: { datasetId } }, fetchDeploymentById, translations }) => {
     if (!selectedDeployment && !showLoading) {
         fetchDeploymentById(datasetId);
     }
@@ -73,7 +86,8 @@ export const DeploymentOverviewPure = ({ selectedDeployment,  activePageNumber, 
         participants,
         showLoading,
         paginationLoading,
-        translations
+        translations,
+        onPaginationPageClicked
     };
 
     return (
