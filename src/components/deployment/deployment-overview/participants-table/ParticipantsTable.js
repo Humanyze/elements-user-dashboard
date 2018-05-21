@@ -22,7 +22,7 @@ const TableData = ({ participants, showLoading }) => {
         : null;
 };
 
-export const ParticipantsTable = withRouter(({ activePageNumber, numberOfPages, showLoading, paginationLoading, participants, translations }) => {
+export const ParticipantsTable = withRouter(({ activePageNumber, numberOfPages, onPaginationPageClicked, showLoading, paginationLoading, participants, translations }) => {
     return (
         <div className='ParticipantsTable'>
             <div className='ParticipantsTable__title'>
@@ -41,7 +41,7 @@ export const ParticipantsTable = withRouter(({ activePageNumber, numberOfPages, 
                         (showLoading || paginationLoading) && <div className='ParticipantsTable__loading-wrapper'><LoadingUI  theme={'humanyze-blue-theme'}/></div>
                     }
                 </div>
-                {!showLoading && <Pagination activePageNumber={activePageNumber} numberOfPages={numberOfPages} />}
+                {!showLoading && <Pagination activePageNumber={activePageNumber} numberOfPages={numberOfPages} onPaginationPageClicked={onPaginationPageClicked} />}
 
             </div>
         </div>
