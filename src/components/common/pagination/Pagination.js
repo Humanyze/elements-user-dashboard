@@ -46,7 +46,7 @@ export const PaginationPure = ({ activePageNumber, onPaginationPageClicked, numb
         <div className='Pagination'>
 
             <div onClick={onPaginationPageClicked(activePageNumber - 1)}
-                 className={classNames('Pagination__nav', { 'disabled': canClickPrev })}>
+                 className={classNames('Pagination__nav', { 'disabled': !canClickPrev })}>
                 <MaterialIcon icon={'chevron_left'} size={'tiny'}/>
             </div>
 
@@ -61,7 +61,7 @@ export const PaginationPure = ({ activePageNumber, onPaginationPageClicked, numb
             {numberOfPages > 1 && <PaginationNumberLink number={numberOfPages} {...LinkProps}/>}
 
             <div onClick={onPaginationPageClicked(activePageNumber + 1)}
-                 className={classNames('Pagination__nav', { 'disabled': canClickNext })}>
+                 className={classNames('Pagination__nav', { 'disabled': !canClickNext })}>
                 <MaterialIcon icon={'chevron_right'} size={'tiny'}/>
             </div>
         </div>
