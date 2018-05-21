@@ -23,7 +23,11 @@ import { getBearerToken } from 'Src/redux/auth/authReducer';
 
 
 
-const onExportClicked = ({ deploymentId, bearerToken, setIsExporting, showExportError }) => async (e) => {
+const onExportClicked = ({ deploymentId, bearerToken, isExporting, setIsExporting, showExportError }) => async (e) => {
+    if (isExporting) {
+        // don't allow clicks while waiting for export response
+        return;
+    }
     setIsExporting(true);
 
     try {
