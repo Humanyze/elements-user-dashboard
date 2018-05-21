@@ -22,7 +22,6 @@ const setUserDataById = (id) => async (dispatch, getState) => {
     } catch (e) {
         dispatch(userDataFetchFailed(e));
         dispatch(addFatalError(ErrorMessages.userFetchFailure));
-        // this should probably log user out after showing error page
     }
 };
 
