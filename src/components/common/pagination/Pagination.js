@@ -1,14 +1,10 @@
 import React from 'react';
-import './pagination.scss';
-
-// import { connect } from 'react-redux';
-import { compose, withHandlers, withPropsOnChange } from 'recompose';
-// import { getTotalPageCount } from 'Redux/participants/participantsReducer';
+import { compose, withPropsOnChange } from 'recompose';
 import MaterialIcon from 'material-icons-react';
 import { withRouter } from 'react-router-dom';
-// todo: remove dependency on routing here
-import * as queryString from 'Utils/query-string';
 
+import './pagination.scss';
+import classNames from 'classnames';
 
 export const getArrayFromStartEndIndex = (startIndex, endIndex) => Array.from({ length: (endIndex - startIndex + 1) }, (x, i) => startIndex + i);
 
@@ -25,16 +21,6 @@ const getPageNumbers = (numberOfPages, activePageNumber, offset = 3) => {
 
 };
 
-const goToPage = ({ history, location }) => number => e => {
-    const { pathname, search } = location;
-    const queryObj = queryString.parse(search);
-    const updatedPageQuery = { ...queryObj, page: number };
-    history.push({
-        pathname,
-        search: queryString.stringify(updatedPageQuery)
-    });
-};
-
 const enhance = compose(
     withPropsOnChange(
         ['activePageNumber', 'numberOfPages'],
@@ -42,27 +28,26 @@ const enhance = compose(
             canClickPrev: activePageNumber !== 1,
             canClickNext: activePageNumber !== numberOfPages
         })
-    ),
-    withHandlers({
-        goToPage
-    })
+    )
 );
 
 
-export const PaginationPure = ({ activePageNumber, goToPage, numberOfPages, canClickPrev, canClickNext }) => {
+export const PaginationPure = ({ activePageNumber, onPaginationPageClicked, numberOfPages, canClickPrev, canClickNext }) => {
 
 
     const { PageNumbers, hiddenStart, hiddenEnd } = getPageNumbers(numberOfPages, activePageNumber);
+
     const LinkProps = {
         activePageNumber,
-        goToPage
+        onPaginationPageClicked
     };
 
     return (
         <div className='Pagination'>
 
-            <div onClick={goToPage(activePageNumber - 1)} className={`Pagination__nav ${canClickPrev ? '' : 'disabled'}`}>
-                <MaterialIcon  icon={'chevron_left'} size={'tiny'}/>
+            <div onClick={onPaginationPageClicked(activePageNumber - 1)}
+                 className={classNames('Pagination__nav', { 'disabled': !canClickPrev })}>
+                <MaterialIcon icon={'chevron_left'} size={'tiny'}/>
             </div>
 
             <PaginationNumberLink number={1} {...LinkProps}/>
@@ -75,7 +60,8 @@ export const PaginationPure = ({ activePageNumber, goToPage, numberOfPages, canC
 
             {numberOfPages > 1 && <PaginationNumberLink number={numberOfPages} {...LinkProps}/>}
 
-            <div onClick={goToPage(activePageNumber + 1)}  className={`Pagination__nav ${canClickNext ? '' : 'disabled'}`}>
+            <div onClick={onPaginationPageClicked(activePageNumber + 1)}
+                 className={classNames('Pagination__nav', { 'disabled': !canClickNext })}>
                 <MaterialIcon icon={'chevron_right'} size={'tiny'}/>
             </div>
         </div>
@@ -91,5 +77,7 @@ export default Pagination;
 
 const Ellipses = () => <div className='Pagination__ellipses'>...</div>;
 
-export const PaginationNumberLink = ({ number, activePageNumber, goToPage }) => <div onClick={goToPage(number)}
-                                                                                     className={`Pagination__number-link ${ number === activePageNumber ? 'active' : ''}`}>{number}</div>;
+export const PaginationNumberLink = ({ number, activePageNumber, onPaginationPageClicked }) => {
+    return <div onClick={onPaginationPageClicked(number)}
+                className={classNames('Pagination__number-link', { 'active': number === activePageNumber })}>{number}</div>;
+};
