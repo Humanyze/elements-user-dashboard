@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from 'Redux/auth/authActions';
 import { Link } from 'react-router-dom';
 import MaterialIcon from 'material-icons-react';
-import { getCurrentUserName } from 'Redux/userData/user/userReducer';
+import { getCurrentUserName, getCurrentUserPermissions } from 'Redux/userData/user/userReducer';
 import { getCurrentParticipantAvatar } from 'Redux/userData/participant/participantReducer';
 import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 
@@ -16,32 +16,45 @@ import onClickOutside from 'react-onclickoutside';
 
 const DropdownLinks = [
     {
-        textKey: 'avatarMenu/dashboard',
-        to: '/dashboard'
+        textKey      : 'avatarMenu/dashboard',
+        to           : '/dashboard',
+        permissionKey: 'individual_dashboard'
     },
     {
-        textKey: 'avatarMenu/management',
-        to: '/manage'
+        textKey      : 'avatarMenu/management',
+        to           : '/manage',
+        permissionKey: 'management_dashboard'
+
     },
     {
-        textKey: 'avatarMenu/executive',
-        to: '/select-deployment?for=executive'
+        textKey      : 'avatarMenu/executive',
+        to           : '/select-deployment?for=executive',
+        permissionKey: 'executive_dashboard'
+
     },
     {
-        textKey: 'avatarMenu/digital',
-        to: '/select-deployment?for=digital'
+        textKey      : 'avatarMenu/digital',
+        to           : '/select-deployment?for=digital',
+        permissionKey: 'digital_dashboard'
+
     },
     {
-        textKey: 'avatarMenu/deployments',
-        to: '/deployments'
+        textKey      : 'avatarMenu/deployments',
+        to           : '/deployments',
+        permissionKey: 'deployment_dashboard'
+
     },
     {
-        textKey: 'avatarMenu/profile',
-        to: '/profile'
+        textKey      : 'avatarMenu/profile',
+        to           : '/profile',
+        permissionKey: 'True'
+
     },
     {
-        textKey: 'avatarMenu/changePassword',
-        to: '/profile/change-password'
+        textKey      : 'avatarMenu/changePassword',
+        to           : '/profile/change-password',
+        permissionKey: 'True'
+
     }
 ];
 
@@ -59,7 +72,7 @@ const enhance = compose(
     withProps(() => ({ dropdownLinks: DropdownLinks })),
     withState('showDropdown', 'setShowDropdown', false),
     withHandlers({
-        toggleDropdown: ({ showDropdown, setShowDropdown }) => e => setShowDropdown(!showDropdown),
+        toggleDropdown    : ({ showDropdown, setShowDropdown }) => e => setShowDropdown(!showDropdown),
         onLogoutClicked,
         linkClicked,
         handleClickOutside: ({ setShowDropdown }) => e => setShowDropdown(false)
@@ -69,10 +82,9 @@ const enhance = compose(
 
 // NOTE: must be class to use click outside, needs component ref
 export class UserAvatarPure extends React.Component {
-
     render() {
-        const { username, avatar, dropdownLinks, showDropdown, toggleDropdown, onLogoutClicked, translations } = this.props;
-            return (
+        const { username, userPermissions, avatar, dropdownLinks, showDropdown, toggleDropdown, onLogoutClicked, translations } = this.props;
+        return (
             <div className='UserAvatar'>
                 <span className='UserAvatar__username'>
                     {username}
@@ -87,9 +99,13 @@ export class UserAvatarPure extends React.Component {
                     <div className='UserAvatar__dropdown'>
                         <div className='UserAvatar__dropdown-body'>
 
-                            {dropdownLinks.map(link => <a href={link.to}
-                                                          className='UserAvatar__dropdown-link'
-                                                          key={link.textKey}>{translations[link.textKey]}</a>)}
+                            {dropdownLinks.map(link =>
+                                (link['permissionKey'] === 'True' || userPermissions[link['permissionKey']])
+                                &&
+                                <a href={link.to}
+                                   className='UserAvatar__dropdown-link'
+                                   key={link.textKey}>{translations[link.textKey]}</a>)
+                            }
 
                             <div className='UserAvatar__dropdown-divider'/>
 
@@ -112,9 +128,10 @@ export class UserAvatarPure extends React.Component {
 
 const UserAvatar = connect(
     (state) => ({
-        username: getCurrentUserName(state),
-        avatar: getCurrentParticipantAvatar(state),
-        translations: getCurrentTranslations(state)
+        username       : getCurrentUserName(state),
+        avatar         : getCurrentParticipantAvatar(state),
+        userPermissions: getCurrentUserPermissions(state),
+        translations   : getCurrentTranslations(state)
 
     }),
     { logoutUser }

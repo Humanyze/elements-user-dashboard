@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { shallow, mount } from 'enzyme';
 import UserAvatar, { UserAvatarPure } from './UserAvatar';
-import createStore from 'Redux/createStore';
-
-import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-const { store } = createStore();
+import { RouterContext, StoreContext } from 'Src/tests/contextCreators';
 
 
 const defaultProps = {
     username: '',
+    userPermissions: {},
     avatar: '',
     dropdownLinks: [],
     showDropdown: false,
@@ -22,11 +20,11 @@ const defaultProps = {
 };
 
 describe('userAvatar', () => {
-    const component = mount(<Provider store={store}><BrowserRouter><UserAvatar/></BrowserRouter></Provider>);
+    const component = mount(<StoreContext><RouterContext><UserAvatar/></RouterContext></StoreContext>);
 
     const getShowDropdownValue = () => component.find(UserAvatarPure).props().showDropdown;
 
-    testRender(UserAvatarPure)();
+    testRender(UserAvatarPure, defaultProps)();
 
     it('should not show dropdown initially', () => {
         expect(getShowDropdownValue()).toBeFalsy();

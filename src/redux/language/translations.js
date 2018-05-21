@@ -29,7 +29,7 @@ export default {
         [EN]: 'Digital'
     },
     'avatarMenu/deployments': {
-        [EN]: 'Deployment'
+        [EN]: 'Deployments'
     },
     'avatarMenu/profile': {
         [EN]: 'Profile'
