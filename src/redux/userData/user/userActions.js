@@ -3,6 +3,8 @@ import AxiosRequestService from '../../AxiosRequestService';
 import USER_ACTION_TYPES from './userActionTypes';
 import { mapUserResponse } from './userResponseMapper';
 import { getBearerToken } from '../../auth/authReducer';
+import { addFatalError } from 'Src/redux/error/errorActions';
+import ErrorMessages from 'Redux/error/errorMessageTypes';
 
 const userDataFetchRequested = createAction(USER_ACTION_TYPES.USER_DATA_FETCH_REQUESTED);
 const userDataFetchSuccessful = createAction(USER_ACTION_TYPES.USER_DATA_FETCH_SUCCESSFUL, userData => userData);
@@ -19,6 +21,7 @@ const setUserDataById = (id) => async (dispatch, getState) => {
         dispatch(userDataFetchSuccessful(User));
     } catch (e) {
         dispatch(userDataFetchFailed(e));
+        dispatch(addFatalError(ErrorMessages.userFetchFailure));
         // this should probably log user out after showing error page
     }
 };
