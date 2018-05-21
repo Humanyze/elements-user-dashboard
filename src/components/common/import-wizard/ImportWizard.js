@@ -44,7 +44,7 @@ const importStates = {
     'succeeded': 'ImportWizard__import-succeeded'
 };
 
-const ImportWizardPure = ({ translations, fileState = 'ready', validateState = 'ready', importState = 'ready' }) => {
+export const ImportWizardPure = ({ translations, fileState = 'ready', validateState = 'ready', importState = 'ready' }) => {
     return (
         <div className='import-wizard-wrapper'>
             <svg className='import-wizard'

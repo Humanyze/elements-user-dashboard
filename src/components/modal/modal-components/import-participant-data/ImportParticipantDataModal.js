@@ -321,7 +321,8 @@ const enhance = compose(
     withState('machineStateType', 'setMachineStateType', machineStateTypes.INITIAL),
     withProps(({ machineStateType }) => machineStates[machineStateType]),
     withProps(({ startDateString, endDateString }) => ({
-        startDate: Moment(startDateString), endDate: Moment(endDateString)
+        startDate: Moment(startDateString),
+        endDate: Moment(endDateString)
     })),
     withPropsOnChange(
         ['dataFile'],
@@ -329,7 +330,9 @@ const enhance = compose(
     ),
     withPropsOnChange(
         ['fileIsSelected', 'effectiveDate'],
-        ({ fileIsSelected, effectiveDate }) => ({ validationReady: !!(fileIsSelected && effectiveDate) })
+        ({ fileIsSelected, effectiveDate }) => ({
+            validationReady: !!(fileIsSelected && effectiveDate)
+        })
     ),
     withHandlers({
         updateMachineState,
