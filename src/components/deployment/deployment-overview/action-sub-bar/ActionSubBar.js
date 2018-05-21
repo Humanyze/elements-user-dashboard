@@ -6,6 +6,7 @@ import contentDisposition from 'content-disposition';
 import RouterPaths from 'RouterPaths';
 import * as R from 'ramda';
 import fileDownload from 'js-file-download';
+import classNames from 'classnames';
 
 import './action-sub-bar.scss';
 
@@ -70,7 +71,7 @@ export const ActionSubBarPure = ({ openImportDialog, onExportClicked, isExportin
                 <div onClick={openImportDialog} className='ActionSubBar__text'>
                     {translations.actionSubBar__import}
                 </div>
-                <div onClick={onExportClicked} className='ActionSubBar__text'>
+                <div onClick={onExportClicked} className={classNames('ActionSubBar__text', { 'ActionSubBar__text--exporting': isExporting})}>
                     {isExporting ? translations.actionSubBar__exporting : translations.actionSubBar__export}
                 </div>
             </div>

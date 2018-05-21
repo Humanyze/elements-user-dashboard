@@ -32,5 +32,11 @@
             font-style: italic;
             cursor: default;
         }
+        &.ActionSubBar__text--exporting {
+            cursor: default;
+            &:hover {
+                background-color: transparent;
+            }
+        }
     }
 }
