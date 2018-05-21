@@ -71,7 +71,7 @@ export const ActionSubBarPure = ({ openImportDialog, onExportClicked, isExportin
                 <div onClick={openImportDialog} className='ActionSubBar__text'>
                     {translations.actionSubBar__import}
                 </div>
-                <div onClick={onExportClicked} className={classNames('ActionSubBar__text', { 'ActionSubBar__text--exporting': isExporting})}>
+                <div onClick={onExportClicked} className={classNames('ActionSubBar__text', { 'ActionSubBar__text--exporting': isExporting })}>
                     {isExporting ? translations.actionSubBar__exporting : translations.actionSubBar__export}
                 </div>
             </div>
