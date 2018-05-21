@@ -17,10 +17,6 @@ export const postRequest = async (url, data) => await axios.post(url,
 
 
 export const getRequestWithAuth = async (url, bearerToken) => {
-    if (!bearerToken) {
-        console.error('unauthorized');
-        return;
-    }
     return await axios.get(url, {
         method : 'GET',
         headers: {
@@ -52,19 +48,14 @@ const login = ({ username, password }) => postRequest('/api/v1/login', { usernam
 const logout = () => postRequest('/api/v1/logout');
 
 
-
 // USER ENDPOINTS
 const getUserById = async (id, token) => await getRequestWithAuth(`/api/v1/user/${id}/`, token);
-
-
 
 
 // PARTICIPANT(S) ENDPOINTS
 const getParticipantDataById = async (id, token) => await getRequestWithAuth(`/api/v1/participant/?user=${id}`, token);
 const getParticipantsByDatasetId = async (datasetId, { perPage = 20, offset = 0 }, token) => await getRequestWithAuth(`/api/v2/participants?dataset_id=${datasetId}&limit=${perPage}&offset=${offset}`, token);
 const getAllParticipantsByDatasetId = async (datasetId, token) => await getRequestWithAuth(`/api/v2/participants?dataset_id=${datasetId}`, token);
-
-
 
 
 // DATASET ENDPOINTS
