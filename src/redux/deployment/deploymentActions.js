@@ -1,7 +1,8 @@
 import { createAction } from 'redux-actions';
 import DEPLOYMENT_ACTION_TYPES from './deploymentActionTypes';
-import AxiosRequestService  from '../AxiosRequestService';
+import AxiosRequestService from '../AxiosRequestService';
 import { getBearerToken } from '../auth/authReducer';
+import normalizeArrayById from 'Utils/normalize-array-by-id';
 
 
 export const deploymentsByIdRequested = createAction(DEPLOYMENT_ACTION_TYPES.DEPLOYMENTS_DATA_REQUESTED);
@@ -44,8 +45,3 @@ export const fetchDeploymentById = (id) => async (dispatch, getState) => {
         console.error(e);
     }
 };
-
-
-
-// todo move to utils lib
-export const normalizeArrayById = (array) => array.reduce((dict, item) => ({ ...dict, [item.id]: item }), {});
