@@ -10,7 +10,7 @@ if (typeof Promise === 'undefined') {
 
 // fetch() polyfill for making API calls.
 require('whatwg-fetch');
-
+require('babel-polyfill');
 // Object.assign() is commonly used with React.
 // It will use the native implementation if it's present and isn't buggy.
 Object.assign = require('object-assign');
@@ -19,19 +19,4 @@ Object.assign = require('object-assign');
 // We don't polyfill it in the browser--this is user's responsibility.
 if (process.env.NODE_ENV === 'test') {
   require('raf').polyfill(global);
-}
-
-if (!String.prototype.includes) {
-    String.prototype.includes = function(search, start) {
-        'use strict';
-        if (typeof start !== 'number') {
-            start = 0;
-        }
-
-        if (start + search.length > this.length) {
-            return false;
-        } else {
-            return this.indexOf(search, start) !== -1;
-        }
-    };
 }
