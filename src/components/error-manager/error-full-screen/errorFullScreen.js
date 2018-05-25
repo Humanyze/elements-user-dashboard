@@ -1,5 +1,4 @@
 import React from 'react';
-import * as R from 'ramda';
 import { withRouter } from 'react-router';
 import { compose, withHandlers } from 'recompose';
 
