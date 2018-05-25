@@ -3,6 +3,8 @@ import DEPLOYMENT_ACTION_TYPES from './deploymentActionTypes';
 import AxiosRequestService from '../AxiosRequestService';
 import { getBearerToken } from '../auth/authReducer';
 import normalizeArrayById from 'Utils/normalize-array-by-id';
+import * as errorActions from 'Src/redux/error/errorActions';
+import ErrorMessageTypes from 'Src/redux/error/errorMessageTypes';
 
 
 export const deploymentsByIdRequested = createAction(DEPLOYMENT_ACTION_TYPES.DEPLOYMENTS_DATA_REQUESTED);
@@ -16,7 +18,6 @@ export const fetchDeploymentSuccessful = createAction(DEPLOYMENT_ACTION_TYPES.DE
 export const setDeploymentsFromStoreDeploymentIds = () => async (dispatch, getState) => {
 
     dispatch(deploymentsByIdRequested());
-
 
     try {
         const deploymentIds = getState().deployment.deploymentDataSetIds || [];
@@ -32,6 +33,7 @@ export const setDeploymentsFromStoreDeploymentIds = () => async (dispatch, getSt
 
     } catch (e) {
         console.error(e);
+        dispatch(errorActions.addFatalError(ErrorMessageTypes.deploymentFetchFailure));
     }
 };
 
@@ -41,7 +43,12 @@ export const fetchDeploymentById = (id) => async (dispatch, getState) => {
         const bearerToken = getBearerToken(getState());
         const { data } = await AxiosRequestService.datasets.getDatasetById(id, bearerToken);
         dispatch(fetchDeploymentSuccessful(data));
-    } catch (e) {
-        console.error(e);
+    } catch ({ response }) {
+        console.error(response );
+        if (response.status === 403) {
+            dispatch(errorActions.addFatalError(ErrorMessageTypes.userUnauthorizedFailure));
+        } else {
+            dispatch(errorActions.addFatalError(ErrorMessageTypes.genericDeploymentFailure));
+        }
     }
 };

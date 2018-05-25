@@ -234,7 +234,6 @@ const onUploadClicked = ({ translations, updateMachineState, monitorImportStatus
         await setRequestUUID(res.data.task.uuid);
         monitorImportStatus(res.data.task.uuid);
     } catch (e) {
-        console.error('here', e);
         updateMachineState({
             type        : machineStateTypes.IMPORT_ERROR,
             errorMessage: translations['ImportError__generic-error']

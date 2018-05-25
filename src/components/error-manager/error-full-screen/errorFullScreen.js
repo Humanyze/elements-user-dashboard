@@ -8,9 +8,8 @@ import { connect } from 'react-redux';
 import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 
 
-const onRedirectButtonClicked = ({ fatalError, history }) => e => {
-    const link = R.path(['redirectButton', 'link'], fatalError);
-    history.push(link);
+const onRedirectButtonClicked = ({ history }) => uri => e => {
+    history.push(uri);
 };
 
 const enhance = compose(
@@ -22,12 +21,28 @@ const enhance = compose(
 export const ErrorFullScreenPure = ({ translations, fatalError, flashErrors, onRedirectButtonClicked }) => {
     return (
         <div className='ErrorFullScreen'>
-            <div className='ErrorFullScreen__fatal-message'>{translations[fatalError.messageTranslationKey]}</div>
-            {
-                fatalError.redirectButton &&
-                <div onClick={onRedirectButtonClicked}
-                     className='ErrorFullScreen__redirect-button'>{translations[fatalError.redirectButton.textKey]}</div>
-            }
+            <div className='ErrorFullScreen__fatal-message'>
+                {translations[fatalError.messageTranslationKey]}
+            </div>
+            <div className='ErrorFullScreen__button-block'>
+                {
+                    fatalError.redirectButtons.map(button => (
+                        button.reload ?
+                            <a href={button.link}
+                               key={button.link}>
+                                <div className='ErrorFullScreen__redirect-button'>
+                                    {translations[button.textKey]}
+                                </div>
+                            </a>
+                            :
+                            <div onClick={onRedirectButtonClicked(button.link)}
+                                 className='ErrorFullScreen__redirect-button'
+                                 key={button.link}>
+                                {translations[button.textKey]}
+                            </div>
+                    ))
+                }
+            </div>
         </div>
     );
 };
