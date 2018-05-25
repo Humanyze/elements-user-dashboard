@@ -4,7 +4,7 @@ const PRIORITIES = {
     HIGH: 3
 };
 
-const MESSAGE_TYPES = {
+export const MESSAGE_TYPES = {
     FLASH: 'FLASH',
     FATAL: 'FATAL'
 };
@@ -20,10 +20,10 @@ const userFetchFailure = {
     messageTranslationKey: 'errorMessage__userFetchFailure',
     type: MESSAGE_TYPES.FATAL,
     priority: PRIORITIES.HIGH,
-    redirectButtons: {
+    redirectButtons: [{
         link: '/logout',
         textKey: 'errorMessage__userFetchFailure--button'
-    }
+    }]
 };
 
 const userUnauthorizedFailure = {
