@@ -16,8 +16,12 @@
 
 .ErrorFullScreen__fatal-message {
   font-size: 1.2em;
+  text-align: center;
 }
 
+.ErrorFullScreen__button-block {
+  display: flex;
+}
 .ErrorFullScreen__redirect-button {
   background-color: $humanyze-blue;
   color: white;
@@ -28,6 +32,5 @@
   margin: 10px;
   &:hover {
     background-color: lighten($humanyze-blue, 5%);
-
   }
 }

@@ -13,6 +13,9 @@ export default {
     'close': {
         [EN]: 'Close'
     },
+    'logout': {
+        [EN]: 'Logout'
+    },
     'selectDeploymentHeader': {
         [EN]: 'Choose a deployment'
     },
@@ -61,7 +64,6 @@ export default {
     'participantTable__header': {
         [EN]: 'Participants'
     },
-
     'errorMessage__participantExportFailure': {
         [EN]: 'Failed to export participant data.'
     },
@@ -70,6 +72,24 @@ export default {
     },
     'errorMessage__userFetchFailure--button': {
         [EN]: 'Login'
+    },
+    'errorMessage__userUnauthorizedFailure': {
+        [EN]: 'You don\'t seem to have access to this deployment.  If you think this is an error, feel free to contact your administrator.'
+    },
+    'errorMessage__userUnauthorizedFailure--button': {
+        [EN]: 'Back to deployment selection'
+    },
+    'errorMessage__genericDeploymentFailure': {
+        [EN]: 'Unfortunately, something went wrong loading this deployment. Try reloading the page or checking the URL.'
+    },
+    'errorMessage__genericDeploymentFailure--button': {
+        [EN]: 'Reload'
+    },
+    'errorMessage__deploymentFetchFailure': {
+        [EN]: 'There was an issue getting one of your deployments.  Try reloading the page or contacting your administrator.'
+    },
+    'errorMessage__deploymentFetchFailure--button': {
+        [EN]: 'Reload'
     },
     'ImportParticipantDataModal__header': {
         [EN]: 'Import Data'

@@ -20,15 +20,55 @@ const userFetchFailure = {
     messageTranslationKey: 'errorMessage__userFetchFailure',
     type: MESSAGE_TYPES.FATAL,
     priority: PRIORITIES.HIGH,
-    redirectButton: {
+    redirectButtons: {
         link: '/logout',
         textKey: 'errorMessage__userFetchFailure--button'
     }
 };
 
+const userUnauthorizedFailure = {
+    messageTranslationKey: 'errorMessage__userUnauthorizedFailure',
+    type: MESSAGE_TYPES.FATAL,
+    priority: PRIORITIES.MED,
+    redirectButtons: [{
+        link: '/deployments/select-deployment',
+        textKey: 'errorMessage__userUnauthorizedFailure--button',
+        reload: true
+    }]
+};
 
+const genericDeploymentFailure = {
+    messageTranslationKey: 'errorMessage__genericDeploymentFailure',
+    type: MESSAGE_TYPES.FATAL,
+    priority: PRIORITIES.MED,
+    redirectButtons: [{
+        link: '', // forces reload
+        textKey: 'errorMessage__genericDeploymentFailure--button',
+        reload: true
+    }, {
+        link: '/logout',
+        textKey: 'logout',
+    }]
+};
+
+const deploymentFetchFailure = {
+    messageTranslationKey: 'errorMessage__deploymentFetchFailure',
+    type: MESSAGE_TYPES.FATAL,
+    priority: PRIORITIES.MED,
+    redirectButtons: [{
+        link: '', // forces reload
+        textKey: 'errorMessage__deploymentFetchFailure--button',
+        reload: true
+    }, {
+        link: '/logout',
+        textKey: 'logout',
+    }]
+};
 
 export default {
     participantExportFailure,
-    userFetchFailure
+    userFetchFailure,
+    userUnauthorizedFailure,
+    genericDeploymentFailure,
+    deploymentFetchFailure
 };
