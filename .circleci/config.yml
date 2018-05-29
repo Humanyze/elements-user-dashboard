@@ -88,7 +88,7 @@ jobs:
       # deployment-react
       - run: aws s3 sync s3://elements-deployment-$CIRCLE_BRANCH.humanyze.com ./apps/deployment-dashboard
       # ember
-      - run: if [ "$CIRCLE_BRANCH" -eq "master" ]; then branch_key="production"; else branch_key="development"; f
+      - run: if [ "$CIRCLE_BRANCH" -eq "master" ]; then branch_key="production"; else branch_key="development"; fi
       - run: aws s3 sync s3://humanyze-wyze-$branch_key.humanyze.com ./apps/ember-dashboard
 
       - setup_remote_docker
