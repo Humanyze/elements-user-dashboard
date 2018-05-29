@@ -90,9 +90,9 @@ jobs:
       # ember
       - run: |
           if [ "$CIRCLE_BRANCH" == "master" ]; then
-            export BUCKET_BRANCH = "production" >> $BASH_ENV
+            echo 'BUCKET_BRANCH = "production"' >> $BASH_ENV
           else
-            export BUCKET_BRANCH = "development" >> $BASH_ENV
+            echo 'export BUCKET_BRANCH = "development"' >> $BASH_ENV
           fi
       - run: echo $BUCKET_BRANCH && aws s3 sync s3://humanyze-wyze-$BUCKET_BRANCH.humanyze.com ./apps/ember-dashboard
 
