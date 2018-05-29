@@ -77,6 +77,7 @@ jobs:
           name: Avoid hosts unknown for github
           command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: git config --global user.email "matthew@humanyze.com"
+      - run:   git config --global user.name "CI Matthew"
       - run: git clone git@github.com:Humanyze/nginx-frontend.git .
       - run: git commit --allow-empty -m 'Deployment $SHORT_COMMIT' && git push origin head
 
