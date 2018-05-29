@@ -80,11 +80,11 @@ jobs:
 #      - run:   git config --global user.name "CI Matthew"
 #      - run: git clone git@github.com:Humanyze/nginx-frontend.git .
 #      - run: git commit --allow-empty -m 'Deployment $SHORT_COMMIT' && git push origin head
-       - run: |
-            curl \
-              --header "Content-Type: application/json" \
-              --request POST \
-              https://circleci.com/api/v1.1/project/github/Humanyze/nginx-frontend/tree/$CIRCLE_BRANCH?circle-token=$TRIGGER_TOKEN
+      - run: |
+          curl \
+            --header "Content-Type: application/json" \
+            --request POST \
+            https://circleci.com/api/v1.1/project/github/Humanyze/nginx-frontend/tree/$CIRCLE_BRANCH?circle-token=$TRIGGER_TOKEN
 
 workflows:
   version: 2
