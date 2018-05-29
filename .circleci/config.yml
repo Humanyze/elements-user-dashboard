@@ -90,11 +90,11 @@ jobs:
       # ember
       - run: |
           if [ "$CIRCLE_BRANCH" == "master" ]; then
-            branch_key="production"
+            export BUCKET_BRANCH = "production" >> $BASH_ENV
           else
-            branch_key="development"
+            export BUCKET_BRANCH = "development" >> $BASH_ENV
           fi
-      - run: echo $branch_key && aws s3 sync s3://humanyze-wyze-$branch_key.humanyze.com ./apps/ember-dashboard
+      - run: echo $BUCKET_BRANCH && aws s3 sync s3://humanyze-wyze-$BUCKET_BRANCH.humanyze.com ./apps/ember-dashboard
 
       - setup_remote_docker
 
