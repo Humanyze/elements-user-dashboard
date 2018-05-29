@@ -66,7 +66,9 @@ jobs:
             aws s3 sync .out/ s3://develop-deployment-storybook.humanyze.com --delete
           fi
 
-  nginx_build_deploy:
+
+  ## TODO: change this to trigger the nginx build, rather than have ever repo do this
+  trigger_nginx:
     working_directory: ~/nginx
     docker:
       - image: circleci/node:8.9.2
@@ -76,35 +78,7 @@ jobs:
           command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
 
       - run: git clone git@github.com:Humanyze/nginx-frontend.git .
-
-      # aws cli usage
-      - run: sudo apt-get update && sudo apt-get install -y python-dev
-      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
-      - run: sudo python get-pip.py
-      - run: sudo pip install awscli --upgrade
-
-      # copy built repos of deployment and ember into folder
-      - run: mkdir ./apps
-      # deployment-react
-      - run: aws s3 sync s3://elements-deployment-$CIRCLE_BRANCH.humanyze.com ./apps/deployment-dashboard
-      # ember
-      - run: |
-          if [ "$CIRCLE_BRANCH" == "master" ]; then
-            echo 'BUCKET_BRANCH="production"' >> $BASH_ENV
-          else
-            echo 'export BUCKET_BRANCH="development"' >> $BASH_ENV
-          fi
-      - run: echo $BUCKET_BRANCH && aws s3 sync s3://humanyze-wyze-$BUCKET_BRANCH.humanyze.com ./apps/ember-dashboard
-
-      - setup_remote_docker
-
-      - run: docker build -f Dockerfile.prod --build-arg ENV=$CIRCLE_BRANCH -t humanyze/nginx:$CIRCLE_BRANCH -- .
-
-      - run: docker login -u mcondit04 -p $DOCKERHUB_PW
-
-      - run: docker push humanyze/nginx:$CIRCLE_BRANCH
-
-
+      - run: git commit --allow-empty -m 'Deployment $SHORT_COMMIT' && git push origin head
 
 workflows:
   version: 2
@@ -123,7 +97,7 @@ workflows:
               only:
                 - master
                 - develop
-      - nginx_build_deploy:
+      - trigger_nginx:
           requires:
             - package
           filters:
