@@ -94,7 +94,7 @@ jobs:
           else
             branch_key="development"
           fi
-      - run: aws s3 sync s3://humanyze-wyze-$branch_key.humanyze.com ./apps/ember-dashboard
+      - run: echo $branch_key && aws s3 sync s3://humanyze-wyze-$branch_key.humanyze.com ./apps/ember-dashboard
 
       - setup_remote_docker
 
