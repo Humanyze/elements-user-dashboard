@@ -67,19 +67,12 @@ jobs:
           fi
 
 
-  ## TODO: change this to trigger the nginx build, rather than have ever repo do this
+  ## Note: This will be shared across micros
   trigger_nginx:
     working_directory: ~/nginx
     docker:
       - image: circleci/node:8.9.2
     steps:
-      - run:
-          name: Avoid hosts unknown for github
-          command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-#      - run: git config --global user.email "matthew@humanyze.com"
-#      - run:   git config --global user.name "CI Matthew"
-#      - run: git clone git@github.com:Humanyze/nginx-frontend.git .
-#      - run: git commit --allow-empty -m 'Deployment $SHORT_COMMIT' && git push origin head
       - run: |
           curl \
             --header "Content-Type: application/json" \
