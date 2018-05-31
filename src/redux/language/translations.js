@@ -83,13 +83,13 @@ export default {
         [EN]: 'Unfortunately, something went wrong loading this deployment. Try reloading the page or checking the URL.'
     },
     'errorMessage__genericDeploymentFailure--button': {
-        [EN]: 'Reload'
+        [EN]: 'Back to deployment selection'
     },
     'errorMessage__deploymentFetchFailure': {
         [EN]: 'There was an issue getting one of your deployments.  Try reloading the page or contacting your administrator.'
     },
     'errorMessage__deploymentFetchFailure--button': {
-        [EN]: 'Reload'
+        [EN]: 'Back to deployment selection'
     },
     'ImportParticipantDataModal__header': {
         [EN]: 'Import Data'

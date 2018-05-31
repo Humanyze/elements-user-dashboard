@@ -47,7 +47,7 @@ const genericDeploymentFailure = {
     priority             : PRIORITIES.MED,
     redirectButtons      : [
         {
-            link   : '', // forces reload
+            link   : '/deployments/select-deployment',
             textKey: 'errorMessage__genericDeploymentFailure--button',
             reload : true
         },
@@ -64,7 +64,7 @@ const deploymentFetchFailure = {
     priority             : PRIORITIES.MED,
     redirectButtons      : [
         {
-            link   : '', // forces reload
+            link   : '/deployments/select-deployment',
             textKey: 'errorMessage__deploymentFetchFailure--button',
             reload : true
         },
