@@ -490,8 +490,7 @@ export const ImportEquipmentDataModalPure = ({
 
                 {/* STATIC FOOTER */}
                 <div className='ImportParticipantDataModal__footer-section'>
-                    {translations['ImportParticipantDataModal__footer-deployment']}
-                    {deploymentName}
+                    {translations['ImportParticipantDataModal__footer-deployment']} {deploymentName}
                 </div>
             </div>
         </LightBoxWrapper>
