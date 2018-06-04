@@ -528,8 +528,8 @@ const GenericError = ({ text }) => {
 const ValidationSuccessMessage = ({ translations, participantsToCreate, participantsToUpdate }) => {
     return (
         <div className='ValidationSuccessMessage'>
-            <div> {participantsToCreate} Participants to Create.</div>
-            <div>{participantsToUpdate} Participants to Update.</div>
+            <div> {participantsToCreate} {translations['ValidationSuccess__participants-create']}</div>
+            <div>{participantsToUpdate} {translations['ValidationSuccess__participants-update']}</div>
         </div>
     );
 };
@@ -537,9 +537,9 @@ const ValidationSuccessMessage = ({ translations, participantsToCreate, particip
 const ImportSuccessMessage = ({ translations, updated, created, unchanged }) => {
     return (
         <div className='ValidationSuccessMessage'>
-            <div> {created} participants were created.</div>
-            <div>{updated} participants were created.</div>
-            <div>{unchanged} participants were unchanged.</div>
+            <div> {created} {translations['ImportSuccess__participants-created']}</div>
+            <div>{updated} {translations['ImportSuccess__participants-updated']}</div>
+            <div>{unchanged} {translations['ImportSuccess__participants-unchanged']}</div>
         </div>
     );
 };
@@ -552,9 +552,9 @@ const ImportTooLongMessage = ({ translations, cancelHandler }) => {
     return (
         <div className='ImportTooLongMessage'>
             <div>
-                <div>Your import is taking a long time and may not complete.</div>
-                <div>Would you like to <span onClick={cancelHandler}
-                                             className='ImportTooLongMessage__cancel'>cancel?</span></div>
+                <div>{translations['ImportTooLong__message-one']}</div>
+                <div>{translations['ImportTooLong__message-two']} <span onClick={cancelHandler}
+                                             className='ImportTooLongMessage__cancel'>{translations['ImportTooLong__cancel-question']}</span></div>
             </div>
         </div>
     );

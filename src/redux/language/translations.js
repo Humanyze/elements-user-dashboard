@@ -148,13 +148,13 @@ export default {
     'ValidationSuccess__participants-create': {
       [EN]: 'participants will be created.'
     },
-    'ValidationSucess__participants-update': {
+    'ValidationSuccess__participants-update': {
         [EN]: 'participants will be updated.'
     },
     'ValidationError__generic-error': {
         [EN]: 'Something went wrong. Please check your file and try again.'
     },
-    'ImportSucess__participants-created': {
+    'ImportSuccess__participants-created': {
         [EN]: 'participants were created.'
     },
     'ImportSuccess__participants-updated': {
