@@ -1,6 +1,6 @@
 {
   "name": "elements-dashboard-react",
-  "version": "2.7.2",
+  "version": "0.9.0",
   "private": true,
   "homepage": "http://localhost:81/deployments",
   "dependencies": {
