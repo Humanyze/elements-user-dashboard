@@ -65,6 +65,11 @@ jobs:
           if [ "$CIRCLE_BRANCH" == "develop" ]; then
             aws s3 sync .out/ s3://develop-deployment-storybook.humanyze.com --delete
           fi
+      - run: yarn run common-docs
+      - run: |
+          if [ "$CIRCLE_BRANCH" == "develop" ]; then
+            aws s3 sync ./src/components/common/docs/ s3://react-common-docs.humanyze.com --delete
+          fi
 
 
   ## Note: This will be shared across micros
