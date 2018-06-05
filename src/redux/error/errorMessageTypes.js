@@ -16,6 +16,12 @@ const participantExportFailure = {
     priority             : PRIORITIES.LOW
 };
 
+const noImportStartDateError = {
+    messageTranslationKey: 'errorMessage_noImportStartDateError',
+    type                 : MESSAGE_TYPES.FLASH,
+    priority             : PRIORITIES.MED
+};
+
 const userFetchFailure = {
     messageTranslationKey: 'errorMessage__userFetchFailure',
     type                 : MESSAGE_TYPES.FATAL,
@@ -77,6 +83,7 @@ const deploymentFetchFailure = {
 
 export default {
     participantExportFailure,
+    noImportStartDateError,
     userFetchFailure,
     userUnauthorizedFailure,
     genericDeploymentFailure,

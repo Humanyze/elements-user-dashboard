@@ -15,7 +15,7 @@ import { addFlashErrorWithFadeout } from 'Redux/error/errorActions';
 
 import * as MODAL_CONFIGS from 'Src/components/modal/modalConfigs';
 import { openModal } from 'Redux/modal/modalActions';
-import { getSelectedDeploymentName } from 'Redux/deployment/deploymentReducer';
+import { getSelectedDeploymentName, getSelectedDeploymentStartDate } from 'Redux/deployment/deploymentReducer';
 import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
 import AxiosRequestService from 'Src/redux/AxiosRequestService';
 import { getSelectedDeploymentId } from 'Src/redux/deployment/deploymentReducer';
@@ -44,17 +44,20 @@ const onExportClicked = ({ deploymentId, bearerToken, isExporting, setIsExportin
     setIsExporting(false);
 };
 
+const onImportClicked = ({ hasDeploymentStartDate, openImportDialog, showImportStartDateError }) => () => {
+    hasDeploymentStartDate ? openImportDialog() : showImportStartDateError();
+};
 
 const enhance = compose(
     withState('isExporting', 'setIsExporting', false),
-    // lifecycle({ componentDidMount() { this.props.openImportDialog(); } }),
     withHandlers({
+        onImportClicked,
         onExportClicked
     }),
 
 );
 
-export const ActionSubBarPure = ({ openImportDialog, onExportClicked, isExporting, deploymentName, translations }) => {
+export const ActionSubBarPure = ({ onImportClicked, onExportClicked, isExporting, deploymentName, translations }) => {
     return (
         <div className='ActionSubBar'>
             <div className='ActionSubBar__section ActionSubBar__section-left'>
@@ -68,7 +71,7 @@ export const ActionSubBarPure = ({ openImportDialog, onExportClicked, isExportin
             </div>
 
             <div className='ActionSubBar__section ActionSubBar__section-right'>
-                <div onClick={openImportDialog} className='ActionSubBar__text'>
+                <div onClick={onImportClicked} className='ActionSubBar__text'>
                     {translations.actionSubBar__import}
                 </div>
                 <div onClick={onExportClicked} className={classNames('ActionSubBar__text', { 'ActionSubBar__text--exporting': isExporting })}>
@@ -83,11 +86,13 @@ const ActionSubBar = connect(
     state => ({
         deploymentName: getSelectedDeploymentName(state),
         deploymentId: getSelectedDeploymentId(state),
+        hasDeploymentStartDate: !!getSelectedDeploymentStartDate(state),
         bearerToken: getBearerToken(state),
         translations: getCurrentTranslations(state)
     }),
     (dispatch) => ({
         openImportDialog: () => dispatch(openModal(MODAL_CONFIGS.importParticipantsConfig)),
+        showImportStartDateError: () => dispatch(addFlashErrorWithFadeout(ErrorMessages.noImportStartDateError)),
         showExportError: () => dispatch(addFlashErrorWithFadeout(ErrorMessages.participantExportFailure))
 
     })

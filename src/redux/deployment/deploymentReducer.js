@@ -20,7 +20,7 @@ const getSelectedDeploymentId = createSelector(
 
 const getSelectedDeploymentStartDate = createSelector(
   getSelectedDeployment,
-    (selectedDeployment) => selectedDeployment && ( selectedDeployment.start_date || new Date())
+    (selectedDeployment) => selectedDeployment && selectedDeployment.start_date
 );
 
 const getSelectedDeploymentEndDate = createSelector(
