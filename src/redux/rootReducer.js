@@ -8,10 +8,12 @@ import participantsUIReducer from './participants-ui/participantsUIReducer';
 import userDataReducer from './userData/userDataReducer';
 import deploymentReducer from './deployment/deploymentReducer';
 import AUTH_ACTION_TYPES from './auth/authActionTypes';
+import metaDataReducer from './meta-data/metaDataReducer';
 
 const AppReducer = combineReducers({
     auth: authReducer,
     language: languageReducer,
+    metaData: metaDataReducer,
     error: errorReducer,
     user: userDataReducer,
     modal: modalReducer,
@@ -28,6 +30,5 @@ const RootReducer = (state, action) => {
     }
     return AppReducer(state, action);
 };
-
 
 export default RootReducer;

@@ -1,7 +1,5 @@
 import { handleActions } from 'redux-actions';
 import MODAL_ACTION_TYPES from './modalActionTypes';
-// import { createSelector } from 'reselect';
-
 
 export const initialState = {
     modals: []
