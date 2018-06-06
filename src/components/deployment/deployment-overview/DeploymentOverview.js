@@ -12,7 +12,7 @@ import { requestParticipantsData } from 'Redux/participants/participantsActions'
 import { setPage, setLimit } from 'Redux/participants-ui/participantsUIActions';
 import { getVisibleParticipants } from 'Redux/participants/participantsReducer';
 import { fetchDeploymentById } from 'Redux/deployment/deploymentActions';
-import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
+import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
 import { cancelParticipantDataRequests } from 'Src/redux/participants/participantsActions';
 import { showLoadingOnPageChange } from 'Src/redux/participants/participantsReducer';
 import { setInitialPage } from 'Src/redux/participants-ui/participantsUIActions';

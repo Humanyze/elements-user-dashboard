@@ -5,3 +5,6 @@
 [submodule "src/components/common"]
 	path = src/components/common
 	url = https://github.com/Humanyze/humanyze-react-components.git
+[submodule "src/redux/common"]
+	path = src/redux/common
+	url = https://github.com/Humanyze/redux-common.git

@@ -10,16 +10,16 @@ import classNames from 'classnames';
 
 import './action-sub-bar.scss';
 
-import ErrorMessages from 'Redux/error/errorMessageTypes';
-import { addFlashErrorWithFadeout } from 'Redux/error/errorActions';
+import ErrorMessages from 'Redux/common/error/errorMessageTypes';
+import { addFlashErrorWithFadeout } from 'Redux/common/error/errorActions';
 
 import * as MODAL_CONFIGS from 'Src/components/modal/modalConfigs';
-import { openModal } from 'Redux/modal/modalActions';
+import { openModal } from 'Redux/common/modal/modalActions';
 import { getSelectedDeploymentName, getSelectedDeploymentStartDate } from 'Redux/deployment/deploymentReducer';
-import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
+import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
 import AxiosRequestService from 'Src/redux/AxiosRequestService';
 import { getSelectedDeploymentId } from 'Src/redux/deployment/deploymentReducer';
-import { getBearerToken } from 'Src/redux/auth/authReducer';
+import { getBearerToken } from 'Src/redux/common/auth/authReducer';
 
 
 

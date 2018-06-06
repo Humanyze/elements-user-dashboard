@@ -6,7 +6,7 @@ import './deployment-selection.scss';
 import { setDeploymentsFromStoreDeploymentIds } from 'Redux/deployment/deploymentActions';
 import DeploymentSelectionItem from './deployment-selection-item/DeploymentSelectionItem';
 import LoadingUI from 'Common/loading/LoadingUI';
-import { getCurrentTranslations } from 'Redux/language/languageReducer';
+import { getCurrentTranslations } from 'Redux/common/language/languageReducer';
 import { compose, lifecycle } from 'recompose';
 
 

@@ -1,10 +1,10 @@
 import { createAction } from 'redux-actions';
 import DEPLOYMENT_ACTION_TYPES from './deploymentActionTypes';
 import AxiosRequestService from '../AxiosRequestService';
-import { getBearerToken } from '../auth/authReducer';
+import { getBearerToken } from '../common/auth/authReducer';
 import normalizeArrayById from 'Utils/normalize-array-by-id';
-import * as errorActions from 'Src/redux/error/errorActions';
-import ErrorMessageTypes from 'Src/redux/error/errorMessageTypes';
+import * as errorActions from 'Src/redux/common/error/errorActions';
+import ErrorMessageTypes from 'Src/redux/common/error/errorMessageTypes';
 
 
 export const deploymentsByIdRequested = createAction(DEPLOYMENT_ACTION_TYPES.DEPLOYMENTS_DATA_REQUESTED);

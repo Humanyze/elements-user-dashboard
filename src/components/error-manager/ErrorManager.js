@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAllFlashErrors, getTopFatalError } from 'Src/redux/error/errorReducer';
+import { getAllFlashErrors, getTopFatalError } from 'Src/redux/common/error/errorReducer';
 import ErrorFlashBar from './error-flash-bar/errorFlashBar';
 import ErrorFullScreen from './error-full-screen/errorFullScreen';
 
-import { removeFlashErrorById } from 'Src/redux/error/errorActions';
+import { removeFlashErrorById } from 'Src/redux/common/error/errorActions';
 
 const ErrorManagerPure = ({ fatalError, flashErrors }) => {
     return fatalError.type ?

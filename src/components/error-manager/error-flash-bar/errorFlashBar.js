@@ -4,9 +4,9 @@ import MaterialIcon from 'material-icons-react';
 
 
 import './error-flash-bar.scss';
-import { removeFlashErrorById } from 'Src/redux/error/errorActions';
+import { removeFlashErrorById } from 'Src/redux/common/error/errorActions';
 import { compose, withHandlers } from 'recompose';
-import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
+import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
 
 
 const enhance = compose(

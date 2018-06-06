@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
-import { logoutUser } from 'Src/redux/auth/authActions';
+import { logoutUser } from 'Src/redux/common/auth/authActions';
 import { lifecycle, compose } from 'recompose';
 
 
 const enhance = compose(
     lifecycle({
         componentWillMount() {
+            console.error('logging out');
             this.props.logout();
         }
     })

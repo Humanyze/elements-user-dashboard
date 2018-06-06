@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
-import authReducer from './auth/authReducer';
-import languageReducer from './language/languageReducer';
-import errorReducer from './error/errorReducer';
-import modalReducer from './modal/modalReducer';
+import authReducer from './common/auth/authReducer';
+import languageReducer from './common/language/languageReducer';
+import errorReducer from './common/error/errorReducer';
+import modalReducer from './common/modal/modalReducer';
 import participantsReducer from './participants/participantsReducer';
 import participantsUIReducer from './participants-ui/participantsUIReducer';
-import userDataReducer from './userData/userDataReducer';
+import userDataReducer from './common/userData/userDataReducer';
 import deploymentReducer from './deployment/deploymentReducer';
-import AUTH_ACTION_TYPES from './auth/authActionTypes';
-import metaDataReducer from './meta-data/metaDataReducer';
+import AUTH_ACTION_TYPES from './common/auth/authActionTypes';
+import metaDataReducer from './common/meta-data/metaDataReducer';
 
 const AppReducer = combineReducers({
     auth: authReducer,

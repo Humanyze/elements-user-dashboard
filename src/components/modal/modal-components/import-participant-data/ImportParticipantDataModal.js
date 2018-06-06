@@ -17,8 +17,8 @@ import LightBoxWrapper from '../LightBoxWrapper/LightBoxWrapper';
 import AxiosRequestService from 'Src/redux/AxiosRequestService';
 
 
-import { getBearerToken } from 'Src/redux/auth/authReducer';
-import { getCurrentTranslations } from 'Redux/language/languageReducer';
+import { getBearerToken } from 'Src/redux/common/auth/authReducer';
+import { getCurrentTranslations } from 'Redux/common/language/languageReducer';
 
 import {
     getSelectedDeploymentName,

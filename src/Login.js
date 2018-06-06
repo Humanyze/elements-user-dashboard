@@ -2,8 +2,8 @@ import React from 'react';
 // NOTE: TEMP PAGE, WILL ULTIMATELY REDIRECT TO EMBER AUTH, SHARING TOKEN
 import { compose, withState, withHandlers } from 'recompose';
 import { connect } from 'react-redux';
-import { loginUser } from './redux/auth/authActions';
-import { getAuthErrorCode } from './redux/auth/authReducer';
+import { loginUser } from './redux/common/auth/authActions';
+import { getAuthErrorCode } from './redux/common/auth/authReducer';
 
 
 const onSubmit = ({ username, password, loginUser }) => (e) => {

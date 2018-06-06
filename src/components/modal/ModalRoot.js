@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
 import { withRouter } from 'react-router';
 
-import { getTopModal } from 'Redux/modal/modalReducer';
-import { closeAllModals, closeTopModal } from 'Src/redux/modal/modalActions';
+import { getTopModal } from 'Redux/common/modal/modalReducer';
+import { closeAllModals, closeTopModal } from 'Src/redux/common/modal/modalActions';
 
 import MODAL_TYPES from './modalTypes.js';
 
