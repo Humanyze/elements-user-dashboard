@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import customCreateStore from 'Src/redux/createStore';
 import { Provider } from 'react-redux';
-import { languages } from 'Src/redux/language/translations';
-import translationDictionary from 'Src/redux/language/translations';
-import { getCurrentTextDictionaryById } from 'Src/redux/language/languageReducer';
+import { languages } from 'Src/redux/common/language/translations';
+import translationDictionary from 'Src/redux/common/language/translations';
+import { getCurrentTextDictionaryById } from 'Src/redux/common/language/languageReducer';
 
 
 const RouterContext = ({ children }) => <BrowserRouter>{children}</BrowserRouter>;

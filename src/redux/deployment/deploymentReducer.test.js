@@ -1,5 +1,5 @@
 import deploymentReducer, { initialState } from './deploymentReducer';
-import USER_ACTION_TYPES from '../userData/user/userActionTypes';
+import USER_ACTION_TYPES from '../common/userData/user/userActionTypes';
 import { deploymentsByIdRequested, deploymentsByIdSuccessful, setSelectedDeploymentId } from './deploymentActions';
 
 describe('deploymentReducer', () => {

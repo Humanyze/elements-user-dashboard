@@ -5,11 +5,11 @@ import { Switch, Route } from 'react-router-dom';
 
 import Deployment from './deployment/Deployment';
 import ErrorManager from './error-manager/ErrorManager';
-import { isUserAuthenticated } from 'Redux/auth/authReducer';
+import { isUserAuthenticated } from 'Redux/common/auth/authReducer';
 import LoadingUI from 'Common/loading/LoadingUI';
 import { compose, lifecycle } from 'recompose';
-import { setUserDataByAuthId } from 'Redux/userData/userDataActions';
-import { getUserDataLoadStatus } from 'Redux/userData/userDataReducer';
+import { setUserDataByAuthId } from 'Redux/common/userData/userDataActions';
+import { getUserDataLoadStatus } from 'Redux/common/userData/userDataReducer';
 import Logout from 'Src/components/action-routes/logout';
 
 

@@ -4,7 +4,7 @@ import { compose, withHandlers } from 'recompose';
 
 import './error-full-screen.scss';
 import { connect } from 'react-redux';
-import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
+import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
 
 
 const onRedirectButtonClicked = ({ history }) => uri => e => {

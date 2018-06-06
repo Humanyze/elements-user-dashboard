@@ -1,6 +1,6 @@
 import { ErrorFullScreenPure } from './errorFullScreen';
-import { getCurrentTranslations } from 'Src/redux/language/languageReducer';
-import  ErrorMessageTypes, {MESSAGE_TYPES} from 'Src/redux/error/errorMessageTypes';
+import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
+import  ErrorMessageTypes, {MESSAGE_TYPES} from 'Src/redux/common/error/errorMessageTypes';
 
 describe('errorFullScreen', () => {
     // tests render of all fatal errors

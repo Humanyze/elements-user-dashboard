@@ -6,7 +6,9 @@ import PARTICIPANTS_ACTION_TYPES from 'Redux/participants/participantsActionType
 import { participantsFetchError, participantsFetchSuccess } from 'Src/redux/participants/participantsActions';
 
 import { setViewableFields } from 'Src/redux/participants-ui/participantsUIActions';
-import { getBearerToken } from 'Src/redux/auth/authReducer';
+import { getBearerToken } from 'Src/redux/common/auth/authReducer';
+import { addFlashError } from 'Src/redux/common/error/errorActions';
+import errorMessageTypes from 'Src/redux/common/error/errorMessageTypes';
 
 const initialLoadEpic = (action$, store) =>
     action$.ofType(PARTICIPANTS_ACTION_TYPES.LOAD_PARTICIPANTS_REQUESTED)
@@ -31,13 +33,17 @@ const initialLoadEpic = (action$, store) =>
                     return Observable.of(
                         setViewableFields(viewableFields),
                         participantsFetchSuccess({
-                        participantsById,
-                        participantIds,
-                        totalParticipantCount: data.meta.total_count
-                    }));
+                            participantsById,
+                            participantIds,
+                            totalParticipantCount: data.meta.total_count
+                        })
+                    );
                 })
                 .takeUntil(action$.ofType(PARTICIPANTS_ACTION_TYPES.LOAD_PARTICIPANTS_CANCELLED))
-                .catch(error => Observable.of(participantsFetchError(error)));
+                .catch(error => Observable.of(
+                    participantsFetchError(error),
+                    addFlashError(errorMessageTypes.participantLoadFailure)
+                ));
         });
 
 const loadAllEpic = (action$, store) =>
@@ -61,9 +67,6 @@ const loadAllEpic = (action$, store) =>
 
 
 export default combineEpics(initialLoadEpic, loadAllEpic);
-
-
-
 
 
 const restrictedFields = [

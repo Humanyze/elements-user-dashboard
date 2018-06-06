@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import DEPLOYMENT_ACTION_TYPES from './deploymentActionTypes';
-import USER_ACTION_TYPES from '../userData/user/userActionTypes';
+import USER_ACTION_TYPES from '../common/userData/user/userActionTypes';
 import { createSelector } from 'reselect';
 
 
