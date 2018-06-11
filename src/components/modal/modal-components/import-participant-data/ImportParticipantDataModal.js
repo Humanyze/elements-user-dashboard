@@ -321,7 +321,7 @@ const enhance = compose(
     withProps(({ machineStateType }) => machineStates[machineStateType]),
     withProps(({ startDateString, endDateString }) => ({
         startDate: Moment(startDateString),
-        endDate: Moment(endDateString)
+        endDate  : Moment(endDateString)
     })),
     withPropsOnChange(
         ['dataFile'],
@@ -446,18 +446,19 @@ export const ImportEquipmentDataModalPure = ({
 
                     <div className='ImportParticipantDataModal__feedback-block'>
 
-                        {/* PARTICIPANT ERROR MESSAGE */}
-                        {participantError &&
-                        <ValidationError text={translations['ImportParticipantDataModal__participant-error']}
-                                         buttonText={translations['ImportParticipantDataModal__view-errors']}
-                                         onDownloadClicked={onParticipantLogDownloadClicked}/>}
+                        <div className='ValidationError__wrapper'>
+                            {/* PARTICIPANT ERROR MESSAGE */}
+                            {participantError &&
+                            <ValidationError text={translations['ImportParticipantDataModal__participant-error']}
+                                             buttonText={translations['ImportParticipantDataModal__view-errors']}
+                                             onDownloadClicked={onParticipantLogDownloadClicked}/>}
 
-                        {/* TEAM ERROR MESSAGE */}
-                        {teamError &&
-                        <ValidationError text={translations['ImportParticipantDataModal__team-error']}
-                                         buttonText={translations['ImportParticipantDataModal__view-errors']}
-                                         onDownloadClicked={onTeamLogDownloadClicked}/>}
-
+                            {/* TEAM ERROR MESSAGE */}
+                            {teamError &&
+                            <ValidationError text={translations['ImportParticipantDataModal__team-error']}
+                                             buttonText={translations['ImportParticipantDataModal__view-errors']}
+                                             onDownloadClicked={onTeamLogDownloadClicked}/>}
+                        </div>
                         {/* 4XX Errors */}
                         {genericError && <GenericError text={genericError}/>}
 
@@ -554,7 +555,8 @@ const ImportTooLongMessage = ({ translations, cancelHandler }) => {
             <div>
                 <div>{translations['ImportTooLong__message-one']}</div>
                 <div>{translations['ImportTooLong__message-two']} <span onClick={cancelHandler}
-                                             className='ImportTooLongMessage__cancel'>{translations['ImportTooLong__cancel-question']}</span></div>
+                                                                        className='ImportTooLongMessage__cancel'>{translations['ImportTooLong__cancel-question']}</span>
+                </div>
             </div>
         </div>
     );

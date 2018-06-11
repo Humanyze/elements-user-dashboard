@@ -84,6 +84,11 @@
   }
 }
 
+.ValidationError__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .ValidationError {
   height: 100%;
   width: 100%;
