@@ -28,11 +28,11 @@
       1,
       {}
     ],
-    "no-param-reassign": [
-      2,
-      {
-        "props": true
-      }
-    ]
+//    "no-param-reassign": [
+////      2,
+////      {
+////        "props": true
+////      }
+//    ]
   }
 }

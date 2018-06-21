@@ -25,6 +25,7 @@ const AppReducer = combineReducers({
 const RootReducer = (state, action) => {
     if (action.type === AUTH_ACTION_TYPES.LOGOUT) {
         // note: for clearing state after logging out
+        // eslint-disable-next-line no-param-reassign
         state = undefined;
         window.localStorage.clear();
     }

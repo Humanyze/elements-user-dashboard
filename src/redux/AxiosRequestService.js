@@ -16,12 +16,13 @@ export const postRequest = async (url, data) => await axios.post(url,
 );
 
 
-export const getRequestWithAuth = async (url, bearerToken) => {
+export const getRequestWithAuth = async (url, bearerToken, options = {}) => {
     return await axios.get(url, {
         method : 'GET',
         headers: {
             Authorization: `Bearer ${bearerToken}`
-        }
+        },
+        ...options
     });
 };
 
@@ -60,7 +61,7 @@ const getAllParticipantsByDatasetId = async (datasetId, token) => await getReque
 
 // DATASET ENDPOINTS
 const getDatasetById = (id, token) => getRequestWithAuth(`/api/v1/dataset/${id}/`, token);
-const getExportedParticipantsByDatasetId = async (datasetId, token) => await getRequestWithAuth(`/api/v1/dataset/${datasetId}/export_participants`, token);
+const getExportedParticipantsByDatasetId = async (datasetId, token) => await getRequestWithAuth(`/api/v1/dataset/${datasetId}/export_participants`, token, { responseType: 'blob' });
 
 const validateParticipantDataset = async (datasetId, file, token) => {
     const data = new FormData();
