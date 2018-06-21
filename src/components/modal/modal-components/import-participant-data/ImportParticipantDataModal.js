@@ -446,6 +446,7 @@ export const ImportEquipmentDataModalPure = ({
 
                     <div className='ImportParticipantDataModal__feedback-block'>
 
+                        {(participantError || teamError) &&
                         <div className='ValidationError__wrapper'>
                             {/* PARTICIPANT ERROR MESSAGE */}
                             {participantError &&
@@ -459,6 +460,7 @@ export const ImportEquipmentDataModalPure = ({
                                              buttonText={translations['ImportParticipantDataModal__view-errors']}
                                              onDownloadClicked={onTeamLogDownloadClicked}/>}
                         </div>
+                        }
                         {/* 4XX Errors */}
                         {genericError && <GenericError text={genericError}/>}
 

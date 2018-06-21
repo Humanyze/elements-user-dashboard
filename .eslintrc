@@ -27,6 +27,12 @@
     "space-infix-ops": [
       1,
       {}
+    ],
+    "no-param-reassign": [
+      2,
+      {
+        "props": "true"
+      }
     ]
   }
 }
