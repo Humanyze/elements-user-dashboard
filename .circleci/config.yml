@@ -99,7 +99,7 @@ workflows:
           filters:
             branches:
               only:
-#                - master
+                - master
                 - develop
       - trigger_nginx:
           requires:
@@ -107,5 +107,5 @@ workflows:
           filters:
             branches:
               only:
-#                - master
+                - master
                 - develop
