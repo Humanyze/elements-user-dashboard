@@ -33,7 +33,7 @@ const onPropReceive = (props) => {
         setDeploymentsFromStoreDeploymentIds
     } = props;
     deploymentDataRequestNeeded({ deploymentDataSetIds, deploymentsById, requestPending }) &&
-    setDeploymentsFromStoreDeploymentIds();
+        setDeploymentsFromStoreDeploymentIds();
 
 };
 

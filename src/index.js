@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './Global.scss';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import { unregister } from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import createStore from './redux/createStore';
 
@@ -13,4 +13,5 @@ ReactDOM.render(
         <App/>
     </Provider>
     , document.getElementById('root'));
-registerServiceWorker();
+
+unregister();

@@ -57,6 +57,7 @@ export const ActionSubBarPure = ({ onImportClicked, onExportClicked, isExporting
         <div className='ActionSubBar'>
             <div className='ActionSubBar__section ActionSubBar__section-left'>
                 <div className='ActionSubBar__text ActionSubBar__description'>
+                    {/* TODO: Add skeleton box for when deployment name has not been set yet*/}
                     {translations.actionSubBar__viewingDataFor}: {deploymentName}
                 </div>
 
