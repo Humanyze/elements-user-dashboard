@@ -7,6 +7,7 @@ import { isEmpty } from 'lodash';
 import delay from 'Utils/delay';
 
 import generateErrorLog from 'Utils/generate-error-log';
+import inferFileTypeFromExtention, { fileTypeList as acceptedFileTypes } from 'Utils/infer-file-type-from-extension';
 
 import './import-participant-data-modal.scss';
 import 'Src/Global.scss';
@@ -34,15 +35,9 @@ import ImportParticipantActionBlock from './import-participant-action-block/Impo
 import { requestParticipantsData } from 'Src/redux/participants/participantsActions';
 
 
-const acceptedFileTypes = [
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
-    'application/vnd.ms-excel.sheet.macroEnabled.12',
-    'application/vnd.ms-excel.template.macroEnabled.12'
-];
-
 const machineStateTypes = {
     INITIAL         : 'INITIAL',
+    INVALID_FILE    : 'INVALID_FILE',
     VALIDATING      : 'VALIDATING',
     VALID           : 'VALID',
     VALIDATION_ERROR: 'VALIDATION_ERROR',
@@ -54,13 +49,24 @@ const machineStateTypes = {
 
 const machineStates = {
     [machineStateTypes.INITIAL]         : {
+        isInvalidFile : false,
         isValidating  : false,
         isValid       : false,
         isImporting   : false,
         importTooLong : false,
         importComplete: false
     },
+    [machineStateTypes.INVALID_FILE]    : {
+        isInvalidFile : true,
+        isValidating  : false,
+        isValid       : false,
+        isImporting   : false,
+        importTooLong : false,
+        importComplete: false,
+
+    },
     [machineStateTypes.VALIDATING]      : {
+        isInvalidFile : false,
         isValidating  : true,
         isValid       : false,
         isImporting   : false,
@@ -68,6 +74,7 @@ const machineStates = {
         importComplete: false
     },
     [machineStateTypes.VALID]           : {
+        isInvalidFile : false,
         isValidating  : false,
         isValid       : true,
         isImporting   : false,
@@ -75,6 +82,7 @@ const machineStates = {
         importComplete: false
     },
     [machineStateTypes.VALIDATION_ERROR]: {
+        isInvalidFile : false,
         isValidating  : false,
         isValid       : false,
         isImporting   : false,
@@ -82,6 +90,7 @@ const machineStates = {
         importComplete: false
     },
     [machineStateTypes.IMPORTING]       : {
+        isInvalidFile : false,
         isValidating  : false,
         isValid       : true,
         isImporting   : true,
@@ -89,6 +98,7 @@ const machineStates = {
         importComplete: false
     },
     [machineStateTypes.IMPORT_TOO_LONG] : {
+        isInvalidFile : false,
         isValidating  : false,
         isValid       : true,
         isImporting   : true,
@@ -96,6 +106,7 @@ const machineStates = {
         importComplete: false
     },
     [machineStateTypes.IMPORT_ERROR]    : {
+        isInvalidFile : false,
         isValidating  : false,
         isValid       : true,
         isImporting   : false,
@@ -103,6 +114,7 @@ const machineStates = {
         importComplete: false
     },
     [machineStateTypes.IMPORT_SUCCESS]  : {
+        isInvalidFile : false,
         isValidating  : false,
         isValid       : true,
         isImporting   : true,
@@ -116,6 +128,12 @@ const updateMachineState = (props) => (updateConfig) => {
         case machineStateTypes.INITIAL:
             updateConfig.dataFile && props.setDataFile(updateConfig.dataFile);
             props.setMachineStateType(machineStateTypes.INITIAL);
+            props.setValidationInfo(null);
+            props.setValidationErrors({});
+            break;
+
+        case machineStateTypes.INVALID_FILE:
+            props.setMachineStateType(machineStateTypes.INVALID_FILE);
             props.setValidationInfo(null);
             props.setValidationErrors({});
             break;
@@ -166,10 +184,25 @@ const updateMachineState = (props) => (updateConfig) => {
 };
 
 
-const onFileChange = ({ updateMachineState }) => ({ target }) => target.files[0] && updateMachineState({
-    type    : machineStateTypes.INITIAL,
-    dataFile: target.files[0]
-});
+const onFileChange = ({ updateMachineState }) => ({ target }) => {
+    const file = target.files[0];
+
+    if (!file) return;
+
+    const fileType = inferFileTypeFromExtention(file.name);
+    const isValidFileType = acceptedFileTypes.includes(fileType);
+
+    if (isValidFileType) {
+        updateMachineState({
+            type    : machineStateTypes.INITIAL,
+            dataFile: target.files[0]
+        });
+    } else {
+        updateMachineState({
+            type: machineStateTypes.INVALID_FILE
+        });
+    }
+};
 
 const onDateChange = ({ setEffectiveDate }) => (date) => setEffectiveDate(date);
 
@@ -362,7 +395,7 @@ export const ImportEquipmentDataModalPure = ({
                                                  deploymentName,
 
                                                  dataFile, fileIsSelected, onFileChange,
-                                                 validationErrors,
+                                                 validationErrors, isInvalidFile,
 
                                                  startDate, endDate,
                                                  effectiveDate, onDateChange,
@@ -445,6 +478,9 @@ export const ImportEquipmentDataModalPure = ({
                     {/* FEEDBACK MESSAGES */}
 
                     <div className='ImportParticipantDataModal__feedback-block'>
+
+                        {isInvalidFile &&
+                        <GenericError text={translations['ImportParticipantDataModal__invalid-file-error']}/>}
 
                         {(participantError || teamError) &&
                         <div className='ValidationError__wrapper'>
