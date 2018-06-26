@@ -187,6 +187,8 @@ const updateMachineState = (props) => (updateConfig) => {
 const onFileChange = ({ updateMachineState }) => ({ target }) => {
     const file = target.files[0];
 
+    if (!file) return;
+
     const fileType = inferFileTypeFromExtention(file.name);
     const isValidFileType = acceptedFileTypes.includes(fileType);
 
