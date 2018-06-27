@@ -186,7 +186,6 @@ const updateMachineState = (props) => (updateConfig) => {
 
 const onFileChange = ({ updateMachineState }) => ({ target }) => {
     const file = target.files[0];
-    console.warn('file uploading:', file);
     if (!file) return;
 
     const fileType = inferFileTypeFromExtention(file.name);
@@ -393,6 +392,7 @@ const enhance = compose(
 export const ImportEquipmentDataModalPure = ({
                                                  translations, closeModal,
                                                  deploymentName,
+    machineStateType,
 
                                                  dataFile, fileIsSelected, onFileChange,
                                                  validationErrors, isInvalidFile,
