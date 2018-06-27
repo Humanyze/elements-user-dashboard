@@ -12,7 +12,7 @@ import inferFileTypeFromExtention, { fileTypeList as acceptedFileTypes } from 'U
 import './import-participant-data-modal.scss';
 import 'Src/Global.scss';
 
-import LightBoxWrapper from '../LightBoxWrapper/LightBoxWrapper';
+import LightBoxWrapper from '../../../common/LightBoxWrapper/LightBoxWrapper';
 
 
 import AxiosRequestService from 'Src/redux/AxiosRequestService';
