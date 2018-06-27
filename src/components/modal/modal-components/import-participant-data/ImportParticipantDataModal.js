@@ -186,7 +186,7 @@ const updateMachineState = (props) => (updateConfig) => {
 
 const onFileChange = ({ updateMachineState }) => ({ target }) => {
     const file = target.files[0];
-
+    console.warn('file uploading:', file);
     if (!file) return;
 
     const fileType = inferFileTypeFromExtention(file.name);
