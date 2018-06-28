@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import { Switch, Route } from 'react-router-dom';
 
 import Deployment from './deployment/Deployment';
-import ErrorManager from './error-manager/ErrorManager';
+import ErrorManager from 'Common/error-manager/ErrorManager';
 import { isUserAuthenticated } from 'Redux/common/auth/authReducer';
 import LoadingUI from 'Common/loading/LoadingUI';
 import { compose, lifecycle } from 'recompose';
