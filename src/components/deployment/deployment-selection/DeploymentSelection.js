@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './deployment-selection.scss';
 
-import { setDeploymentsFromStoreDeploymentIds } from 'Redux/deployment/deploymentActions';
+import { setDeploymentsFromStoreDeploymentIds } from 'Redux/common/deployment/deploymentActions';
 import DeploymentSelectionItem from './deployment-selection-item/DeploymentSelectionItem';
 import LoadingUI from 'Common/loading/LoadingUI';
 import { getCurrentTranslations } from 'Redux/common/language/languageReducer';

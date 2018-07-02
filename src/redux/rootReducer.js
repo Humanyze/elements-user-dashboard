@@ -6,7 +6,7 @@ import modalReducer from './common/modal/modalReducer';
 import participantsReducer from './participants/participantsReducer';
 import participantsUIReducer from './participants-ui/participantsUIReducer';
 import userDataReducer from './common/userData/userDataReducer';
-import deploymentReducer from './deployment/deploymentReducer';
+import deploymentReducer from './common/deployment/deploymentReducer';
 import AUTH_ACTION_TYPES from './common/auth/authActionTypes';
 import metaDataReducer from './common/meta-data/metaDataReducer';
 

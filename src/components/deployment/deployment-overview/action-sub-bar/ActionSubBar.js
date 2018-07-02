@@ -15,10 +15,10 @@ import { addFlashErrorWithFadeout } from 'Redux/common/error/errorActions';
 
 import * as MODAL_CONFIGS from 'Src/components/modal/modalConfigs';
 import { openModal } from 'Redux/common/modal/modalActions';
-import { getSelectedDeploymentName, getSelectedDeploymentStartDate } from 'Redux/deployment/deploymentReducer';
+import { getSelectedDeploymentName, getSelectedDeploymentStartDate } from 'Redux/common/deployment/deploymentReducer';
 import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
 import AxiosRequestService from 'Src/redux/AxiosRequestService';
-import { getSelectedDeploymentId } from 'Src/redux/deployment/deploymentReducer';
+import { getSelectedDeploymentId } from 'Src/redux/common/deployment/deploymentReducer';
 import { getBearerToken } from 'Src/redux/common/auth/authReducer';
 
 

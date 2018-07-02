@@ -26,7 +26,7 @@ import {
     getSelectedDeploymentStartDate,
     getSelectedDeploymentEndDate,
     getSelectedDeploymentId
-} from 'Redux/deployment/deploymentReducer';
+} from 'Redux/common/deployment/deploymentReducer';
 
 import DateSelector from 'Common/date-selector/DateSelector';
 import FileUploadSelector from 'Common/file-upload-selector/FileUploadSelector';

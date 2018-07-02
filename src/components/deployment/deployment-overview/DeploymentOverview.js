@@ -6,12 +6,12 @@ import { compose, lifecycle, withHandlers } from 'recompose';
 import { withRouter } from 'react-router';
 import * as queryString from 'Utils/query-string';
 
-import { getSelectedDeployment } from 'Redux/deployment/deploymentReducer';
-import { setSelectedDeploymentId } from 'Redux/deployment/deploymentActions';
+import { getSelectedDeployment } from 'Redux/common/deployment/deploymentReducer';
+import { setSelectedDeploymentId } from 'Redux/common/deployment/deploymentActions';
 import { requestParticipantsData } from 'Redux/participants/participantsActions';
 import { setPage, setLimit } from 'Redux/participants-ui/participantsUIActions';
 import { getVisibleParticipants } from 'Redux/participants/participantsReducer';
-import { fetchDeploymentById } from 'Redux/deployment/deploymentActions';
+import { fetchDeploymentById } from 'Redux/common/deployment/deploymentActions';
 import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
 import { cancelParticipantDataRequests } from 'Src/redux/participants/participantsActions';
 import { showLoadingOnPageChange } from 'Src/redux/participants/participantsReducer';
