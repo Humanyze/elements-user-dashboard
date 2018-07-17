@@ -18,7 +18,8 @@ import { showLoadingOnPageChange } from 'Src/redux/participants/participantsRedu
 import { setInitialPage } from 'Src/redux/participants-ui/participantsUIActions';
 import { getCurrentPageNumber, getTotalPageCount } from '../../../redux/participants/participantsReducer';
 
-const withDidMount = lifecycle({
+
+const withLifecycle = lifecycle({
   componentDidMount() {
     const {
       history: {
@@ -89,8 +90,9 @@ const onPaginationPageClicked = ({ history }) => number => e => {
   });
 };
 
+
 const enhance = compose(
-  withDidMount,
+  withLifecycle,
   withHandlers({
     onPaginationPageClicked
   })
