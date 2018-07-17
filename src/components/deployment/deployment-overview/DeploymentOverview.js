@@ -18,30 +18,48 @@ import { showLoadingOnPageChange } from 'Src/redux/participants/participantsRedu
 import { setInitialPage } from 'Src/redux/participants-ui/participantsUIActions';
 import { getCurrentPageNumber, getTotalPageCount } from '../../../redux/participants/participantsReducer';
 
-
-const onPropUpdate = (props) => {
-  const { history: { location: { search } }, match: { params: { datasetId } } } = props;
-
-  const { perPage = '20', page = '1' } = queryString.parse(search);
-
-  const pageNumber = parseInt(page, 10);
-  const limit = parseInt(perPage, 10);
-  const dataId = parseInt(datasetId, 10);
-
-
-  props.setInitialPage(pageNumber);
-  props.setLimit(limit);
-  props.requestParticipantsData(dataId, limit, pageNumber);
-  props.setSelectedDeploymentId(dataId);
-};
-
 const withDidMount = lifecycle({
-  componentWillMount() {
-    onPropUpdate(this.props);
+  componentDidMount() {
+    const {
+      history: {
+        location: {
+          search
+        }
+      },
+      match  : {
+        params:
+          {
+            datasetId
+          }
+      },
+      setInitialPage,
+      setLimit,
+      setSelectedDeploymentId,
+      requestParticipantsData
+    } = this.props;
+
+    const { perPage = '20', page = '1' } = queryString.parse(search);
+
+    const pageNumber = parseInt(page, 10);
+    const limit = parseInt(perPage, 10);
+    const dataId = parseInt(datasetId, 10);
+
+
+    setInitialPage(pageNumber);
+    setLimit(limit);
+    setSelectedDeploymentId(dataId);
+
+    requestParticipantsData(dataId, limit, pageNumber);
   },
   componentDidUpdate(previousProps) {
-    // todo: clean this up, remove will receive and change it to did
-    const { history: { location: { search } } } = this.props;
+    const {
+      history: {
+        location: {
+          search
+        }
+      },
+      setPage
+    } = this.props;
 
     const {
       // perPage = '20',
@@ -52,7 +70,7 @@ const withDidMount = lifecycle({
     const pageNumber = parseInt(page, 10);
 
     if (pageNumber && parseInt(oldPage, 10) !== pageNumber) {
-      this.props.setPage(pageNumber);
+      setPage(pageNumber);
     }
   },
   componentWillUnmount() {
