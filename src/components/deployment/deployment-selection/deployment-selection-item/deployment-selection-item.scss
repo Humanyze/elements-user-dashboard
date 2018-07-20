@@ -1,0 +1,21 @@
+.DeploymentSelectionItem {
+  background-color: white;
+  display: block;
+  margin: 8px 0;
+  padding: 10px;
+  border: 1px solid #ebebeb;
+  border-radius: 2px;
+  line-height: 1.15;
+
+  color: #676767;
+  &:hover {
+    color: #25b3d5;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

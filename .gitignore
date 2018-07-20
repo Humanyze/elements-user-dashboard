@@ -9,6 +9,10 @@ node_modules
 
 # production
 /build
+.out
+
+# webpack stats
+stats.html
 
 # misc
 .DS_Store
@@ -20,3 +24,7 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.idea
+
+

@@ -1,0 +1,47 @@
+@import '~Src/Global.scss';
+
+.ParticipantsTable {
+    padding: 0 40px;
+    margin-bottom: 50px;
+}
+
+.ParticipantsTable__title {
+    background-color: $blue-3;
+    position: relative;
+    font-size: 36px;
+    letter-spacing: 0.05rem;
+    font-variant-ligatures: no-common-ligatures;
+    color: white;
+    padding: 10px 40px;
+    height: 60px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
+}
+
+.ParticipantsTable__table-padding {
+    padding: 40px 40px 20px;
+    background-color: $grey-2;
+}
+.ParticipantsTable__table-wrapper {
+    overflow-x: scroll;
+    margin-bottom: 40px;
+}
+
+
+.ParticipantsTable__table {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    border-spacing: 0;
+
+    td, th {
+        min-width: 200px;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: visible;
+    }
+}
+
+.ParticipantsTable__loading-wrapper {
+    position: relative;
+    height: 500px;
+}

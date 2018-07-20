@@ -1,19 +1,22 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-        <h1 className="App-title">Welcome to Humanyze</h1>
-        </header>
-        <p className="App-intro">
-          Hello World
-        </p>
-      </div>
-    );
-  }
-}
+import Header from 'Common/header/Header';
+import AppRoutes from './components/AppRoutes';
+import ModalRoot from './components/modal/ModalRoot';
+import RouterPaths from 'RouterPaths';
+
+
+const App = () => (
+    <div>
+        <Router basename={RouterPaths.basePath}>
+                <div>
+                    <Header/>
+                    <AppRoutes/>
+                    <ModalRoot/>
+                </div>
+        </Router>
+    </div>
+);
 
 export default App;

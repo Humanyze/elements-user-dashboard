@@ -1,0 +1,157 @@
+// TODO: move this file into styles/components
+
+$sidebar-item-background: #eee;
+$sidebar-item-active-background: white;
+
+.management-card {
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.with-sidebar {
+  display: flex;
+  height: 700px; // HACK: magic number
+
+  .metric {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+
+    .y.axis {
+      path, line {
+        stroke: $grey-3;
+      }
+    }
+
+    &.show-drilldown {
+      flex-direction: column;
+      min-height: 1400px; // HACK: super magic number
+
+      .chart-wrapper {
+        flex: 1;
+        flex-basis: 100px; // HACK: magic number for Safari
+      }
+
+      .drilldown-label {
+        flex-basis: 80px;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
+
+  .management-checkmark-list {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #DBDDDF;
+    border-bottom: 1px solid #DBDDDF;
+
+    li {
+      background: $sidebar-item-background;
+      padding: 0.8rem;
+      margin-top: 1px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+
+      label {
+        cursor: pointer;
+        margin: 0 1rem 0 0.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 170px;
+        flex: 1;
+      }
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &.selected {
+
+        &:not(.disabled) {
+          background: $sidebar-item-active-background;
+        }
+      }
+    }
+
+    &.no-teams {
+      background: none;
+      border: none;
+
+      li {
+        background: none;
+        align-content: flex-end;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+
+    .checkmark {
+      @extend %material-icon;
+      cursor: pointer;
+      color: $grey-4b;
+      font-size: 1.2rem;
+    }
+  }
+
+  .graph-series-indicator {
+    background: $grey-4;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    flex-basis: 8px;
+  }
+
+  .team-list-item {
+    cursor: pointer;
+    transition: color 0.2s linear;
+  }
+
+  .team-list-item label {
+    cursor: pointer;
+  }
+
+  .team-list-item.disabled label {
+    cursor: default;
+  }
+}
+
+.management-chart {
+  display: flex;
+  flex: 1;
+  background-color: white;
+
+  .chart {
+    display: flex;
+    background-color: white;
+  }
+
+  .chart-data-area {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 1;
+  }
+  .legend {
+    font-size: 0.75rem;
+  }
+  .legend-list {
+    list-style: none;
+  }
+
+  .legend-item {
+    display: inline-block;
+  }
+
+  .no-data-text {
+    fill: $grey-4;
+    font-size: 20px;
+  }
+}
