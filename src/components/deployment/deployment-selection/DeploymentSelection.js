@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 import './deployment-selection.scss';
 
 import { setDeploymentsFromStoreDeploymentIds } from 'Redux/common/deployment/deploymentActions';
-import DeploymentSelectionItem from './deployment-selection-item/DeploymentSelectionItem';
-import LoadingUI from 'Common/loading/LoadingUI';
-import { getCurrentTranslations } from 'Redux/common/language/languageReducer';
 import { compose, lifecycle } from 'recompose';
+import DeploymentSelectionList from 'Src/components/common/deployment-selection-list/DeploymentSelectionList';
 
 
 const deploymentDataRequestNeeded = ({ deploymentDataSetIds, deploymentsById, requestPending }) => {
@@ -38,52 +36,30 @@ const onPropReceive = (props) => {
 };
 
 
-const withLifecycle = compose(lifecycle({
-    componentWillMount() {
+const enhance = compose(
+connect(
+    (state) => ({
+        deploymentData: state.deployment,
+    }),
+    { setDeploymentsFromStoreDeploymentIds }
+  )
+    ,
+  lifecycle({
+    componentDidMount() {
         onPropReceive(this.props);
     },
-    componentWillReceiveProps(nextProps) {
-        onPropReceive(nextProps);
+    componentDidUpdate() {
+        onPropReceive(this.props);
     }
 }));
 
 
-export const DeploymentSelectionPure = withLifecycle(({ deploymentData, setDeploymentsFromStoreDeploymentIds, translations }) => {
-    const { deploymentDataSetIds, deploymentsById, requestPending } = deploymentData;
+export const DeploymentSelectionPure = ({ deploymentData }) => {
     return (
-        <div className='DeploymentSelection__wrapper'>
-            <div className='DeploymentSelection'>
-                <div>
-                    <div className='DeploymentSelection__header'>{translations.selectDeploymentHeader}</div>
-                    <div className='DeploymentSelection__deployment-list'>
-
-                        {!requestPending && deploymentDataSetIds  ?
-                            !!deploymentDataSetIds.length ?
-                                deploymentDataSetIds.map((id) => {
-                                        const deployment = deploymentsById[id];
-                                        return !!deployment &&
-                                            <DeploymentSelectionItem key={id} deployment={deployment}/>;
-                                    }
-                                ) : <div className='DeploymentSelection__no-data-message'>You don't have access to any deployments.</div>
-                            :
-                            <div className='DeploymentSelection__loading-background'>
-                                <LoadingUI/>
-                            </div>
-                        }
-
-                    </div>
-                </div>
-            </div>
-        </div>
+      <DeploymentSelectionList deploymentData={deploymentData} />
     );
-});
+};
 
-const DeploymentSelection = connect(
-    (state) => ({
-        deploymentData: state.deployment,
-        translations: getCurrentTranslations(state)
-    }),
-    { setDeploymentsFromStoreDeploymentIds }
-)(DeploymentSelectionPure);
+const DeploymentSelection = enhance(DeploymentSelectionPure);
 
 export default DeploymentSelection;

@@ -1,6 +1,6 @@
 import { combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs';
-import AxiosRequestService from 'Src/redux/AxiosRequestService';
+import AxiosRequestService from 'Src/redux/common/AxiosRequestService';
 import PARTICIPANTS_ACTION_TYPES from 'Redux/participants/participantsActionTypes';
 
 import { participantsFetchError, participantsFetchSuccess } from 'Src/redux/participants/participantsActions';

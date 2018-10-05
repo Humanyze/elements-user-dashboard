@@ -17,7 +17,7 @@ import * as MODAL_CONFIGS from 'Src/components/modal/modalConfigs';
 import { openModal } from 'Redux/common/modal/modalActions';
 import { getSelectedDeploymentName, getSelectedDeploymentStartDate } from 'Redux/common/deployment/deploymentReducer';
 import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
-import AxiosRequestService from 'Src/redux/AxiosRequestService';
+import AxiosRequestService from 'Src/redux/common/AxiosRequestService';
 import { getSelectedDeploymentId } from 'Src/redux/common/deployment/deploymentReducer';
 import { getBearerToken } from 'Src/redux/common/auth/authReducer';
 
