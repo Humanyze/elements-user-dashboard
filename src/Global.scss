@@ -1,0 +1,165 @@
+// global
+@import '../node_modules/normalize-scss/sass/normalize';
+
+// in-repo-addons
+@import './assets/scss/humanyze-ui/humanyze-ui';
+
+// TODO: move this legacy stuff and remove as much as possible
+
+$small: 767px;
+$medium: 1023px;
+
+%material-icon {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Lato, Arial, sans-serif;
+  color: $grey-67;
+  line-height: 1.15;
+  height: 100%;
+}
+
+// via https://stackoverflow.com/questions/826782
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.disabled {
+  cursor: default;
+  color: $grey-cc;
+  pointer-events: none;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+ul {
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: $grey-67;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+// FIXME: bad practice to hide native outline.
+//          using opt-in class for now until we can revert this default
+input:not([type="checkbox"]),
+button:not(.show-focus) {
+  outline: none !important;
+
+  &:disabled:not(.active) {
+    opacity: 0.5;
+  }
+}
+
+input {
+  padding: 0 20px;
+  border: 1px solid $grey-eb;
+  border-radius: 2px;
+  font-size: 1em;
+
+  &:focus {
+    border: 1px solid $humanyze-blue;
+  }
+}
+
+// hide number-input spinners
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+button {
+  background: transparent;
+  border: none;
+
+  // FIXME: why is this necessary? Already set on `body`. Browser was ignoring
+  font-family: Lato, Arial, sans-serif;
+
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:hover:not(:disabled) {
+    color: $humanyze-blue;
+  }
+
+  &.no-hover:hover:not(:disabled) {
+    color: inherit;
+  }
+
+  &.with-border {
+    border-bottom: 2px solid $grey-cc;
+
+    &:hover:not(:disabled),
+    &:focus:not(.no-focus),
+    &.active:not(.no-focus) {
+      border-bottom: 2px solid $humanyze-blue;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &.active {
+    cursor: default;
+  }
+
+  &:hover:not(:disabled),
+  &.active {
+    color: $humanyze-blue;
+  }
+}
+
+select {
+  background: transparent;
+  cursor: pointer;
+}
+
+

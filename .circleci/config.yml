@@ -1,0 +1,99 @@
+version: 2
+jobs:
+  build:
+    working_directory: /tmp/app
+    docker:
+      - image: circleci/node:8.9.2
+    steps:
+      - run: echo $CIRCLE_BRANCH && pwd && ls
+      - checkout
+
+      # submodule repo initialize
+      - run: git submodule init
+      - run: git submodule update
+
+      # install block
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+
+      - run: yarn
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - app
+  test:
+    working_directory: ~/test
+    docker:
+      - image: circleci/node:8.9.2
+    steps:
+      - attach_workspace:
+          at: /tmp/app
+      - run: cp -r /tmp/app/app/. .
+      - run: yarn test
+
+  package:
+    working_directory: ~/app
+    docker:
+      - image: circleci/node:8.9.2
+    steps:
+      - attach_workspace:
+          at: /tmp/app
+
+      - run: cp -r /tmp/app/app/. .
+
+      # AWS CLI Setup
+      - run: sudo apt-get update && sudo apt-get install -y python-dev
+      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
+      - run: sudo python get-pip.py
+      - run: sudo pip install awscli --upgrade
+
+      # Build and S3 Deploy
+      - run: yarn build --production
+      - run: aws s3 sync build/ s3://elements-react-$CIRCLE_BRANCH.humanyze.com --delete
+
+
+      # Storybook Deploy
+      - run: yarn run build-storybook
+      - run: aws s3 sync .out/ s3://dev-storybook.humanyze.com --delete
+  ## Note: This will be shared across micros
+  trigger_nginx:
+    working_directory: ~/nginx
+    docker:
+      - image: circleci/node:8.9.2
+    steps:
+      - run: |
+          curl \
+            --header "Content-Type: application/json" \
+            --request POST \
+            https://circleci.com/api/v1.1/project/github/Humanyze/nginx-frontend/tree/$CIRCLE_BRANCH?circle-token=$TRIGGER_TOKEN
+workflows:
+  version: 2
+  # linear workflow,
+  build_test_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - package:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+#                - master
+                - develop
+      - trigger_nginx:
+          requires:
+            - package
+          filters:
+            branches:
+              only:
+#                - master
+                - develop

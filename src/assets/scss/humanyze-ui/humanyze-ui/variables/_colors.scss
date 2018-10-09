@@ -1,0 +1,68 @@
+// TODO: put color variables in their own repo?
+
+$red-1: #ff4136;
+$error-red: #EF5350;
+
+$black:      #000000;
+
+$grey-44:    #444444;
+$grey-67:    #676767;
+$grey-77:    #777777;
+$grey-99:    #999999;
+$grey-aa:    #aaaaaa;
+$grey-cc:    #cccccc;
+$grey-cf:    #cfcfcf;
+$grey-e6:    #e6e6e6;
+$grey-eb:    #ebebeb;
+$grey-ee:    #eeeeee;
+$grey-f3:    #f3f3f3;
+$grey-f5:    #f5f5f5;
+$grey-f8:    #f8f8f8;
+
+$white:      #ffffff;
+
+$red-ff4136: #ff4136;
+
+// TODO: remove color variables with arbitrary names
+
+$red-1: $red-ff4136;
+
+$green-1: #22b573;
+$green-2: #9ccc64;
+
+$mint-1: #def4ea;
+
+$orange-1: #ffa725;
+$orange-2: #f9c263;
+
+$yellow-1: #fae421;
+
+$teal-1: #2cb7c6;
+
+$blue-1: #25b3d5;
+$blue-3: #5ad1e5;
+$blue-4: #039ab2;
+
+$bluegrey-1: #2295af;
+
+$grey-1: $grey-f8;
+
+$grey-2: $grey-f5;
+
+$grey-3: $grey-eb;
+$grey-3a: #e6e9ec;
+
+$grey-4: $grey-cc;
+$grey-4a: $grey-aa;
+$grey-4b: $grey-cf;
+$grey-4c: $grey-99;
+
+$grey-5: $grey-67;
+$grey-6: $grey-77;
+
+$humanyze-blue: $blue-1;
+$primary: $humanyze-blue;
+.primary { color: $humanyze-blue; }
+
+$background-2: $grey-2;
+

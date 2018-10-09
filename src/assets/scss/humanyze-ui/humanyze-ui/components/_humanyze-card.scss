@@ -1,0 +1,17 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 15px;
+  padding: 20px;
+  background-color: $background-2;
+  color: $grey-67;
+  border-radius: 2px;
+
+  .card-title {
+    flex-basis: 60px;
+  }
+
+  .card-body {
+    flex: auto;
+  }
+}

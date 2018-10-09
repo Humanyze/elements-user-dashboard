@@ -1,0 +1,82 @@
+$incomplete: $grey-cf;
+$complete: $humanyze-blue;
+$complete-icon: $blue-3;
+
+.import-wizard {
+
+  .wizard-steps {
+
+    .wizard-step-circle {
+      fill: transparent;
+
+      stroke-width: 2px;
+      stroke: $incomplete;
+    }
+
+    .import .wizard-step-icon path {
+      fill: none;
+      stroke-width: 3px;
+    }
+
+    .wizard-step-text {
+      text-transform: uppercase;
+      text-anchor: middle;
+    }
+
+    .wizard-step-text,
+    .add .wizard-step-icon path,
+    .validate .wizard-step-icon path {
+      fill: $incomplete;
+    }
+
+    .import .wizard-step-icon path {
+      stroke: $incomplete;
+    }
+
+    .add.succeeded,
+    .validate.succeeded {
+
+      .wizard-step-text {
+        fill: $complete;
+      }
+
+      .wizard-step-icon path {
+        fill: $complete-icon;
+      }
+    }
+
+    .import.succeeded {
+
+      .wizard-step-text {
+        fill: $complete;
+      }
+
+      .wizard-step-icon path {
+        stroke: $complete-icon;
+      }
+    }
+  }
+}
+
+.wizard-connector {
+  stroke-width: 2px;
+  fill: none;
+  stroke: $incomplete;
+
+  &.succeeded {
+
+    .background {
+      stroke: $complete;
+    }
+  }
+}
+
+.wizard-step {
+
+  &.succeeded {
+
+    .wizard-step-circle {
+      stroke: $complete;
+    }
+  }
+}
