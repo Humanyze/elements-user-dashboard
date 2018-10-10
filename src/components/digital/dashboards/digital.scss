@@ -1,6 +1,6 @@
 @import '~Src/Global.scss';
 
-.Management {
+.Digital {
   height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
@@ -11,18 +11,18 @@
 
 }
 
-.Management__grid {
+.Digital__grid {
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
 }
 
-.Management__grid-bottom {
+.Digital__grid-bottom {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.ManagementRoute {
+.DigitalRoute {
   flex: 1;
 }

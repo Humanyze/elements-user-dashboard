@@ -3,29 +3,30 @@ import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 
 
-import './management.scss';
+import './digital.scss';
 
-import ManagementRoutes from './ManagementRoutes';
-import ManagementTabRoutes from './management-tabs/ManagementTabRoutes';
+import DigitalTabRoutes from './digital-tabs/DigitalTabRoutes';
 
 import { setUserTeams } from 'Redux/common/userData/user/userActions';
-import { setUserManagementDeployment } from 'Src/redux/common/deployment/deploymentActions';
+// todo: weird logic for this going on
+// import { setUserDigitalDeployment } from 'Src/redux/common/deployment/deploymentActions';
 
-import ManagementHeaderNav from './management-header-nav/ManagementHeaderNav';
-import ManagementFilterBlockCreator from '../common/metric-filter-block/MetricFilterBlock';
-import ManagementGroupSelector from '../common/metric-group-selector/MetricGroupSelector';
+import DigitalHeaderNav from './digital-header-nav/DigitalHeaderNav';
+import DigitalFilterBlockCreator from 'Common/metric-filter-block/MetricFilterBlock';
+import MetricGroupSelector from 'Common/metric-group-selector/MetricGroupSelector';
 import { getSelectedDeploymentId } from 'Src/redux/common/deployment/deploymentReducer';
 import { replaceQueryParams } from 'Common/utils/update-query-params';
 import FilterRoutes from 'Src/components/digital/dashboards/digital-filter-routes/FilterRoutes';
 import ErrorBoundary from 'Src/components/common/error-boundary/ErrorBoundary';
-import ManagementGlobalErrorMessage
+import DigitalGlobalErrorMessage
   from 'Src/components/digital/dashboards/digital-global-error-message/DigitalGlobalErrorMessage';
+import DashboardRoutes from 'Src/components/digital/dashboards/DashboardRoutes';
 
 const enhance = compose(
   lifecycle({
     componentDidMount() {
       this.props.setUserTeams();
-      this.props.setUserManagementDeployment();
+//      this.props.setUserDigitalDeployment();
     },
     componentDidUpdate(previousProps) {
       const { selectedDeploymentId, history } = this.props;
@@ -38,20 +39,20 @@ const enhance = compose(
   })
 );
 
-const ManagementFilterBlock = ManagementFilterBlockCreator(FilterRoutes);
+const DigitalFilterBlock = DigitalFilterBlockCreator(FilterRoutes);
 
-export const ManagementPure = () => {
+export const DigitalPure = () => {
   return (
-    <div className='Management'>
-      <ErrorBoundary ErrorMessage={ManagementGlobalErrorMessage}>
+    <div className='Digital'>
+      <ErrorBoundary ErrorMessage={DigitalGlobalErrorMessage}>
 
-        <ManagementHeaderNav/>
-        <ManagementTabRoutes/>
-        <div className='Management__grid'>
-          <ManagementGroupSelector/>
-          <div className='Management__grid-bottom'>
-            <ManagementFilterBlock/>
-            <ManagementRoutes/>
+        <DigitalHeaderNav/>
+        <DigitalTabRoutes/>
+        <div className='Digital__grid'>
+          <MetricGroupSelector/>
+          <div className='Digital__grid-bottom'>
+            <DigitalFilterBlock/>
+            <DashboardRoutes />
           </div>
         </div>
       </ErrorBoundary>
@@ -60,11 +61,11 @@ export const ManagementPure = () => {
   );
 };
 
-const Management = connect(
+const Digital = connect(
   state => ({
     selectedDeploymentId: getSelectedDeploymentId(state),
   }),
-  { setUserTeams, setUserManagementDeployment }
-)(enhance(ManagementPure));
+  { setUserTeams }
+)(enhance(DigitalPure));
 
-export default Management;
+export default Digital;
