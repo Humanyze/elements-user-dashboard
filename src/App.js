@@ -15,7 +15,7 @@ initAnalytics(process.env.REACT_APP_GA_TRACKING_ID);
 
 const enhanceCreator = (configOptions) => compose(
   withRouter,
-  withAnalytics(configOptions.basename)
+  withAnalytics(configOptions)
 );
 
 const CorePure = () => (
