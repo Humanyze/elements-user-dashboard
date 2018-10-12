@@ -13,9 +13,9 @@ import RouterPaths from 'RouterPaths';
 
 initAnalytics(process.env.REACT_APP_GA_TRACKING_ID);
 
-const enhance = compose(
+const enhanceCreator = (configOptions) => compose(
   withRouter,
-  withAnalytics
+  withAnalytics(configOptions.basename)
 );
 
 const CorePure = () => (
@@ -26,7 +26,7 @@ const CorePure = () => (
   </div>
 );
 
-const Core = enhance(CorePure);
+const Core = enhanceCreator({ basename: RouterPaths.basePath  })(CorePure);
 
 const App = () => (
   <div>
