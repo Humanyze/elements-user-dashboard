@@ -68,6 +68,7 @@
     "react-router-dom": "^4.2.2",
     "react-scroll-horizontal": "^1.2.1",
     "react-sizeme": "^2.5.2",
+    "react-with-analytics": "^0.0.5",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-actions": "^2.3.0",
