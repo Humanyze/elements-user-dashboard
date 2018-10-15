@@ -1,12 +1,29 @@
 import React from 'react';
+import { compose, lifecycle } from 'recompose';
+import { connect } from 'react-redux';
 import DeploymentSelectionList from 'Src/components/common/deployment-selection-list/DeploymentSelectionList';
+import { setDeploymentsFromStoreExecutiveIds } from 'Redux/common/deployment/deploymentActions';
+const enhance = compose(
+  connect(
+		(state) => ({
+			deploymentData: state.deployment
+		}),
+		{ setDeploymentsFromStoreExecutiveIds }
+	),
+	lifecycle({
+		componentDidMount() {
+		console.error(this.props);
+			this.props.setDeploymentsFromStoreExecutiveIds();
+		}
+	}),
+);
 
-
-const DigitalSelectDeploymentPure = ({}) => {
+const DigitalSelectDeploymentPure = ({deploymentData}) => {
 
   const selectionListProps = {
     deploymentData: {
-      deploymentDataSetIds: [], deploymentsByIds: {}, requestPending: false
+			...deploymentData,
+      deploymentDataSetIds: deploymentData.executiveDataSetIds
     }
 
   };
@@ -17,4 +34,4 @@ const DigitalSelectDeploymentPure = ({}) => {
 };
 
 
-export default DigitalSelectDeploymentPure;
+export default enhance(DigitalSelectDeploymentPure);
