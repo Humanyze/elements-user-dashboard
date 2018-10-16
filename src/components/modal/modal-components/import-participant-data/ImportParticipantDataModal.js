@@ -15,7 +15,7 @@ import 'Src/Global.scss';
 import LightBoxWrapper from '../../../common/LightBoxWrapper/LightBoxWrapper';
 
 
-import AxiosRequestService from 'Src/redux/AxiosRequestService';
+import AxiosRequestService from 'Src/redux/common/AxiosRequestService';
 
 
 import { getBearerToken } from 'Src/redux/common/auth/authReducer';
