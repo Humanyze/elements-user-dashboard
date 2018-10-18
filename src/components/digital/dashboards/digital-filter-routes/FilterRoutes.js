@@ -25,7 +25,7 @@ const AllocationVisualizationFilter = createFilterComponent(filterConfigs.alloca
 const FilterRoutes = () => {
   return (
     <Switch>
-      <Route path={RouterPaths.collaboration__allocation} component={AllocationVisualizationFilter}/>
+      {/*<Route path={RouterPaths.collaboration__allocation} component={AllocationVisualizationFilter}/>*/}
       {/* NOTE: add other filters here */}
     </Switch>
   );

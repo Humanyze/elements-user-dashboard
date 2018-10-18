@@ -5,6 +5,7 @@ import Header from 'Common/header/Header';
 import AppRoutes from './components/AppRoutes';
 import ModalRoot from './components/modal/ModalRoot';
 import RouterPaths from 'RouterPaths';
+
 const AppPure = () => (
   <Router basename={RouterPaths.basePath}>
     <div>

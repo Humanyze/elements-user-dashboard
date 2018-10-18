@@ -1,31 +1,48 @@
 import React from 'react';
-import { compose, lifecycle } from 'recompose';
+import { compose, lifecycle, mapProps } from 'recompose';
 import { connect } from 'react-redux';
+import pathToRegexp from 'path-to-regexp';
 import DeploymentSelectionList from 'Src/components/common/deployment-selection-list/DeploymentSelectionList';
 import { setDeploymentsFromStoreExecutiveIds } from 'Redux/common/deployment/deploymentActions';
+import RouterPaths from 'Src/routerPaths';
+
+import {
+  getDeploymentRequestPending,
+  getExecutiveDeployments
+} from 'Src/redux/common/deployment/deploymentReducer';
+
+
+const createDeploymentRoutePath = id => pathToRegexp.compile(RouterPaths.deployment)({ id });
+
 const enhance = compose(
   connect(
-		(state) => ({
-			deploymentData: state.deployment
-		}),
-		{ setDeploymentsFromStoreExecutiveIds }
-	),
-	lifecycle({
-		componentDidMount() {
-		console.error(this.props);
-			this.props.setDeploymentsFromStoreExecutiveIds();
-		}
-	}),
+    (state) => ({
+      deployments: getExecutiveDeployments(state),
+      requestPending: getDeploymentRequestPending(state)
+    }),
+    { setDeploymentsFromStoreExecutiveIds }
+  ),
+  lifecycle({
+    componentDidMount() {
+      this.props.setDeploymentsFromStoreExecutiveIds();
+    }
+  }),
+  mapProps(({ deployments, ...rest }) => ({
+      ...rest,
+      deployments: deployments.map(deployment => ({
+        ...deployment,
+        link: createDeploymentRoutePath(deployment.id)
+      }))
+    })
+  )
 );
 
-const DigitalSelectDeploymentPure = ({deploymentData}) => {
+
+const DigitalSelectDeploymentPure = ({ deployments, requestPending }) => {
 
   const selectionListProps = {
-    deploymentData: {
-			...deploymentData,
-      deploymentDataSetIds: deploymentData.executiveDataSetIds
-    }
-
+    loading: requestPending,
+    deployments
   };
 
   return (
@@ -33,5 +50,6 @@ const DigitalSelectDeploymentPure = ({deploymentData}) => {
   );
 };
 
+const DigitalSelectDeployment = enhance(DigitalSelectDeploymentPure);
 
-export default enhance(DigitalSelectDeploymentPure);
+export default DigitalSelectDeployment;

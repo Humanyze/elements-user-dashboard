@@ -8,10 +8,9 @@ const ManagementRoutes = () => {
   return (
     <div className='ManagementRoute'>
       <Switch>
-        <Route path={RouterPaths.selectedDeployment} component={DigitalSelectDeployment} />
-        <Route path={RouterPaths.dashboards} component={Digital}/>
-
-        <Route component={() => <Redirect to={RouterPaths.selectedDeployment}/>}/>
+        <Route path={RouterPaths.selectDeployment} component={DigitalSelectDeployment} />
+        <Route path={RouterPaths.deployment} component={Digital}/>
+        <Route component={() => <Redirect to={RouterPaths.selectDeployment}/>}/>
       </Switch>
     </div>
   );

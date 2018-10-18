@@ -7,13 +7,15 @@ import TeamCohesion
   from 'Common/data-vis-components/team-cohesion/TeamCohesion';
 import InteractionGaps
   from 'Src/components/common/data-vis-components/interaction-gaps/InteractionGaps';
+import DataValidationMessage
+  from 'Src/components/common/data-validation-HOC/data-validation-message/DataValidationMessage';
 
 
 const CollaborationRoutes = () => {
   return (
     <Switch>
-      <Route path={RouterPaths.inclusion__commByGender} component={TeamCohesion} />
-      <Route path={RouterPaths.inclusion__commByTeam} component={InteractionGaps} />
+      <Route path={RouterPaths.inclusion__commByGender} component={DataValidationMessage} />
+      <Route path={RouterPaths.inclusion__commByTeam} component={DataValidationMessage} />
       <Route component={() => <RedirectWithSearch to={RouterPaths.inclusion__commByGender}/> } />
     </Switch>
   );
