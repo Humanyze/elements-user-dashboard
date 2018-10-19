@@ -19,21 +19,23 @@ import ErrorBoundary from 'Src/components/common/error-boundary/ErrorBoundary';
 import DigitalGlobalErrorMessage
   from 'Src/components/digital/dashboards/digital-global-error-message/DigitalGlobalErrorMessage';
 import DashboardRoutes from 'Src/components/digital/dashboards/DashboardRoutes';
-import { withRouter } from 'react-router-dom';
-import { setExecutiveDeploymentGroups, setSelectedDeploymentId } from 'Src/redux/common/deployment/deploymentActions';
+import {
+  setExecutiveDeploymentGroups,
+  setSelectedDeploymentById,
+} from 'Src/redux/common/deployment/deploymentActions';
 import ActionSubBar from 'Src/components/common/action-sub-bar/ActionSubBar';
+import { digitalDashboardLeft } from 'Src/redux/common/route-actions/routeActions';
 
 const enhance = compose(
   connect(
     state => ({
       deploymentName: getSelectedDeploymentName(state)
     }),
-    { setSelectedDeploymentId, setExecutiveDeploymentGroups }
+    { setSelectedDeploymentById, setExecutiveDeploymentGroups, digitalDashboardLeft }
   ),
-  withRouter,
+  pure,
   lifecycle({
     componentDidMount() {
-      console.error(this.props);
 
       const {
         match: {
@@ -41,20 +43,24 @@ const enhance = compose(
             id
           }
         },
-        setSelectedDeploymentId,
+        setSelectedDeploymentById,
         setExecutiveDeploymentGroups
       } = this.props;
 
-      setSelectedDeploymentId(id);
+      setSelectedDeploymentById(id);
       setExecutiveDeploymentGroups();
     },
+    componentWillUnmount() {
+      this.props.digitalDashboardLeft();
+    }
   }),
   pure
 );
 
-const DigitalFilterBlock = MetricFilterBlockCreator(FilterRoutes);
+const DigitalFilterBlock = MetricFilterBlockCreator();
 
 export const DigitalPure = ({ deploymentName }) => {
+  console.error('rerender here?');
   return (
     <div className='Digital'>
       <ActionSubBar deploymentName={deploymentName} deploymentSelectionPath={RouterPaths.selectDeployment}/>
