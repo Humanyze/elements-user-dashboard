@@ -7,6 +7,7 @@ import Inclusion from 'Src/components/digital/dashboards/routes/inclusion/Inclus
 import Workload from 'Src/components/digital/dashboards/routes/workload/Workload';
 
 const DigitalDashboardRoutes = () => {
+  console.error('this fuck is rendering');
   return (
     <div className='ManagementRoute'>
       <Switch>
@@ -14,7 +15,7 @@ const DigitalDashboardRoutes = () => {
         <Route path={RouterPaths.workload} component={Workload} />
         <Route path={RouterPaths.inclusion} component={Inclusion}/>
         <Route path={RouterPaths.deployment} component={() => <RedirectWithSearch to={RouterPaths.collaboration}/>}/>
-        <Route component={() => <Redirect to={RouterPaths.selectedDeployment}/>}/>
+        <Route component={() => <Redirect to={RouterPaths.selectDeployment}/>}/>
       </Switch>
     </div>
   );
