@@ -1,4 +1,4 @@
-# Elements Management Dashboard
+# Elements Digital Dashboard
 
 
 ## Getting Started 
