@@ -7,7 +7,6 @@ import Inclusion from 'Src/components/digital/dashboards/routes/inclusion/Inclus
 import Workload from 'Src/components/digital/dashboards/routes/workload/Workload';
 
 const DigitalDashboardRoutes = () => {
-  console.error('this fuck is rendering');
   return (
     <div className='ManagementRoute'>
       <Switch>

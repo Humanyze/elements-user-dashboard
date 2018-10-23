@@ -22,7 +22,6 @@ import {
   setExecutiveDeploymentGroups,
   setSelectedDeploymentById,
 } from 'Src/redux/common/deployment/deploymentActions';
-// import ActionSubBar from 'Src/components/common/action-sub-bar/ActionSubBar';
 import { digitalDashboardLeft } from 'Src/redux/common/route-actions/routeActions';
 import ActionSubBar from 'Src/components/common/action-sub-bar/ActionSubBar';
 
@@ -34,7 +33,7 @@ const enhance = compose(
     { setSelectedDeploymentById, setExecutiveDeploymentGroups, digitalDashboardLeft }
   ),
   lifecycle({
-    componentDidMount() {
+    async componentDidMount() {
 
       const {
         match: {
@@ -46,7 +45,7 @@ const enhance = compose(
         setExecutiveDeploymentGroups
       } = this.props;
 
-      setSelectedDeploymentById(id);
+      await setSelectedDeploymentById(id);
       setExecutiveDeploymentGroups();
     },
     componentWillUnmount() {
@@ -55,7 +54,7 @@ const enhance = compose(
   }),
 );
 
-const DigitalFilterBlock = MetricFilterBlockCreator();
+const DigitalFilterBlock = MetricFilterBlockCreator(FilterRoutes);
 
 export const DigitalPure = ({ deploymentName }) => {
   return (

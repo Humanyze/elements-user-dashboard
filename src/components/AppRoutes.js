@@ -28,7 +28,6 @@ const AuthenticatedRoutes = compose(onWillMount)(({ userLoaded }) => {
 
 });
 
-
 const LoginRedirect = () => <Route component={() => window.location.href = '/login'}/>;
 
 const AppRoutesPure = ({ authenticated, userLoaded, setUserDataByAuthId }) => {
@@ -60,6 +59,5 @@ const AppRoutes = connect(
     ), { setUserDataByAuthId }, null,
     { pure: false }
 )(AppRoutesPure);
-
 
 export default AppRoutes;
