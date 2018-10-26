@@ -8,7 +8,7 @@ import Workload from 'Src/components/digital/dashboards/routes/workload/Workload
 
 const DigitalDashboardRoutes = () => {
   return (
-    <div className='ManagementRoute'>
+    <div className='DigitalRoute'>
       <Switch>
         <Route path={RouterPaths.collaboration} component={Collaboration}/>
         <Route path={RouterPaths.workload} component={Workload} />

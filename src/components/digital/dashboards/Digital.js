@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 
@@ -24,6 +24,7 @@ import {
 } from 'Src/redux/common/deployment/deploymentActions';
 import { digitalDashboardLeft } from 'Src/redux/common/route-actions/routeActions';
 import ActionSubBar from 'Src/components/common/action-sub-bar/ActionSubBar';
+import LoadingUI from 'Src/components/common/loading/LoadingUI';
 
 const enhance = compose(
   connect(
@@ -61,15 +62,23 @@ export const DigitalPure = ({ deploymentName }) => {
     <div className='Digital'>
       <ActionSubBar deploymentName={deploymentName} deploymentSelectionPath={RouterPaths.selectDeployment}/>
       <ErrorBoundary ErrorMessage={DigitalGlobalErrorMessage}>
-        <DigitalHeaderNav/>
-        <DigitalTabRoutes/>
-        <div className='Digital__grid'>
-          <MetricGroupSelector/>
-          <div className='Digital__grid-bottom'>
-            <DigitalFilterBlock/>
-            <DashboardRoutes/>
-          </div>
-        </div>
+        {deploymentName ?
+          (
+            <Fragment>
+              <DigitalHeaderNav/>
+              <DigitalTabRoutes/>
+              <div className='Digital__grid'>
+                <MetricGroupSelector/>
+                <div className='Digital__grid-bottom'>
+                  <DigitalFilterBlock/>
+                  <DashboardRoutes/>
+                </div>
+              </div>
+            </Fragment>
+          )
+          :
+          <LoadingUI/>
+        }
       </ErrorBoundary>
 
     </div>
