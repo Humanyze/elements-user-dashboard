@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './deployment-selection.scss';
 
 import { setDeploymentsFromStoreDeploymentIds } from 'Redux/common/deployment/deploymentActions';
-import { compose, lifecycle, mapProps, withProps } from 'recompose';
+import { compose, lifecycle, mapProps } from 'recompose';
 import DeploymentSelectionList from 'Src/components/common/deployment-selection-list/DeploymentSelectionList';
 import { getDeploymentDataSets, getDeploymentRequestPending } from 'Src/redux/common/deployment/deploymentReducer';
 
