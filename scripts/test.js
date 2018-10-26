@@ -24,5 +24,7 @@ if (!process.env.CI && argv.indexOf('--coverage') < 0) {
     // argv.push('--showConfig');
 }
 
+console.log(argv);
+
 
 jest.run(argv);

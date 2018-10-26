@@ -10,14 +10,14 @@ export const CollaborationTabsPure = ({ translations }) => {
       text: translations['DigitalCollaborationTabs__adjacencies'],
       to: RouterPaths.collaboration__adjacencies
     },
-    {
-      text: translations['DigitalCollaborationTabs__comm-distribution'],
-      to: RouterPaths.collaboration__commDistribution
-    },
-    {
-      text: translations['DigitalCollaborationTabs__response-time'],
-      to: RouterPaths.collaboration__responseTime
-    }
+    // {
+    //   text: translations['DigitalCollaborationTabs__comm-distribution'],
+    //   to: RouterPaths.collaboration__commDistribution
+    // },
+    // {
+    //   text: translations['DigitalCollaborationTabs__response-time'],
+    //   to: RouterPaths.collaboration__responseTime
+    // }
   ];
 
   return <TabNav links={links}/>;
