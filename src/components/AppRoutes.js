@@ -14,7 +14,7 @@ import Logout from 'Src/components/action-routes/logout';
 
 
 const onWillMount = lifecycle({
-    componentWillMount() {
+    componentDidMount() {
         this.props.setUserData();
     }
 });

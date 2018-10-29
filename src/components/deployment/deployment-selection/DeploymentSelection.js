@@ -4,60 +4,46 @@ import { connect } from 'react-redux';
 import './deployment-selection.scss';
 
 import { setDeploymentsFromStoreDeploymentIds } from 'Redux/common/deployment/deploymentActions';
-import { compose, lifecycle } from 'recompose';
+import { compose, lifecycle, mapProps } from 'recompose';
 import DeploymentSelectionList from 'Src/components/common/deployment-selection-list/DeploymentSelectionList';
-
-
-const deploymentDataRequestNeeded = ({ deploymentDataSetIds, deploymentsById, requestPending }) => {
-    if (!requestPending && deploymentDataSetIds) {
-        return deploymentDataSetIds.reduce((needsDispatch, id) => {
-            if (!deploymentsById[id]) {
-                return true;
-            }
-            return needsDispatch;
-        }, false);
-    }
-    return false;
-};
-
-
-const onPropReceive = (props) => {
-    const {
-        deploymentData: {
-            deploymentDataSetIds,
-            deploymentsById,
-            requestPending
-        },
-        setDeploymentsFromStoreDeploymentIds
-    } = props;
-    deploymentDataRequestNeeded({ deploymentDataSetIds, deploymentsById, requestPending }) &&
-        setDeploymentsFromStoreDeploymentIds();
-
-};
+import { getDeploymentDataSets, getDeploymentRequestPending } from 'Src/redux/common/deployment/deploymentReducer';
 
 
 const enhance = compose(
-connect(
+  connect(
     (state) => ({
-        deploymentData: state.deployment,
+      deployments: getDeploymentDataSets(state),
+      requestPending: getDeploymentRequestPending(state)
     }),
     { setDeploymentsFromStoreDeploymentIds }
   )
-    ,
+  ,
   lifecycle({
     componentDidMount() {
-        onPropReceive(this.props);
+      this.props.setDeploymentsFromStoreDeploymentIds();
     },
-    componentDidUpdate() {
-        onPropReceive(this.props);
-    }
-}));
+  }),
+  mapProps(({ deployments, ...rest }) => {
+    return {
+      deployments: deployments && deployments.map(deployment => ({
+        ...deployment,
+        link: `/deployment/${deployment.id}`
+      })),
+      ...rest
+    };
+  })
+);
 
 
-export const DeploymentSelectionPure = ({ deploymentData }) => {
-    return (
-      <DeploymentSelectionList deploymentData={deploymentData} />
-    );
+export const DeploymentSelectionPure = ({ deployments, requestPending }) => {
+  const selectionProps = {
+    deployments,
+    loading: requestPending
+  };
+
+  return (
+    <DeploymentSelectionList {...selectionProps} />
+  );
 };
 
 const DeploymentSelection = enhance(DeploymentSelectionPure);
