@@ -18,6 +18,17 @@ const filterConfigs = {
     ],
     filterKey      : METRIC_FILTER_KEYS.ADJACENCIES_COMPARISON,
   },
+  adjacenciesStream: {
+    labelKey       : 'AdjacenciesStreamFilter__label',
+    translationKeys: [
+      'AdjacenciesStreamFilter__all',
+      'AdjacenciesStreamFilter__meeting',
+      'AdjacenciesStreamFilter__email',
+      'AdjacenciesStreamFilter__chat',
+      'AdjacenciesStreamFilter__call'
+    ],
+    filterKey      : METRIC_FILTER_KEYS.ADJACENCIES_STREAM,
+  },
   adjacenciesUnit: {
     labelKey       : 'AdjacenciesUnitFilter__label',
     translationKeys: [
@@ -29,11 +40,13 @@ const filterConfigs = {
 };
 
 const AdjacenciesComparisonFilter = createFilterComponent(filterConfigs.adjacenciesComparison);
+const AdjacenciesStreamFilter = createFilterComponent(filterConfigs.adjacenciesStream);
 const AdjacenciesUnitFilter = createFilterComponent(filterConfigs.adjacenciesUnit);
 
 const AdjacenciesFilters = () => (
   <Fragment>
     <AdjacenciesComparisonFilter />
+    <AdjacenciesStreamFilter />
     <AdjacenciesUnitFilter />
   </Fragment>
 );
