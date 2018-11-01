@@ -10,7 +10,7 @@ import TeamCohesion from 'Src/components/common/data-vis-components/team-cohesio
 const CollaborationRoutes = () => {
   return (
     <Switch>
-      <Route path={RouterPaths.collaboration__adjacencies} component={TeamCohesion} />
+      <Route path={RouterPaths.collaboration__adjacencies} component={DataValidationMessage} />
       <Route path={RouterPaths.collaboration__commDistribution} component={DataValidationMessage} />
       <Route path={RouterPaths.collaboration__responseTime} component={DataValidationMessage} />
       <Route component={() => <RedirectWithSearch to={RouterPaths.collaboration__adjacencies}/> } />
