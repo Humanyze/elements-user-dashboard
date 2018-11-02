@@ -7,7 +7,7 @@ import TabNav from 'Src/components/common/tab-nav/TabNav';
 export const CollaborationTabsPure = ({ translations }) => {
   const links = [
     {
-      text: translations['DigitalCollaborationTabs__team-adjacencies'],
+      text: translations['DigitalCollaborationTabs__adjacencies'],
       to: RouterPaths.collaboration__adjacencies
     },
     {
