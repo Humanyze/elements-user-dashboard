@@ -46,7 +46,7 @@ const enhance = compose(
         setExecutiveDeploymentGroups
       } = this.props;
 
-      await setSelectedDeploymentById(id);
+      await setSelectedDeploymentById(id, `${RouterPaths.basePath}${RouterPaths.selectDeployment}`);
       setExecutiveDeploymentGroups();
     },
     componentWillUnmount() {
