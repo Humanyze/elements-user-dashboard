@@ -424,8 +424,8 @@ export const ImportEquipmentDataModalPure = ({
     const dateSelectorProps = {
         date    : effectiveDate,
         onChange: onDateChange,
-        startDate,
-        endDate
+        minDate : startDate,
+        maxDate : endDate
     };
 
     const importWizardProps = {
