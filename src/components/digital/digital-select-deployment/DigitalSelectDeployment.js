@@ -10,6 +10,7 @@ import {
   getDeploymentRequestPending,
   getExecutiveDeployments
 } from 'Src/redux/common/deployment/deploymentReducer';
+import { setExecutiveGroups } from 'Src/redux/common/deployment/deploymentActions';
 
 
 const createDeploymentRoutePath = id => pathToRegexp.compile(RouterPaths.deployment)({ id });
@@ -20,11 +21,13 @@ const enhance = compose(
       deployments: getExecutiveDeployments(state),
       requestPending: getDeploymentRequestPending(state)
     }),
-    { setDeploymentsFromStoreExecutiveIds }
+    { setDeploymentsFromStoreExecutiveIds, setExecutiveGroups }
   ),
   lifecycle({
-    componentDidMount() {
-      this.props.setDeploymentsFromStoreExecutiveIds();
+    async componentDidMount() {
+      // await on deployments being set, lazy preload the executive groups for all deployments
+      await this.props.setDeploymentsFromStoreExecutiveIds();
+      this.props.setExecutiveGroups();
     }
   }),
   mapProps(({ deployments, ...rest }) => ({
