@@ -14,6 +14,7 @@ import RouterPaths from 'RouterPaths';
 
 
 const GAToken = process.env.REACT_APP_GA_TRACKING_ID;
+console.error('hello world', GAToken);
 GAToken && initAnalytics(GAToken);
 
 const enhanceCreator = (configOptions) => compose(
