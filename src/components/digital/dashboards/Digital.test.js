@@ -1,3 +1,3 @@
-import Digital from './Digital';
+import { DigitalPure } from './Digital';
 
-testRender(Digital, {})();
+testRender(DigitalPure, {})();
