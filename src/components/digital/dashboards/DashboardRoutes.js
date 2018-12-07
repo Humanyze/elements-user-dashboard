@@ -11,8 +11,8 @@ const DigitalDashboardRoutes = () => {
     <div className='DigitalRoute'>
       <Switch>
         <Route path={RouterPaths.collaboration} component={Collaboration}/>
-        <Route path={RouterPaths.workload} component={Workload} />
-        <Route path={RouterPaths.inclusion} component={Inclusion}/>
+        {/* <Route path={RouterPaths.workload} component={Workload} />
+        <Route path={RouterPaths.inclusion} component={Inclusion}/> */}
         <Route path={RouterPaths.deployment} component={() => <RedirectWithSearch to={RouterPaths.collaboration}/>}/>
         <Route component={() => <Redirect to={RouterPaths.selectDeployment}/>}/>
       </Switch>
