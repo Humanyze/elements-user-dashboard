@@ -19,7 +19,7 @@ import DigitalGlobalErrorMessage
   from 'Src/components/digital/dashboards/digital-global-error-message/DigitalGlobalErrorMessage';
 import DashboardRoutes from 'Src/components/digital/dashboards/DashboardRoutes';
 import {
-  setExecutiveDeploymentGroups,
+  setExecutiveGroups,
   setSelectedDeploymentById,
 } from 'Src/redux/common/deployment/deploymentActions';
 import { digitalDashboardLeft } from 'Src/redux/common/route-actions/routeActions';
@@ -31,7 +31,7 @@ const enhance = compose(
     state => ({
       deploymentName: getSelectedDeploymentName(state)
     }),
-    { setSelectedDeploymentById, setExecutiveDeploymentGroups, digitalDashboardLeft }
+    { setSelectedDeploymentById, setExecutiveGroups, digitalDashboardLeft }
   ),
   lifecycle({
     async componentDidMount() {
@@ -43,11 +43,11 @@ const enhance = compose(
           }
         },
         setSelectedDeploymentById,
-        setExecutiveDeploymentGroups
+        setExecutiveGroups
       } = this.props;
 
       await setSelectedDeploymentById(id, `${RouterPaths.basePath}${RouterPaths.selectDeployment}`);
-      setExecutiveDeploymentGroups();
+      setExecutiveGroups();
     },
     componentWillUnmount() {
       this.props.digitalDashboardLeft();
