@@ -4,7 +4,8 @@ import { createFilterComponent } from 'Src/components/digital/dashboards/digital
 import { filterConfigs } from 'Src/components/digital/dashboards/digital-filter-routes/filterConfigs';
 import AdjacenciesReceiverFilter from './AdjacenciesReceiverFilter';
 import { connect } from 'react-redux';
-import { getMetricFilterValue, METRIC_FILTER_KEYS } from 'Redux/common/filter-ui/filterUIReducer';
+import { getMetricFilterValue, METRIC_FILTER_KEYS
+} from 'Redux/common/filter-ui/filterUIReducer';
 import { getActiveGroupableField } from 'Redux/common/group-ui/groupUIReducer';
 import { getCurrentTranslations } from 'Redux/common/language/languageReducer';
 
@@ -32,8 +33,7 @@ const enhance = compose(
       : false;
 
     return {
-      disabledComparisonTooltipText:
-        translations['AdjacenciesComparisonFilter__disabled-tooltip'],
+      disabledComparisonTooltipText: translations['AdjacenciesComparisonFilter__disabled-tooltip'],
       disableComparisonFilter
     };
   })
@@ -47,7 +47,7 @@ export const AdjacenciesFiltersPure = ({
     <AdjacenciesReceiverFilter />
     <AdjacenciesComparisonFilter
       disabled={disableComparisonFilter}
-      disabledTooltip={disabledComparisonTooltipText}
+      disabledTooltipText={disabledComparisonTooltipText}
     />
     <AdjacenciesStreamFilter />
     <AdjacenciesUnitFilter />
