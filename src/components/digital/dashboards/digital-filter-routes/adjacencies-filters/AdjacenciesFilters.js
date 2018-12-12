@@ -3,6 +3,7 @@ import { compose, withProps } from 'recompose';
 import { createFilterComponent } from 'Src/components/digital/dashboards/digital-filter-routes/createFilterComponent';
 import { filterConfigs } from 'Src/components/digital/dashboards/digital-filter-routes/filterConfigs';
 import AdjacenciesReceiverFilter from './AdjacenciesReceiverFilter';
+import BackToEmberLink from './BackToEmberLink';
 import { connect } from 'react-redux';
 import { getMetricFilterValue, METRIC_FILTER_KEYS
 } from 'Redux/common/filter-ui/filterUIReducer';
@@ -51,6 +52,7 @@ export const AdjacenciesFiltersPure = ({
     />
     <AdjacenciesStreamFilter />
     <AdjacenciesUnitFilter />
+    <BackToEmberLink/>
   </Fragment>
 );
 
