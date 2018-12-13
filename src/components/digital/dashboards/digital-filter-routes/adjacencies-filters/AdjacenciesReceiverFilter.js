@@ -1,4 +1,5 @@
 import React from 'react';
+import pluralize from 'pluralize';
 import DropdownSelector from 'Common/dropdown-selector/DropdownSelector';
 import { connect } from 'react-redux';
 import { compose, withProps, withHandlers, pure } from 'recompose';
@@ -49,9 +50,10 @@ const AdjacenciesReceiverFilterPure = props => {
     options,
     disabled: options.length < 2,
     disabledTooltipText: translations['AdjacenciesReceiverFilter__disabled-tooltip'],
-    value,
+    value: value && pluralize(value),
     onChange,
-    label
+    label,
+    pluralizeOptionText: true
   };
 
   return <DropdownSelector {...DropdownProps} />;
