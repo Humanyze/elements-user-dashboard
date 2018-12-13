@@ -22,19 +22,13 @@ const AdjacenciesUnitFilter = createFilterComponent(
 
 const enhance = compose(
   connect(state => ({
-    translations: getCurrentTranslations(state),
-    receiverFilterValue: getMetricFilterValue(
-      METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER
-    )(state),
+    receiverFilterValue: getMetricFilterValue( METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER)(state),
     activeGroupableField: getActiveGroupableField(state)
   })),
-  withProps(({ receiverFilterValue, activeGroupableField, translations }) => {
-    const disableComparisonFilter = activeGroupableField
-      ? receiverFilterValue !== activeGroupableField.name
-      : false;
+  withProps(({ receiverFilterValue, activeGroupableField }) => {
+    const disableComparisonFilter = activeGroupableField ? (receiverFilterValue !== activeGroupableField.name) : false;
 
     return {
-      disabledComparisonTooltipText: translations['AdjacenciesComparisonFilter__disabled-tooltip'],
       disableComparisonFilter
     };
   })

@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { compose } from 'ramda';
 import { getSelectedDeploymentId } from 'Redux/common/deployment/deploymentReducer';
-import { getCurrentTranslations } from '../../../../../redux/common/language/languageReducer';
+import { getCurrentTranslations } from 'Redux/common/language/languageReducer';
 
 const StyledBackToEmberLinkWrapper = styled.div`
   position: absolute;
   right: 10px;
   top: 10px;
+  font-size: 14px;
+  padding-right: 10px;
 `;
 
 const enhance = compose(

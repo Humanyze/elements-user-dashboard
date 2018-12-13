@@ -45,11 +45,9 @@ const enhanceCreator = (filterKey = METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER) =>
   );
 
 const AdjacenciesReceiverFilterPure = props => {
-  const { options, value, translations, onChange, label } = props;
+  const { options, value, onChange, label } = props;
   const DropdownProps = {
     options,
-    disabled: options.length < 2,
-    disabledTooltipText: translations['AdjacenciesReceiverFilter__disabled-tooltip'],
     value: value && pluralize(value),
     onChange,
     label,
