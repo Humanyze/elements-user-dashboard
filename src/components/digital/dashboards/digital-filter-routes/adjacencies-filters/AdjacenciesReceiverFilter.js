@@ -35,7 +35,8 @@ const enhanceCreator = (filterKey = METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER) =>
     ),
     withProps(({ groupableFields, translations }) => ({
       options: groupableFields.map(group => ({ ...group, text: group.name })),
-      label: translations['AdjacenciesReceiverFilter__label']
+      label: translations['AdjacenciesReceiverFilter__label'],
+      tooltipText: translations['MultipleGroupSelector__group-type-tooltip']
     })),
     withHandlers({
       onChange: filterOnChangeCreator({ filterKey })
@@ -45,12 +46,14 @@ const enhanceCreator = (filterKey = METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER) =>
   );
 
 const AdjacenciesReceiverFilterPure = props => {
-  const { options, value, onChange, label } = props;
+  const { options, value, onChange, label, tooltipText } = props;
   const DropdownProps = {
     options,
     value: value && pluralize(value),
     onChange,
     label,
+    tooltipText,
+    tooltipEnterDelay: 1,
     pluralizeOptionText: true
   };
 
