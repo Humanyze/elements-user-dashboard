@@ -36,7 +36,7 @@ const enhanceCreator = (filterKey = METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER) =>
     withProps(({ groupableFields, translations }) => ({
       options: groupableFields.map(group => ({ ...group, text: group.name })),
       label: translations['AdjacenciesReceiverFilter__label'],
-      tooltipText: translations['MultipleGroupSelector__group-type-tooltip']
+      tooltipText: translations['AdjacenciesReceiverFilter__tooltip-text']
     })),
     withHandlers({
       onChange: filterOnChangeCreator({ filterKey })
