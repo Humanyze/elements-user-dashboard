@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { getMetricFilterValue, METRIC_FILTER_KEYS
 } from 'Redux/common/filter-ui/filterUIReducer';
 import { getActiveGroupableField } from 'Redux/common/group-ui/groupUIReducer';
-import { getCurrentTranslations } from 'Redux/common/language/languageReducer';
 
 const AdjacenciesComparisonFilter = createFilterComponent(
   filterConfigs.adjacenciesComparison
