@@ -13,6 +13,7 @@ import {
   filterLifecycleCreator
 } from '../../../../common/metric-filter-block/FilterComposeHOF';
 import { withRouter } from 'react-router-dom';
+import './adjacencies-receiver-filter.scss';
 
 const enhanceCreator = (filterKey = METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER) =>
   compose(
@@ -57,7 +58,7 @@ const AdjacenciesReceiverFilterPure = props => {
     pluralizeOptionText: true
   };
 
-  return <DropdownSelector {...DropdownProps} />;
+  return <div className='AdjacenciesReceiverFilterWrapper'><DropdownSelector {...DropdownProps} /></div>;
 };
 
 export default enhanceCreator()(AdjacenciesReceiverFilterPure);
