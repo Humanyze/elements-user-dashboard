@@ -21,7 +21,7 @@ const StyledBackToEmberLink = styled.a`
   font-size: 12px;
   text-transform: uppercase;
   color: ${humanyzeBlue};
-
+  font-weight: bold;
   &:hover {
     .BackToEmberLink__text {
       text-decoration: underline;
