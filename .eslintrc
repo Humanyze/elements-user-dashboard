@@ -35,9 +35,5 @@
       }
     ],
     "prefer-const": "warn"
-    //,
-    // todo fix: complains on class instead of untranslated text
-    // note: can create custom for this
-    // "react/jsx-no-literals": [2, {"noStrings": true}]
   }
 }
