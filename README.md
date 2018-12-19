@@ -1,5 +1,4 @@
-# Elements (Executive)_Digital Dashboard
-
+# Elements Digital Dashboard
 
 ## Getting Started
 
