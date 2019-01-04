@@ -4,9 +4,16 @@
   height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
+  $Digital: &;
 
   & > * {
     flex-shrink: 0;
+  }
+
+ .DataVisAdjacencies {
+    @at-root #{$Digital} {
+      height: 800px;
+    }
   }
 
 }
