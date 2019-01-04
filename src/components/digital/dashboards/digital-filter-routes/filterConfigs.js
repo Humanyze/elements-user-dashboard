@@ -10,13 +10,13 @@ export const filterConfigs = {
     filterKey: METRIC_FILTER_KEYS.ADJACENCIES_COMPARISON,
   },
   adjacenciesStream: {
-    labelKey: 'AdjacenciesStreamFilter__label',
+    labelKey: 'StreamFilter__label',
     translationKeys: [
-      'AdjacenciesStreamFilter__all',
-      'AdjacenciesStreamFilter__meeting',
-      'AdjacenciesStreamFilter__email',
-      'AdjacenciesStreamFilter__chat',
-      'AdjacenciesStreamFilter__call'
+      'StreamFilter__all',
+      'StreamFilter__meeting',
+      'StreamFilter__email',
+      'StreamFilter__chat',
+      'StreamFilter__call'
     ],
     filterKey: METRIC_FILTER_KEYS.ADJACENCIES_STREAM,
   },
@@ -27,5 +27,24 @@ export const filterConfigs = {
       'AdjacenciesUnitFilter__percentages'
     ],
     filterKey: METRIC_FILTER_KEYS.ADJACENCIES_UNIT,
-  }
+  },
+  communicationDistributionStream: {
+    labelKey: 'StreamFilter__label',
+    translationKeys: [
+      'StreamFilter__all',
+      'StreamFilter__meeting',
+      'StreamFilter__email',
+      'StreamFilter__chat',
+      'StreamFilter__call'
+    ],
+    filterKey: METRIC_FILTER_KEYS.COMMUNICATION_DISTRIBUTION_STREAM,
+  },
+  communicationDistributionLevel: {
+    labelKey: 'CommunicationDistributionLevelFilter__label',
+    translationKeys: [
+      'CommunicationDistributionLevelFilter__group',
+      'CommunicationDistributionLevelFilter__participant',
+    ],
+    filterKey: METRIC_FILTER_KEYS.COMMUNICATION_DISTRIBUTION_LEVEL,
+  },
 };
