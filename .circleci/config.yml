@@ -55,7 +55,7 @@ jobs:
 
       # Build and S3 Deploy
       - run: yarn build --production
-      - run: aws s3 sync build/ s3://elements-react-$CIRCLE_BRANCH.humanyze.com --delete
+      - run: aws s3 sync build/ s3://elements-digital-$CIRCLE_BRANCH.humanyze.com --delete
 
 
       # Storybook Deploy
