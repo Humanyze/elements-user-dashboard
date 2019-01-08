@@ -1,6 +1,12 @@
 @import "~Src/Global.scss";
 
 .AdjacenciesReceiverFilterWrapper {
+  @media screen and (max-width: 1300px) {
+    max-width: 200px;
+    .DropdownSelector__input {
+      // max-width: 200px;
+    }
+  }
   // used to create the `one box` appearance
   // .DropdownSelector__input-label-wrapper {
   //   position: relative;
