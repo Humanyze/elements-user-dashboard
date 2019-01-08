@@ -149,4 +149,4 @@ Standard eslint setup in `/.eslintrc`, any modifications should be accompanied b
 
 * This project was immediately ejected from Create react app for ease.  Long term, look into cleaning up webpack configs and other boilerplate bloat that does not fit our needs.
 * We are using git submodules, which can be a bit tricky to use at first.  Will add a section on this long term.
-* Investigate Lerna for submodule versioing in the future 
+* Investigate Lerna for submodule versioning in the future, link here: https://github.com/lerna/lerna
