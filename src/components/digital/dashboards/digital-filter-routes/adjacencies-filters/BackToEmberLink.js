@@ -11,7 +11,7 @@ const humanyzeBlue = '#25b3d5';
 const StyledBackToEmberLinkWrapper = styled.div`
   position: absolute;
   right: 10px;
-  top: 10px;
+  top: 8px;
   padding-right: 10px;
 `;
 
