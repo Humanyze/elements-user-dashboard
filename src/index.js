@@ -9,7 +9,6 @@ import { EventTrackingProvider } from 'Common/event-tracking-provider/EventTrack
 
 import mixpanel from 'mixpanel-browser';
 import Raven from 'raven-js';
-
 const { store } = createStore();
 
 mixpanel.init('23071668534d0dd256d9c4e570d30052');
@@ -27,4 +26,5 @@ ReactDOM.render(
     </EventTrackingProvider>
   </StrictMode>
   , document.getElementById('root'));
-registerServiceWorker();
+
+  registerServiceWorker();
