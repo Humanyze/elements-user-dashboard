@@ -10,8 +10,7 @@ import { setUserDataByAuthId } from 'Redux/common/userData/userDataActions';
 import { getUserDataLoadStatus } from 'Redux/common/userData/userDataReducer';
 import Logout from 'Src/components/action-routes/logout';
 
-
-import Management from './management/Management';
+import Digital from './digital/Digital';
 
 const onWillMount = lifecycle({
     componentDidMount() {
@@ -23,12 +22,11 @@ const onWillMount = lifecycle({
 const AuthenticatedRoutes = compose(onWillMount)(({ userLoaded }) => {
     return userLoaded ? (
         <Switch>
-            <Route component={Management}/>
+            <Route component={Digital}/>
         </Switch>) : <LoadingUI/>
         ;
 
 });
-
 
 const LoginRedirect = () => <Route component={() => window.location.href = '/login'}/>;
 
@@ -61,6 +59,5 @@ const AppRoutes = connect(
     ), { setUserDataByAuthId }, null,
     { pure: false }
 )(AppRoutesPure);
-
 
 export default AppRoutes;

@@ -16,10 +16,10 @@ import ManagementFilterBlockCreator from '../common/metric-filter-block/MetricFi
 import ManagementGroupSelector from '../common/metric-group-selector/MetricGroupSelector';
 import { getSelectedDeploymentId } from 'Src/redux/common/deployment/deploymentReducer';
 import { replaceQueryParams } from 'Common/utils/update-query-params';
-import FilterRoutes from 'Src/components/management/management-filter-routes/FilterRoutes';
+import FilterRoutes from 'Src/components/digital/dashboards/digital-filter-routes/FilterRoutes';
 import ErrorBoundary from 'Src/components/common/error-boundary/ErrorBoundary';
 import ManagementGlobalErrorMessage
-  from 'Src/components/management/management-global-error-message/ManagementGlobalErrorMessage';
+  from 'Src/components/digital/dashboards/digital-global-error-message/DigitalGlobalErrorMessage';
 
 const enhance = compose(
   lifecycle({

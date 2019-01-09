@@ -1,28 +1,35 @@
 const publicUrl = process.env.PUBLIC_URL;
-console.error(publicUrl);
+
+const base = {
+  basePath     : publicUrl,
+  login        : '/login',
+  selectDeployment: '/select-deployment',
+  deployment: '/deployment/:id(\\d+)',
+};
+
 const basePaths = {
-    basePath     : publicUrl,
-    login        : '/login',
-    collaboration: '/collaboration',
-    exploration  : '/exploration',
-    visibility   : '/visibility',
-    communication: '/communication',
+  ...base,
+  collaboration: `${base.deployment}/collaboration`,
+  workload     : `${base.deployment}/workload`,
+  inclusion : `${base.deployment}/inclusion`,
 };
 
 const paths = {
-    ...basePaths,
+  ...basePaths,
+  // collaboration
+  collaboration__adjacencies: `${basePaths.collaboration}/adjacencies`,
+  collaboration__commDistribution: `${basePaths.collaboration}/communication-distribution`,
+  collaboration__responseTime: `${basePaths.collaboration}/response-time`,
 
-    collaboration__cohesion: `${basePaths.collaboration}/cohesion`,
-    collaboration__interaction: `${basePaths.collaboration}/interaction`,
-    collaboration__allocation: `${basePaths.collaboration}/allocation`,
+  // workload
+  workload__workdayLength: `${basePaths.workload}/average-workday-length`,
+  workload__drivers: `${basePaths.workload}/drivers`,
+  workload__responseTime: `${basePaths.workload}/response-time`,
+  workload__timeAllocation: `${basePaths.workload}/time-allocation`,
 
-    exploration__frequency: `${basePaths.exploration}/frequency`,
-    exploration__time: `${basePaths.exploration}/time`,
-    exploration__distinct: `${basePaths.exploration}/distinct`,
-
-    visibility__manager: `${basePaths.visibility}/manager`,
-
-    communication__patterns: `${basePaths.communication}/patterns`
+  // diversity & inclusion
+  inclusion__commByGender: `${basePaths.inclusion}/communication-by-gender`,
+  inclusion__commByTeam: `${basePaths.inclusion}/communication-by-gender-per-team`
 };
 
 
