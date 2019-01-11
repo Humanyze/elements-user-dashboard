@@ -36,5 +36,13 @@ export const filterConfigs = {
       'DigitalAllocationHoursFilter__allDay'
     ],
     filterKey: METRIC_FILTER_KEYS.DIGITAL_TIME_ALLOCATION_HOURS,
+  },
+  digitalAllocationUnit: {
+    labelKey: 'DigitalAllocationUnitFilter__label',
+    translationKeys: [
+      'DigitalAllocationUnitFilter__minutes',
+      'DigitalAllocationUnitFilter__percentages',
+    ],
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_TIME_ALLOCATION_UNIT,
   }
 };
