@@ -23,13 +23,13 @@ const enhanceCreator = (configOptions) => compose(
 
 const CorePure = () => (
   <div>
-    <Header/>
-    <AppRoutes/>
-    <ModalRoot/>
+    <Header />
+    <AppRoutes />
+    <ModalRoot />
   </div>
 );
 
-const Core = enhanceCreator({ basename: RouterPaths.basePath  })(CorePure);
+const Core = enhanceCreator({ basename: RouterPaths.basePath })(CorePure);
 
 const App = () => (
   <div>

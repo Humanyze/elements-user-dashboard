@@ -27,5 +27,14 @@ export const filterConfigs = {
       'AdjacenciesUnitFilter__percentages'
     ],
     filterKey: METRIC_FILTER_KEYS.ADJACENCIES_UNIT,
+  },
+  digitalAllocationHours: {
+    labelKey: 'DigitalAllocationHoursFilter__label',
+    translationKeys: [
+      'DigitalAllocationHoursFilter__work',
+      'DigitalAllocationHoursFilter__afterWork',
+      'DigitalAllocationHoursFilter__allDay'
+    ],
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_TIME_ALLOCATION_HOURS,
   }
 };
