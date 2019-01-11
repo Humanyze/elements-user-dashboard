@@ -1,5 +1,4 @@
-# Elements (Executive)_Digital Dashboard
-
+# Elements Digital Dashboard
 
 ## Getting Started
 
@@ -151,3 +150,4 @@ Standard eslint setup in `/.eslintrc`, any modifications should be accompanied b
 * This project was immediately ejected from Create react app for ease.  Long term, look into cleaning up webpack configs and other boilerplate bloat that does not fit our needs.
 * We are using git submodules, which can be a bit tricky to use at first.  Will add a section on this long term.
 * ESLint's indentation rules don't handle [idiomatic D3](https://github.com/d3/d3-selection#d3-selection) nicely, so by convention, we disable ESLint's `indent` rule for blocks of D3 code.
+* Investigate Lerna for submodule versioning in the future, link here: https://github.com/lerna/lerna

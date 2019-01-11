@@ -1,14 +1,15 @@
 @import '~Src/Global.scss';
 
 .Digital {
-  height: calc(100vh - 70px);
+  height: calc(100vh - 60px);
+  min-height: 800px; // scroll only on small screen sizes
   display: flex;
   flex-direction: column;
+  $Digital: &;
 
   & > * {
     flex-shrink: 0;
   }
-
 }
 
 .Digital__grid {
