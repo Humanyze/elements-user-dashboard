@@ -18,7 +18,7 @@ const paths = {
   ...basePaths,
   // collaboration
   collaboration__adjacencies: `${basePaths.collaboration}/adjacencies`,
-  collaboration__commDistribution: `${basePaths.collaboration}/communication-distribution`,
+  collaboration__communicationDistribution: `${basePaths.collaboration}/communication-distribution`,
   collaboration__responseTime: `${basePaths.collaboration}/response-time`,
 
   // workload
