@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './Global.scss';
 import App from './App';
@@ -18,13 +18,11 @@ const raven = Raven.config('https://d5d5ac2c4f7744d782b534b892ae3fc5@sentry.io/1
 
 // FIND HOOK LUCAS EVENT TRACKER
 ReactDOM.render(
-  <StrictMode>
     <EventTrackingProvider mixpanel={mixpanel} raven={raven}>
       <Provider store={store}>
         <App/>
       </Provider>
     </EventTrackingProvider>
-  </StrictMode>
   , document.getElementById('root'));
 
   registerServiceWorker();
