@@ -36,7 +36,7 @@ jobs:
           at: /tmp/app
       - run: cp -r /tmp/app/app/. .
       - run: yarn test
-      - run: npx eslint src/
+      - run: npx eslint --max-warnings 0 src/
 
   package:
     working_directory: ~/app
