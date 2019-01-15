@@ -46,7 +46,7 @@ export const AdjacenciesFiltersPure = ({
       />
       <AdjacenciesStreamFilter />
       <AdjacenciesUnitFilter />
-      <BackToEmberLink />
+      <BackToEmberLink createLinkUrl={({ datasetId }) =>  `/digital/dcoll_top/dcoll_team_adjacencies?dataset=${datasetId}`} />
     </Fragment>
   );
 
