@@ -1,8 +1,8 @@
 const publicUrl = process.env.PUBLIC_URL;
 
 const base = {
-  basePath     : publicUrl,
-  login        : '/login',
+  basePath: publicUrl,
+  login: '/login',
   selectDeployment: '/select-deployment',
   deployment: '/deployment/:id(\\d+)',
 };
@@ -10,8 +10,8 @@ const base = {
 const basePaths = {
   ...base,
   collaboration: `${base.deployment}/collaboration`,
-  workload     : `${base.deployment}/workload`,
-  inclusion : `${base.deployment}/inclusion`,
+  workload: `${base.deployment}/workload`,
+  inclusion: `${base.deployment}/inclusion`,
 };
 
 const paths = {

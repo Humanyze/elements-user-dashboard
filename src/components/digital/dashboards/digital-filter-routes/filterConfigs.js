@@ -28,6 +28,25 @@ export const filterConfigs = {
     ],
     filterKey: METRIC_FILTER_KEYS.ADJACENCIES_UNIT,
   },
+  communicationDistributionStream: {
+    labelKey: 'StreamFilter__label',
+    translationKeys: [
+      'StreamFilter__all',
+      'StreamFilter__meeting',
+      'StreamFilter__email',
+      'StreamFilter__chat',
+      'StreamFilter__call'
+    ],
+    filterKey: METRIC_FILTER_KEYS.COMMUNICATION_DISTRIBUTION_STREAM,
+  },
+  communicationDistributionLevel: {
+    labelKey: 'CommunicationDistributionLevelFilter__label',
+    translationKeys: [
+      'CommunicationDistributionLevelFilter__group',
+      'CommunicationDistributionLevelFilter__participant',
+    ],
+    filterKey: METRIC_FILTER_KEYS.COMMUNICATION_DISTRIBUTION_LEVEL,
+  },
   digitalAllocationHours: {
     labelKey: 'DigitalAllocationHoursFilter__label',
     translationKeys: [
@@ -44,5 +63,5 @@ export const filterConfigs = {
       'DigitalAllocationUnitFilter__percentages',
     ],
     filterKey: METRIC_FILTER_KEYS.DIGITAL_TIME_ALLOCATION_UNIT,
-  }
+  },
 };

@@ -12,14 +12,14 @@ import Logout from 'Src/components/action-routes/logout';
 
 import Digital from './digital/Digital';
 
-const onWillMount = lifecycle({
+const didMount = lifecycle({
     componentDidMount() {
         this.props.setUserData();
     },
 });
 
 
-const AuthenticatedRoutes = compose(onWillMount)(({ userLoaded }) => {
+const AuthenticatedRoutes = compose(didMount)(({ userLoaded }) => {
     return userLoaded ? (
         <Switch>
             <Route component={Digital}/>

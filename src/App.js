@@ -36,7 +36,7 @@ const App = () => (
     <Router basename={RouterPaths.basePath}>
       <Core />
     </Router>
-  </div>
+  </div >
 );
 
 export default App;
