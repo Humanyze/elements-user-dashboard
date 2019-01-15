@@ -47,4 +47,21 @@ export const filterConfigs = {
     ],
     filterKey: METRIC_FILTER_KEYS.COMMUNICATION_DISTRIBUTION_LEVEL,
   },
+  digitalAllocationHours: {
+    labelKey: 'DigitalAllocationHoursFilter__label',
+    translationKeys: [
+      'DigitalAllocationHoursFilter__work',
+      'DigitalAllocationHoursFilter__afterWork',
+      'DigitalAllocationHoursFilter__allDay'
+    ],
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_TIME_ALLOCATION_HOURS,
+  },
+  digitalAllocationUnit: {
+    labelKey: 'DigitalAllocationUnitFilter__label',
+    translationKeys: [
+      'DigitalAllocationUnitFilter__minutes',
+      'DigitalAllocationUnitFilter__percentages',
+    ],
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_TIME_ALLOCATION_UNIT,
+  },
 };

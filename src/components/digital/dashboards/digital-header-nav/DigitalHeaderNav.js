@@ -10,10 +10,10 @@ const DigitalHeaderNavPure = ({ translations }) => {
       text: translations['DigitalNav__collaboration-delivery'],
       to  : RouterPaths.collaboration
     },
-    // {
-    //   text: translations['DigitalNav__workload'],
-    //   to  : RouterPaths.workload
-    // },
+    {
+      text: translations['DigitalNav__workload'],
+      to  : RouterPaths.workload
+    },
     // {
     //   text: translations['DigitalNav__diversity-inclusion'],
     //   to  : RouterPaths.inclusion
