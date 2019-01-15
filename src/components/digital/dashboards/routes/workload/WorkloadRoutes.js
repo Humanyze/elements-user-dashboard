@@ -2,8 +2,6 @@ import React from 'react';
 import RouterPaths from 'Src/routerPaths';
 import { Route, Switch } from 'react-router-dom';
 import { RedirectWithSearch } from 'Src/components/common/link-with-search/LinkWithSearch';
-import DataValidationMessage
-  from 'Src/components/common/data-validation-HOC/data-validation-message/DataValidationMessage';
 import DigitalAllocation
   from 'Src/components/common/data-vis-components/digital-allocation/DigitalAllocation';
 
