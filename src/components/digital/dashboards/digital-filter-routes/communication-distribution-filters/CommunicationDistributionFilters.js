@@ -14,7 +14,7 @@ export const CommunicationDistributionFiltersPure = () => (
     <Fragment>
       <CommunicationDistributionStreamFilter />
       <CommunicationDistributionLevelFilter />
-      <BackToEmberLink />
+      <BackToEmberLink createLinkUrl={({ datasetId }) => `/digital/dcoll_top/dcoll_communication_patterns?dataset=${datasetId}`}/>
     </Fragment>
   );
 
