@@ -15,7 +15,6 @@ const DigitalAllocationFilters = () => (
   <Fragment>
     <DigitalAllocationHoursFilter />
     <DigitalAllocationUnitFilter />
-    {/* MOTHER FUCKER THIS DOESN'T WORK */}
     <BackToEmberLink createLinkUrl={({ datasetId }) => `/digital/dover_top/dover_time_allocation?dataset=${datasetId}`}/>
   </Fragment>
 );
