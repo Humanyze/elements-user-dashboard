@@ -47,6 +47,24 @@ export const filterConfigs = {
     ],
     filterKey: METRIC_FILTER_KEYS.COMMUNICATION_DISTRIBUTION_LEVEL,
   },
+  digitalResponseTimeHours: {
+    labelKey: 'DigitalResponseTimeHoursFilter__label',
+    translationKeys: [
+      'DigitalResponseTimeHoursFilter__work',
+      'DigitalResponseTimeHoursFilter__afterWork',
+      'DigitalResponseTimeHoursFilter__allDay',
+    ],
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_RESPONSE_TIME_HOURS
+  },
+  digitalResponseTimePeople: {
+    labelKey: 'DigitalResponseTimePeopleFilter__label',
+    translationKeys: [
+      'DigitalResponseTimePeopleFilter__all',
+      'DigitalResponseTimePeopleFilter__manager',
+      'DigitalResponseTimePeopleFilter__non-manager'
+    ],
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_RESPONSE_TIME_PEOPLE
+  },
   digitalAllocationHours: {
     labelKey: 'DigitalAllocationHoursFilter__label',
     translationKeys: [
