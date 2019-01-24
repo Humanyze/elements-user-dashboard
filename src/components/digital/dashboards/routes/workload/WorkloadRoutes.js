@@ -13,9 +13,8 @@ const WorkloadRoutes = () => {
     <Switch>
       <Route path={RouterPaths.workload__workdayLength} component={AverageWorkdayLength} />
       {/* <Route path={RouterPaths.workload__drivers} component={DataValidationMessage} /> */}
-      <Route path={RouterPaths.workload__responseTime} component={DigitalResponseTime} />
       <Route path={RouterPaths.workload__timeAllocation} component={DigitalAllocation} />
-      <Route component={() => <RedirectWithSearch to={RouterPaths.workload__responseTime}/> } />
+      <Route component={() => <RedirectWithSearch to={RouterPaths.workload__workdayLength}/> } />
     </Switch>
   );
 };

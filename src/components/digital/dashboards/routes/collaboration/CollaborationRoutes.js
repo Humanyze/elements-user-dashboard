@@ -5,9 +5,9 @@ import Adjacencies
   from 'Common/data-vis-components/adjacencies/Adjacencies';
 import CommunicationDistribution
   from 'Common/data-vis-components/communication-distribution/CommunicationDistribution';
-// import DataValidationMessage
-//   from 'Src/components/common/data-validation-HOC/data-validation-message/DataValidationMessage';
 import { RedirectWithSearch } from 'Src/components/common/link-with-search/LinkWithSearch';
+import DigitalResponseTime
+    from '../../../../common/data-vis-components/digital-response-time/DigitalResponseTime';
 
 
 const CollaborationRoutes = () => {
@@ -15,7 +15,7 @@ const CollaborationRoutes = () => {
     <Switch>
       <Route path={RouterPaths.collaboration__adjacencies} component={Adjacencies} />
       <Route path={RouterPaths.collaboration__communicationDistribution} component={CommunicationDistribution} />
-      {/*<Route path={RouterPaths.collaboration__responseTime} component={DataValidationMessage} /> */}
+      <Route path={RouterPaths.collaboration__responseTime} component={DigitalResponseTime} />
       <Route component={() => <RedirectWithSearch to={RouterPaths.collaboration__adjacencies} />} />
     </Switch>
   );
