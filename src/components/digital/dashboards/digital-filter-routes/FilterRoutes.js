@@ -12,9 +12,9 @@ const FilterRoutes = () => {
   return (
     <Switch>
       <Route path={RouterPaths.collaboration__adjacencies} component={AdjacenciesFilters} />
-      <Route path={RouterPaths.collaboration__responseTime} component={DigitalResponseTimeFilters} />
       <Route path={RouterPaths.collaboration__communicationDistribution} component={CommunicationDistributionFilters} />
-      <Route path={RouterPaths.workload__averageWorkdayLength} component={AverageWorkdayLegthBackToEmberLink} />
+      <Route path={RouterPaths.collaboration__responseTime} component={DigitalResponseTimeFilters} />
+      <Route path={RouterPaths.workload__workdayLength} component={AverageWorkdayLegthBackToEmberLink} />
       <Route path={RouterPaths.workload__timeAllocation} component={DigitalAllocationFilters} />
       {/* NOTE: add other filters here */}
     </Switch>
