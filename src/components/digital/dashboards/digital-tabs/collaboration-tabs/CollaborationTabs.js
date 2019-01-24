@@ -14,10 +14,10 @@ export const CollaborationTabsPure = ({ translations }) => {
       text: translations['DigitalCollaborationTabs__comm-distribution'],
       to: RouterPaths.collaboration__communicationDistribution
     },
-    // {
-    //   text: translations['DigitalCollaborationTabs__response-time'],
-    //   to: RouterPaths.collaboration__responseTime
-    // }
+    {
+      text: translations['DigitalCollaborationTabs__response-time'],
+      to: RouterPaths.collaboration__responseTime
+    }
   ];
 
   return <TabNav links={links} />;

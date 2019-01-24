@@ -15,10 +15,6 @@ export const WorkloadTabsPure = ({ translations }) => {
       to: RouterPaths.workload__drivers
     },
     {
-      text: translations['DigitalWorkloadTabs__response-time'],
-      to: RouterPaths.workload__responseTime
-    },
-    {
       text: translations['DigitalWorkloadTabs__time-allocation'],
       to: RouterPaths.workload__timeAllocation
     }
