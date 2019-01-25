@@ -57,6 +57,15 @@ export const filterConfigs = {
     ],
     filterKey: METRIC_FILTER_KEYS.DIGITAL_DRIVERS_HOURS
   },
+  digitalDriversUnit: {
+    labelKey: 'DigitalDriversUnitFilter__label',
+    translationKeys: [
+      'DigitalDriversUnitFilter__minutes',
+      'DigitalDriversUnitFilter__percentages',
+
+    ],
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_DRIVERS_UNIT
+  },
   digitalResponseTimeHours: {
     labelKey: 'DigitalResponseTimeHoursFilter__label',
     translationKeys: [
