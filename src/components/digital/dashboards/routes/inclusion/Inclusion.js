@@ -3,7 +3,7 @@ import InclusionRoutes from './InclusionRoutes';
 
 const Inclusion = () => {
   return (
-    <InclusionRoutes/>
+    <InclusionRoutes />
   );
 };
 

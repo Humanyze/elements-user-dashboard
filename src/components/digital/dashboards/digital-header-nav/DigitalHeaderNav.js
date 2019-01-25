@@ -14,10 +14,10 @@ const DigitalHeaderNavPure = ({ translations }) => {
       text: translations['DigitalNav__workload'],
       to  : RouterPaths.workload
     },
-    // {
-    //   text: translations['DigitalNav__diversity-inclusion'],
-    //   to  : RouterPaths.inclusion
-    // }
+    {
+      text: translations['DigitalNav__diversity-inclusion'],
+      to  : RouterPaths.inclusion
+    }
   ];
 
   return (
