@@ -4,6 +4,8 @@ import RouterPaths from 'Src/routerPaths';
 import AdjacenciesFilters from './adjacencies-filters/AdjacenciesFilters';
 import DigitalAllocationFilters from './digital-allocation-filters/DigitalAllocationFilters';
 import CommunicationDistributionFilters from './communication-distribution-filters/CommunicationDistributionFilters';
+import DigitalDriversFilters from './digital-drivers-filters/DigitalDriversFilters';
+
 import DigitalResponseTimeFilters from './digital-response-time-filters/DigitalResponseTimeFilters';
 import BackToEmberLink from 'Common/back-to-ember-link/BackToEmberLink';
 
@@ -15,6 +17,7 @@ const FilterRoutes = () => {
       <Route path={RouterPaths.collaboration__communicationDistribution} component={CommunicationDistributionFilters} />
       <Route path={RouterPaths.collaboration__responseTime} component={DigitalResponseTimeFilters} />
       <Route path={RouterPaths.workload__workdayLength} component={AverageWorkdayLegthBackToEmberLink} />
+      <Route path={RouterPaths.workload__drivers} component={DigitalDriversFilters} />
       <Route path={RouterPaths.workload__timeAllocation} component={DigitalAllocationFilters} />
       {/* NOTE: add other filters here */}
     </Switch>

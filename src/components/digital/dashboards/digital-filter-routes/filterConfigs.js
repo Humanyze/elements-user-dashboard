@@ -47,6 +47,25 @@ export const filterConfigs = {
     ],
     filterKey: METRIC_FILTER_KEYS.COMMUNICATION_DISTRIBUTION_LEVEL,
   },
+  digitalDriversHours: {
+    labelKey: 'DigitalDriversHoursFilter__label',
+    translationKeys: [
+      'DigitalDriversHoursFilter__work',
+      'DigitalDriversHoursFilter__afterWork',
+      'DigitalDriversHoursFilter__allDay',
+
+    ],
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_DRIVERS_HOURS
+  },
+  digitalDriversUnit: {
+    labelKey: 'DigitalDriversUnitFilter__label',
+    translationKeys: [
+      'DigitalDriversUnitFilter__minutes',
+      'DigitalDriversUnitFilter__percentages',
+
+    ],
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_DRIVERS_UNIT
+  },
   digitalResponseTimeHours: {
     labelKey: 'DigitalResponseTimeHoursFilter__label',
     translationKeys: [
