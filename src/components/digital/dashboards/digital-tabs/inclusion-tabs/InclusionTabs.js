@@ -10,10 +10,10 @@ export const InclusionTabsPure = ({ translations }) => {
       text: translations['DigitalInclusionTabs__comm-by-gender'],
       to  : RouterPaths.inclusion__commByGender
     },
-    {
-      text: translations['DigitalInclusionTabs__comm-by-gender-per-team'],
-      to  : RouterPaths.inclusion__commByTeam
-    },
+    // {
+    //   text: translations['DigitalInclusionTabs__comm-by-gender-per-team'],
+    //   to  : RouterPaths.inclusion__commByTeam
+    // },
   ];
 
   return <TabNav links={links}/>;
