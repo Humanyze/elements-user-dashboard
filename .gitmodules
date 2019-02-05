@@ -1,12 +1,6 @@
 [submodule "src/assets/scss/humanyze-ui"]
 	path = src/assets/scss/humanyze-ui
 	url = https://github.com/Humanyze/humanyze-ui-scss.git
-[submodule "src/components/common"]
-	path = src/components/common
-	url = https://github.com/Humanyze/humanyze-react-components.git
-[submodule "src/redux/common"]
-	path = src/redux/common
-	url = https://github.com/Humanyze/redux-common.git
 [submodule "src/elements-web-common"]
 	path = src/elements-web-common
 	url = https://github.com/Humanyze/elements-web-common.git
