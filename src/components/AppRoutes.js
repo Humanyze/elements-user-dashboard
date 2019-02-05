@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import { elementsReact, elementsRedux } from 'elements-web-common';
+import { elementsReact, elementsRedux } from 'ElementstWebCommon';
 
 import { compose, lifecycle } from 'recompose';
 import Logout from 'Src/components/action-routes/logout';

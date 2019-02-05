@@ -144,12 +144,12 @@ module.exports = {
             'Utils': path.resolve(paths.appSrc + '/assets/utils'),
             'Redux': path.resolve(paths.appSrc + '/redux'),
             'Common': path.resolve(paths.appSrc + '/components/common'),
-            'elements-web-common': path.resolve(paths.appSrc + '/elements-web-common'),
             'Story': path.resolve(paths.storybookConfig),
             'TestUtils': path.resolve(paths.appSrc + '/tests'),
             // file aliases
             'appPackageJson': paths.appPackageJson,
-            'RouterPaths': path.resolve(paths.appSrc + '/routerPaths.js')
+            'RouterPaths': path.resolve(paths.appSrc + '/routerPaths.js'),
+            'ElementsWebCommon': path.resolve(paths.appSrc + '/elements-web-common/index.js'),
         },
         plugins: [
             // Prevents users from importing files from outside of src/ (or node_modules/).

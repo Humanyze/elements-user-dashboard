@@ -13,7 +13,7 @@ import FilterRoutes from 'Src/components/digital/dashboards/digital-filter-route
 import DigitalGlobalErrorMessage from 'Src/components/digital/dashboards/digital-global-error-message/DigitalGlobalErrorMessage';
 import DashboardRoutes from 'Src/components/digital/dashboards/DashboardRoutes';
 
-import { elementsReact, elementsRedux } from 'elements-web-common';
+import { elementsReact, elementsRedux } from 'ElementstWebCommon';
 
 const { LoadingUI, ActionSubBar, ErrorBoundary, MetricGroupSelector, MetricFilterBlockCreator } = elementsReact;
 

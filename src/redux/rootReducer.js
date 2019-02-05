@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import { elementsRedux } from 'elements-web-common';
-
+import c from 'ElementstWebCommon';
+console.error(c);
+const { elementsRedux } = c;
 const {
   authReducer,
   languageReducer,

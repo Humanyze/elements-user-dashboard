@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
 import { withRouter } from 'react-router-dom';
-import { elementsRedux } from 'elements-web-common';
+import { elementsRedux } from 'ElementstWebCommon';
 
 import MODAL_TYPES from './modalTypes.js';
 

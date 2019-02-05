@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import styled from 'styled-components';
 
-import { elementsRedux } from 'elements-web-common';
+import { elementsRedux } from 'ElementstWebCommon';
 
 const {
   languageSelectors: {

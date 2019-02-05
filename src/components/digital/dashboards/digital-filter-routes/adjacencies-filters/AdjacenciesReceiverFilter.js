@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose, withProps, withHandlers, pure } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import './adjacencies-receiver-filter.scss';
-import { elementsReact, elementsRedux } from 'elements-web-common';
+import { elementsReact, elementsRedux } from 'ElementstWebCommon';
 
 const { DropdownSelector, filterOnChangeCreator, filterLifecycleCreator } = elementsReact;
 console.warn(elementsReact);

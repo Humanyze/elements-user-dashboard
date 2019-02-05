@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import AdjacenciesReceiverFilter from './AdjacenciesReceiverFilter';
 import { createFilterComponent } from 'Src/components/digital/dashboards/digital-filter-routes/createFilterComponent';
 import { filterConfigs } from 'Src/components/digital/dashboards/digital-filter-routes/filterConfigs';
-import { elementsReact, elementsRedux } from 'elements-web-common';
+import { elementsReact, elementsRedux } from 'ElementstWebCommon';
 
 const {
   BackToEmberLink

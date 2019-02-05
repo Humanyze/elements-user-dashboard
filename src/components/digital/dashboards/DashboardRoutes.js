@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import RouterPaths from 'Src/routerPaths';
-import { elementsReact } from 'elements-web-common';
+import { elementsReact } from 'ElementstWebCommon';
 import Collaboration from 'Src/components/digital/dashboards/routes/collaboration/Collaboration';
 import Inclusion from 'Src/components/digital/dashboards/routes/inclusion/Inclusion';
 import Workload from 'Src/components/digital/dashboards/routes/workload/Workload';

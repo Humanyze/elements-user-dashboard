@@ -2,8 +2,10 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import customCreateStore from 'Src/redux/createStore';
 import { Provider } from 'react-redux';
-import { elementsRedux } from 'elements-web-common';
-
+// import { elementsRedux } from 'ElementstWebCommon';
+import c from 'ElementsWebCommon';
+console.error(c);
+const { elementsRedux } = c;
 const {
   languages,
   translations: translationsDictionary,

@@ -5,10 +5,11 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import createStore from './redux/createStore';
-import { EventTrackingProvider } from 'Common/event-tracking-provider/EventTrackingProvider';
-
+import { elementsReact } from 'ElementstWebCommon';
 import mixpanel from 'mixpanel-browser';
 import Raven from 'raven-js';
+const { EventTrackingProvider } = elementsReact;
+
 const { store } = createStore();
 
 mixpanel.init('23071668534d0dd256d9c4e570d30052');

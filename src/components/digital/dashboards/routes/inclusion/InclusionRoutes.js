@@ -1,7 +1,7 @@
 import React from 'react';
 import RouterPaths from 'Src/routerPaths';
 import { Route, Switch } from 'react-router-dom';
-import { elementsReact } from 'elements-web-common';
+import { elementsReact } from 'ElementstWebCommon';
 const { CommunicationByGender, DataValidationMessage, RedirectWithSearch } = elementsReact;
 
 const InclusionRoutes = () => {

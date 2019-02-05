@@ -2,7 +2,7 @@ import React from 'react';
 import { compose, lifecycle, mapProps } from 'recompose';
 import { connect } from 'react-redux';
 import pathToRegexp from 'path-to-regexp';
-import { elementsReact, elementsRedux } from 'elements-web-common';
+import { elementsReact, elementsRedux } from 'ElementstWebCommon';
 import RouterPaths from 'Src/routerPaths';
 
 const { DeploymentSelectionList } = elementsReact;
