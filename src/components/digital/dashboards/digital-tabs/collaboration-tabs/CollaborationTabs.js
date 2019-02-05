@@ -1,8 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RouterPaths from 'Src/routerPaths';
-import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
-import TabNav from 'Src/components/common/tab-nav/TabNav';
+import {
+  elementsReact,
+  elementsRedux
+} from 'elements-web-common';
+
+const {
+  TabNav
+} = elementsReact;
+
+const {
+  languageSelectors: {
+    getCurrentTranslations
+  }
+} = elementsRedux;
 
 export const CollaborationTabsPure = ({ translations }) => {
   const links = [

@@ -1,7 +1,11 @@
 import React, { Fragment } from 'react';
 import { createFilterComponent } from 'Src/components/digital/dashboards/digital-filter-routes/createFilterComponent';
 import { filterConfigs } from 'Src/components/digital/dashboards/digital-filter-routes/filterConfigs';
-import BackToEmberLink from 'Src/components/common/back-to-ember-link/BackToEmberLink';
+import { elementsReact } from 'elements-web-common';
+
+const {
+  BackToEmberLink
+} = elementsReact;
 
 const CommunicationDistributionStreamFilter = createFilterComponent(
   filterConfigs.communicationDistributionStream

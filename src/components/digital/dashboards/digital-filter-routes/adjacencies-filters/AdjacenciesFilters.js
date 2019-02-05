@@ -1,15 +1,24 @@
 import React, { Fragment } from 'react';
 import { compose, withProps } from 'recompose';
+import { connect } from 'react-redux';
+import AdjacenciesReceiverFilter from './AdjacenciesReceiverFilter';
 import { createFilterComponent } from 'Src/components/digital/dashboards/digital-filter-routes/createFilterComponent';
 import { filterConfigs } from 'Src/components/digital/dashboards/digital-filter-routes/filterConfigs';
-import AdjacenciesReceiverFilter from './AdjacenciesReceiverFilter';
-import BackToEmberLink from 'Src/components/common/back-to-ember-link/BackToEmberLink';
-import { connect } from 'react-redux';
-import {
-  getMetricFilterValue, METRIC_FILTER_KEYS
-} from 'Redux/common/filter-ui/filterUIReducer';
-import { getActiveGroupableField } from 'Redux/common/group-ui/groupUIReducer';
+import { elementsReact, elementsRedux } from 'elements-web-common';
 
+const {
+  BackToEmberLink
+} = elementsReact;
+
+const {
+  filterUISelectors: {
+    getMetricFilterValue
+  },
+  METRIC_FILTER_KEYS,
+  groupUISelectors: {
+    getActiveGroupableField
+  },
+} = elementsRedux;
 const AdjacenciesComparisonFilter = createFilterComponent(
   filterConfigs.adjacenciesComparison
 );

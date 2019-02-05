@@ -1,5 +1,8 @@
 import { combineEpics } from 'redux-observable';
-import metricDataEpic from './common/metric/metricDataEpics';
+import { elementsRedux } from 'elements-web-common';
+
+const { metricDataEpic }  = elementsRedux;
+
 const rootEpic = combineEpics(
     metricDataEpic
 );

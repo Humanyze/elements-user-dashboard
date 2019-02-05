@@ -144,6 +144,7 @@ module.exports = {
             'Utils': path.resolve(paths.appSrc + '/assets/utils'),
             'Redux': path.resolve(paths.appSrc + '/redux'),
             'Common': path.resolve(paths.appSrc + '/components/common'),
+            'elements-web-common': path.resolve(paths.appSrc + '/elements-web-common'),
             'Story': path.resolve(paths.storybookConfig),
             'TestUtils': path.resolve(paths.appSrc + '/tests'),
             // file aliases

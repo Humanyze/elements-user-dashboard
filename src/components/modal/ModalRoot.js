@@ -2,14 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
 import { withRouter } from 'react-router-dom';
-
-import { getTopModal } from 'Redux/common/modal/modalReducer';
-import { closeAllModals, closeTopModal } from 'Src/redux/common/modal/modalActions';
+import { elementsRedux } from 'elements-web-common';
 
 import MODAL_TYPES from './modalTypes.js';
 
-import ImportParticipantDataModal from './model-components/import-participant-data/ImportParticipantDataModal';
-
+const {
+    modalSelectors: {
+        getTopModal
+    },
+    modalActions: {
+        closeAllModals,
+        closeTopModal
+    }
+} = elementsRedux;
 
 const enhance = compose(
     lifecycle({
@@ -24,7 +29,7 @@ const enhance = compose(
 );
 
 const MODAL_COMPONENTS = {
-    [MODAL_TYPES.IMPORT_PARTICIPANT_MODAL]: ImportParticipantDataModal
+    [MODAL_TYPES.IMPORT_PARTICIPANT_MODAL]: () => <div>test case</div>
 };
 
 export const ModalRootPure = ({ openModal, closeModal }) => {

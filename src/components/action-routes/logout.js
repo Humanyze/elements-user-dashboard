@@ -1,7 +1,12 @@
 import { connect } from 'react-redux';
-import { logoutUser } from 'Src/redux/common/auth/authActions';
+import { elementsRedux } from 'elements-web-common';
 import { lifecycle, compose } from 'recompose';
 
+const {
+    authActions: {
+        logoutUser
+    }
+} = elementsRedux;
 
 const enhance = compose(
     lifecycle({

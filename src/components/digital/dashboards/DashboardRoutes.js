@@ -1,10 +1,14 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import RouterPaths from 'Src/routerPaths';
-import { RedirectWithSearch } from 'Src/components/common/link-with-search/LinkWithSearch';
+import { elementsReact } from 'elements-web-common';
 import Collaboration from 'Src/components/digital/dashboards/routes/collaboration/Collaboration';
 import Inclusion from 'Src/components/digital/dashboards/routes/inclusion/Inclusion';
 import Workload from 'Src/components/digital/dashboards/routes/workload/Workload';
+
+const {
+  RedirectWithSearch
+} = elementsReact;
 
 const DigitalDashboardRoutes = () => {
   return (

@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import styled from 'styled-components';
 
-import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
+import { elementsRedux } from 'elements-web-common';
+
+const {
+  languageSelectors: {
+    getCurrentTranslations
+  }
+} = elementsRedux;
 
 const enhance = compose(
   connect(

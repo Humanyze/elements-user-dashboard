@@ -1,5 +1,9 @@
 import React, { Fragment } from 'react';
-import BackToEmberLink from 'Common/back-to-ember-link/BackToEmberLink';
+import { elementsReact } from 'elements-web-common';
+
+const {
+  BackToEmberLink
+} = elementsReact;
 
 const CommByGenderFilters = () => (
   <Fragment>

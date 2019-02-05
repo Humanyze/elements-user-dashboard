@@ -1,4 +1,7 @@
-import { METRIC_FILTER_KEYS } from 'Src/redux/common/filter-ui/filterUIReducer';
+import { elementsRedux } from 'elements-web-common';
+const {
+  METRIC_FILTER_KEYS
+} = elementsRedux;
 
 export const filterConfigs = {
   adjacenciesComparison: {

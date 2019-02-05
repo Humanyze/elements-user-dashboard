@@ -1,10 +1,14 @@
 import React from 'react';
 import RouterPaths from 'Src/routerPaths';
 import { Route, Switch } from 'react-router-dom';
-import { RedirectWithSearch } from 'Src/components/common/link-with-search/LinkWithSearch';
-import DigitalAllocation from 'Src/components/common/data-vis-components/digital-allocation/DigitalAllocation';
-import DigitalDrivers from 'Common/data-vis-components/digital-drivers/DigitalDrivers';
-import AverageWorkdayLength from 'Common/data-vis-components/average-workday-length/AverageWorkdayLength';
+import { elementsReact } from 'elements-web-common';
+
+const {
+  AverageWorkdayLength,
+  DigitalDrivers,
+  DigitalAllocation,
+  RedirectWithSearch,
+} = elementsReact;
 
 const WorkloadRoutes = () => {
   return (

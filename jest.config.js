@@ -38,7 +38,8 @@ module.exports = {
         '^Utils(.*)$'  : '<rootDir>/src/assets/utils$1',
         '^Src(.*)$'     : '<rootDir>/src$1',
         '^RouterPaths'  : '<rootDir>/src/routerPaths.js',
-        '^appPackageJson'  : '<rootDir>/package.json'
+        '^appPackageJson'  : '<rootDir>/package.json',
+        'elements-web-common': '<rootDir>/src/elements-web-common'
     },
     'moduleFileExtensions': [
         'web.js',
