@@ -2,7 +2,7 @@ import React from 'react';
 import DigitalRoutes from 'Src/components/digital/DigitalRoutes';
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
-import { elementsRedux } from 'ElementstWebCommon';
+import { elementsRedux } from 'ElementsWebCommon';
 
 const {
   errorActions: { addFatalError },

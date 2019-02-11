@@ -1,6 +1,6 @@
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
-import { elementsReact } from 'ElementstWebCommon';
+import { elementsReact } from 'ElementsWebCommon';
 
 const { 
   FilterComposeHOF,

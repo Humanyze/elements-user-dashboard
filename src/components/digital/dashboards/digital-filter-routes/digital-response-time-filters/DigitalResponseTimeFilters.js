@@ -1,7 +1,11 @@
 import React, { Fragment } from 'react';
 import { createFilterComponent } from 'Src/components/digital/dashboards/digital-filter-routes/createFilterComponent';
 import { filterConfigs } from 'Src/components/digital/dashboards/digital-filter-routes/filterConfigs';
-import { BackToEmberLink } from 'ElementstWebCommon';
+import { elementsReact } from 'ElementsWebCommon';
+
+const {
+  BackToEmberLink
+} = elementsReact;
 
 const DigitalResponseTimeHoursFilter = createFilterComponent(
   filterConfigs.digitalResponseTimeHours

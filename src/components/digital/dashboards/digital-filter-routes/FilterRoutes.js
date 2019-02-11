@@ -8,7 +8,7 @@ import CommByGenderFilters from './comm-by-gender-filters/CommByGenderFilters';
 import DigitalDriversFilters from './digital-drivers-filters/DigitalDriversFilters';
 
 import DigitalResponseTimeFilters from './digital-response-time-filters/DigitalResponseTimeFilters';
-import { elementsReact } from 'ElementstWebCommon';
+import { elementsReact } from 'ElementsWebCommon';
 
 const {
   BackToEmberLink

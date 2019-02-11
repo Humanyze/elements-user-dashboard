@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { elementsRedux } from 'ElementstWebCommon';
+import { elementsRedux } from 'ElementsWebCommon';
 import { lifecycle, compose } from 'recompose';
 
 const {

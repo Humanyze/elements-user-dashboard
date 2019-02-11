@@ -1,4 +1,4 @@
-import { elementsRedux } from 'ElementstWebCommon';
+import { elementsRedux } from 'ElementsWebCommon';
 const {
   METRIC_FILTER_KEYS
 } = elementsRedux;

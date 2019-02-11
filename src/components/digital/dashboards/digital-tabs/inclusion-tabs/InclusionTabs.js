@@ -4,7 +4,7 @@ import RouterPaths from 'Src/routerPaths';
 import {
   elementsReact,
   elementsRedux
-} from 'ElementstWebCommon';
+} from 'ElementsWebCommon';
 
 const {
   TabNav

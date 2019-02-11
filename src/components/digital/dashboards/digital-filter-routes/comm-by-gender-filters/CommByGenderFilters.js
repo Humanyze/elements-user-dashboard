@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { elementsReact } from 'ElementstWebCommon';
+import { elementsReact } from 'ElementsWebCommon';
 
 const {
   BackToEmberLink

@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import createStore from './redux/createStore';
-import { elementsReact } from 'ElementstWebCommon';
+import { elementsReact } from 'ElementsWebCommon';
 import mixpanel from 'mixpanel-browser';
 import Raven from 'raven-js';
 const { EventTrackingProvider } = elementsReact;

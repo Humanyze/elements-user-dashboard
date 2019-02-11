@@ -1,7 +1,7 @@
 import React from 'react';
 import RouterPaths from 'Src/routerPaths';
 import { connect } from 'react-redux';
-import { elementsReact, elementsRedux } from 'ElementstWebCommon';
+import { elementsReact, elementsRedux } from 'ElementsWebCommon';
 
 const { HeroNav } = elementsReact;
 

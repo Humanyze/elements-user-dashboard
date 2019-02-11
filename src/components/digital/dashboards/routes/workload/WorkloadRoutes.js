@@ -1,7 +1,7 @@
 import React from 'react';
 import RouterPaths from 'Src/routerPaths';
 import { Route, Switch } from 'react-router-dom';
-import { elementsReact } from 'ElementstWebCommon';
+import { elementsReact } from 'ElementsWebCommon';
 
 const {
   AverageWorkdayLength,

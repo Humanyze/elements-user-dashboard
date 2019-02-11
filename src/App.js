@@ -6,7 +6,7 @@ import {
 
 import { compose } from 'recompose';
 import withAnalytics, { initAnalytics } from 'react-with-analytics';
-import { elementsReact } from 'ElementstWebCommon';
+import { elementsReact } from 'ElementsWebCommon';
 import AppRoutes from './components/AppRoutes';
 import ModalRoot from './components/modal/ModalRoot';
 import RouterPaths from 'RouterPaths';
