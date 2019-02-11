@@ -128,6 +128,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
+    "eslint-watch": "^4.0.2",
     "jsdoc-webpack-plugin-v2": "^2.0.2",
     "node-sass": "^4.8.2",
     "react-styleguidist": "^7.0.16",

@@ -2,7 +2,7 @@ import React from 'react';
 import RouterPaths from 'Src/routerPaths';
 import { Route, Switch } from 'react-router-dom';
 import { elementsReact } from 'ElementsWebCommon';
-const { CommunicationByGender, DataValidationMessage, RedirectWithSearch } = elementsReact;
+const { CommunicationByGender, DataValidationMessage, RedirectWithSearch, } = elementsReact;
 
 const InclusionRoutes = () => {
   return (

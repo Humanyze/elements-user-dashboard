@@ -11,10 +11,10 @@ import DigitalResponseTimeFilters from './digital-response-time-filters/DigitalR
 import { elementsReact } from 'ElementsWebCommon';
 
 const {
-  BackToEmberLink
+  BackToEmberLink,
 } = elementsReact;
 
-const AverageWorkdayLegthBackToEmberLink = () => <BackToEmberLink createLinkUrl={({ datasetId }) => `/digital/dover_top/dover_workday_len?dataset=${datasetId}`} />;
+const AverageWorkdayLegthBackToEmberLink = () => <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/dover_top/dover_workday_len?dataset=${datasetId}`} />;
 const FilterRoutes = () => {
   return (
     <Switch>

@@ -7,37 +7,37 @@ import {
 } from 'ElementsWebCommon';
 
 const {
-  TabNav
+  TabNav,
 } = elementsReact;
 
 const {
   languageSelectors: {
-    getCurrentTranslations
-  }
+    getCurrentTranslations,
+  },
 } = elementsRedux;
 
-export const CollaborationTabsPure = ({ translations }) => {
+export const CollaborationTabsPure = ({ translations, }) => {
   const links = [
     {
       text: translations['DigitalCollaborationTabs__adjacencies'],
-      to: RouterPaths.collaboration__adjacencies
+      to: RouterPaths.collaboration__adjacencies,
     },
     {
       text: translations['DigitalCollaborationTabs__comm-distribution'],
-      to: RouterPaths.collaboration__communicationDistribution
+      to: RouterPaths.collaboration__communicationDistribution,
     },
     {
       text: translations['DigitalCollaborationTabs__response-time'],
-      to: RouterPaths.collaboration__responseTime
-    }
+      to: RouterPaths.collaboration__responseTime,
+    },
   ];
 
   return <TabNav links={links} />;
 };
 
 const CollaborationTabs = connect(
-  state => ({ translations: getCurrentTranslations(state) }),
-  null, null, { pure: false }
+  (state) => ({ translations: getCurrentTranslations(state), }),
+  null, null, { pure: false, }
 )(CollaborationTabsPure);
 
 export default CollaborationTabs;

@@ -10,7 +10,7 @@ import { elementsReact } from 'ElementsWebCommon';
 import AppRoutes from './components/AppRoutes';
 import RouterPaths from 'RouterPaths';
 
-const { Header, ModalRoot } = elementsReact;
+const { Header, ModalRoot, } = elementsReact;
 
 
 const GAToken = process.env.REACT_APP_GA_TRACKING_ID;
@@ -29,7 +29,7 @@ const CorePure = () => (
   </div>
 );
 
-const Core = enhanceCreator({ basename: RouterPaths.basePath })(CorePure);
+const Core = enhanceCreator({ basename: RouterPaths.basePath, })(CorePure);
 
 const App = () => (
   <div>

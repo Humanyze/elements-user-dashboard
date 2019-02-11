@@ -7,16 +7,16 @@ import { filterConfigs } from 'Src/components/digital/dashboards/digital-filter-
 import { elementsReact, elementsRedux } from 'ElementsWebCommon';
 
 const {
-  BackToEmberLink
+  BackToEmberLink,
 } = elementsReact;
 
 const {
   filterUISelectors: {
-    getMetricFilterValue
+    getMetricFilterValue,
   },
   METRIC_FILTER_KEYS,
   groupUISelectors: {
-    getActiveGroupableField
+    getActiveGroupableField,
   },
 } = elementsRedux;
 const AdjacenciesComparisonFilter = createFilterComponent(
@@ -30,22 +30,22 @@ const AdjacenciesUnitFilter = createFilterComponent(
 );
 
 const enhance = compose(
-  connect(state => ({
+  connect((state) => ({
     receiverFilterValue: getMetricFilterValue(METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER)(state),
-    activeGroupableField: getActiveGroupableField(state)
+    activeGroupableField: getActiveGroupableField(state),
   })),
-  withProps(({ receiverFilterValue, activeGroupableField }) => {
+  withProps(({ receiverFilterValue, activeGroupableField, }) => {
     const disableComparisonFilter = activeGroupableField ? (receiverFilterValue !== activeGroupableField.name) : false;
 
     return {
-      disableComparisonFilter
+      disableComparisonFilter,
     };
   })
 );
 
 export const AdjacenciesFiltersPure = ({
   disableComparisonFilter,
-  disabledComparisonTooltipText
+  disabledComparisonTooltipText,
 }) => (
     <Fragment>
       <AdjacenciesReceiverFilter />
@@ -55,7 +55,7 @@ export const AdjacenciesFiltersPure = ({
       />
       <AdjacenciesStreamFilter />
       <AdjacenciesUnitFilter />
-      <BackToEmberLink createLinkUrl={({ datasetId }) =>  `/digital/dcoll_top/dcoll_team_adjacencies?dataset=${datasetId}`} />
+      <BackToEmberLink createLinkUrl={({ datasetId, }) =>  `/digital/dcoll_top/dcoll_team_adjacencies?dataset=${datasetId}`} />
     </Fragment>
   );
 

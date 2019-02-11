@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { elementsRedux } from 'ElementsWebCommon';
 
 const {
-  errorActions: { addFatalError },
-  errorMessageTypes: { userModuleAccessFailureGenerator },
-  userSelectors: { getCurrentUserPermissions },
+  errorActions: { addFatalError, },
+  errorMessageTypes: { userModuleAccessFailureGenerator, },
+  userSelectors: { getCurrentUserPermissions, },
 } = elementsRedux;
 
 const enhance = compose(

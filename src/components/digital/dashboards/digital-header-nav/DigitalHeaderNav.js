@@ -3,13 +3,13 @@ import RouterPaths from 'Src/routerPaths';
 import { connect } from 'react-redux';
 import { elementsReact, elementsRedux } from 'ElementsWebCommon';
 
-const { HeroNav } = elementsReact;
+const { HeroNav, } = elementsReact;
 
 const {
-  languageSelectors: { getCurrentTranslations },
+  languageSelectors: { getCurrentTranslations, },
 } = elementsRedux;
 
-const DigitalHeaderNavPure = ({ translations }) => {
+const DigitalHeaderNavPure = ({ translations, }) => {
   const navLinks = [
     {
       text: translations['DigitalNav__collaboration-delivery'],
@@ -29,10 +29,10 @@ const DigitalHeaderNavPure = ({ translations }) => {
 };
 
 const DigitalHeaderNav = connect(
-  (state) => ({ translations: getCurrentTranslations(state) }),
+  (state) => ({ translations: getCurrentTranslations(state), }),
   null,
   null,
-  { pure: false }
+  { pure: false, }
 )(DigitalHeaderNavPure);
 
 export default DigitalHeaderNav;

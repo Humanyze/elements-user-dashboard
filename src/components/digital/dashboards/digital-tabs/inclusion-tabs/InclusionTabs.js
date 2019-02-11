@@ -7,20 +7,20 @@ import {
 } from 'ElementsWebCommon';
 
 const {
-  TabNav
+  TabNav,
 } = elementsReact;
 
 const {
   languageSelectors: {
-    getCurrentTranslations
-  }
+    getCurrentTranslations,
+  },
 } = elementsRedux;
 
-export const InclusionTabsPure = ({ translations }) => {
+export const InclusionTabsPure = ({ translations, }) => {
   const links = [
     {
       text: translations['DigitalInclusionTabs__comm-by-gender'],
-      to  : RouterPaths.inclusion__commByGender
+      to: RouterPaths.inclusion__commByGender,
     },
     // {
     //   text: translations['DigitalInclusionTabs__comm-by-gender-per-team'],
@@ -32,8 +32,8 @@ export const InclusionTabsPure = ({ translations }) => {
 };
 
 const InclusionTabs = connect(
-  state => ({ translations: getCurrentTranslations(state) }),
-  null, null, { pure: false }
+  (state) => ({ translations: getCurrentTranslations(state), }),
+  null, null, { pure: false, }
 )(InclusionTabsPure);
 
 export default InclusionTabs;

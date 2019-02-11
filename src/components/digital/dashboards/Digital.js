@@ -15,12 +15,12 @@ import DashboardRoutes from 'Src/components/digital/dashboards/DashboardRoutes';
 
 import { elementsReact, elementsRedux } from 'ElementsWebCommon';
 
-const { LoadingUI, ActionSubBar, ErrorBoundary, MetricGroupSelector, MetricFilterBlockCreator } = elementsReact;
+const { LoadingUI, ActionSubBar, ErrorBoundary, MetricGroupSelector, MetricFilterBlockCreator, } = elementsReact;
 
 const {
-  routeActions: { digitalDashboardLeft },
-  deploymentActions: { setExecutiveGroups, setSelectedDeploymentById },
-  deploymentSelectors: { getSelectedDeploymentName },
+  routeActions: { digitalDashboardLeft, },
+  deploymentActions: { setExecutiveGroups, setSelectedDeploymentById, },
+  deploymentSelectors: { getSelectedDeploymentName, },
 } = elementsRedux;
 
 const enhance = compose(
@@ -28,13 +28,13 @@ const enhance = compose(
     (state) => ({
       deploymentName: getSelectedDeploymentName(state),
     }),
-    { setSelectedDeploymentById, setExecutiveGroups, digitalDashboardLeft }
+    { setSelectedDeploymentById, setExecutiveGroups, digitalDashboardLeft, }
   ),
   lifecycle({
     async componentDidMount() {
       const {
         match: {
-          params: { id },
+          params: { id, },
         },
         setSelectedDeploymentById,
         setExecutiveGroups,
@@ -51,7 +51,7 @@ const enhance = compose(
 
 const DigitalFilterBlock = MetricFilterBlockCreator(FilterRoutes);
 
-export const DigitalPure = ({ deploymentName }) => {
+export const DigitalPure = ({ deploymentName, }) => {
   return (
     <div className='Digital'>
       <ActionSubBar deploymentName={deploymentName} deploymentSelectionPath={RouterPaths.selectDeployment} />

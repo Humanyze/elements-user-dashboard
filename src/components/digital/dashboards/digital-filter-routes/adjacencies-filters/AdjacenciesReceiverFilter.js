@@ -6,18 +6,17 @@ import { withRouter } from 'react-router-dom';
 import './adjacencies-receiver-filter.scss';
 import { elementsReact, elementsRedux } from 'ElementsWebCommon';
 
-const { DropdownSelector, filterOnChangeCreator, filterLifecycleCreator } = elementsReact;
+const { DropdownSelector, filterOnChangeCreator, filterLifecycleCreator, } = elementsReact;
 
 const {
-  languageSelectors: { getCurrentTranslations },
+  languageSelectors: { getCurrentTranslations, },
   METRIC_FILTER_KEYS,
-  filterUISelectors: { getMetricFilterValue },
-  filterUIActions: { setMetricFilterByKey },
-  groupUISelectors: { getGroupableFields },
+  filterUISelectors: { getMetricFilterValue, },
+  filterUIActions: { setMetricFilterByKey, },
+  groupUISelectors: { getGroupableFields, },
 } = elementsRedux;
 
-const enhanceCreator = (filterKey = METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER) =>
-  compose(
+const enhanceCreator = (filterKey = METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER) => compose(
     withRouter,
     connect(
       (state) => ({
@@ -26,8 +25,7 @@ const enhanceCreator = (filterKey = METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER) =>
         value: getMetricFilterValue(filterKey)(state),
       }),
       (dispatch) => ({
-        setFilterValue: (value) =>
-          dispatch(
+        setFilterValue: (value) => dispatch(
             setMetricFilterByKey({
               filterKey: filterKey,
               value,
@@ -35,20 +33,20 @@ const enhanceCreator = (filterKey = METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER) =>
           ),
       })
     ),
-    withProps(({ groupableFields, translations }) => ({
-      options: groupableFields.map((group) => ({ ...group, text: group.name })),
+    withProps(({ groupableFields, translations, }) => ({
+      options: groupableFields.map((group) => ({ ...group, text: group.name, })),
       label: translations['AdjacenciesReceiverFilter__label'],
       tooltipText: translations['AdjacenciesReceiverFilter__tooltip-text'],
     })),
     withHandlers({
-      onChange: filterOnChangeCreator({ filterKey }),
+      onChange: filterOnChangeCreator({ filterKey, }),
     }),
     pure,
-    filterLifecycleCreator({ filterKey })
+    filterLifecycleCreator({ filterKey, })
   );
 
 const AdjacenciesReceiverFilterPure = (props) => {
-  const { options, value, onChange, label, tooltipText } = props;
+  const { options, value, onChange, label, tooltipText, } = props;
   const DropdownProps = {
     options,
     value: value && pluralize(value),

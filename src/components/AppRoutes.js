@@ -8,11 +8,11 @@ import Logout from 'Src/components/action-routes/logout';
 
 import Digital from './digital/Digital';
 
-const { ErrorManager, LoadingUI } = elementsReact;
+const { ErrorManager, LoadingUI, } = elementsReact;
 const {
-  authSelectors: { isUserAuthenticated },
-  userDataSelectors: { getUserDataLoadStatus },
-  userDataActions: { setUserDataByAuthId },
+  authSelectors: { isUserAuthenticated, },
+  userDataSelectors: { getUserDataLoadStatus, },
+  userDataActions: { setUserDataByAuthId, },
 } = elementsRedux;
 
 const didMount = lifecycle({
@@ -21,7 +21,7 @@ const didMount = lifecycle({
   },
 });
 
-const AuthenticatedRoutes = compose(didMount)(({ userLoaded }) => {
+const AuthenticatedRoutes = compose(didMount)(({ userLoaded, }) => {
   return userLoaded ? (
     <Switch>
       <Route component={Digital} />
@@ -33,7 +33,7 @@ const AuthenticatedRoutes = compose(didMount)(({ userLoaded }) => {
 
 const LoginRedirect = () => <Route component={() => (window.location.href = '/login')} />;
 
-const AppRoutesPure = ({ authenticated, userLoaded, setUserDataByAuthId }) => {
+const AppRoutesPure = ({ authenticated, userLoaded, setUserDataByAuthId, }) => {
   if (!authenticated) {
     window.location.href = '/login';
     return null;
@@ -53,9 +53,9 @@ const AppRoutes = connect(
     authenticated: isUserAuthenticated(state),
     userLoaded: getUserDataLoadStatus(state),
   }),
-  { setUserDataByAuthId },
+  { setUserDataByAuthId, },
   null,
-  { pure: false }
+  { pure: false, }
 )(AppRoutesPure);
 
 export default AppRoutes;

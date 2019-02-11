@@ -7,13 +7,13 @@ import { elementsRedux } from 'ElementsWebCommon';
 
 const {
   languageSelectors: {
-    getCurrentTranslations
-  }
+    getCurrentTranslations,
+  },
 } = elementsRedux;
 
 const enhance = compose(
   connect(
-    state => ({ translations: getCurrentTranslations(state) })
+    (state) => ({ translations: getCurrentTranslations(state), })
   )
 );
 
@@ -26,13 +26,13 @@ const ErrorWrapper = styled.div`
 `;
 
 const MessageText = styled.div.attrs({
-  className: 'NoDataMessage__text'
+  className: 'NoDataMessage__text',
 })`
     color: #cccccc;
     font-size: 20px;
 `;
 
-const MetricChartErrorMessage = ({ translations }) => {
+const MetricChartErrorMessage = ({ translations, }) => {
   return (
     <ErrorWrapper>
       <MessageText>{translations['ManagementDashboardErrorMessage']}</MessageText>

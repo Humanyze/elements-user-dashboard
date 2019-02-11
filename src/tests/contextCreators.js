@@ -9,13 +9,13 @@ const {
   languages,
   translations: translationsDictionary,
   languageSelectors: {
-    getCurrentTextDictionaryById
-  }
+    getCurrentTextDictionaryById,
+  },
 } = elementsRedux;
 
-const RouterContext = ({ children }) => <BrowserRouter>{children}</BrowserRouter>;
-const StoreContext = ({ children }) => {
-  const { store } = customCreateStore();
+const RouterContext = ({ children, }) => <BrowserRouter>{children}</BrowserRouter>;
+const StoreContext = ({ children, }) => {
+  const { store, } = customCreateStore();
   return <Provider store={store}>{children}</Provider>;
 };
 

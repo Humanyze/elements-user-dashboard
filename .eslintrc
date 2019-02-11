@@ -1,39 +1,68 @@
 // NOTE: to run eslint fix,
 // bash: npx eslint --fix .
 {
-  "extends": [
-    "react-app"
-  ],
-  "plugins": [
-    "react"
-  ],
+  "extends": ["eslint:recommended", "react-app"],
+  "plugins": ["react"],
   "rules": {
-    "object-curly-spacing": [
+    "object-curly-spacing": ["warn", "always"],
+    "semi": ["warn", "always"],
+    "quotes": ["warn", "single"],
+    "jsx-quotes": ["warn", "prefer-single"],
+    "space-infix-ops": ["warn", {}],
+    "array-bracket-newline": [
+      "warn",
+      {
+        "multiline": true,
+        "minItems": 2
+      }
+    ],
+    "array-bracket-spacing": [
       "warn",
       "always"
     ],
-    "semi": [
+    "array-element-newline": [
       "warn",
       "always"
     ],
-    "quotes": [
-      "warn",
-      "single"
+    "block-spacing": "warn",
+    "comma-dangle": [
+      "error", {
+        "arrays": "always",
+        "objects": "always"
+      }
     ],
-    "jsx-quotes": [
-      "warn",
-      "prefer-single"
+    "prefer-const": "warn",
+    "no-var": "error",
+    "prefer-spread": "warn",
+    "prefer-rest-params": "warn",
+    "prefer-template": "error",
+    "no-console": "off",
+    "no-debugger": "warn",
+    "no-alert": "error",
+    "no-eq-null": "warn",
+    "no-param-reassign": "error",
+    "require-await": "error",
+    "no-undef-init": "error",
+    "no-use-before-define": "error",
+    "eol-last": [
+      "error",
+      "always"
     ],
-    "space-infix-ops": [
+    "func-call-spacing": "error",
+    "implicit-arrow-linebreak": "warn",
+    "key-spacing": [
       "warn",
       {}
     ],
-    "no-param-reassign": [
-      "off",
-      {
-        "props": true
-      }
-    ],
-    "prefer-const": "warn"
+    "keyword-spacing": "warn",
+    "no-trailing-spaces": "warn",
+    "no-multi-assign": "error",
+    "operator-assignment": "error",
+    "arrow-spacing": "warn",
+    "arrow-parens": "warn"
+    // "indent": [
+    //   "warn",
+    //   2
+    // ]
   }
 }

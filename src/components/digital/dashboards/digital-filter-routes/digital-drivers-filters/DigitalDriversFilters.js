@@ -4,7 +4,7 @@ import { filterConfigs } from 'Src/components/digital/dashboards/digital-filter-
 import { elementsReact } from 'ElementsWebCommon';
 
 const {
-  BackToEmberLink
+  BackToEmberLink,
 } = elementsReact;
 
 const DigitalDriversHoursFilter = createFilterComponent(
@@ -19,7 +19,7 @@ const DigitalDriversFilters = () => (
   <Fragment>
     <DigitalDriversHoursFilter />
     < DigitalDriversUnitFilter />
-    <BackToEmberLink createLinkUrl={({ datasetId }) => `/digital/dover_top/dover_drivers?dataset=${datasetId}`}/>
+    <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/dover_top/dover_drivers?dataset=${datasetId}`}/>
   </Fragment>
 );
 

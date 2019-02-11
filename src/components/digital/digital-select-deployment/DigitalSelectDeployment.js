@@ -5,19 +5,19 @@ import pathToRegexp from 'path-to-regexp';
 import { elementsReact, elementsRedux } from 'ElementsWebCommon';
 import RouterPaths from 'Src/routerPaths';
 
-const { DeploymentSelectionList } = elementsReact;
+const { DeploymentSelectionList, } = elementsReact;
 const {
-  deploymentSelectors: { 
+  deploymentSelectors: {
     getDeploymentRequestPending,
-    getExecutiveDeployments 
+    getExecutiveDeployments,
     },
-  deploymentActions: { 
+  deploymentActions: {
     setExecutiveGroups,
-    setDeploymentsFromStoreExecutiveIds
+    setDeploymentsFromStoreExecutiveIds,
   },
 } = elementsRedux;
 
-const createDeploymentRoutePath = (id) => pathToRegexp.compile(RouterPaths.deployment)({ id });
+const createDeploymentRoutePath = (id) => pathToRegexp.compile(RouterPaths.deployment)({ id, });
 
 const enhance = compose(
   connect(
@@ -25,7 +25,7 @@ const enhance = compose(
       deployments: getExecutiveDeployments(state),
       requestPending: getDeploymentRequestPending(state),
     }),
-    { setDeploymentsFromStoreExecutiveIds, setExecutiveGroups }
+    { setDeploymentsFromStoreExecutiveIds, setExecutiveGroups, }
   ),
   lifecycle({
     async componentDidMount() {
@@ -43,7 +43,7 @@ const enhance = compose(
   }))
 );
 
-const DigitalSelectDeploymentPure = ({ deployments, requestPending }) => {
+const DigitalSelectDeploymentPure = ({ deployments, requestPending, }) => {
   const selectionListProps = {
     loading: requestPending,
     deployments,

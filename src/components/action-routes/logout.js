@@ -4,15 +4,15 @@ import { lifecycle, compose } from 'recompose';
 
 const {
     authActions: {
-        logoutUser
-    }
+        logoutUser,
+    },
 } = elementsRedux;
 
 const enhance = compose(
     lifecycle({
         componentWillMount() {
             this.props.logout();
-        }
+        },
     })
 );
 
@@ -23,7 +23,7 @@ const LogoutPure = () => {
 
 const Logout = connect(
     null,
-    { logout: logoutUser }
+    { logout: logoutUser, }
 )(enhance(LogoutPure));
 
 export default Logout;

@@ -4,7 +4,7 @@ import { filterConfigs } from 'Src/components/digital/dashboards/digital-filter-
 import { elementsReact } from 'ElementsWebCommon';
 
 const {
-  BackToEmberLink
+  BackToEmberLink,
 } = elementsReact;
 
 const CommunicationDistributionStreamFilter = createFilterComponent(
@@ -18,7 +18,7 @@ export const CommunicationDistributionFiltersPure = () => (
     <Fragment>
       <CommunicationDistributionStreamFilter />
       <CommunicationDistributionLevelFilter />
-      <BackToEmberLink createLinkUrl={({ datasetId }) => `/digital/dcoll_top/dcoll_communication_patterns?dataset=${datasetId}`}/>
+      <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/dcoll_top/dcoll_communication_patterns?dataset=${datasetId}`}/>
     </Fragment>
   );
 

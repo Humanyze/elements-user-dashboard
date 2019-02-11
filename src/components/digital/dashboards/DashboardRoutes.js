@@ -7,7 +7,7 @@ import Inclusion from 'Src/components/digital/dashboards/routes/inclusion/Inclus
 import Workload from 'Src/components/digital/dashboards/routes/workload/Workload';
 
 const {
-  RedirectWithSearch
+  RedirectWithSearch,
 } = elementsReact;
 
 const DigitalDashboardRoutes = () => {
