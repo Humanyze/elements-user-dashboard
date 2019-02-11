@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /tmp/app
     docker:
-      - image: circleci/node:8.9.2
+      - image: circleci/node:8.15.0
     steps:
       - run: echo $CIRCLE_BRANCH && pwd && ls
       - checkout

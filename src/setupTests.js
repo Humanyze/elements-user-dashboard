@@ -6,7 +6,7 @@ import chai from 'chai';
 import renderer from 'react-test-renderer';
 import { BrowserRouter } from 'react-router-dom';
 
-Enzyme.configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter(), });
 
 global.shallow = shallow;
 global.mount = mount;
@@ -23,7 +23,7 @@ class LocalStorageMock {
 global.localStorage = new LocalStorageMock();
 
 
-const WithRouterContext = ({ children }) => <BrowserRouter>{children}</BrowserRouter>;
+const WithRouterContext = ({ children, }) => <BrowserRouter>{children}</BrowserRouter>;
 global.WithRouterContext = WithRouterContext;
 
 

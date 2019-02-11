@@ -8,9 +8,13 @@ import CommByGenderFilters from './comm-by-gender-filters/CommByGenderFilters';
 import DigitalDriversFilters from './digital-drivers-filters/DigitalDriversFilters';
 
 import DigitalResponseTimeFilters from './digital-response-time-filters/DigitalResponseTimeFilters';
-import BackToEmberLink from 'Common/back-to-ember-link/BackToEmberLink';
+import { elementsReact } from 'ElementsWebCommon';
 
-const AverageWorkdayLegthBackToEmberLink = () => <BackToEmberLink createLinkUrl={({ datasetId }) => `/digital/dover_top/dover_workday_len?dataset=${datasetId}`} />;
+const {
+  BackToEmberLink,
+} = elementsReact;
+
+const AverageWorkdayLegthBackToEmberLink = () => <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/dover_top/dover_workday_len?dataset=${datasetId}`} />;
 const FilterRoutes = () => {
   return (
     <Switch>

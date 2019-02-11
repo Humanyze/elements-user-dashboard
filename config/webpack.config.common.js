@@ -148,7 +148,8 @@ module.exports = {
             'TestUtils': path.resolve(paths.appSrc + '/tests'),
             // file aliases
             'appPackageJson': paths.appPackageJson,
-            'RouterPaths': path.resolve(paths.appSrc + '/routerPaths.js')
+            'RouterPaths': path.resolve(paths.appSrc + '/routerPaths.js'),
+            'ElementsWebCommon': path.resolve(paths.appSrc + '/elements-web-common/index.js'),
         },
         plugins: [
             // Prevents users from importing files from outside of src/ (or node_modules/).

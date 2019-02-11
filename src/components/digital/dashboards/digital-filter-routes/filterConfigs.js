@@ -1,11 +1,14 @@
-import { METRIC_FILTER_KEYS } from 'Src/redux/common/filter-ui/filterUIReducer';
+import { elementsRedux } from 'ElementsWebCommon';
+const {
+  METRIC_FILTER_KEYS,
+} = elementsRedux;
 
 export const filterConfigs = {
   adjacenciesComparison: {
     labelKey: 'AdjacenciesComparisonFilter__label',
     translationKeys: [
       'AdjacenciesComparisonFilter__all',
-      'AdjacenciesComparisonFilter__selected'
+      'AdjacenciesComparisonFilter__selected',
     ],
     filterKey: METRIC_FILTER_KEYS.ADJACENCIES_COMPARISON,
   },
@@ -16,7 +19,7 @@ export const filterConfigs = {
       'StreamFilter__meeting',
       'StreamFilter__email',
       'StreamFilter__chat',
-      'StreamFilter__call'
+      'StreamFilter__call',
     ],
     filterKey: METRIC_FILTER_KEYS.ADJACENCIES_STREAM,
   },
@@ -24,7 +27,7 @@ export const filterConfigs = {
     labelKey: 'AdjacenciesUnitFilter__label',
     translationKeys: [
       'AdjacenciesUnitFilter__hours',
-      'AdjacenciesUnitFilter__percentages'
+      'AdjacenciesUnitFilter__percentages',
     ],
     filterKey: METRIC_FILTER_KEYS.ADJACENCIES_UNIT,
   },
@@ -35,7 +38,7 @@ export const filterConfigs = {
       'StreamFilter__meeting',
       'StreamFilter__email',
       'StreamFilter__chat',
-      'StreamFilter__call'
+      'StreamFilter__call',
     ],
     filterKey: METRIC_FILTER_KEYS.COMMUNICATION_DISTRIBUTION_STREAM,
   },
@@ -55,7 +58,7 @@ export const filterConfigs = {
       'DigitalDriversHoursFilter__allDay',
 
     ],
-    filterKey: METRIC_FILTER_KEYS.DIGITAL_DRIVERS_HOURS
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_DRIVERS_HOURS,
   },
   digitalDriversUnit: {
     labelKey: 'DigitalDriversUnitFilter__label',
@@ -64,7 +67,7 @@ export const filterConfigs = {
       'DigitalDriversUnitFilter__percentages',
 
     ],
-    filterKey: METRIC_FILTER_KEYS.DIGITAL_DRIVERS_UNIT
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_DRIVERS_UNIT,
   },
   digitalResponseTimeHours: {
     labelKey: 'DigitalResponseTimeHoursFilter__label',
@@ -73,23 +76,23 @@ export const filterConfigs = {
       'DigitalResponseTimeHoursFilter__afterWork',
       'DigitalResponseTimeHoursFilter__allDay',
     ],
-    filterKey: METRIC_FILTER_KEYS.DIGITAL_RESPONSE_TIME_HOURS
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_RESPONSE_TIME_HOURS,
   },
   digitalResponseTimePeople: {
     labelKey: 'DigitalResponseTimePeopleFilter__label',
     translationKeys: [
       'DigitalResponseTimePeopleFilter__all',
       'DigitalResponseTimePeopleFilter__manager',
-      'DigitalResponseTimePeopleFilter__non-manager'
+      'DigitalResponseTimePeopleFilter__non-manager',
     ],
-    filterKey: METRIC_FILTER_KEYS.DIGITAL_RESPONSE_TIME_PEOPLE
+    filterKey: METRIC_FILTER_KEYS.DIGITAL_RESPONSE_TIME_PEOPLE,
   },
   digitalAllocationHours: {
     labelKey: 'DigitalAllocationHoursFilter__label',
     translationKeys: [
       'DigitalAllocationHoursFilter__work',
       'DigitalAllocationHoursFilter__afterWork',
-      'DigitalAllocationHoursFilter__allDay'
+      'DigitalAllocationHoursFilter__allDay',
     ],
     filterKey: METRIC_FILTER_KEYS.DIGITAL_TIME_ALLOCATION_HOURS,
   },

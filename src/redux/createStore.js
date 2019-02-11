@@ -13,13 +13,13 @@ const epicMiddleware = createEpicMiddleware(rootEpic);
 
 let middleware = [
   thunkMiddleware,
-  epicMiddleware
+  epicMiddleware,
 ];
 
 if (process.env.NODE_ENV === 'development') {
   middleware = [
     ...middleware,
-   logger
+   logger,
   ];
 }
 
@@ -39,9 +39,9 @@ const offlineConfig = {
       'deployment',
       'groupUI',
       'filterUI',
-      'metric'
-    ]
-  }
+      'metric',
+    ],
+  },
 };
 
 
@@ -50,7 +50,7 @@ const customCreateStore = () => {
     applyMiddleware(...middleware),
     offline(offlineConfig),
   ));
-  return { store };
+  return { store, };
 };
 
 export default customCreateStore;

@@ -1,14 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RouterPaths from 'Src/routerPaths';
-import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
-import TabNav from 'Src/components/common/tab-nav/TabNav';
+import {
+  elementsReact,
+  elementsRedux
+} from 'ElementsWebCommon';
 
-export const InclusionTabsPure = ({ translations }) => {
+const {
+  TabNav,
+} = elementsReact;
+
+const {
+  languageSelectors: {
+    getCurrentTranslations,
+  },
+} = elementsRedux;
+
+export const InclusionTabsPure = ({ translations, }) => {
   const links = [
     {
       text: translations['DigitalInclusionTabs__comm-by-gender'],
-      to  : RouterPaths.inclusion__commByGender
+      to: RouterPaths.inclusion__commByGender,
     },
     // {
     //   text: translations['DigitalInclusionTabs__comm-by-gender-per-team'],
@@ -20,8 +32,8 @@ export const InclusionTabsPure = ({ translations }) => {
 };
 
 const InclusionTabs = connect(
-  state => ({ translations: getCurrentTranslations(state) }),
-  null, null, { pure: false }
+  (state) => ({ translations: getCurrentTranslations(state), }),
+  null, null, { pure: false, }
 )(InclusionTabsPure);
 
 export default InclusionTabs;

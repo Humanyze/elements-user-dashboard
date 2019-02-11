@@ -29,7 +29,7 @@ const paths = {
 
   // diversity & inclusion
   inclusion__commByGender: `${basePaths.inclusion}/communication-by-gender`,
-  inclusion__commByTeam: `${basePaths.inclusion}/communication-by-gender-per-team`
+  inclusion__commByTeam: `${basePaths.inclusion}/communication-by-gender-per-team`,
 };
 
 

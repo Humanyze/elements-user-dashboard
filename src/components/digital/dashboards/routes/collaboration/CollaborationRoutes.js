@@ -1,14 +1,13 @@
 import React from 'react';
 import RouterPaths from 'Src/routerPaths';
 import { Route, Switch } from 'react-router-dom';
-import Adjacencies
-  from 'Common/data-vis-components/adjacencies/Adjacencies';
-import CommunicationDistribution
-  from 'Common/data-vis-components/communication-distribution/CommunicationDistribution';
-import { RedirectWithSearch } from 'Src/components/common/link-with-search/LinkWithSearch';
-import DigitalResponseTime
-    from '../../../../common/data-vis-components/digital-response-time/DigitalResponseTime';
-
+import { elementsReact } from 'ElementsWebCommon';
+const {
+  Adjacencies,
+  CommunicationDistribution,
+  DigitalResponseTime,
+  RedirectWithSearch,
+} = elementsReact;
 
 const CollaborationRoutes = () => {
   return (

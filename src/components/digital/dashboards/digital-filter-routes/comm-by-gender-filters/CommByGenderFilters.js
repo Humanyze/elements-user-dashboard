@@ -1,9 +1,13 @@
 import React, { Fragment } from 'react';
-import BackToEmberLink from 'Common/back-to-ember-link/BackToEmberLink';
+import { elementsReact } from 'ElementsWebCommon';
+
+const {
+  BackToEmberLink,
+} = elementsReact;
 
 const CommByGenderFilters = () => (
   <Fragment>
-    <BackToEmberLink createLinkUrl={({ datasetId }) => `/digital/ddni_top/ddni_gender_balance_overall?dataset=${datasetId}`}/>
+    <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/ddni_top/ddni_gender_balance_overall?dataset=${datasetId}`}/>
   </Fragment>
 );
 
