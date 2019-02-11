@@ -3,9 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import customCreateStore from 'Src/redux/createStore';
 import { Provider } from 'react-redux';
 // import { elementsRedux } from 'ElementsWebCommon';
-import c from 'ElementsWebCommon';
-console.error(c);
-const { elementsRedux } = c;
+import { elementsRedux } from 'ElementsWebCommon';
+
 const {
   languages,
   translations: translationsDictionary,

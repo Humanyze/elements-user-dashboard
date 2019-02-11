@@ -7,7 +7,6 @@ import './adjacencies-receiver-filter.scss';
 import { elementsReact, elementsRedux } from 'ElementsWebCommon';
 
 const { DropdownSelector, filterOnChangeCreator, filterLifecycleCreator } = elementsReact;
-console.warn(elementsReact);
 
 const {
   languageSelectors: { getCurrentTranslations },
