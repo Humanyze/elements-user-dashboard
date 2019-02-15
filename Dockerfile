@@ -1,4 +1,4 @@
-FROM node:9.6.1
+FROM node:9.10.0
 
 WORKDIR /digital
 ADD . /digital
