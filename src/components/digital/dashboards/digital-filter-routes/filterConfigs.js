@@ -104,4 +104,22 @@ export const filterConfigs = {
     ],
     filterKey: METRIC_FILTER_KEYS.DIGITAL_TIME_ALLOCATION_UNIT,
   },
+  commbyGenderPerGroupPeople: {
+    labelKey: 'CommByGenderPerGroupPeopleFilter__label',
+    translationKeys: [
+      'CommByGenderPerGroupPeopleFilter__all',
+      'CommByGenderPerGroupPeopleFilter__manager',
+      'CommByGenderPerGroupPeopleFilter__non-manager',
+    ],
+    filterKey: METRIC_FILTER_KEYS.COMM_BY_GENDER_PER_GROUP_PEOPLE,
+  },
+  commByGenderPerGroupHours: {
+    labelKey: 'CommByGenderPerGroupHoursFilter__label',
+    translationKeys: [
+      'CommByGenderPerGroupHoursFilter__work',
+      'CommByGenderPerGroupHoursFilter__afterWork',
+      'CommByGenderPerGroupHoursFilter__allDay',
+    ],
+    filterKey: METRIC_FILTER_KEYS.COMM_BY_GENDER_PER_GROUP_HOURS,
+  },
 };
