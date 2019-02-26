@@ -104,7 +104,18 @@ export const filterConfigs = {
     ],
     filterKey: METRIC_FILTER_KEYS.DIGITAL_TIME_ALLOCATION_UNIT,
   },
-  commbyGenderPerGroupPeople: {
+  commByGenderPerGroupStream: {
+    labelKey: 'StreamFilter__label',
+    translationKeys: [
+      'StreamFilter__all',
+      'StreamFilter__meeting',
+      'StreamFilter__email',
+      'StreamFilter__chat',
+      'StreamFilter__call',
+    ],
+    filterKey: METRIC_FILTER_KEYS.COMM_BY_GENDER_PER_GROUP_STREAM,
+  },
+  commByGenderPerGroupPeople: {
     labelKey: 'CommByGenderPerGroupPeopleFilter__label',
     translationKeys: [
       'CommByGenderPerGroupPeopleFilter__all',
@@ -112,14 +123,5 @@ export const filterConfigs = {
       'CommByGenderPerGroupPeopleFilter__non-manager',
     ],
     filterKey: METRIC_FILTER_KEYS.COMM_BY_GENDER_PER_GROUP_PEOPLE,
-  },
-  commByGenderPerGroupHours: {
-    labelKey: 'CommByGenderPerGroupHoursFilter__label',
-    translationKeys: [
-      'CommByGenderPerGroupHoursFilter__work',
-      'CommByGenderPerGroupHoursFilter__afterWork',
-      'CommByGenderPerGroupHoursFilter__allDay',
-    ],
-    filterKey: METRIC_FILTER_KEYS.COMM_BY_GENDER_PER_GROUP_HOURS,
   },
 };

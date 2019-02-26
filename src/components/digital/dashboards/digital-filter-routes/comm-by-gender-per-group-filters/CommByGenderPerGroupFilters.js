@@ -7,18 +7,18 @@ const {
   BackToEmberLink,
 } = elementsReact;
 
-const CommunicationDistributionStreamFilter = createFilterComponent(
-  filterConfigs.commByGenderPerGroupPeople
+const CommByGenderPerGroupStreamFilter = createFilterComponent(
+  filterConfigs.commByGenderPerGroupStream
 );
-const CommunicationDistributionLevelFilter = createFilterComponent(
-  filterConfigs.commByGenderPerGroupHours
+const CommByGenderPerGroupPeopleFilter = createFilterComponent(
+  filterConfigs.commByGenderPerGroupPeople
 );
 
 export const CommByGenderPerGroupFiltersPure = () => (
   <Fragment>
-    <CommunicationDistributionStreamFilter />
-    <CommunicationDistributionLevelFilter />
-    <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/dcoll_top/dcoll_communication_patterns?dataset=${datasetId}`}/>
+    <CommByGenderPerGroupStreamFilter />
+    <CommByGenderPerGroupPeopleFilter />
+    <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/ddni_top/ddni_gender_balance_team?dataset=${datasetId}`} />
   </Fragment>
 );
 
