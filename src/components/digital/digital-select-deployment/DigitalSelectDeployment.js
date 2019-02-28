@@ -10,7 +10,7 @@ const {
   deploymentSelectors: {
     getDeploymentRequestPending,
     getExecutiveDeployments,
-    },
+  },
   deploymentActions: {
     setExecutiveGroups,
     setDeploymentsFromStoreExecutiveIds,

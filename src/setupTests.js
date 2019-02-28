@@ -14,11 +14,11 @@ global.render = render;
 global.chai = chai;
 global.render = renderer;
 class LocalStorageMock {
-    store = {};
-    clear = () => this.store = {};
-    getItem = (key) => this.store[key] || null;
-    setItem = (key, value) => this.store[key] = value.toString();
-    removeItem = (key) => delete this.store[key];
+  store = {};
+  clear = () => this.store = {};
+  getItem = (key) => this.store[key] || null;
+  setItem = (key, value) => this.store[key] = value.toString();
+  removeItem = (key) => delete this.store[key];
 }
 global.localStorage = new LocalStorageMock();
 
@@ -28,20 +28,20 @@ global.WithRouterContext = WithRouterContext;
 
 
 global.testRender = (Component, props) => {
-    const wrapper = shallow(<Component {...props} />);
+  const wrapper = shallow(<Component {...props} />);
 
-    return () => {
-        it('should render', () => {
-            expect(wrapper).toHaveLength(1);
-        });
+  return () => {
+    it('should render', () => {
+      expect(wrapper).toHaveLength(1);
+    });
 
-        // TODO: add default snapshot testing
-        // TODO: current issue is store context
-        // it('should match snapshot', () => {
-        //     const tree = renderer.create(
-        //         <WithRouterContext><Component {...props} /></WithRouterContext>
-        //     ).toJSON();
-        //     expect(tree).toMatchSnapshot()
-        // })
-    };
+    // TODO: add default snapshot testing
+    // TODO: current issue is store context
+    // it('should match snapshot', () => {
+    //     const tree = renderer.create(
+    //         <WithRouterContext><Component {...props} /></WithRouterContext>
+    //     ).toJSON();
+    //     expect(tree).toMatchSnapshot()
+    // })
+  };
 };
