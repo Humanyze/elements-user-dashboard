@@ -25,7 +25,8 @@ const LoginPure = ({
   username, onUsernameChange,
   password, onPasswordChange,
   onSubmit,
-}) => (
+}) => {
+  return (
     <div className='Login'>
       <form onSubmit={onSubmit}>
         <input value={username} onChange={onUsernameChange} placeholder='username' />
@@ -34,6 +35,7 @@ const LoginPure = ({
       </form>
     </div>
   );
+};
 
 
 const Login = connect(
