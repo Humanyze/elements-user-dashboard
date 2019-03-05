@@ -19,11 +19,11 @@ const raven = Raven.config('https://d5d5ac2c4f7744d782b534b892ae3fc5@sentry.io/1
 
 // FIND HOOK LUCAS EVENT TRACKER
 ReactDOM.render(
-    <EventTrackingProvider mixpanel={mixpanel} raven={raven}>
-      <Provider store={store}>
-        <App/>
-      </Provider>
-    </EventTrackingProvider>
+  <EventTrackingProvider mixpanel={mixpanel} raven={raven}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </EventTrackingProvider>
   , document.getElementById('root'));
 
-  registerServiceWorker();
+registerServiceWorker();
