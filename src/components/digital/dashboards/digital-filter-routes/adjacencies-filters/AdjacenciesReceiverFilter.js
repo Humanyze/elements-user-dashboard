@@ -17,33 +17,33 @@ const {
 } = elementsRedux;
 
 const enhanceCreator = (filterKey = METRIC_FILTER_KEYS.ADJACENCIES_RECEIVER) => compose(
-    withRouter,
-    connect(
-      (state) => ({
-        translations: getCurrentTranslations(state),
-        groupableFields: getGroupableFields(state),
-        value: getMetricFilterValue(filterKey)(state),
-      }),
-      (dispatch) => ({
-        setFilterValue: (value) => dispatch(
-            setMetricFilterByKey({
-              filterKey: filterKey,
-              value,
-            })
-          ),
-      })
-    ),
-    withProps(({ groupableFields, translations, }) => ({
-      options: groupableFields.map((group) => ({ ...group, text: group.name, })),
-      label: translations['AdjacenciesReceiverFilter__label'],
-      tooltipText: translations['AdjacenciesReceiverFilter__tooltip-text'],
-    })),
-    withHandlers({
-      onChange: filterOnChangeCreator({ filterKey, }),
+  withRouter,
+  connect(
+    (state) => ({
+      translations: getCurrentTranslations(state),
+      groupableFields: getGroupableFields(state),
+      value: getMetricFilterValue(filterKey)(state),
     }),
-    pure,
-    filterLifecycleCreator({ filterKey, })
-  );
+    (dispatch) => ({
+      setFilterValue: (value) => dispatch(
+        setMetricFilterByKey({
+          filterKey: filterKey,
+          value,
+        })
+      ),
+    })
+  ),
+  withProps(({ groupableFields, translations, }) => ({
+    options: groupableFields.map((group) => ({ ...group, text: group.name, })),
+    label: translations['AdjacenciesReceiverFilter__label'],
+    tooltipText: translations['AdjacenciesReceiverFilter__tooltip-text'],
+  })),
+  withHandlers({
+    onChange: filterOnChangeCreator({ filterKey, }),
+  }),
+  pure,
+  filterLifecycleCreator({ filterKey, })
+);
 
 const AdjacenciesReceiverFilterPure = (props) => {
   const { options, value, onChange, label, tooltipText, } = props;

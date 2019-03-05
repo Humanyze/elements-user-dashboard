@@ -46,7 +46,8 @@ const enhance = compose(
 export const AdjacenciesFiltersPure = ({
   disableComparisonFilter,
   disabledComparisonTooltipText,
-}) => (
+}) => {
+  return (
     <Fragment>
       <AdjacenciesReceiverFilter />
       <AdjacenciesComparisonFilter
@@ -55,8 +56,10 @@ export const AdjacenciesFiltersPure = ({
       />
       <AdjacenciesStreamFilter />
       <AdjacenciesUnitFilter />
-      <BackToEmberLink createLinkUrl={({ datasetId, }) =>  `/digital/dcoll_top/dcoll_team_adjacencies?dataset=${datasetId}`} />
+      <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/dcoll_top/dcoll_team_adjacencies?dataset=${datasetId}`} />
     </Fragment>
   );
+};
+
 
 export default enhance(AdjacenciesFiltersPure);

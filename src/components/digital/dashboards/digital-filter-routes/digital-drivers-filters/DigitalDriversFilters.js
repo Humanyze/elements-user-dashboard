@@ -18,8 +18,8 @@ const DigitalDriversUnitFilter = createFilterComponent(
 const DigitalDriversFilters = () => (
   <Fragment>
     <DigitalDriversHoursFilter />
-    < DigitalDriversUnitFilter />
-    <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/dover_top/dover_drivers?dataset=${datasetId}`}/>
+    <DigitalDriversUnitFilter />
+    <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/dover_top/dover_drivers?dataset=${datasetId}`} />
   </Fragment>
 );
 

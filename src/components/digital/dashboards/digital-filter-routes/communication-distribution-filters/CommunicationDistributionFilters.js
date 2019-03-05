@@ -15,12 +15,12 @@ const CommunicationDistributionLevelFilter = createFilterComponent(
 );
 
 export const CommunicationDistributionFiltersPure = () => (
-    <Fragment>
-      <CommunicationDistributionStreamFilter />
-      <CommunicationDistributionLevelFilter />
-      <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/dcoll_top/dcoll_communication_patterns?dataset=${datasetId}`}/>
-    </Fragment>
-  );
+  <Fragment>
+    <CommunicationDistributionStreamFilter />
+    <CommunicationDistributionLevelFilter />
+    <BackToEmberLink createLinkUrl={({ datasetId, }) => `/digital/dcoll_top/dcoll_communication_patterns?dataset=${datasetId}`} />
+  </Fragment>
+);
 
 const CommunicationDistributionFilters = CommunicationDistributionFiltersPure;
 export default CommunicationDistributionFilters;

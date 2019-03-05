@@ -104,4 +104,24 @@ export const filterConfigs = {
     ],
     filterKey: METRIC_FILTER_KEYS.DIGITAL_TIME_ALLOCATION_UNIT,
   },
+  commByGenderPerGroupStream: {
+    labelKey: 'StreamFilter__label',
+    translationKeys: [
+      'StreamFilter__all',
+      'StreamFilter__meeting',
+      'StreamFilter__email',
+      'StreamFilter__chat',
+      'StreamFilter__call',
+    ],
+    filterKey: METRIC_FILTER_KEYS.COMM_BY_GENDER_PER_GROUP_STREAM,
+  },
+  commByGenderPerGroupPeople: {
+    labelKey: 'CommByGenderPerGroupPeopleFilter__label',
+    translationKeys: [
+      'CommByGenderPerGroupPeopleFilter__all',
+      'CommByGenderPerGroupPeopleFilter__manager',
+      'CommByGenderPerGroupPeopleFilter__non-manager',
+    ],
+    filterKey: METRIC_FILTER_KEYS.COMM_BY_GENDER_PER_GROUP_PEOPLE,
+  },
 };
