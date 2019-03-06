@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 
 import { compose } from 'recompose';
-import withAnalytics, { initAnalytics } from 'react-with-analytics';
+import withAnalytics, { initAnalytics } from '@humanyze/react-with-analytics';
 import { elementsReact } from 'ElementsWebCommon';
 import AppRoutes from './components/AppRoutes';
 import RouterPaths from 'RouterPaths';
