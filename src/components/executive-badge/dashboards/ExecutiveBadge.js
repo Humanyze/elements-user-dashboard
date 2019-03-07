@@ -15,6 +15,7 @@ const {
   LoadingUI,
   ActionSubBar,
   ErrorBoundary,
+  MetricDateSelectorBlock ,
   MetricGroupSelector,
   MetricFilterBlockCreator,
   DashboardGlobalErrorMessage,
@@ -62,12 +63,15 @@ export const DigitalPure = ({ deploymentName, }) => {
         {deploymentName ? (
           <Fragment>
             <ExecutiveHeaderNav />
-            <ExecutiveTabRoutes />
-            <div className='Digital__grid'>
+            <div className='Management__grid'>
               <MetricGroupSelector />
-              <div className='Digital__grid-bottom'>
-                <ExecutiveFilterBlock />
-                <DashboardRoutes />
+              <div className='Management__grid-right'>
+                <MetricDateSelectorBlock/>
+                <ExecutiveTabRoutes/>
+                <div className='Management__chart-wrapper'>
+                  <ExecutiveFilterBlock/>
+                  <DashboardRoutes />
+                </div>
               </div>
             </div>
           </Fragment>

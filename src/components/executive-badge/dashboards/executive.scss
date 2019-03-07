@@ -5,23 +5,34 @@
   min-height: 800px; // scroll only on small screen sizes
   display: flex;
   flex-direction: column;
+  background-color: #f2f4f8;
   $Digital: &;
 
   & > * {
     flex-shrink: 0;
   }
 }
-
-.Digital__grid {
+.Management__grid {
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
+  padding: 70px 0;
 }
 
-.Digital__grid-bottom {
+.Management__grid-right {
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding: 0 40px;
+  border-radius: 10px;
+}
+.Management__chart-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 10px;
+  border-top-left-radius: 0;
 }
 
 .ExecutiveRoute {
