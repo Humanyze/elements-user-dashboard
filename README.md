@@ -1,4 +1,4 @@
-# Elements Digital Dashboard
+# Elements Executive (Badge) Dashboard
 
 ## Getting Started
 

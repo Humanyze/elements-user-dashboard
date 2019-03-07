@@ -1,9 +1,17 @@
 module.exports = {
-  collectCoverageFrom: ['src/**/*.{js,jsx,mjs}', '!src/**/*.story.js', '!src/tests/**'],
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx,mjs}',
+    '!src/**/*.story.js',
+    '!src/tests/**',
+  ],
   coveragePathIgnorePatterns: [
     // 'src/**/*.{js,jsx,mjs}'
   ],
-  setupFiles: ['<rootDir>/config/polyfills.js', '<rootDir>/src/setupTests.js'],
+  setupFiles: [
+    '<rootDir>/config/polyfills.js',
+    '<rootDir>/src/setupTests.js'
+    ,
+  ],
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}',
     '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}',
@@ -16,9 +24,9 @@ module.exports = {
     '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
     '^(?!.*\\.(js|jsx|mjs|css|json)$)': '<rootDir>/config/jest/fileTransform.js',
   },
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$'],
+  transformIgnorePatterns: [ '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$' , ],
 
-  modulePaths: ['src'],
+  modulePaths: [ 'src' , ],
   moduleNameMapper: {
     '^react-native$': 'react-native-web',
     '^Common(.*)$': '<rootDir>/src/components/common$1',
@@ -26,9 +34,17 @@ module.exports = {
     '^Assets(.*)$': '<rootDir>/src/assets$1',
     '^Utils(.*)$': '<rootDir>/src/assets/utils$1',
     '^Src(.*)$': '<rootDir>/src$1',
-    '^RouterPaths': '<rootDir>/src/routerPaths.js',
     '^appPackageJson': '<rootDir>/package.json',
     '^ElementsWebCommon': '<rootDir>/src/elements-web-common',
   },
-  moduleFileExtensions: ['web.js', 'mjs', 'js', 'json', 'web.jsx', 'jsx', 'node'],
+  moduleFileExtensions: [
+    'web.js',
+    'mjs',
+    'js',
+    'json',
+    'web.jsx',
+    'jsx',
+    'node'
+    ,
+  ],
 };

@@ -6,7 +6,7 @@ import { elementsReact, elementsRedux } from 'ElementsWebCommon';
 import { compose, lifecycle } from 'recompose';
 import Logout from 'Src/components/action-routes/logout';
 
-import Digital from './digital/Digital';
+import ExecutiveBadge from './executive-badge/Executive';
 
 const { ErrorManager, LoadingUI, } = elementsReact;
 const {
@@ -24,7 +24,7 @@ const didMount = lifecycle({
 const AuthenticatedRoutes = compose(didMount)(({ userLoaded, }) => {
   return userLoaded ? (
     <Switch>
-      <Route component={Digital} />
+      <Route component={ExecutiveBadge} />
     </Switch>
   ) : (
     <LoadingUI />

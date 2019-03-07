@@ -6,9 +6,8 @@ import {
 
 import { compose } from 'recompose';
 import withAnalytics, { initAnalytics } from '@humanyze/react-with-analytics';
-import { elementsReact } from 'ElementsWebCommon';
+import { elementsReact, routerPaths } from 'ElementsWebCommon';
 import AppRoutes from './components/AppRoutes';
-import RouterPaths from 'RouterPaths';
 
 const { Header, ModalRoot, } = elementsReact;
 
@@ -29,11 +28,11 @@ const CorePure = () => (
   </div>
 );
 
-const Core = enhanceCreator({ basename: RouterPaths.basePath, })(CorePure);
+const Core = enhanceCreator({ basename: routerPaths.basePath, })(CorePure);
 
 const App = () => (
   <div>
-    <Router basename={RouterPaths.basePath}>
+    <Router basename={routerPaths.basePath}>
       <Core />
     </Router>
   </div >

@@ -1,8 +1,8 @@
 {
-  "name": "elements-digital",
+  "name": "elements-badge",
   "version": "1.0.0",
   "private": true,
-  "homepage": "http://localhost:81/executive-digital",
+  "homepage": "http://localhost:81/executive-badge",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.4",
     "@fortawesome/react-fontawesome": "^0.0.17",

@@ -1,0 +1,29 @@
+@import '~Src/Global.scss';
+
+.Digital {
+  height: calc(100vh - 60px);
+  min-height: 800px; // scroll only on small screen sizes
+  display: flex;
+  flex-direction: column;
+  $Digital: &;
+
+  & > * {
+    flex-shrink: 0;
+  }
+}
+
+.Digital__grid {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.Digital__grid-bottom {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ExecutiveRoute {
+  flex: 1;
+}
