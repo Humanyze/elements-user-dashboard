@@ -118,7 +118,7 @@ export const ActionSubBarPure = ({ onImportClicked, onExportClicked, onSyncClick
                     {translations.actionSubBar__import}
                 </div>
                 <div onClick={onSyncClicked}
-                    className={classNames('ActionSubBar__text', { 'ActionSubBar__text--syncing': isSyncing })}>
+                    className={classNames('ActionSubBar__text ActionSubBar__text--sync', { 'ActionSubBar__text--syncing': isSyncing })}>
                     {isSyncing ? (syncComplete ? translations.actionSubBar__syncComplete : translations.actionSubBar__syncing ) : translations.actionSubBar__sync}
                 </div>
                 <div onClick={onExportClicked}
