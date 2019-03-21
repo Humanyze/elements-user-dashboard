@@ -77,7 +77,12 @@ const onSyncClicked = ({ deploymentId, bearerToken, isSyncing, setIsSyncing, set
         await delay(10000);
     } catch (e) {
         console.error(e);
-        e.message.includes('status code 409') ? showSyncInProgressError() : showSyncError();
+        if (e.response && e.response.status === 409) {
+            showSyncInProgressError()
+        }
+        else {
+            showSyncError();
+        }
     }
     setIsSyncing(false);
     setSyncComplete(false);
