@@ -45,7 +45,7 @@ const onImportClicked = ({ hasDeploymentStartDate, openImportDialog, showImportS
     hasDeploymentStartDate ? openImportDialog() : showImportStartDateError();
 };
 
-const onSyncClicked = ({ deploymentId, bearerToken, isSyncing, setIsSyncing, setSyncComplete, showSyncError }) => async (e) => {
+const onSyncClicked = ({ deploymentId, bearerToken, isSyncing, setIsSyncing, setSyncComplete, showSyncError, showSyncInProgressError }) => async (e) => {
     if (isSyncing) {
        return;
     }
@@ -77,7 +77,7 @@ const onSyncClicked = ({ deploymentId, bearerToken, isSyncing, setIsSyncing, set
         await delay(10000);
     } catch (e) {
         console.error(e);
-        showSyncError();
+        e.message.includes('status code 409') ? showSyncInProgressError() : showSyncError();
     }
     setIsSyncing(false);
     setSyncComplete(false);
@@ -112,13 +112,13 @@ export const ActionSubBarPure = ({ onImportClicked, onExportClicked, onSyncClick
                 <div onClick={onImportClicked} className='ActionSubBar__text'>
                     {translations.actionSubBar__import}
                 </div>
-                <div onClick={onExportClicked}
-                    className={classNames('ActionSubBar__text', { 'ActionSubBar__text--exporting': isExporting })}>
-                    {isExporting ? translations.actionSubBar__exporting : translations.actionSubBar__export}
-                </div>
                 <div onClick={onSyncClicked}
                     className={classNames('ActionSubBar__text', { 'ActionSubBar__text--syncing': isSyncing })}>
                     {isSyncing ? (syncComplete ? translations.actionSubBar__syncComplete : translations.actionSubBar__syncing ) : translations.actionSubBar__sync}
+                </div>
+                <div onClick={onExportClicked}
+                    className={classNames('ActionSubBar__text', { 'ActionSubBar__text--exporting': isExporting })}>
+                    {isExporting ? translations.actionSubBar__exporting : translations.actionSubBar__export}
                 </div>
             </div>
         </div>
@@ -137,7 +137,8 @@ const ActionSubBar = connect(
         openImportDialog        : () => dispatch(openModal(MODAL_CONFIGS.importParticipantsConfig)),
         showImportStartDateError: () => dispatch(addFlashErrorWithFadeout(ErrorMessages.noImportStartDateError)),
         showExportError         : () => dispatch(addFlashErrorWithFadeout(ErrorMessages.participantExportFailure)),
-        showSyncError           : () => dispatch(addFlashErrorWithFadeout(ErrorMessages.participantSyncFailure))
+        showSyncError           : () => dispatch(addFlashErrorWithFadeout(ErrorMessages.participantSyncFailure)),
+        showSyncInProgressError : () => dispatch(addFlashErrorWithFadeout(ErrorMessages.participantSyncInProgressError))
 
     })
 )(enhance(ActionSubBarPure));
