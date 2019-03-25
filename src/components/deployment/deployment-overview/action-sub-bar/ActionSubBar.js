@@ -78,7 +78,7 @@ const onSyncClicked = ({ deploymentId, bearerToken, isSyncing, setIsSyncing, set
     } catch (e) {
         console.error(e);
         if (e.response && e.response.status === 409) {
-            showSyncInProgressError()
+            showSyncInProgressError();
         }
         else {
             showSyncError();
