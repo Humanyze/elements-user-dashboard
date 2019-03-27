@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { elementsReact, elementsRedux, routerPaths as RouterPaths } from 'ElementsWebCommon';
 
 const {
-  HeroNav,
+  MetricModuleLinkBlock,
 } = elementsReact;
 
 const {
@@ -12,7 +12,7 @@ const {
   },
 } = elementsRedux;
 
-const ManagementHeaderNavPure = ({ translations, }) => {
+const ManagementHeaderNavPure = ({ translations, deploymentName, deploymentSelectionPath, }) => {
   const navLinks = [
     {
       text: translations['managementNav__team-collaboration'],
@@ -29,7 +29,7 @@ const ManagementHeaderNavPure = ({ translations, }) => {
   ];
 
   return (
-    <HeroNav links={navLinks}/>
+    <MetricModuleLinkBlock links={navLinks} deploymentName={deploymentName} deploymentSelectionPath={deploymentSelectionPath} />
   );
 };
 

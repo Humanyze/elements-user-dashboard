@@ -19,7 +19,7 @@ let middleware = [
 if (process.env.NODE_ENV === 'development') {
   middleware = [
     ...middleware,
-    logger,
+    // logger,
   ];
 }
 

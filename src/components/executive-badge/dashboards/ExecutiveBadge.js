@@ -10,13 +10,12 @@ import FilterRoutes from './executive-filter-routes/FilterRoutes';
 import DashboardRoutes from './DashboardRoutes';
 
 import { elementsReact, elementsRedux, routerPaths as RouterPaths } from 'ElementsWebCommon';
+import MetricSidebar from '../../../elements-web-common/react/metric-sidebar/MetricSidebar';
 
 const {
   LoadingUI,
-  ActionSubBar,
   ErrorBoundary,
   MetricDateSelectorBlock ,
-  MetricGroupSelector,
   MetricFilterBlockCreator,
   DashboardGlobalErrorMessage,
 } = elementsReact;
@@ -58,13 +57,12 @@ const ExecutiveFilterBlock = MetricFilterBlockCreator(FilterRoutes);
 export const DigitalPure = ({ deploymentName, }) => {
   return (
     <div className='Digital'>
-      <ActionSubBar deploymentName={deploymentName} deploymentSelectionPath={RouterPaths.selectDeployment} />
       <ErrorBoundary ErrorMessage={DashboardGlobalErrorMessage}>
         {deploymentName ? (
           <Fragment>
-            <ExecutiveHeaderNav />
+            <ExecutiveHeaderNav deploymentName={deploymentName} deploymentSelectionPath={RouterPaths.selectDeployment}/>
             <div className='Management__grid'>
-              <MetricGroupSelector />
+              <MetricSidebar />
               <div className='Management__grid-right'>
                 <MetricDateSelectorBlock/>
                 <ExecutiveTabRoutes/>
