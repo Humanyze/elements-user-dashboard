@@ -6,7 +6,8 @@ import './deployment-selection.scss';
 import { setDeploymentsFromStoreDeploymentIds } from 'Redux/common/deployment/deploymentActions';
 import { compose, lifecycle, mapProps } from 'recompose';
 import DeploymentSelectionList from 'Src/components/common/deployment-selection-list/DeploymentSelectionList';
-import { getDeploymentDataSets, getDeploymentRequestPending } from 'Src/redux/common/deployment/deploymentReducer';
+
+import { getDeploymentDataSets, getDeploymentRequestPending } from 'Redux/common/deployment/deploymentReducer';
 
 
 const enhance = compose(
