@@ -2,15 +2,12 @@ import React, { Fragment } from 'react';
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 
-import './executive.scss';
-
 import ExecutiveTabRoutes from './executive-tabs/ExecutiveTabRoutes';
 import ExecutiveHeaderNav from './executive-header-nav/ExecutiveHeaderNav';
 import FilterRoutes from './executive-filter-routes/FilterRoutes';
 import DashboardRoutes from './DashboardRoutes';
 
 import { elementsReact, elementsRedux, routerPaths as RouterPaths } from 'ElementsWebCommon';
-import MetricSidebar from '../../../elements-web-common/react/metric-sidebar/MetricSidebar';
 
 const {
   LoadingUI,
@@ -18,6 +15,11 @@ const {
   MetricDateSelectorBlock ,
   MetricFilterBlockCreator,
   DashboardGlobalErrorMessage,
+  DashboardBodyWrapper,
+  MetricGrid,
+  MetricGridRight,
+  MetricGridChartWrapper,
+  MetricSidebar,
 } = elementsReact;
 
 const {
@@ -56,28 +58,28 @@ const ExecutiveFilterBlock = MetricFilterBlockCreator(FilterRoutes);
 
 export const DigitalPure = ({ deploymentName, }) => {
   return (
-    <div className='Digital'>
+    <DashboardBodyWrapper>
       <ErrorBoundary ErrorMessage={DashboardGlobalErrorMessage}>
         {deploymentName ? (
           <Fragment>
             <ExecutiveHeaderNav deploymentName={deploymentName} deploymentSelectionPath={RouterPaths.selectDeployment}/>
-            <div className='Management__grid'>
-              <MetricSidebar />
-              <div className='Management__grid-right'>
+            <MetricGrid>
+              <MetricSidebar/>
+              <MetricGridRight>
                 <MetricDateSelectorBlock/>
                 <ExecutiveTabRoutes/>
-                <div className='Management__chart-wrapper'>
+                <MetricGridChartWrapper>
                   <ExecutiveFilterBlock/>
                   <DashboardRoutes />
-                </div>
-              </div>
-            </div>
+                </MetricGridChartWrapper>
+              </MetricGridRight>
+            </MetricGrid>
           </Fragment>
         ) : (
           <LoadingUI />
         )}
       </ErrorBoundary>
-    </div>
+    </DashboardBodyWrapper>
   );
 };
 

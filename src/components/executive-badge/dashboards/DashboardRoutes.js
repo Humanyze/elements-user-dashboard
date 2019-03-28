@@ -12,7 +12,7 @@ const {
 
 const ExecutiveDashboardRoutes = () => {
   return (
-    <div className='ExecutiveRoute'>
+    <div className='DashboardRoutes'>
       <Switch>
         <Route path={RouterPaths.collaboration} component={Collaboration}/>
         <Route path={RouterPaths.exploration} component={Exploration}/>
