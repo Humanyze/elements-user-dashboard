@@ -43,6 +43,10 @@ body {
                                   supported by Chrome and Opera */
 }
 
+.material-icons {
+  @extend .no-select;
+}
+
 .disabled {
   cursor: default;
   color: $grey-cc;
