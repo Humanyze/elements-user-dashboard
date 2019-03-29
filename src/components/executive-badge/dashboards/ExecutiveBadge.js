@@ -18,6 +18,7 @@ const {
   DashboardBodyWrapper,
   MetricGrid,
   MetricGridRight,
+  MetricGridBottom,
   MetricGridChartWrapper,
   MetricSidebar,
 } = elementsReact;
@@ -64,15 +65,17 @@ export const DigitalPure = ({ deploymentName, }) => {
           <Fragment>
             <ExecutiveHeaderNav deploymentName={deploymentName} deploymentSelectionPath={RouterPaths.selectDeployment}/>
             <MetricGrid>
-              <MetricSidebar/>
-              <MetricGridRight>
-                <MetricDateSelectorBlock/>
-                <ExecutiveTabRoutes/>
-                <MetricGridChartWrapper>
-                  <ExecutiveFilterBlock/>
-                  <DashboardRoutes />
-                </MetricGridChartWrapper>
-              </MetricGridRight>
+              <MetricDateSelectorBlock/>
+              <MetricGridBottom>
+                <MetricSidebar/>
+                <MetricGridRight>
+                  <ExecutiveTabRoutes/>
+                  <MetricGridChartWrapper>
+                    <ExecutiveFilterBlock/>
+                    <DashboardRoutes />
+                  </MetricGridChartWrapper>
+                </MetricGridRight>
+              </MetricGridBottom>
             </MetricGrid>
           </Fragment>
         ) : (

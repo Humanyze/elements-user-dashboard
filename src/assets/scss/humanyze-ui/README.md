@@ -1,1 +1,0 @@
-# Humanyze UI SCSS
