@@ -10,9 +10,24 @@ const {
 const {
   DropdownSelector,
   FilterComposeHOF,
+  MultiButtonSelector,
 } = elementsReact;
 
-const createFilterComponent = (config) => compose(FilterComposeHOF(config))(DropdownSelector);
+const WithBottomBorder = (Comp) => (props) => {
+  return (
+    <div className='MetricFilterBlock__bottom-border'>
+      <Comp {...props} />
+    </div>
+  );
+};
+
+const createFilterComponentCreator = (Comp) => (config) => compose(
+  WithBottomBorder,
+  FilterComposeHOF(config)
+)(Comp);
+
+const createFilterDropdownComponent = createFilterComponentCreator(DropdownSelector);
+const createFilterButtonComponent = createFilterComponentCreator(MultiButtonSelector);
 
 const filterConfigs = {
   allocationVisualization: {
@@ -25,7 +40,7 @@ const filterConfigs = {
   },
 };
 
-const AllocationVisualizationFilter = createFilterComponent(filterConfigs.allocationVisualization);
+const AllocationVisualizationFilter = createFilterButtonComponent(filterConfigs.allocationVisualization);
 
 const FilterRoutes = () => {
   return (
