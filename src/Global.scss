@@ -47,12 +47,6 @@ body {
   @extend .no-select;
 }
 
-.disabled {
-  cursor: default;
-  color: $grey-cc;
-  pointer-events: none;
-}
-
 html {
   box-sizing: border-box;
   height: 100%;
