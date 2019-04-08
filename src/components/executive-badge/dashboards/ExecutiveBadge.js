@@ -27,12 +27,14 @@ const {
   routeActions: { digitalDashboardLeft, },
   deploymentActions: { setExecutiveGroups, setSelectedDeploymentById, },
   deploymentSelectors: { getSelectedDeploymentName, },
+  groupUISelectors: { getDefaultGroupIds, },
 } = elementsRedux;
 
 const enhance = compose(
   connect(
     (state) => ({
       deploymentName: getSelectedDeploymentName(state),
+      defaultGroupIds: getDefaultGroupIds(state),
     }),
     { setSelectedDeploymentById, setExecutiveGroups, digitalDashboardLeft, }
   ),
@@ -57,30 +59,31 @@ const enhance = compose(
 
 const ExecutiveFilterBlock = MetricFilterBlockCreator(FilterRoutes);
 
-export const DigitalPure = ({ deploymentName, }) => {
+export const DigitalPure = ({ deploymentName, defaultGroupIds, }) => {
   return (
     <DashboardBodyWrapper>
       <ErrorBoundary ErrorMessage={DashboardGlobalErrorMessage}>
-        {deploymentName ? (
-          <Fragment>
-            <ExecutiveHeaderNav deploymentName={deploymentName} deploymentSelectionPath={RouterPaths.selectDeployment}/>
-            <MetricGrid>
-              <MetricDateSelectorBlock/>
-              <MetricGridBottom>
-                <MetricSidebar/>
-                <MetricGridRight>
-                  <ExecutiveTabRoutes/>
-                  <MetricGridChartWrapper>
-                    <ExecutiveFilterBlock/>
-                    <DashboardRoutes />
-                  </MetricGridChartWrapper>
-                </MetricGridRight>
-              </MetricGridBottom>
-            </MetricGrid>
-          </Fragment>
-        ) : (
-          <LoadingUI />
-        )}
+        {
+          (deploymentName && defaultGroupIds && defaultGroupIds.length) ? (
+            <Fragment>
+              <ExecutiveHeaderNav deploymentName={deploymentName} deploymentSelectionPath={RouterPaths.selectDeployment}/>
+              <MetricGrid>
+                <MetricDateSelectorBlock/>
+                <MetricGridBottom>
+                  <MetricSidebar/>
+                  <MetricGridRight>
+                    <ExecutiveTabRoutes/>
+                    <MetricGridChartWrapper>
+                      <ExecutiveFilterBlock/>
+                      <DashboardRoutes />
+                    </MetricGridChartWrapper>
+                  </MetricGridRight>
+                </MetricGridBottom>
+              </MetricGrid>
+            </Fragment>
+          ) : (
+            <LoadingUI />
+          )}
       </ErrorBoundary>
     </DashboardBodyWrapper>
   );
