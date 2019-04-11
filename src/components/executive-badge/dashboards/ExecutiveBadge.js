@@ -27,14 +27,14 @@ const {
   routeActions: { digitalDashboardLeft, },
   deploymentActions: { setExecutiveGroups, setSelectedDeploymentById, },
   deploymentSelectors: { getSelectedDeploymentName, },
-  groupUISelectors: { getDefaultGroupIds, },
+  groupUISelectors: { getGroupsLoadedStatus, },
 } = elementsRedux;
 
 const enhance = compose(
   connect(
     (state) => ({
       deploymentName: getSelectedDeploymentName(state),
-      defaultGroupIds: getDefaultGroupIds(state),
+      groupsLoaded: getGroupsLoadedStatus(state),
     }),
     { setSelectedDeploymentById, setExecutiveGroups, digitalDashboardLeft, }
   ),
@@ -59,12 +59,12 @@ const enhance = compose(
 
 const ExecutiveFilterBlock = MetricFilterBlockCreator(FilterRoutes);
 
-export const DigitalPure = ({ deploymentName, defaultGroupIds, }) => {
+export const DigitalPure = ({ deploymentName, groupsLoaded, }) => {
   return (
     <DashboardBodyWrapper>
       <ErrorBoundary ErrorMessage={DashboardGlobalErrorMessage}>
         {
-          (deploymentName && defaultGroupIds && defaultGroupIds.length) ? (
+          (deploymentName && groupsLoaded) ? (
             <Fragment>
               <ExecutiveHeaderNav deploymentName={deploymentName} deploymentSelectionPath={RouterPaths.selectDeployment}/>
               <MetricGrid>
