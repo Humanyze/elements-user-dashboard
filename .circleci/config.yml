@@ -41,7 +41,7 @@ jobs:
   package:
     working_directory: ~/app
     docker:
-      - image: circleci/node:8.9.2
+      - image: circleci/node:8.9.2-stretch
     steps:
       - attach_workspace:
           at: /tmp/app
