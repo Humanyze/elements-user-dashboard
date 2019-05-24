@@ -117,7 +117,7 @@ module.exports = {
             ],
             loader: require.resolve('file-loader'),
             options: {
-              name: 'executive-badge/static/media/[name].[hash:8].[ext]',
+              name: 'register/static/media/[name].[hash:8].[ext]',
             },
           },
         ],

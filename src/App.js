@@ -7,9 +7,8 @@ import {
 import { compose } from 'recompose';
 import withAnalytics, { initAnalytics } from '@humanyze/react-with-analytics';
 import { elementsReact, routerPaths } from 'ElementsWebCommon';
-import AppRoutes from './components/AppRoutes';
-
-const { Header, ModalRoot, } = elementsReact;
+import Register from './components/register/Register';
+const { Header, ModalRoot, WithEnvClassWrapper, } = elementsReact;
 
 
 const GAToken = process.env.REACT_APP_GA_TRACKING_ID;
@@ -22,8 +21,8 @@ const enhanceCreator = (configOptions) => compose(
 
 const CorePure = () => (
   <div>
-    <Header />
-    <AppRoutes />
+    <Header hideUserAvatar={true} />
+    <Register />
     <ModalRoot />
   </div>
 );
@@ -31,11 +30,11 @@ const CorePure = () => (
 const Core = enhanceCreator({ basename: routerPaths.basePath, })(CorePure);
 
 const App = () => (
-  <div>
+  <WithEnvClassWrapper>
     <Router basename={routerPaths.basePath}>
       <Core />
     </Router>
-  </div >
+  </WithEnvClassWrapper >
 );
 
 export default App;

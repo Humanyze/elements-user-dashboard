@@ -2,7 +2,7 @@
   "name": "elements-badge",
   "version": "1.0.0",
   "private": true,
-  "homepage": "http://localhost:81/executive-badge",
+  "homepage": "http://localhost:81/register",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.4",
     "@fortawesome/react-fontawesome": "^0.0.17",
@@ -60,6 +60,7 @@
     "object-assign": "4.1.1",
     "path-to-regexp": "^2.4.0",
     "pluralize": "^7.0.0",
+    "polished": "^3.3.2",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "promise": "8.0.1",

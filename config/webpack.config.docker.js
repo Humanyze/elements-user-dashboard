@@ -17,8 +17,8 @@ const commonConfig = require('./webpack.config.common');
 // `publicUrl` is just like `publicPath`, but we will provide it to our app
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_PATH%/xyz looks better than %PUBLIC_PATH%xyz.
-const publicPath = '/executive-badge/';
-const publicUrl = '/executive-badge';
+const publicPath = '/register/';
+const publicUrl = '/register';
 
 // const publicPath = '/';
 // const publicUrl = '';
@@ -79,9 +79,9 @@ module.exports = {
     // if there are any conflicts. This matches Node resolution mechanism.
     // https://github.com/facebookincubator/create-react-app/issues/253
     modules: [
- 'node_modules',
-paths.appNodeModules ,
-].concat(
+      'node_modules',
+      paths.appNodeModules ,
+    ].concat(
       // It is guaranteed to exist because we tweak it in `env.js`
       process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
     ),
@@ -91,14 +91,14 @@ paths.appNodeModules ,
     // https://github.com/facebookincubator/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: [ 
-'.web.js',
-'.mjs',
-'.js',
-'.json',
-'.web.jsx',
-'.jsx', 
-],
+    extensions: [
+      '.web.js',
+      '.mjs',
+      '.js',
+      '.json',
+      '.web.jsx',
+      '.jsx',
+    ],
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
       // This often causes confusion because we only process files within src/ with babel.
@@ -110,7 +110,7 @@ paths.appNodeModules ,
   },
   module: {
     strictExportPresence: true,
-    rules: [...commonConfig.module.rules,],
+    rules: [ ...commonConfig.module.rules, ],
   },
   plugins: [
     // Makes some environment variables available in index.html.

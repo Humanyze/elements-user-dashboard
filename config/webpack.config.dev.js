@@ -17,11 +17,11 @@ const commonConfig = require('./webpack.config.common');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
-const publicPath = '/executive-badge/';
+const publicPath = '/register/';
 // `publicUrl` is just like `publicPath`, but we will provide it to our app
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_PATH%/xyz looks better than %PUBLIC_PATH%xyz.
-const publicUrl = '/executive-badge';
+const publicUrl = '/register';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
@@ -96,8 +96,8 @@ module.exports = {
       '.json',
       '.web.jsx',
       '.jsx'
-      , 
-],
+      ,
+    ],
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
       // This often causes confusion because we only process files within src/ with babel.

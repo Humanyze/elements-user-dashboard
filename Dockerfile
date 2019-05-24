@@ -1,9 +1,9 @@
 FROM node:9.11
 
-WORKDIR /executive-badge
-ADD . /executive-badge
+WORKDIR /register
+ADD . /register
 RUN yarn
 
-EXPOSE 6000
+EXPOSE 7000
 
 CMD ["sh", "-c", "IS_DOCKER=true yarn run start"]
