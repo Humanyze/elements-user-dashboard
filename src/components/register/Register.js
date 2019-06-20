@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { elementsReact, elementsRedux, assets } from 'ElementsWebCommon';
+import { elementsReact, elementsRedux, assets, routerPaths } from 'ElementsWebCommon';
 import { connect } from 'react-redux';
 import memoize from 'fast-memoize';
+import Moment from 'moment';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { lighten } from 'polished';
 const {
   LabeledInput,
   headerHeight,
+  Translation,
+  LoadingUI,
   Utils: {
     parse,
   },
@@ -18,6 +21,7 @@ const {
   languageSelectors: {
     getCurrentTranslations,
   },
+  AxiosRequestService,
 } = elementsRedux;
 const {
   metricCardBoxShadow,
@@ -25,17 +29,26 @@ const {
   lightBorder,
 } = assets;
 
+const s3DownloadUrlBase = 'http://downloads.humanyze.com/legal/v';
+
+const termsOfServiceVersion = '1';
+const termsOfServiceUrl = `${s3DownloadUrlBase}${termsOfServiceVersion}/terms_of_service.pdf`;
+
+const privacyPolicyVersion = '1';
+const privacyPolicyUrl = `${s3DownloadUrlBase}${privacyPolicyVersion}/privacy_policy.pdf`;
+
 const boxHeight = '40px';
 
 const RegisterPageWrapper = styled.div`
   height: calc(100vh - ${headerHeight});
+  min-height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const RegisterForm = styled.form`
-  max-width: 400px;
+  width: 400px;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
@@ -74,8 +87,9 @@ const RegisterFormLabeledInput = styled(LabeledInput)`
   }
 `;
 
-const SubmitButton = styled.button`
+const SubmitButton = styled.button(({ disabled, }) => `
   background: ${humanyzeBlue};
+  position: relative;
   color: white;
   border-radius: 4px;
   width: 100%;
@@ -91,6 +105,21 @@ const SubmitButton = styled.button`
   &:focus {
     border: 1px solid #eee;
   }
+  ${ disabled ? 'opacity: 0.5; pointer-events: none;' : ''}  
+`);
+
+const SubmitLoadingUI = styled(LoadingUI)`
+  .la-line-spin-clockwise-fade {
+    width: 40px !important;
+    height: 40px !important;
+    & > div {
+      width: 2px !important;
+      height: 6px !important;
+      margin-top: -3px !important;
+      margin-left: 0 !important;
+      background: white;
+    }
+  }
 `;
 
 const ValidationMessage = styled.div`
@@ -101,7 +130,30 @@ const ValidationMessage = styled.div`
   font-size: 0.7rem;
 `;
 
+const ExpiredMessage = styled.div`
+  padding: 30px 0;
+`;
+
+const PolicyLink = styled.a`
+  color: ${humanyzeBlue};
+`;
+
+const LoginFooter = styled.div`
+  font-size: 0.8rem;
+  padding-top: 10px; 
+  padding-left: 5px;
+  a {
+    color: ${humanyzeBlue};
+  }
+`;
+
 const memoizedQueryStringParser = memoize(parse);
+
+const NoTokenErrorMessage = () => (
+  <RegisterForm>
+    <Translation translationKey={'Register__no-token-message'} />
+  </RegisterForm>
+);
 
 const RegisterHOC = (Comp) => withRouter(({ history, }) => {
 
@@ -111,7 +163,14 @@ const RegisterHOC = (Comp) => withRouter(({ history, }) => {
     expiration,
   } = memoizedQueryStringParser(history.location.search);
 
-  return <Comp {...{ token, email, expiration, }} />;
+  return (
+    <RegisterPageWrapper className='RegisterPageWrapper'>
+      { token ? (
+        <Comp {...{ token, email, expiration, }} />
+      ) : <NoTokenErrorMessage />
+      }
+    </RegisterPageWrapper>
+  );
 });
 
 const enhance = compose(
@@ -160,10 +219,9 @@ const RegisterFormInputWithValidation = (props) => {
   const onBlur = () => setHasBeenFocused(true);
   const initialValidationState = { isValid: true, };
 
-  const { isValid, validationErrorMessage, } = (hasBeenFocused &&  validateInput) ?
+  const { validationErrorMessage, } = (hasBeenFocused &&  validateInput) ?
     validateValueForConditions({ value, conditions: validationConditions, }) :
     initialValidationState;
-  console.error('inComon', isValid, (hasBeenFocused && validateInput));
   return (
     <div>
       <RegisterFormLabeledInput {...props } onBlur={onBlur}/>
@@ -172,82 +230,165 @@ const RegisterFormInputWithValidation = (props) => {
   );
 };
 
-
+const onLoadMoment = Moment().utc();
 const Register = RegisterHOC(
   enhance(({
-    token, email,
+    token,
+    email,
+    expiration,
+    translations,
   }) => {
+
+    const tokenIsExpired = expiration ? Moment.unix(expiration).isBefore(onLoadMoment) : false; // if we don't have the expiration, it's okay
+    const [
+      expirationDismissed,
+      setExpirationDismissed,
+    ] = React.useState(false);
+
     const [
       password,
       onPasswordChange,
     ] = useInputState('');
-
 
     const [
       confirmPassword,
       onConfirmPasswordChange,
     ] = useInputState('');
 
+    const [
+      termsAccepted,
+      setTermsAccepted,
+    ] = React.useState(false);
+
+    const [
+      privacyPolicyAccepted,
+      setPrivacyPolicyAccepted,
+    ] = React.useState(false);
+
+    const [
+      registerPending,
+      setRegisterPending,
+    ] = React.useState(false);
+
     const valueIsSetPredicate = (value) => !!value;
 
-    const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
+    const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W)[a-zA-Z0-9\S]{8,128}$');
 
-    const passwordMeetsStrengthCheck = (value) => console.warn(value) || strongRegex.test(value);
+    const passwordMeetsStrengthCheck = (value) => strongRegex.test(value);
 
     const confirmMatchesPasswordPredicate = (value) => value === password;
 
     const passwordValidationConditions = [
       {
         predicate: valueIsSetPredicate,
-        message: 'farts',
+        message: translations['Register__empty-password'],
       },
       {
         predicate: passwordMeetsStrengthCheck,
-        message: 'weak boi',
+        message: translations['Register__invalid-password'],
       },
     ];
 
     const confirmPasswordValidationConditions = [
       {
         predicate: valueIsSetPredicate,
-        message: 'farts',
+        message: translations['Register__empty-confirm-password'],
       },
       {
         predicate: confirmMatchesPasswordPredicate,
-        message: 'make them match damn it!',
+        message: translations['Register__passwords-dont-match'],
       },
     ];
-    console.error('what are we passing',password,  validateValueForConditions({ password, conditions: passwordValidationConditions, }).isValid);
+
+    const formValid = (
+      validateValueForConditions({ value: password, conditions: passwordValidationConditions, }).isValid &&
+      validateValueForConditions({ value: confirmPassword, conditions: confirmPasswordValidationConditions, }).isValid &&
+      termsAccepted &&
+      privacyPolicyAccepted &&
+      !registerPending
+    );
+
+    const onFormSubmit = async (e) => {
+      e.preventDefault();
+      if (!formValid) {
+        console.error('Invalid form, should not have allowed post');
+        return;
+      }
+      setRegisterPending(true);
+      await AxiosRequestService.post();
+    };
+    const showExpiration = tokenIsExpired && !expirationDismissed;
     return (
-      <RegisterPageWrapper className='RegisterPageWrapper'>
-        <RegisterForm className='RegisterForm'>
-          <RegisterFormTitle>Register</RegisterFormTitle>
-          <RegisterFormHeader>
-            {email ?
-              <React.Fragment>Welcome to Humanyze! Please register. The invited email was <EmailSpan>{email}</EmailSpan>)</React.Fragment> :
-              <React.Fragment>We don't seem to know which email you were invited from, but you can still try to sign up.</React.Fragment>
-            }
-          </RegisterFormHeader>
-          <div style={{ padding: '10px 0', }}>
-            <RegisterFormInputWithValidation
-              value={password}
-              placeholder={'Password'}
-              onChange={onPasswordChange}
-              label={'Password'}
-              validationConditions={passwordValidationConditions}
-            />
-            <RegisterFormInputWithValidation
-              value={confirmPassword}
-              placeholder={'Confirm Password'}
-              onChange={onConfirmPasswordChange}
-              label={'Confirm Password'}
-              validationConditions={confirmPasswordValidationConditions}
-              validateInput={validateValueForConditions({ password, conditions: passwordValidationConditions, }).isValid}
-            />
-          </div>
-          <SubmitButton type='submit'>Register</SubmitButton>
+      <div>
+        <RegisterForm className='RegisterForm' onSubmit={onFormSubmit}>
+          { showExpiration ? (
+            <div>
+              <ExpiredMessage><Translation translationKey={'Register__expired-message'} /></ExpiredMessage>
+              <SubmitButton onClick={() => setExpirationDismissed(true)}>
+                <Translation translationKey={'Register__expired-dismiss-button'} />
+              </SubmitButton>
+            </div>
+          ) : (
+            <React.Fragment>
+              <RegisterFormTitle><Translation translationKey={'Register__title'} /></RegisterFormTitle>
+              <RegisterFormHeader>
+                {email ?
+                  <React.Fragment><Translation translationKey={'Register__email-header-fragment'}/><EmailSpan> {email}</EmailSpan></React.Fragment> :
+                  <Translation translationKey={'Register__no-email-header'}/>
+                }
+              </RegisterFormHeader>
+              <div style={{ padding: '10px 0', }}>
+                <RegisterFormInputWithValidation
+                  value={password}
+                  placeholder={translations['Register__password-placeholder']}
+                  onChange={onPasswordChange}
+                  label={translations['Register__password-label']}
+                  validationConditions={passwordValidationConditions}
+                  type='password'
+                  required
+                  disabled={registerPending}
+                />
+                <RegisterFormInputWithValidation
+                  value={confirmPassword}
+                  placeholder={translations['Register__confirm-password-placeholder']}
+                  onChange={onConfirmPasswordChange}
+                  label={translations['Register__confirm-password-label']}
+                  validationConditions={confirmPasswordValidationConditions}
+                  validateInput={validateValueForConditions({ value: password, conditions: passwordValidationConditions, }).isValid}
+                  type='password'
+                  required
+                  disabled={registerPending}
+                />
+              </div>
+              <div style={{ paddingBottom: 10, fontSize: '0.8rem', }}>
+                <div>
+                  <input value={termsAccepted}
+                    onChange={() => setTermsAccepted(!termsAccepted)}
+                    type='checkbox'/>
+                  <label><Translation translationKey={'Register__i-agree-to'} /> <PolicyLink href={termsOfServiceUrl} target='_blank' rel='noopener noreferrer'><Translation translationKey={'Register__terms-of-service'}/></PolicyLink></label>
+                </div>
+                <div>
+                  <input value={privacyPolicyAccepted}
+                    onChange={() => setPrivacyPolicyAccepted(!privacyPolicyAccepted)}
+                    type='checkbox'/>
+                  <label><Translation translationKey={'Register__i-agree-to'} /> <PolicyLink href={privacyPolicyUrl} target='_blank' rel='noopener noreferrer'><Translation translationKey={'Register__privacy-policy'}/></PolicyLink></label>
+                </div>
+              </div>
+              <SubmitButton
+                type='submit'
+                disabled={!formValid}
+                disabledToolTip={'Form valid issue'}>
+                {registerPending ? <SubmitLoadingUI /> : <Translation translationKey={'Register__submit-button'}/>}
+              </SubmitButton>
+            </React.Fragment>
+          )}
         </RegisterForm>
-      </RegisterPageWrapper>
+        {!showExpiration && (
+          <LoginFooter>
+            <Translation translationKey={'Register__login-text'}/> <a href={routerPaths.login}><Translation translationKey={'Register__login-link'} /></a>
+          </LoginFooter>
+        )}
+      </div>
     );
   })
 );
