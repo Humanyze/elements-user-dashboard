@@ -7,6 +7,8 @@ import Moment from 'moment';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { lighten } from 'polished';
+import { landingRoute } from '../../App';
+import { AjaxResponse } from 'rxjs';
 const {
   LabeledInput,
   headerHeight,
@@ -179,6 +181,7 @@ const enhance = compose(
       translations: getCurrentTranslations(state),
     })
   ),
+  withRouter,
 );
 
 const useInputState = (initialState) => {
@@ -237,6 +240,7 @@ const Register = RegisterHOC(
     email,
     expiration,
     translations,
+    history,
   }) => {
 
     const tokenIsExpired = expiration ? Moment.unix(expiration).isBefore(onLoadMoment) : false; // if we don't have the expiration, it's okay
@@ -270,14 +274,17 @@ const Register = RegisterHOC(
       setRegisterPending,
     ] = React.useState(false);
 
+    const [
+      errorState,
+      setErrorState,
+    ] = React.useState({});
+
     const valueIsSetPredicate = (value) => !!value;
 
-    const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W)[a-zA-Z0-9\S]{8,128}$');
+    const strongRegexp = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
 
-    const passwordMeetsStrengthCheck = (value) => strongRegex.test(value);
-
+    const passwordMeetsStrengthCheck = (value) => console.error(value, strongRegexp.test(value)) || strongRegexp.test(value);
     const confirmMatchesPasswordPredicate = (value) => value === password;
-
     const passwordValidationConditions = [
       {
         predicate: valueIsSetPredicate,
@@ -312,12 +319,46 @@ const Register = RegisterHOC(
       e.preventDefault();
       if (!formValid) {
         console.error('Invalid form, should not have allowed post');
+        // TODO: add flash message possibly
         return;
       }
       setRegisterPending(true);
-      await AxiosRequestService.post();
+      try {
+        const res = await AxiosRequestService.auth.register({
+          token,
+          password,
+          confirm_password: confirmPassword,
+          privacy_policy_approved: true,
+          terms_and_conditions_approved: true,
+        });
+        console.log('registration successful', res);
+
+        // TODO: returns user response
+        // TODO: hit login endpoint with proided password & returned email address
+        // TODO: if both are successful, then push them to the landing route
+        history.push(landingRoute);
+      } catch (e) {
+        const responseData = (e.response && e.response.data) || {};
+        const errorCode = e.response.status;
+        const mappedError = {
+          tokenError: !!responseData.token,
+          otherValidationIssues: Object.keys(responseData).length && !responseData.token,
+          userAlreadySignedUp: errorCode === '409',
+          internalErrors: [ '429, 500' , ].includes(errorCode),
+        };
+        setErrorState({
+          ...mappedError,
+          genericError: !mappedError.reduce((acc, item) => acc || item , false), // if no cases above were caught, show generic
+        });
+      }
+
+      setRegisterPending(false);
     };
+
     const showExpiration = tokenIsExpired && !expirationDismissed;
+
+    console.log(errorState);
+
     return (
       <div>
         <RegisterForm className='RegisterForm' onSubmit={onFormSubmit}>
