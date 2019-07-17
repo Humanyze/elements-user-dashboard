@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 import { lighten } from 'polished';
 import { landingRoute } from '../../App';
 import { AjaxResponse } from 'rxjs';
+import { loginUser } from '../../elements-web-common/redux/auth/authActions';
 const {
   LabeledInput,
   headerHeight,
@@ -149,6 +150,14 @@ const LoginFooter = styled.div`
   }
 `;
 
+const ErrorDisplayBlock = styled.div`
+  margin-top: 10px;
+  min-height: 50px;
+  color: red;
+  text-align: center;
+
+`;
+
 const memoizedQueryStringParser = memoize(parse);
 
 const NoTokenErrorMessage = () => (
@@ -179,7 +188,8 @@ const enhance = compose(
   connect(
     (state) => ({
       translations: getCurrentTranslations(state),
-    })
+    }),
+    { loginUser, }
   ),
   withRouter,
 );
@@ -241,6 +251,7 @@ const Register = RegisterHOC(
     expiration,
     translations,
     history,
+    loginUser,
   }) => {
 
     const tokenIsExpired = expiration ? Moment.unix(expiration).isBefore(onLoadMoment) : false; // if we don't have the expiration, it's okay
@@ -332,10 +343,8 @@ const Register = RegisterHOC(
           terms_and_conditions_approved: true,
         });
         console.log('registration successful', res);
-
-        // TODO: returns user response
-        // TODO: hit login endpoint with proided password & returned email address
-        // TODO: if both are successful, then push them to the landing route
+        const { email, } = res.data;
+        const loginResponse = await loginUser(email, password);
         history.push(landingRoute);
       } catch (e) {
         const responseData = (e.response && e.response.data) || {};
@@ -343,12 +352,12 @@ const Register = RegisterHOC(
         const mappedError = {
           tokenError: !!responseData.token,
           otherValidationIssues: Object.keys(responseData).length && !responseData.token,
-          userAlreadySignedUp: errorCode === '409',
+          alreadyRegistered: errorCode === '409',
           internalErrors: [ '429, 500' , ].includes(errorCode),
         };
         setErrorState({
           ...mappedError,
-          genericError: !mappedError.reduce((acc, item) => acc || item , false), // if no cases above were caught, show generic
+          genericError: !Object.values(mappedError).reduce((acc, item) => acc || item , false), // if no cases above were caught, show generic
         });
       }
 
@@ -360,7 +369,7 @@ const Register = RegisterHOC(
     console.log(errorState);
 
     return (
-      <div>
+      <div style={{ position: 'relative', width: '400px', }}>
         <RegisterForm className='RegisterForm' onSubmit={onFormSubmit}>
           { showExpiration ? (
             <div>
@@ -425,9 +434,26 @@ const Register = RegisterHOC(
           )}
         </RegisterForm>
         {!showExpiration && (
-          <LoginFooter>
-            <Translation translationKey={'Register__login-text'}/> <a href={routerPaths.login}><Translation translationKey={'Register__login-link'} /></a>
-          </LoginFooter>
+          <React.Fragment>
+            <LoginFooter>
+              <Translation translationKey={'Register__login-text'}/> <a href={routerPaths.login}><Translation translationKey={'Register__login-link'} /></a>
+            </LoginFooter>
+            <ErrorDisplayBlock>
+              {
+                errorState.tokenError ?
+                  <Translation translationKey={'Register__api-error-token'} /> :
+                  errorState.otherValidationIssues ?
+                    <Translation translationKey={'Register__api-error-validation'} /> :
+                    errorState.alreadyRegistered ?
+                      <React.Fragment><Translation translationKey={'Register__api-error-already-registered'} /> <a href={routerPaths.login}><Translation translationKey={'Register__login-link'} /></a></React.Fragment> :
+                      errorState.internalErrors ?
+                        <Translation translationKey={'Register__api-error-server'} /> :
+                        errorState.genericError ?
+                          <Translation translationKey={'Register__api-error-generic'} /> :
+                          null
+              }
+            </ErrorDisplayBlock>
+          </React.Fragment>
         )}
       </div>
     );
