@@ -31,7 +31,8 @@ const {
   lightBorder,
 } = assets;
 
-const enterKeypressFilterHOF = (func) => (e) => console.error(e.keyCode) || e.keyCode === '13' && func(e);
+// eslint-disable-next-line no-mixed-operators
+const enterKeypressFilterHOF = (func) => (e) => e.which === 13 && func(e);
 
 const s3DownloadUrlBase = 'http://downloads.humanyze.com/legal/v';
 
@@ -369,8 +370,6 @@ const Register = RegisterHOC(
 
     const showExpiration = tokenIsExpired && !expirationDismissed;
 
-    console.log(errorState);
-
     return (
       <div style={{ position: 'relative', width: '400px', }}>
         <RegisterForm className='RegisterForm' onSubmit={onFormSubmit}>
@@ -415,14 +414,14 @@ const Register = RegisterHOC(
               </div>
               <div style={{ paddingBottom: 10, fontSize: '0.8rem', }}>
                 <div>
-                  <input value={termsAccepted}
+                  <input checked={termsAccepted}
                     onChange={() => setTermsAccepted(!termsAccepted)}
                     onKeyPress={enterKeypressFilterHOF(() => setTermsAccepted(!termsAccepted))}
                     type='checkbox'/>
                   <label><Translation translationKey={'Register__i-agree-to'} /> <PolicyLink href={termsOfServiceUrl} target='_blank' rel='noopener noreferrer'><Translation translationKey={'Register__terms-of-service'}/></PolicyLink></label>
                 </div>
                 <div>
-                  <input value={privacyPolicyAccepted}
+                  <input checked={privacyPolicyAccepted}
                     onChange={() => setPrivacyPolicyAccepted(!privacyPolicyAccepted)}
                     onKeyPress={enterKeypressFilterHOF(() => setTermsAccepted(!privacyPolicyAccepted))}
                     type='checkbox'/>
