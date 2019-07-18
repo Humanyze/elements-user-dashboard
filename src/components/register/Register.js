@@ -32,6 +32,8 @@ const {
   lightBorder,
 } = assets;
 
+const enterKeypressFilterHOF = func => e => e.keyCode === '13' && func(e);
+
 const s3DownloadUrlBase = 'http://downloads.humanyze.com/legal/v';
 
 const termsOfServiceVersion = '1';
@@ -342,10 +344,12 @@ const Register = RegisterHOC(
           privacy_policy_approved: true,
           terms_and_conditions_approved: true,
         });
-        console.log('registration successful', res);
+
+        console.log('registration successful. New User Object: ', res);
         const { email, } = res.data;
         const loginResponse = await loginUser(email, password);
         history.push(landingRoute);
+
       } catch (e) {
         const responseData = (e.response && e.response.data) || {};
         const errorCode = e.response.status;
@@ -414,12 +418,14 @@ const Register = RegisterHOC(
                 <div>
                   <input value={termsAccepted}
                     onChange={() => setTermsAccepted(!termsAccepted)}
+                    onKeyPress={enterKeypressFilterHOF(() => setTermsAccepted(!termsAccepted))}
                     type='checkbox'/>
                   <label><Translation translationKey={'Register__i-agree-to'} /> <PolicyLink href={termsOfServiceUrl} target='_blank' rel='noopener noreferrer'><Translation translationKey={'Register__terms-of-service'}/></PolicyLink></label>
                 </div>
                 <div>
                   <input value={privacyPolicyAccepted}
                     onChange={() => setPrivacyPolicyAccepted(!privacyPolicyAccepted)}
+                    onKeyPress={enterKeypressFilterHOF(() => setTermsAccepted(!privacyPolicyAccepted))}
                     type='checkbox'/>
                   <label><Translation translationKey={'Register__i-agree-to'} /> <PolicyLink href={privacyPolicyUrl} target='_blank' rel='noopener noreferrer'><Translation translationKey={'Register__privacy-policy'}/></PolicyLink></label>
                 </div>
