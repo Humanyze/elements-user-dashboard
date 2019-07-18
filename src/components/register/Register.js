@@ -8,7 +8,6 @@ import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { lighten } from 'polished';
 import { landingRoute } from '../../App';
-import { AjaxResponse } from 'rxjs';
 import { loginUser } from '../../elements-web-common/redux/auth/authActions';
 const {
   LabeledInput,
@@ -32,7 +31,7 @@ const {
   lightBorder,
 } = assets;
 
-const enterKeypressFilterHOF = func => e => e.keyCode === '13' && func(e);
+const enterKeypressFilterHOF = (func) => (e) => console.error(e.keyCode) || e.keyCode === '13' && func(e);
 
 const s3DownloadUrlBase = 'http://downloads.humanyze.com/legal/v';
 
@@ -296,7 +295,7 @@ const Register = RegisterHOC(
 
     const strongRegexp = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
 
-    const passwordMeetsStrengthCheck = (value) => console.error(value, strongRegexp.test(value)) || strongRegexp.test(value);
+    const passwordMeetsStrengthCheck = (value) => strongRegexp.test(value);
     const confirmMatchesPasswordPredicate = (value) => value === password;
     const passwordValidationConditions = [
       {
