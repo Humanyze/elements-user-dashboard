@@ -32,7 +32,7 @@ const {
 } = assets;
 
 // eslint-disable-next-line no-mixed-operators
-const enterKeypressFilterHOF = (func) => (e) => e.which === 13 && func(e);
+const enterKeypressFilterHOF = (func) => (e) => e.which === 13 && (e.preventDefault() || func(e));
 
 const s3DownloadUrlBase = 'http://downloads.humanyze.com/legal/v';
 
@@ -423,7 +423,7 @@ const Register = RegisterHOC(
                 <div>
                   <input checked={privacyPolicyAccepted}
                     onChange={() => setPrivacyPolicyAccepted(!privacyPolicyAccepted)}
-                    onKeyPress={enterKeypressFilterHOF(() => setTermsAccepted(!privacyPolicyAccepted))}
+                    onKeyPress={enterKeypressFilterHOF(() => setPrivacyPolicyAccepted(!privacyPolicyAccepted))}
                     type='checkbox'/>
                   <label><Translation translationKey={'Register__i-agree-to'} /> <PolicyLink href={privacyPolicyUrl} target='_blank' rel='noopener noreferrer'><Translation translationKey={'Register__privacy-policy'}/></PolicyLink></label>
                 </div>
