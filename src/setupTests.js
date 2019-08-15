@@ -6,7 +6,7 @@ import chai from 'chai';
 import renderer from 'react-test-renderer';
 import { BrowserRouter } from 'react-router-dom';
 
-Enzyme.configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter(), });
 
 global.shallow = shallow;
 global.mount = mount;
@@ -21,7 +21,7 @@ class LocalStorageMock {
 global.localStorage = new LocalStorageMock();
 
 
-const WithRouterContext = ({ children }) => <BrowserRouter>{children}</BrowserRouter>;
+const WithRouterContext = ({ children, }) => <BrowserRouter>{children}</BrowserRouter>;
 global.WithRouterContext = WithRouterContext;
 
 // const StoreContext = ({children}) => {
@@ -32,22 +32,22 @@ global.WithRouterContext = WithRouterContext;
 
 // Simple Render test for components
 global.testRender = (Component, props) => {
-    const wrapper = shallow(<Component {...props} />);
+  const wrapper = shallow(<Component {...props} />);
 
-    return () => {
-        it('should render', () => {
-            expect(wrapper).toHaveLength(1);
-        });
+  return () => {
+    it('should render', () => {
+      expect(wrapper).toHaveLength(1);
+    });
 
-        // TODO: add default snapshot testing
-        // TODO: current issue is store context
-        // it('should match snapshot', () => {
-        //     const tree = renderer.create(
-        //         <WithRouterContext><Component {...props} /></WithRouterContext>
-        //     ).toJSON();
-        //     expect(tree).toMatchSnapshot()
-        // })
-    };
+    // TODO: add default snapshot testing
+    // TODO: current issue is store context
+    // it('should match snapshot', () => {
+    //     const tree = renderer.create(
+    //         <WithRouterContext><Component {...props} /></WithRouterContext>
+    //     ).toJSON();
+    //     expect(tree).toMatchSnapshot()
+    // })
+  };
 };
 
 

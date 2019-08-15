@@ -6,12 +6,12 @@ import { unregister } from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import createStore from './redux/createStore';
 
-const { store } = createStore();
+const { store, } = createStore();
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App/>
-    </Provider>
-    , document.getElementById('root'));
+  <Provider store={store}>
+    <App/>
+  </Provider>
+  , document.getElementById('root'));
 
 unregister();

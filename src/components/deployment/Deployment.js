@@ -2,11 +2,11 @@ import React from 'react';
 import DeploymentRoutes from './DeploymentRoutes';
 
 const Deployment = () => {
-    return (
-        <div>
-            <DeploymentRoutes/>
-        </div>
-    );
+  return (
+    <div>
+      <DeploymentRoutes/>
+    </div>
+  );
 };
 
 

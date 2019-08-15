@@ -8,7 +8,19 @@ import {
 
 import './deployment-selection.scss';
 
+const {
+  DeploymentSelectionList,
+} = elementsReact;
 
+const {
+  deploymentSelectors: {
+    getDeploymentRequestPending,
+    getDeploymentDataSets,
+  },
+  deploymentActions: {
+    setDeploymentsFromStoreDeploymentIds,
+  },
+} = elementsRedux;
 
 const enhance = compose(
   connect(
