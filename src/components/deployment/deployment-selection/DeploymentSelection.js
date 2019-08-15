@@ -6,8 +6,6 @@ import {
   elementsRedux
 } from 'ElementsWebCommon';
 
-import './deployment-selection.scss';
-
 const {
   DeploymentSelectionList,
 } = elementsReact;
