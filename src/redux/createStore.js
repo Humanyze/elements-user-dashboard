@@ -6,50 +6,48 @@ import thunkMiddleware from 'redux-thunk';
 import { createEpicMiddleware } from 'redux-observable';
 import rootReducer from './rootReducer';
 import rootEpic  from './rootEpic';
-import { ReactEmitter } from 'kuker-emitters';
 
 const logger = createLogger({});
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
 
 let middleware = [
-    thunkMiddleware,
-    epicMiddleware
+  thunkMiddleware,
+  epicMiddleware,
 ];
 
 if (process.env.NODE_ENV === 'development') {
-    ReactEmitter();
-    middleware = [
-        ...middleware,
-        logger
-    ];
+  middleware = [
+    ...middleware,
+    logger,
+  ];
 }
 
 
 // note: disable for testing new areas, important that code is oblivious to this, develop without in mind then test that it works after introduction
 const offlineConfig = {
-    ...defaultConfig,
-    persistOptions: {
-        // note: may switch this to whitelist over blacklist, although persistence in certain cases doesn't hurt
-        blacklist: [
-            'auth',
-            'modal',
-            'error',
-            'user',
-            'participant',
-            'language',
-            'deployment',
-        ]
-    }
+  ...defaultConfig,
+  persistOptions: {
+    // note: may switch this to whitelist over blacklist, although persistence in certain cases doesn't hurt
+    blacklist: [
+      'auth',
+      'modal',
+      'error',
+      'user',
+      'participant',
+      'language',
+      'deployment',
+    ],
+  },
 };
 
 
 const customCreateStore = () => {
-    const store = createStore(rootReducer, compose(
-        applyMiddleware(...middleware),
-        offline(offlineConfig),
-    ));
-    return { store };
+  const store = createStore(rootReducer, compose(
+    applyMiddleware(...middleware),
+    offline(offlineConfig),
+  ));
+  return { store, };
 };
 
 export default customCreateStore;

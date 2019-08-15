@@ -1,22 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose, lifecycle, mapProps } from 'recompose';
+import {
+  elementsReact,
+  elementsRedux
+} from 'ElementsWebCommon';
 
 import './deployment-selection.scss';
 
-import { setDeploymentsFromStoreDeploymentIds } from 'Redux/common/deployment/deploymentActions';
-import { compose, lifecycle, mapProps } from 'recompose';
-import DeploymentSelectionList from 'Src/components/common/deployment-selection-list/DeploymentSelectionList';
-
-import { getDeploymentDataSets, getDeploymentRequestPending } from 'Redux/common/deployment/deploymentReducer';
 
 
 const enhance = compose(
   connect(
     (state) => ({
       deployments: getDeploymentDataSets(state),
-      requestPending: getDeploymentRequestPending(state)
+      requestPending: getDeploymentRequestPending(state),
     }),
-    { setDeploymentsFromStoreDeploymentIds }
+    { setDeploymentsFromStoreDeploymentIds, }
   )
   ,
   lifecycle({
@@ -26,20 +26,20 @@ const enhance = compose(
   }),
   mapProps(({ deployments, ...rest }) => {
     return {
-      deployments: deployments && deployments.map(deployment => ({
+      deployments: deployments && deployments.map((deployment) => ({
         ...deployment,
-        link: `/deployment/${deployment.id}`
+        link: `/deployment/${deployment.id}`,
       })),
-      ...rest
+      ...rest,
     };
   })
 );
 
 
-export const DeploymentSelectionPure = ({ deployments, requestPending }) => {
+export const DeploymentSelectionPure = ({ deployments, requestPending, }) => {
   const selectionProps = {
     deployments,
-    loading: requestPending
+    loading: requestPending,
   };
 
   return (

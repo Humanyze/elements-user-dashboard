@@ -1,45 +1,60 @@
 import React from 'react';
-import ActionSubBar from './action-sub-bar/ActionSubBar';
 import ParticipantsTable from './participants-table/ParticipantsTable';
 import { connect } from 'react-redux';
 import { compose, lifecycle, withHandlers } from 'recompose';
 import { withRouter } from 'react-router';
 import * as queryString from 'Utils/query-string';
 
-import { getSelectedDeployment } from 'Redux/common/deployment/deploymentReducer';
-import { setSelectedDeploymentId } from 'Redux/common/deployment/deploymentActions';
 import { requestParticipantsData } from 'Redux/participants/participantsActions';
 import { setPage, setLimit } from 'Redux/participants-ui/participantsUIActions';
 import { getVisibleParticipants } from 'Redux/participants/participantsReducer';
-import { fetchDeploymentById } from 'Redux/common/deployment/deploymentActions';
-import { getCurrentTranslations } from 'Src/redux/common/language/languageReducer';
 import { cancelParticipantDataRequests } from 'Src/redux/participants/participantsActions';
 import { showLoadingOnPageChange } from 'Src/redux/participants/participantsReducer';
 import { setInitialPage } from 'Src/redux/participants-ui/participantsUIActions';
 import { getCurrentPageNumber, getTotalPageCount } from '../../../redux/participants/participantsReducer';
 
+import {
+  elementsReact,
+  elementsRedux
+} from 'ElementsWebCommon';
+
+const {
+  DeploymentActionSubBar,
+} = elementsReact;
+const {
+  languageSelectors: {
+    getCurrentTranslations,
+  },
+  deploymentActions: {
+    fetchDeploymentById,
+    setSelectedDeploymentId,
+  },
+  deploymentSelectors: {
+    getSelectedDeployment,
+  },
+} = elementsRedux;
 
 const withLifecycle = lifecycle({
   componentDidMount() {
     const {
       history: {
         location: {
-          search
-        }
+          search,
+        },
       },
-      match  : {
+      match: {
         params:
           {
-            datasetId
-          }
+            datasetId,
+          },
       },
       setInitialPage,
       setLimit,
       setSelectedDeploymentId,
-      requestParticipantsData
+      requestParticipantsData,
     } = this.props;
 
-    const { perPage = '20', page = '1' } = queryString.parse(search);
+    const { perPage = '20', page = '1', } = queryString.parse(search);
 
     const pageNumber = parseInt(page, 10);
     const limit = parseInt(perPage, 10);
@@ -56,18 +71,18 @@ const withLifecycle = lifecycle({
     const {
       history: {
         location: {
-          search
-        }
+          search,
+        },
       },
-      setPage
+      setPage,
     } = this.props;
 
     const {
       // perPage = '20',
-      page = '1'
+      page = '1',
     } = queryString.parse(search);
 
-    const { page: oldPage = '1' } = queryString.parse(previousProps.location.search);
+    const { page: oldPage = '1', } = queryString.parse(previousProps.location.search);
     const pageNumber = parseInt(page, 10);
 
     if (pageNumber && parseInt(oldPage, 10) !== pageNumber) {
@@ -76,17 +91,17 @@ const withLifecycle = lifecycle({
   },
   componentWillUnmount() {
     this.props.cancelParticipantDataRequests();
-  }
+  },
 
 });
 
-const onPaginationPageClicked = ({ history }) => number => e => {
-  const { pathname, search } = history.location;
+const onPaginationPageClicked = ({ history, }) => (number) => (e) => {
+  const { pathname, search, } = history.location;
   const queryObj = queryString.parse(search);
-  const updatedPageQuery = { ...queryObj, page: number };
+  const updatedPageQuery = { ...queryObj, page: number, };
   history.push({
     pathname,
-    search: queryString.stringify(updatedPageQuery)
+    search: queryString.stringify(updatedPageQuery),
   });
 };
 
@@ -94,11 +109,11 @@ const onPaginationPageClicked = ({ history }) => number => e => {
 const enhance = compose(
   withLifecycle,
   withHandlers({
-    onPaginationPageClicked
+    onPaginationPageClicked,
   })
 );
 
-export const DeploymentOverviewPure = ({ selectedDeployment, activePageNumber, numberOfPages, onPaginationPageClicked, participants, showLoading, paginationLoading, match: { params: { datasetId } }, fetchDeploymentById, translations }) => {
+export const DeploymentOverviewPure = ({ selectedDeployment, activePageNumber, numberOfPages, onPaginationPageClicked, participants, showLoading, paginationLoading, match: { params: { datasetId, }, }, fetchDeploymentById, translations, }) => {
   if (!selectedDeployment && !showLoading) {
     fetchDeploymentById(datasetId);
   }
@@ -110,12 +125,12 @@ export const DeploymentOverviewPure = ({ selectedDeployment, activePageNumber, n
     showLoading,
     paginationLoading,
     translations,
-    onPaginationPageClicked
+    onPaginationPageClicked,
   };
 
   return (
     <div>
-      <ActionSubBar/>
+      <DeploymentActionSubBar/>
       <ParticipantsTable {...TableProps} />
     </div>
   );
@@ -124,12 +139,12 @@ export const DeploymentOverviewPure = ({ selectedDeployment, activePageNumber, n
 const DeploymentOverview = connect(
   (state) => ({
     selectedDeployment: getSelectedDeployment(state),
-    participants      : getVisibleParticipants(state),
-    showLoading       : state.participants.requestPending || state.deployment.requestPending,
-    paginationLoading : showLoadingOnPageChange(state),
-    activePageNumber  : getCurrentPageNumber(state),
-    numberOfPages     : getTotalPageCount(state),
-    translations      : getCurrentTranslations(state),
+    participants: getVisibleParticipants(state),
+    showLoading: state.participants.requestPending || state.deployment.requestPending,
+    paginationLoading: showLoadingOnPageChange(state),
+    activePageNumber: getCurrentPageNumber(state),
+    numberOfPages: getTotalPageCount(state),
+    translations: getCurrentTranslations(state),
 
   }),
   {
@@ -139,7 +154,7 @@ const DeploymentOverview = connect(
     fetchDeploymentById,
     setPage,
     setInitialPage,
-    setLimit
+    setLimit,
   },
 )(withRouter(enhance(DeploymentOverviewPure)));
 

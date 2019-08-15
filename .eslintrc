@@ -1,38 +1,10 @@
-// NOTE: to run eslint fix,
-// bash: npx eslint --fix .
 {
-  "extends": [
-    "react-app",
-  ],
-  "plugins": [
-    "react"
-  ],
-  "rules": {
-    "object-curly-spacing": [
-      1,
-      "always"
-    ],
-    "semi": [
-      1,
-      "always"
-    ],
-    "quotes": [
-      1,
-      "single"
-    ],
-    "jsx-quotes": [
-      1,
-      "prefer-single"
-    ],
-    "space-infix-ops": [
-      1,
-      {}
-    ],
-//    "no-param-reassign": [
-////      2,
-////      {
-////        "props": true
-////      }
-//    ]
-  }
+  "extends": "eslint-config-humanyze",
+  // TODO: add backtick styling to ESLINT by default 
+  // "rules": {
+  //   "quotes": [
+  //     "warn",
+  //     "backtick"
+  //   ]
+  // }
 }

@@ -4,12 +4,14 @@ import {
   withRouter
 } from 'react-router-dom';
 import { compose } from 'recompose';
-import withAnalytics, { initAnalytics } from 'react-with-analytics';
-import Header from 'Common/header/Header';
+import withAnalytics, { initAnalytics } from '@humanyze/react-with-analytics';
+import { elementsReact, routerPaths as RouterPaths } from 'ElementsWebCommon';
 import AppRoutes from './components/AppRoutes';
-import ModalRoot from './components/modal/ModalRoot';
-import RouterPaths from 'RouterPaths';
 
+const {
+  Header,
+  ModalRoot,
+} = elementsReact;
 
 initAnalytics(process.env.REACT_APP_GA_TRACKING_ID);
 
@@ -26,7 +28,7 @@ const CorePure = () => (
   </div>
 );
 
-const Core = enhanceCreator({ basename: RouterPaths.basePath  })(CorePure);
+const Core = enhanceCreator({ basename: RouterPaths.basePath,  })(CorePure);
 
 const App = () => (
   <div>
