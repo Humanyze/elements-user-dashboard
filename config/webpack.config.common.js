@@ -162,7 +162,7 @@ module.exports = {
       'Src': paths.appSrc,
       'Public': path.resolve(paths.appPublic),
       'Assets': path.resolve(`${paths.appSrc  }/assets`),
-      'Utils': path.resolve(`${paths.appSrc  }/assets/utils`),
+      'Utils': path.resolve(`${paths.appSrc  }/elements-web-common/assets/utils`),
       'Redux': path.resolve(`${paths.appSrc  }/redux`),
       'Common': path.resolve(`${paths.appSrc  }/components/common`),
       'Story': path.resolve(paths.storybookConfig),

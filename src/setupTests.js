@@ -2,8 +2,8 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import chai from 'chai';
-import renderer from 'react-test-renderer';
+// import chai from 'chai';
+// import renderer from 'react-test-renderer';
 import { BrowserRouter } from 'react-router-dom';
 
 Enzyme.configure({ adapter: new Adapter(), });
