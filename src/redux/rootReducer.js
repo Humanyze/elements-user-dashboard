@@ -12,6 +12,7 @@ const {
   AUTH_ACTION_TYPES,
   metaDataReducer,
   deploymentReducer,
+  companyReducer,
 } = elementsRedux;
 
 
@@ -23,6 +24,7 @@ const AppReducer = combineReducers({
   user: userDataReducer,
   modal: modalReducer,
   deployment: deploymentReducer,
+  company: companyReducer,
   participants: participantsReducer,
   participantsUI: participantsUIReducer,
 });
