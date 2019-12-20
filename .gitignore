@@ -24,4 +24,5 @@ yarn-error.log*
 
 .idea
 
-
+# VSCode version history for edits
+.history

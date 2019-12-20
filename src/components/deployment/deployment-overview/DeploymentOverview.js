@@ -3,7 +3,7 @@ import ParticipantsTable from './participants-table/ParticipantsTable';
 import { connect } from 'react-redux';
 import { compose, lifecycle, withHandlers } from 'recompose';
 import { withRouter } from 'react-router';
-import * as queryString from 'Utils/query-string';
+import * as queryString from '../../../elements-web-common/react/utils/query-string';
 
 import { requestParticipantsData } from 'Redux/participants/participantsActions';
 import { setPage, setLimit } from 'Redux/participants-ui/participantsUIActions';
