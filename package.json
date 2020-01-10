@@ -96,7 +96,8 @@
     "start": "node scripts/start.js --env=jsdom",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "storybook": "start-storybook -p 9001 -c .storybook -s ./public",
+    "storybook": "./cscripts/storybook",
+    "storybook:container": "start-storybook -p 9003 -c .storybook -s ./public",
     "build-storybook": "build-storybook -c .storybook -o .out",
     "common-docs": "jsdoc -c ./src/components/common/jsdoc.conf ./src/components/common/ -r -d ./src/components/common/docs"
   },

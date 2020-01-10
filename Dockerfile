@@ -1,10 +1,13 @@
-FROM node:9.6.1
+FROM node:10.18
 
 WORKDIR /deployment-dashboard
-ADD . /deployment-dashboard
-RUN yarn
+
+# Turn these 2 lines back on if you want to edit things inside the container
+#RUN ["apt-get", "update"]
+#RUN ["apt-get", "install", "-y", "vim"]
 
 EXPOSE 3000
+EXPOSE 9003
 EXPOSE 35729
 
-CMD ["sh", "-c", "IS_DOCKER=true yarn run start"]
+CMD ["/deployment-dashboard/cscripts/go"]
