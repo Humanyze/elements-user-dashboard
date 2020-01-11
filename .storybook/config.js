@@ -1,8 +1,9 @@
 import { configure } from '@storybook/react';
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
+import requireContext from 'require-context.macro';
 
-const req = require.context('../src/components', true, /\.story\.js$/);
+const req = requireContext('../src', true, /\.story\.js$/);
 
 function loadStories() {
     req.keys().forEach(filename => req(filename))
