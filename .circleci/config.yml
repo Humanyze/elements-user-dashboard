@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /tmp/app
     docker:
-      - image: circleci/node:10.11
+      - image: circleci/node:10.18
     steps:
       - run: echo $CIRCLE_BRANCH && pwd && ls
       - checkout
@@ -30,7 +30,7 @@ jobs:
   test:
     working_directory: ~/test
     docker:
-      - image: circleci/node:10.11
+      - image: circleci/node:10.18
     steps:
       - attach_workspace:
           at: /tmp/app
@@ -41,7 +41,7 @@ jobs:
   package:
     working_directory: ~/app
     docker:
-      - image: circleci/node:10.12-stretch
+      - image: circleci/node:10.18
     steps:
       - attach_workspace:
           at: /tmp/app
@@ -68,7 +68,7 @@ jobs:
   trigger_nginx:
     working_directory: ~/nginx
     docker:
-      - image: circleci/node:10.11
+      - image: circleci/node:10.18
     steps:
       - run: |
           curl \
