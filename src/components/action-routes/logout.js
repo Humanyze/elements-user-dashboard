@@ -10,7 +10,7 @@ const {
 
 const enhance = compose(
   lifecycle({
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       this.props.logout();
     },
   })

@@ -1,17 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import ParticipantsTable from './participants-table/ParticipantsTable';
 import { connect } from 'react-redux';
 import { compose, lifecycle, withHandlers } from 'recompose';
-import { withRouter } from 'react-router';
-import * as queryString from '../../../elements-web-common/react/utils/query-string';
+import { withRouter } from 'react-router-dom';
+import * as queryString from 'ElementsWebCommon/react/utils/query-string';
 
-import { requestParticipantsData } from 'Redux/participants/participantsActions';
-import { setPage, setLimit } from 'Redux/participants-ui/participantsUIActions';
-import { getVisibleParticipants } from 'Redux/participants/participantsReducer';
-import { cancelParticipantDataRequests } from 'Src/redux/participants/participantsActions';
-import { showLoadingOnPageChange } from 'Src/redux/participants/participantsReducer';
-import { setInitialPage } from 'Src/redux/participants-ui/participantsUIActions';
-import { getCurrentPageNumber, getTotalPageCount } from '../../../redux/participants/participantsReducer';
+import { requestParticipantsData, cancelParticipantDataRequests } from 'Redux/participants/participantsActions';
+import { setPage, setLimit, setInitialPage } from 'Redux/participants-ui/participantsUIActions';
+import { getVisibleParticipants, getCurrentPageNumber, getTotalPageCount, showLoadingOnPageChange  } from 'Redux/participants/participantsReducer';
 
 import {
   elementsReact,
@@ -32,6 +30,7 @@ const {
   deploymentSelectors: {
     getSelectedDeployment,
   },
+  translationPropTypeShape
 } = elementsRedux;
 
 const withLifecycle = lifecycle({
@@ -113,7 +112,7 @@ const enhance = compose(
   })
 );
 
-export const DeploymentOverviewPure = ({ selectedDeployment, activePageNumber, numberOfPages, onPaginationPageClicked, participants, showLoading, paginationLoading, match: { params: { datasetId, }, }, fetchDeploymentById, translations, }) => {
+const DeploymentOverviewPure = ({ selectedDeployment, activePageNumber, numberOfPages, onPaginationPageClicked, participants, showLoading, paginationLoading, match: { params: { datasetId, }, }, fetchDeploymentById, translations, }) => {
   if (!selectedDeployment && !showLoading) {
     fetchDeploymentById(datasetId);
   }
@@ -136,6 +135,19 @@ export const DeploymentOverviewPure = ({ selectedDeployment, activePageNumber, n
   );
 };
 
+DeploymentOverviewPure.propTypes = {
+    translations: translationPropTypeShape.isRequired,
+    selectedDeployment: PropTypes.object.isRequired,
+    activePageNumber: PropTypes.number.isRequired,
+    numberOfPages: PropTypes.number.isRequired,
+    onPaginationPageClicked: PropTypes.func.isRequired,
+    participants: PropTypes.arrayOf(PropTypes.object).isRequired,
+    showLoading: PropTypes.bool.isRequired,
+    paginationLoading: PropTypes.bool.isRequired,
+    match: PropTypes.object.isRequired,
+    fetchDeploymentById: PropTypes.func.isRequired,
+}
+
 const DeploymentOverview = connect(
   (state) => ({
     selectedDeployment: getSelectedDeployment(state),
@@ -145,7 +157,6 @@ const DeploymentOverview = connect(
     activePageNumber: getCurrentPageNumber(state),
     numberOfPages: getTotalPageCount(state),
     translations: getCurrentTranslations(state),
-
   }),
   {
     setSelectedDeploymentId,
@@ -158,4 +169,5 @@ const DeploymentOverview = connect(
   },
 )(withRouter(enhance(DeploymentOverviewPure)));
 
+console.log(DeploymentOverview, DeploymentOverviewPure);
 export default DeploymentOverview;

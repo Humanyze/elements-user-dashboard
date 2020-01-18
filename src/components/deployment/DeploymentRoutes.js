@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import DeploymentOverview from './deployment-overview/DeploymentOverview';
 import DeploymentSelection from './deployment-selection/DeploymentSelection';
-import { Redirect, withRouter } from 'react-router';
+import { Redirect, withRouter } from 'react-router-dom';
 import CompanyModule from '../company-module/CompanyModule';
 
 

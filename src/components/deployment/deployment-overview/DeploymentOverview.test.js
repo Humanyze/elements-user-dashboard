@@ -1,4 +1,4 @@
-import { DeploymentOverviewPure } from './DeploymentOverview';
+import DeploymentOverview from './DeploymentOverview';
 
 const mockProps = {
     match: {
@@ -8,4 +8,6 @@ const mockProps = {
     },
     fetchDeploymentById: () => {}
 };
-testRender(DeploymentOverviewPure, mockProps)();
+
+console.log(DeploymentOverview);
+testRenderWithStore(DeploymentOverview, mockProps)();

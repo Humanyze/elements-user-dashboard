@@ -37,10 +37,16 @@ const emptyDataMock = {
 };
 
 
-const createComp = (props) => <StoreContext><RouterContext><DeploymentSelectionPure {...defaultProps} {...props}/></RouterContext></StoreContext>;
+const createComp = (props) => {
+    return (
+        <StoreContext>
+            <RouterContext>
+                <DeploymentSelectionPure {...defaultProps} {...props}/>
+            </RouterContext>
+        </StoreContext>);
+};
 
 storiesOf('DeploymentSelection', module)
     .add('pre-load', () => createComp())
     .add('with Deployments', () => createComp(deploymentDataMock))
     .add('no deployments', () => createComp(emptyDataMock));
-    

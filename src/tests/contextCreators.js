@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import customCreateStore from 'Src/redux/createStore';
+import customCreateStore from 'Redux/createStore';
 import { Provider } from 'react-redux';
 import { elementsRedux } from 'ElementsWebCommon';
 

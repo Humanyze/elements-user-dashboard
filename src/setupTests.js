@@ -5,6 +5,7 @@ import { shallow, mount } from 'enzyme';
 // import chai from 'chai';
 // import renderer from 'react-test-renderer';
 import { BrowserRouter } from 'react-router-dom';
+import { RouterContext, StoreContext } from './tests/contextCreators';
 
 Enzyme.configure({ adapter: new Adapter(), });
 
@@ -49,6 +50,22 @@ global.testRender = (Component, props) => {
     // })
   };
 };
+
+global.testRenderWithStore = (Component, props) => {
+
+  const wrapper = mount(
+    <StoreContext>
+      <RouterContext>
+        <Component {...props} />
+      </RouterContext>
+    </StoreContext>
+  );
+  return () => {
+    it(`${Component.displayName} should render`, () => {
+      expect(wrapper).toHaveLength(1);
+    });
+  }
+}
 
 
 

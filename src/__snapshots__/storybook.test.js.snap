@@ -1,0 +1,4213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots DateRangeSelector initial 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "padding": "300px",
+      "zIndex": 3333,
+    }
+  }
+>
+  <div
+    className="DateRangeSelector"
+  >
+    <div
+      className="DateRangeSelector__date-block"
+    >
+      <div
+        className="DateRangeSelector__input-block"
+      >
+        <div
+          className="DateRangeSelector__input"
+          onClick={[Function]}
+        >
+          Feb 1, 2011
+          <i
+            className="material-icons 14 md-dark "
+            icon="calendar_today"
+            style={
+              Object {
+                "color": "",
+                "fontSize": 14,
+              }
+            }
+          />
+        </div>
+        <div
+          className="DateRangeSelector__input-dash"
+        >
+          -
+        </div>
+        <div
+          className="DateRangeSelector__input"
+          onClick={[Function]}
+        >
+          Jan 1, 2017
+          <i
+            className="material-icons 14 md-dark "
+            icon="calendar_today"
+            style={
+              Object {
+                "color": "",
+                "fontSize": 14,
+              }
+            }
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots DateSelector dateSelected 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "lightblue",
+      "padding": "300px",
+    }
+  }
+>
+  <div
+    className="DateSelector"
+  >
+    <div
+      className="DateSelector__dropdown"
+    >
+      <div
+        className="react-datepicker-wrapper"
+      >
+        <div
+          className="react-datepicker__input-container"
+        >
+          <div
+            className="DateSelector__label-button react-datepicker-ignore-onclickoutside"
+            onClick={[Function]}
+          >
+            <div
+              className="DateSelector__date-text"
+            >
+              000 1, 2019
+            </div>
+            <i
+              className="material-icons 18 md-dark "
+              icon="event_note"
+              style={
+                Object {
+                  "color": "",
+                  "fontSize": 18,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots DateSelector initial 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "lightblue",
+      "padding": "300px",
+    }
+  }
+>
+  <div
+    className="DateSelector"
+  >
+    <div
+      className="DateSelector__dropdown"
+    >
+      <div
+        className="react-datepicker-wrapper"
+      >
+        <div
+          className="react-datepicker__input-container"
+        >
+          <div
+            className="DateSelector__label-button react-datepicker-ignore-onclickoutside"
+            onClick={[Function]}
+          >
+            <div
+              className="DateSelector__select-date-text"
+            >
+              Select a date
+            </div>
+            <i
+              className="material-icons 18 md-dark "
+              icon="event_note"
+              style={
+                Object {
+                  "color": "",
+                  "fontSize": 18,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots DeploymentSelection no deployments 1`] = `
+<div
+  className="DeploymentSelection__wrapper"
+>
+  <div
+    className="DeploymentSelection"
+  >
+    <div>
+      <div
+        className="DeploymentSelection__header"
+      >
+        Select a deployment:
+      </div>
+      <div
+        className="DeploymentSelection__deployment-list"
+      >
+        <div
+          className="DeploymentSelection__loading-background"
+        >
+          <div
+            className="container undefined"
+          >
+            <div
+              className="la-line-spin-clockwise-fade la-dark la-2x"
+            >
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots DeploymentSelection pre-load 1`] = `
+<div
+  className="DeploymentSelection__wrapper"
+>
+  <div
+    className="DeploymentSelection"
+  >
+    <div>
+      <div
+        className="DeploymentSelection__header"
+      >
+        Select a deployment:
+      </div>
+      <div
+        className="DeploymentSelection__deployment-list"
+      >
+        <div
+          className="DeploymentSelection__loading-background"
+        >
+          <div
+            className="container undefined"
+          >
+            <div
+              className="la-line-spin-clockwise-fade la-dark la-2x"
+            >
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots DeploymentSelection with Deployments 1`] = `
+<div
+  className="DeploymentSelection__wrapper"
+>
+  <div
+    className="DeploymentSelection"
+  >
+    <div>
+      <div
+        className="DeploymentSelection__header"
+      >
+        Select a deployment:
+      </div>
+      <div
+        className="DeploymentSelection__deployment-list"
+      >
+        <div
+          className="DeploymentSelection__loading-background"
+        >
+          <div
+            className="container undefined"
+          >
+            <div
+              className="la-line-spin-clockwise-fade la-dark la-2x"
+            >
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots DeploymentSelectionList no deployments 1`] = `
+<div
+  className="DeploymentSelection__wrapper"
+>
+  <div
+    className="DeploymentSelection"
+  >
+    <div>
+      <div
+        className="DeploymentSelection__header"
+      >
+        Select a deployment:
+      </div>
+      <div
+        className="DeploymentSelection__deployment-list"
+      >
+        <div
+          className="DeploymentSelection__loading-background"
+        >
+          <div
+            className="container undefined"
+          >
+            <div
+              className="la-line-spin-clockwise-fade la-dark la-2x"
+            >
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots DeploymentSelectionList pre-load 1`] = `
+<div
+  className="DeploymentSelection__wrapper"
+>
+  <div
+    className="DeploymentSelection"
+  >
+    <div>
+      <div
+        className="DeploymentSelection__header"
+      >
+        Select a deployment:
+      </div>
+      <div
+        className="DeploymentSelection__deployment-list"
+      >
+        <div
+          className="DeploymentSelection__loading-background"
+        >
+          <div
+            className="container undefined"
+          >
+            <div
+              className="la-line-spin-clockwise-fade la-dark la-2x"
+            >
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots DeploymentSelectionList with Deployments 1`] = `
+<div
+  className="DeploymentSelection__wrapper"
+>
+  <div
+    className="DeploymentSelection"
+  >
+    <div>
+      <div
+        className="DeploymentSelection__header"
+      >
+        Select a deployment:
+      </div>
+      <div
+        className="DeploymentSelection__deployment-list"
+      >
+        <div
+          className="DeploymentSelection__loading-background"
+        >
+          <div
+            className="container undefined"
+          >
+            <div
+              className="la-line-spin-clockwise-fade la-dark la-2x"
+            >
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots DropdownSelector initial 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "lightblue",
+      "padding": "300px",
+    }
+  }
+>
+  <div
+    className="DropdownSelector  "
+  >
+    <div
+      className="DropdownSelector__input-center-div"
+    >
+      <div
+        className="DropdownSelector__input-label-wrapper"
+      >
+        <div
+          className="DropdownSelector__input"
+          onClick={[Function]}
+        >
+          <span
+            className="DropdownSelector__input-value"
+          >
+            placeholder
+          </span>
+          <i
+            className="material-icons 20 md-dark "
+            icon="arrow_drop_down"
+            style={
+              Object {
+                "color": "",
+                "fontSize": 20,
+              }
+            }
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Error Flash Bar example 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "height": 500,
+      }
+    }
+  />
+  <div
+    className="ErrorFlashBar"
+  >
+    <div>
+      Failed to export participant data.
+    </div>
+    <div
+      className="ErrorFlashBar__close-button"
+      onClick={[Function]}
+    >
+      <i
+        className="material-icons 25 md-dark "
+        icon="close"
+        style={
+          Object {
+            "color": "white",
+            "fontSize": 25,
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Error Full Screen errorMessage__deploymentFetchFailure 1`] = `
+<div
+  className="ErrorFullScreen"
+>
+  <div
+    className="ErrorFullScreen__fatal-message"
+  >
+    There was an issue getting one of your deployments. Try reloading the page or contacting your administrator.
+  </div>
+  <div
+    className="ErrorFullScreen__button-block"
+  >
+    <a
+      href="/deployments/select-deployment"
+    >
+      <div
+        className="ErrorFullScreen__redirect-button"
+      >
+        Back to deployment selection
+      </div>
+    </a>
+    <div
+      className="ErrorFullScreen__redirect-button"
+      onClick={[Function]}
+    >
+      Logout
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Error Full Screen errorMessage__genericDeploymentFailure 1`] = `
+<div
+  className="ErrorFullScreen"
+>
+  <div
+    className="ErrorFullScreen__fatal-message"
+  >
+    Unfortunately, something went wrong loading this deployment. Try reloading the page or checking the URL.
+  </div>
+  <div
+    className="ErrorFullScreen__button-block"
+  >
+    <a
+      href="/deployments/select-deployment"
+    >
+      <div
+        className="ErrorFullScreen__redirect-button"
+      >
+        Back to deployment selection
+      </div>
+    </a>
+    <div
+      className="ErrorFullScreen__redirect-button"
+      onClick={[Function]}
+    >
+      Logout
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Error Full Screen errorMessage__offlineFailure 1`] = `
+<div
+  className="ErrorFullScreen"
+>
+  <div
+    className="ErrorFullScreen__fatal-message"
+  >
+    It looks like you're not connected to the internet.  Please verify connection and try reloading the page.
+  </div>
+  <div
+    className="ErrorFullScreen__button-block"
+  >
+    <a
+      href=""
+    >
+      <div
+        className="ErrorFullScreen__redirect-button"
+      >
+        Reload
+      </div>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Error Full Screen errorMessage__userFetchFailure 1`] = `
+<div
+  className="ErrorFullScreen"
+>
+  <div
+    className="ErrorFullScreen__fatal-message"
+  >
+    It appears your session expired.  Let's get you logged in.
+  </div>
+  <div
+    className="ErrorFullScreen__button-block"
+  >
+    <div
+      className="ErrorFullScreen__redirect-button"
+      onClick={[Function]}
+    >
+      Login
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Error Full Screen errorMessage__userUnauthorizedFailure 1`] = `
+<div
+  className="ErrorFullScreen"
+>
+  <div
+    className="ErrorFullScreen__fatal-message"
+  >
+    You don't seem to have access to this deployment. If you think this is an error, feel free to contact your administrator.
+  </div>
+  <div
+    className="ErrorFullScreen__button-block"
+  >
+    <a
+      href="/deployments/select-deployment"
+    >
+      <div
+        className="ErrorFullScreen__redirect-button"
+      >
+        Back to deployment selection
+      </div>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Storyshots FileUploadSelector file added 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "lightblue",
+      "padding": "300px",
+    }
+  }
+>
+  <div
+    className="FileUploadSelector"
+  >
+    <label
+      className="FileUploadSelector__label"
+      htmlFor="FileUploadInput"
+    >
+      <input
+        accept=""
+        className="FileUploadSelector__file-input"
+        id="FileUploadInput"
+        onChange={[Function]}
+        type="file"
+      />
+      <div
+        className="FileUploadSelector__text-wrapper"
+      >
+        <div
+          className="FileUploadSelector__file-name"
+        >
+          Participants.xlsx
+        </div>
+        <i
+          className="material-icons 18 md-dark "
+          icon="search"
+          style={
+            Object {
+              "color": "",
+              "fontSize": 18,
+            }
+          }
+        />
+      </div>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Storyshots FileUploadSelector initial 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "lightblue",
+      "padding": "300px",
+    }
+  }
+>
+  <div
+    className="FileUploadSelector"
+  >
+    <label
+      className="FileUploadSelector__label"
+      htmlFor="FileUploadInput"
+    >
+      <input
+        accept=""
+        className="FileUploadSelector__file-input"
+        id="FileUploadInput"
+        onChange={[Function]}
+        type="file"
+      />
+      <div
+        className="FileUploadSelector__text-wrapper"
+      >
+        <div
+          className="FileUploadSelector__select-file"
+        >
+          Select a file
+        </div>
+        <i
+          className="material-icons 18 md-dark "
+          icon="search"
+          style={
+            Object {
+              "color": "",
+              "fontSize": 18,
+            }
+          }
+        />
+      </div>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Storyshots FileUploadSelector long File name 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "lightblue",
+      "padding": "300px",
+    }
+  }
+>
+  <div
+    className="FileUploadSelector"
+  >
+    <label
+      className="FileUploadSelector__label"
+      htmlFor="FileUploadInput"
+    >
+      <input
+        accept=""
+        className="FileUploadSelector__file-input"
+        id="FileUploadInput"
+        onChange={[Function]}
+        type="file"
+      />
+      <div
+        className="FileUploadSelector__text-wrapper"
+      >
+        <div
+          className="FileUploadSelector__file-name"
+        >
+          verylongverylongverylongverylongverylongverylongverylongverylong.xlsx
+        </div>
+        <i
+          className="material-icons 18 md-dark "
+          icon="search"
+          style={
+            Object {
+              "color": "",
+              "fontSize": 18,
+            }
+          }
+        />
+      </div>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Header initial 1`] = `
+<div
+  className="Header"
+>
+  <div
+    className="Header__logo-wrapper"
+  >
+    <div
+      className="Header__logo"
+    >
+      <img
+        alt="humanyze logo"
+        src="logo-full.png"
+      />
+    </div>
+  </div>
+  <div
+    className="UserAvatar"
+  >
+    <span
+      className="UserAvatar__username"
+    />
+    <div
+      className="UserAvatar__dropdown-wrapper"
+    >
+      <div
+        className="UserAvatar__avatar-icon"
+        onClick={[Function]}
+      >
+        <i
+          className="material-icons 35 md-dark "
+          icon="account_circle"
+          style={
+            Object {
+              "color": "",
+              "fontSize": 35,
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots ImportWizard file added 1`] = `
+<div
+  className="import-wizard-wrapper"
+>
+  <svg
+    className="import-wizard"
+    height={125}
+    width={500}
+  >
+    <g
+      className="wizard-steps"
+    >
+      <g
+        className="wizard-connector add-to-validate succeeded"
+      >
+        <line
+          className="background"
+          x1={70}
+          x2={230}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-connector validate-to-import ready"
+      >
+        <line
+          className="background"
+          x1={270}
+          x2={430}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-step add succeeded"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={50}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x={40}
+          y={40}
+        >
+          <path
+            d="M576 1376v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm128-320v1088q0 66-47 113t-113 47h-1344q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1344q66 0 113 47t47 113z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={50}
+          y={100}
+        >
+          Added
+        </text>
+      </g>
+      <g
+        className="wizard-step validate ready"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={250}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x="240"
+          y={40}
+        >
+          <path
+            d="M896 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-384q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-1152q208 0 385 34.5t280 93.5 103 128v128q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-128q0-69 103-128t280-93.5 385-34.5z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={250}
+          y={100}
+        >
+          Validate
+        </text>
+      </g>
+      <g
+        className="wizard-step import ready"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx="450"
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="14950.274 -6271.72 26.974 27.385"
+          width="20"
+          x="440"
+          y={40}
+        >
+          <path
+            d="M11397.737,473.479c5.533,1.8,10.594,8.521,10.594,8.521l14.638-23.937"
+            transform="translate(3553 -6729)"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x="450"
+          y="100"
+        >
+          Import
+        </text>
+      </g>
+    </g>
+  </svg>
+</div>
+`;
+
+exports[`Storyshots ImportWizard imported 1`] = `
+<div
+  className="import-wizard-wrapper"
+>
+  <svg
+    className="import-wizard"
+    height={125}
+    width={500}
+  >
+    <g
+      className="wizard-steps"
+    >
+      <g
+        className="wizard-connector add-to-validate succeeded"
+      >
+        <line
+          className="background"
+          x1={70}
+          x2={230}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-connector validate-to-import succeeded"
+      >
+        <line
+          className="background"
+          x1={270}
+          x2={430}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-step add succeeded"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={50}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x={40}
+          y={40}
+        >
+          <path
+            d="M576 1376v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm128-320v1088q0 66-47 113t-113 47h-1344q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1344q66 0 113 47t47 113z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={50}
+          y={100}
+        >
+          Added
+        </text>
+      </g>
+      <g
+        className="wizard-step validate succeeded"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={250}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x="240"
+          y={40}
+        >
+          <path
+            d="M896 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-384q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-1152q208 0 385 34.5t280 93.5 103 128v128q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-128q0-69 103-128t280-93.5 385-34.5z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={250}
+          y={100}
+        >
+          Validated
+        </text>
+      </g>
+      <g
+        className="wizard-step import succeeded"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx="450"
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="14950.274 -6271.72 26.974 27.385"
+          width="20"
+          x="440"
+          y={40}
+        >
+          <path
+            d="M11397.737,473.479c5.533,1.8,10.594,8.521,10.594,8.521l14.638-23.937"
+            transform="translate(3553 -6729)"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x="450"
+          y="100"
+        >
+          Success
+        </text>
+      </g>
+    </g>
+  </svg>
+</div>
+`;
+
+exports[`Storyshots ImportWizard importing 1`] = `
+<div
+  className="import-wizard-wrapper"
+>
+  <svg
+    className="import-wizard"
+    height={125}
+    width={500}
+  >
+    <g
+      className="wizard-steps"
+    >
+      <g
+        className="wizard-connector add-to-validate succeeded"
+      >
+        <line
+          className="background"
+          x1={70}
+          x2={230}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-connector validate-to-import succeeded"
+      >
+        <line
+          className="background"
+          x1={270}
+          x2={430}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-step add succeeded"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={50}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x={40}
+          y={40}
+        >
+          <path
+            d="M576 1376v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm128-320v1088q0 66-47 113t-113 47h-1344q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1344q66 0 113 47t47 113z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={50}
+          y={100}
+        >
+          Added
+        </text>
+      </g>
+      <g
+        className="wizard-step validate succeeded"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={250}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x="240"
+          y={40}
+        >
+          <path
+            d="M896 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-384q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-1152q208 0 385 34.5t280 93.5 103 128v128q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-128q0-69 103-128t280-93.5 385-34.5z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={250}
+          y={100}
+        >
+          Validated
+        </text>
+      </g>
+      <g
+        className="wizard-step import running"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx="450"
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="14950.274 -6271.72 26.974 27.385"
+          width="20"
+          x="440"
+          y={40}
+        >
+          <path
+            d="M11397.737,473.479c5.533,1.8,10.594,8.521,10.594,8.521l14.638-23.937"
+            transform="translate(3553 -6729)"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x="450"
+          y="100"
+        >
+          Importing...
+        </text>
+      </g>
+    </g>
+  </svg>
+</div>
+`;
+
+exports[`Storyshots ImportWizard initial 1`] = `
+<div
+  className="import-wizard-wrapper"
+>
+  <svg
+    className="import-wizard"
+    height={125}
+    width={500}
+  >
+    <g
+      className="wizard-steps"
+    >
+      <g
+        className="wizard-connector add-to-validate ready"
+      >
+        <line
+          className="background"
+          x1={70}
+          x2={230}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-connector validate-to-import ready"
+      >
+        <line
+          className="background"
+          x1={270}
+          x2={430}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-step add ready"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={50}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x={40}
+          y={40}
+        >
+          <path
+            d="M576 1376v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm128-320v1088q0 66-47 113t-113 47h-1344q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1344q66 0 113 47t47 113z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={50}
+          y={100}
+        >
+          Add
+        </text>
+      </g>
+      <g
+        className="wizard-step validate ready"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={250}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x="240"
+          y={40}
+        >
+          <path
+            d="M896 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-384q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-1152q208 0 385 34.5t280 93.5 103 128v128q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-128q0-69 103-128t280-93.5 385-34.5z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={250}
+          y={100}
+        >
+          Validate
+        </text>
+      </g>
+      <g
+        className="wizard-step import ready"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx="450"
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="14950.274 -6271.72 26.974 27.385"
+          width="20"
+          x="440"
+          y={40}
+        >
+          <path
+            d="M11397.737,473.479c5.533,1.8,10.594,8.521,10.594,8.521l14.638-23.937"
+            transform="translate(3553 -6729)"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x="450"
+          y="100"
+        >
+          Import
+        </text>
+      </g>
+    </g>
+  </svg>
+</div>
+`;
+
+exports[`Storyshots ImportWizard valid file 1`] = `
+<div
+  className="import-wizard-wrapper"
+>
+  <svg
+    className="import-wizard"
+    height={125}
+    width={500}
+  >
+    <g
+      className="wizard-steps"
+    >
+      <g
+        className="wizard-connector add-to-validate succeeded"
+      >
+        <line
+          className="background"
+          x1={70}
+          x2={230}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-connector validate-to-import succeeded"
+      >
+        <line
+          className="background"
+          x1={270}
+          x2={430}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-step add succeeded"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={50}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x={40}
+          y={40}
+        >
+          <path
+            d="M576 1376v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm128-320v1088q0 66-47 113t-113 47h-1344q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1344q66 0 113 47t47 113z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={50}
+          y={100}
+        >
+          Added
+        </text>
+      </g>
+      <g
+        className="wizard-step validate succeeded"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={250}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x="240"
+          y={40}
+        >
+          <path
+            d="M896 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-384q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-1152q208 0 385 34.5t280 93.5 103 128v128q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-128q0-69 103-128t280-93.5 385-34.5z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={250}
+          y={100}
+        >
+          Validated
+        </text>
+      </g>
+      <g
+        className="wizard-step import ready"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx="450"
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="14950.274 -6271.72 26.974 27.385"
+          width="20"
+          x="440"
+          y={40}
+        >
+          <path
+            d="M11397.737,473.479c5.533,1.8,10.594,8.521,10.594,8.521l14.638-23.937"
+            transform="translate(3553 -6729)"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x="450"
+          y="100"
+        >
+          Import
+        </text>
+      </g>
+    </g>
+  </svg>
+</div>
+`;
+
+exports[`Storyshots ImportWizard validating 1`] = `
+<div
+  className="import-wizard-wrapper"
+>
+  <svg
+    className="import-wizard"
+    height={125}
+    width={500}
+  >
+    <g
+      className="wizard-steps"
+    >
+      <g
+        className="wizard-connector add-to-validate succeeded"
+      >
+        <line
+          className="background"
+          x1={70}
+          x2={230}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-connector validate-to-import running"
+      >
+        <line
+          className="background"
+          x1={270}
+          x2={430}
+          y1={50}
+          y2={50}
+        />
+      </g>
+      <g
+        className="wizard-step add succeeded"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={50}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x={40}
+          y={40}
+        >
+          <path
+            d="M576 1376v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm128-320v1088q0 66-47 113t-113 47h-1344q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1344q66 0 113 47t47 113z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={50}
+          y={100}
+        >
+          Added
+        </text>
+      </g>
+      <g
+        className="wizard-step validate running"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx={250}
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="0 0 1792 1792"
+          width="20"
+          x="240"
+          y={40}
+        >
+          <path
+            d="M896 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0 768q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-384q237 0 443-43t325-127v170q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-170q119 84 325 127t443 43zm0-1152q208 0 385 34.5t280 93.5 103 128v128q0 69-103 128t-280 93.5-385 34.5-385-34.5-280-93.5-103-128v-128q0-69 103-128t280-93.5 385-34.5z"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x={250}
+          y={100}
+        >
+          Validating...
+        </text>
+      </g>
+      <g
+        className="wizard-step import ready"
+      >
+        <g
+          className="wizard-step-circle"
+        >
+          <circle
+            className="wizard-step-circle-background"
+            cx="450"
+            cy={50}
+            r={20}
+          />
+        </g>
+        <svg
+          className="wizard-step-icon"
+          height="20"
+          viewBox="14950.274 -6271.72 26.974 27.385"
+          width="20"
+          x="440"
+          y={40}
+        >
+          <path
+            d="M11397.737,473.479c5.533,1.8,10.594,8.521,10.594,8.521l14.638-23.937"
+            transform="translate(3553 -6729)"
+          />
+        </svg>
+        <text
+          className="wizard-step-text"
+          x="450"
+          y="100"
+        >
+          Import
+        </text>
+      </g>
+    </g>
+  </svg>
+</div>
+`;
+
+exports[`Storyshots Loading Smile UI initial 1`] = `
+<div
+  className="loadingSmiley lightTheme"
+>
+  <div
+    className="leftEye"
+  />
+  <div
+    className="rightEye"
+  />
+  <div
+    className="mouth"
+  />
+</div>
+`;
+
+exports[`Storyshots Loading UI initial 1`] = `
+<div
+  className="container undefined"
+>
+  <div
+    className="la-line-spin-clockwise-fade la-dark la-2x"
+  >
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Network Chart by group 1`] = `
+<div
+  className="sc-gGBfsJ hkaOos MetricChartRoute"
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Storyshots Network Chart by participant 1`] = `
+<div
+  className="sc-gGBfsJ hkaOos MetricChartRoute"
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Storyshots Pagination initial 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/onePage onePage 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/sixPages pageFourSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    4
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    5
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    6
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/sixPages pageOneSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    4
+  </div>
+  <div
+    className="Pagination__ellipses"
+  >
+    ...
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    6
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/sixPages pageSixSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__ellipses"
+  >
+    ...
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    4
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    5
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    6
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/sixPages pageThreeSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    4
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    5
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    6
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/sixPages pageTwoSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    4
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    5
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    6
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/sixPages pagefiveSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    4
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    5
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    6
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/threePages pageOneSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/threePages pageThreeSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/threePages pageTwoSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/twelvePages page11Selected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__ellipses"
+  >
+    ...
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    8
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    9
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    10
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    11
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    12
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/twelvePages pageOneSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    4
+  </div>
+  <div
+    className="Pagination__ellipses"
+  >
+    ...
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    12
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/twelvePages pageSevenSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__ellipses"
+  >
+    ...
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    4
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    5
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    6
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    7
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    8
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    9
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    10
+  </div>
+  <div
+    className="Pagination__ellipses"
+  >
+    ...
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    12
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/twoPages pageOneSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Pagination/twoPages pageTwoSelected 1`] = `
+<div
+  className="Pagination"
+>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_left"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+  <div
+    className="Pagination__number-link"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="Pagination__number-link active"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="Pagination__nav disabled"
+    onClick={[Function]}
+  >
+    <i
+      className="material-icons md-18 md-dark "
+      icon="chevron_right"
+      style={
+        Object {
+          "color": "",
+          "fontSize": "md-18",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Participants Table Stable With Full Participants 1`] = `
+<div
+  className="ParticipantsTable"
+>
+  <div
+    className="ParticipantsTable__title"
+  >
+    Participants
+  </div>
+  <div
+    className="ParticipantsTable__table-padding"
+  >
+    <div
+      className="ParticipantsTable__table-wrapper"
+    >
+      <table
+        className="ParticipantsTable__table"
+      >
+        <tbody>
+          <tr
+            className="ParticipantsTableHeader"
+          >
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              email
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              alias
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              gender
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              manager
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              teams managed
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              timezone
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              working hours start
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              working hours end
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              primary team
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              active badge
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              active digital
+            </th>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              michael@humanyze.com
+            </td>
+            <td>
+              michael@humanyze.com
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              N
+            </td>
+            <td />
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Tech DC
+            </td>
+            <td>
+              N
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              daniel@humanyze.com
+            </td>
+            <td>
+              DanielO
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              1111
+            </td>
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Management & Operations
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              laura@humanyze.com
+            </td>
+            <td>
+              laura2@humanyze.com
+            </td>
+            <td>
+              F
+            </td>
+            <td>
+              N
+            </td>
+            <td />
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Analytics
+            </td>
+            <td>
+              N
+            </td>
+            <td>
+              N
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              lucas@humanyze.com
+            </td>
+            <td>
+              LucasB
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              1113
+            </td>
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Engineering
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              taemie@humanyze.com
+            </td>
+            <td>
+              TaemieK
+            </td>
+            <td>
+              F
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              61
+            </td>
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Analytics
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              beth@humanyze.com
+            </td>
+            <td>
+              beth@humanyze.com
+            </td>
+            <td>
+              F
+            </td>
+            <td>
+              N
+            </td>
+            <td />
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Analytics
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              bora@humanyze.com
+            </td>
+            <td>
+              BoraK
+            </td>
+            <td>
+              F
+            </td>
+            <td>
+              N
+            </td>
+            <td />
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Analytics
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              josh@humanyze.com
+            </td>
+            <td>
+              josh@humanyze.com
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              N
+            </td>
+            <td />
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Business
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              jeremy@humanyze.com
+            </td>
+            <td>
+              JeremyD
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              1109
+            </td>
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Customer Success
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              michelle@humanyze.com
+            </td>
+            <td>
+              MichelleB
+            </td>
+            <td>
+              F
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              1113, 1116, 1110
+            </td>
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Product
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              burak@humanyze.com
+            </td>
+            <td>
+              BurakA
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              N
+            </td>
+            <td />
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Customer Success
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              derek@humanyze.com
+            </td>
+            <td>
+              DerekH
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              N
+            </td>
+            <td />
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Hardware
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              ben@humanyze.com
+            </td>
+            <td>
+              BenW
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              1109, 1110, 1111, 1112, 1113, 1114, 1115, 1116
+            </td>
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Management & Operations
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              tuomas@humanyze.com
+            </td>
+            <td>
+              TuomasJ
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              1112
+            </td>
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Engineering
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              alex@humanyze.com
+            </td>
+            <td>
+              AlexD
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              1110
+            </td>
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              QA
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              stephen@humanyze.com
+            </td>
+            <td>
+              stephen@humanyze.com
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              N
+            </td>
+            <td />
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Analytics
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              zhongke@humanyze.com
+            </td>
+            <td>
+              ZhongkeZ
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              N
+            </td>
+            <td />
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Analytics
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              nicole@humanyze.com
+            </td>
+            <td>
+              NicoleF
+            </td>
+            <td>
+              F
+            </td>
+            <td>
+              N
+            </td>
+            <td />
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Management & Operations
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              evan@humanyze.com
+            </td>
+            <td>
+              EvanO
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              1113
+            </td>
+            <td>
+              America/New_York
+            </td>
+            <td>
+              9
+            </td>
+            <td>
+              17
+            </td>
+            <td>
+              Engineering
+            </td>
+            <td>
+              Y
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+          <tr
+            className="ParticipantsTableRow"
+          >
+            <td>
+              ian@humanyze.com
+            </td>
+            <td>
+              ian@humanyze.com
+            </td>
+            <td>
+              M
+            </td>
+            <td>
+              N
+            </td>
+            <td />
+            <td>
+              America/New_York
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              18
+            </td>
+            <td>
+              Tech HYPE
+            </td>
+            <td>
+              N
+            </td>
+            <td>
+              Y
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      className="Pagination"
+    >
+      <div
+        className="Pagination__nav"
+        onClick={[Function]}
+      >
+        <i
+          className="material-icons md-18 md-dark "
+          icon="chevron_left"
+          style={
+            Object {
+              "color": "",
+              "fontSize": "md-18",
+            }
+          }
+        />
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        1
+      </div>
+      <div
+        className="Pagination__ellipses"
+      >
+        ...
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        14
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        15
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        16
+      </div>
+      <div
+        className="Pagination__number-link active"
+        onClick={[Function]}
+      >
+        17
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        18
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        19
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        20
+      </div>
+      <div
+        className="Pagination__ellipses"
+      >
+        ...
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        30
+      </div>
+      <div
+        className="Pagination__nav"
+        onClick={[Function]}
+      >
+        <i
+          className="material-icons md-18 md-dark "
+          icon="chevron_right"
+          style={
+            Object {
+              "color": "",
+              "fontSize": "md-18",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Participants Table loading 1`] = `
+<div
+  className="ParticipantsTable"
+>
+  <div
+    className="ParticipantsTable__title"
+  >
+    Participants
+  </div>
+  <div
+    className="ParticipantsTable__table-padding"
+  >
+    <div
+      className="ParticipantsTable__table-wrapper"
+    >
+      <table
+        className="ParticipantsTable__table"
+      >
+        <tbody>
+          <tr
+            className="ParticipantsTableHeader"
+          >
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              email
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              alias
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              gender
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              manager
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              teams managed
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              timezone
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              working hours start
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              working hours end
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              primary team
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              active badge
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              active digital
+            </th>
+          </tr>
+          <div>
+            Loading...
+          </div>
+        </tbody>
+      </table>
+      <div
+        className="ParticipantsTable__loading-wrapper"
+      >
+        <div
+          className="container undefined"
+        >
+          <div
+            className="la-line-spin-clockwise-fade la-dark la-2x"
+          >
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Participants Table quick Pagination Load 1`] = `
+<div
+  className="ParticipantsTable"
+>
+  <div
+    className="ParticipantsTable__title"
+  >
+    Participants
+  </div>
+  <div
+    className="ParticipantsTable__table-padding"
+  >
+    <div
+      className="ParticipantsTable__table-wrapper"
+    >
+      <table
+        className="ParticipantsTable__table"
+      >
+        <tbody>
+          <tr
+            className="ParticipantsTableHeader"
+          >
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              email
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              alias
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              gender
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              manager
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              teams managed
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              timezone
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              working hours start
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              working hours end
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              primary team
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              active badge
+            </th>
+            <th
+              className="ParticipantsTableHeader__column-header"
+            >
+              active digital
+            </th>
+          </tr>
+          <div>
+            Loading...
+          </div>
+        </tbody>
+      </table>
+      <div
+        className="ParticipantsTable__loading-wrapper"
+      >
+        <div
+          className="container undefined"
+        >
+          <div
+            className="la-line-spin-clockwise-fade la-dark la-2x"
+          >
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="Pagination"
+    >
+      <div
+        className="Pagination__nav"
+        onClick={[Function]}
+      >
+        <i
+          className="material-icons md-18 md-dark "
+          icon="chevron_left"
+          style={
+            Object {
+              "color": "",
+              "fontSize": "md-18",
+            }
+          }
+        />
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        1
+      </div>
+      <div
+        className="Pagination__ellipses"
+      >
+        ...
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        14
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        15
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        16
+      </div>
+      <div
+        className="Pagination__number-link active"
+        onClick={[Function]}
+      >
+        17
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        18
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        19
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        20
+      </div>
+      <div
+        className="Pagination__ellipses"
+      >
+        ...
+      </div>
+      <div
+        className="Pagination__number-link"
+        onClick={[Function]}
+      >
+        30
+      </div>
+      <div
+        className="Pagination__nav"
+        onClick={[Function]}
+      >
+        <i
+          className="material-icons md-18 md-dark "
+          icon="chevron_right"
+          style={
+            Object {
+              "color": "",
+              "fontSize": "md-18",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Secondary Filter Selector Initial 1`] = `
+<div>
+  <div
+    className="LightBoxWrapper"
+    onClick={[Function]}
+  >
+    <div
+      className="LightBox"
+    >
+      <div
+        onClick={[Function]}
+      >
+        <div
+          className="sc-hSdWYo sc-brqgnP iRvrDY"
+        >
+          Select Secondary Filters
+          <div
+            className="sc-gPEVay eKpZDv"
+            onClick={[Function]}
+          >
+            <i
+              className="material-icons md-24 md-dark "
+              icon="info"
+              style={
+                Object {
+                  "color": "",
+                  "fontSize": "md-24",
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          className="sc-jDwBTQ cbAyDo"
+        >
+          <div
+            className="sc-iRbamj iqnjWP"
+          >
+            <div
+              className="DropdownSelector SecondaryFilter__field-dropdown "
+            >
+              <div
+                className="DropdownSelector__input-center-div"
+              >
+                <div
+                  className="DropdownSelector__input-label-wrapper"
+                >
+                  <div
+                    className="DropdownSelector__label"
+                  >
+                    Groups
+                    :
+                  </div>
+                  <div
+                    className="DropdownSelector__input"
+                    onClick={[Function]}
+                  >
+                    <span
+                      className="DropdownSelector__input-value"
+                    />
+                    <i
+                      className="material-icons 20 md-dark "
+                      icon="arrow_drop_down"
+                      style={
+                        Object {
+                          "color": "",
+                          "fontSize": 20,
+                        }
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="SearchInput undefined"
+            >
+              <input
+                className="SearchInput__input-field"
+                onChange={[Function]}
+                placeholder="Filter groups..."
+                value=""
+              />
+              <div
+                className="SearchInput__icon"
+              >
+                <i
+                  className="material-icons 18 md-dark "
+                  icon="search"
+                  style={
+                    Object {
+                      "color": "",
+                      "fontSize": 18,
+                    }
+                  }
+                />
+              </div>
+            </div>
+            <div
+              className="sc-gipzik kVIExA"
+            />
+          </div>
+          <div
+            className="sc-jlyJG hzVisg"
+          >
+            <div
+              className="sc-Rmtcm kBwJAO"
+            />
+          </div>
+        </div>
+        <div
+          className="sc-cvbbAY dDzWbL"
+        >
+          <button
+            className="sc-jWBwVP sc-jAaTju lihQHZ"
+            onClick={[Function]}
+          >
+            Cancel
+          </button>
+          <button
+            className="sc-jWBwVP fzTWBi"
+            onClick={[Function]}
+          >
+            Save Filter Set
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots UserAvatar dropdown showing 1`] = `
+<div
+  className="UserAvatar"
+>
+  <span
+    className="UserAvatar__username"
+  >
+    demo@humanyze.com
+  </span>
+  <div
+    className="UserAvatar__dropdown-wrapper"
+  >
+    <div
+      className="UserAvatar__avatar-icon"
+      onClick={[Function]}
+    >
+      <i
+        className="material-icons 35 md-dark "
+        icon="account_circle"
+        style={
+          Object {
+            "color": "",
+            "fontSize": 35,
+          }
+        }
+      />
+    </div>
+    <div
+      className="UserAvatar__dropdown"
+    >
+      <div
+        className="UserAvatar__dropdown-body"
+      >
+        <a
+          className="UserAvatar__dropdown-link"
+          href="/dashboard"
+        >
+          Dashboard
+        </a>
+        <a
+          className="UserAvatar__dropdown-link"
+          href="/manage"
+        >
+          Management
+        </a>
+        <a
+          className="UserAvatar__dropdown-link"
+          href="/select-deployment?for=executive"
+        >
+          Executive
+        </a>
+        <a
+          className="UserAvatar__dropdown-link"
+          href="/select-deployment?for=digital"
+        >
+          Digital
+        </a>
+        <a
+          className="UserAvatar__dropdown-link"
+          href="/profile"
+        >
+          Profile
+        </a>
+        <a
+          className="UserAvatar__dropdown-link"
+          href="/profile/change-password"
+        >
+          Change Password
+        </a>
+        <div
+          className="UserAvatar__dropdown-divider"
+        />
+        <a
+          className="UserAvatar__dropdown-link"
+          href="/logout"
+          onClick={[Function]}
+        >
+          Log out
+        </a>
+        <div
+          className="UserAvatar__dropdown-version-text"
+        >
+          Elements
+           v
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots UserAvatar initial 1`] = `
+<div
+  className="UserAvatar"
+>
+  <span
+    className="UserAvatar__username"
+  >
+    demo@humanyze.com
+  </span>
+  <div
+    className="UserAvatar__dropdown-wrapper"
+  >
+    <div
+      className="UserAvatar__avatar-icon"
+      onClick={[Function]}
+    >
+      <i
+        className="material-icons 35 md-dark "
+        icon="account_circle"
+        style={
+          Object {
+            "color": "",
+            "fontSize": 35,
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;

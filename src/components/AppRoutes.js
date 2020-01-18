@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import Deployment from './deployment/Deployment';
 import { compose, lifecycle } from 'recompose';
 import Logout from 'Src/components/action-routes/logout';
@@ -30,12 +29,12 @@ const AuthenticatedRoutes = compose(onWillMount)(({ path, userLoaded, }) => {
 });
 
 
-const LoginRedirect = () => <Route component={() => window.location.href = '/login'}/>;
+const LoginRedirect = () => <Route component={ () => window.location.assign('/login') }/>;
 
 const AppRoutesPure = withRouter(({ authenticated, userLoaded, match, setUserDataByAuthId, }) => {
 
   if (!authenticated) {
-    window.location.href = '/login';
+    window.location.assign('/login');
     return null;
   }
 

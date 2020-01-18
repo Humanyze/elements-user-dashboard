@@ -1,6 +1,6 @@
 import React from 'react';
 import './participants-table-header.scss';
-import { getFormattedHeaders } from 'Src/redux/participants-ui/participantsUIReducer';
+import { getFormattedHeaders } from 'Redux/participants-ui/participantsUIReducer';
 import { connect } from 'react-redux';
 
 export const ParticipantsTableHeaderPure = ({ headers = [], }) => {

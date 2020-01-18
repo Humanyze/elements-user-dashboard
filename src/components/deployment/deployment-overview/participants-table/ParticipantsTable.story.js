@@ -1,14 +1,18 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { RouterContext, StoreContext } from 'TestUtils/contextCreators.js';
+import { ErrorBoundary } from 'ElementsWebCommon';
 
 import ParticipantsTable from './ParticipantsTable';
 import { translations } from 'Src/tests/contextCreators';
+
 const defaultProps = {
     translations: translations,
     showLoading: false,
+    paginationLoading: false,
     numberOfPages: 30,
-    activePageNumber: 17
+    activePageNumber: 17,
+    onPaginationPageClicked: () => {}  // TODO: Enhance this for the storybook
 };
 
 const onLoad = {
@@ -652,7 +656,17 @@ const normalParticipants = {
     loading: false
 }
 
-const createComp = (props) => <StoreContext><RouterContext><ParticipantsTable {...defaultProps} {...props}/></RouterContext></StoreContext>;
+const createComp = (props) => {
+    return (
+        <StoreContext>
+            <RouterContext>
+                <ErrorBoundary>
+                    <ParticipantsTable {...defaultProps} {...props}/>
+                </ErrorBoundary>
+            </RouterContext>
+        </StoreContext>
+    );
+};
 
 storiesOf('Participants Table', module)
     .add('loading', () => createComp(onLoad))

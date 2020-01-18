@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { elementsRedux, routerPaths } from 'ElementsWebCommon';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import withRouter from '../../deployment/DeploymentRoutes';
+//import withRouter from '../../deployment/DeploymentRoutes';
 
 const {
   companyActions: {

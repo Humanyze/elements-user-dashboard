@@ -6,7 +6,7 @@ import PARTICIPANTS_ACTION_TYPES from 'Redux/participants/participantsActionType
 
 import { participantsFetchError, participantsFetchSuccess } from './participantsActions';
 
-import { setViewableFields } from 'Src/redux/participants-ui/participantsUIActions';
+import { setViewableFields } from 'Redux/participants-ui/participantsUIActions';
 
 const {
   errorActions: {

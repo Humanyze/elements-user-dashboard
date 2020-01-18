@@ -10,9 +10,12 @@ const {
   modalReducer,
   userDataReducer,
   AUTH_ACTION_TYPES,
+  groupUIReducer,
   metaDataReducer,
+  filterUIReducer,
   deploymentReducer,
   companyReducer,
+  colorReducer,
 } = elementsRedux;
 
 
@@ -24,9 +27,12 @@ const AppReducer = combineReducers({
   user: userDataReducer,
   modal: modalReducer,
   deployment: deploymentReducer,
+  groupUI: groupUIReducer,
   company: companyReducer,
+  filterUI: filterUIReducer,
   participants: participantsReducer,
   participantsUI: participantsUIReducer,
+  color: colorReducer,
 });
 
 const RootReducer = (state, action) => {

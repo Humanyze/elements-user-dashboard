@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { elementsReact, elementsRedux, routerPaths } from 'ElementsWebCommon';
+import { elementsReact, elementsRedux } from 'ElementsWebCommon';
 
 const {
   CompanySelectionTable,

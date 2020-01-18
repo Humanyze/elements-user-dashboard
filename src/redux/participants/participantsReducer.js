@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { createSelector } from 'reselect';
 import EQUIPMENT_ACTION_TYPES from './participantsActionTypes';
-import { onNewPage } from 'Src/redux/participants-ui/participantsUIReducer';
+import { onNewPage } from 'Redux/participants-ui/participantsUIReducer';
 
 export const initialState = {
   requestPending: false,
