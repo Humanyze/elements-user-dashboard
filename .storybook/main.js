@@ -1,3 +1,5 @@
+const override = require('../config-overrides');
+
 module.exports = {
     addons: [
         '@storybook/addon-viewport/register',
@@ -6,8 +8,8 @@ module.exports = {
         '@storybook/preset-create-react-app',
     ],
     webpackFinal: (config) => {
-        config.module.rules[3].oneOf[1].options.babelrc = true;
-        console.dir(config, { depth: null });
+        config = override(config)
+        //console.dir(config, { depth: null });
         return config;
     }
 }
