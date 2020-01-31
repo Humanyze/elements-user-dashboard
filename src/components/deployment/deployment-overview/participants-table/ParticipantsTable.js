@@ -12,7 +12,7 @@ const {
   LoadingUI,
 } = elementsReact;
 const {
-  translationPropTypeShape
+  translationPropTypeShape,
 } = elementsRedux;
 
 const TableData = ({ participants, showLoading, }) => {
@@ -20,13 +20,13 @@ const TableData = ({ participants, showLoading, }) => {
     return (<div>Loading...</div>);
   }
   if (participants && participants.length) {
-      return participants.map((participant) => <ParticipantsTableRow key={participant.id} participant={participant}/>)
+    return participants.map((participant) => <ParticipantsTableRow key={participant.id} participant={participant}/>);
   }
-  return(
+  return (
     <tr>
       <td>No data in dataset</td>
     </tr>
-  )
+  );
 };
 
 export const ParticipantsTable = ({ activePageNumber, numberOfPages, onPaginationPageClicked, showLoading, paginationLoading, participants, translations, }) => {
