@@ -74,10 +74,11 @@
     "start": "PORT=3001 react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
-    "test:debug": "react-app-rewired --inspect-brk test --runInBand --no-cache --env=jsdom",
+    "test:container": "react-app-rewired test --env=jsdom --runInBand",
+    "test:debug": "react-app-rewired test --inspect-brk --runInBand --no-cache --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "./cscripts/storybook",
-    "storybook:container": "start-storybook -p 9003 -c .storybook -s ./public",
+    "storybook:container": "start-storybook -p 9003 -c .storybook -s ./public --ci",
     "build-storybook": "build-storybook -c .storybook -o .out",
     "common-docs": "jsdoc -c ./src/components/common/jsdoc.conf ./src/components/common/ -r -d ./src/components/common/docs"
   },

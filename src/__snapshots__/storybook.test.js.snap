@@ -62,6 +62,108 @@ exports[`Storyshots DateRangeSelector initial 1`] = `
 </div>
 `;
 
+exports[`Storyshots DateSelector constrained range 1`] = `
+<div
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "height": "100%",
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    className="DateSelector"
+  >
+    <div
+      className="DateSelector__dropdown"
+    >
+      <div
+        className="react-datepicker-wrapper"
+      >
+        <div
+          className="react-datepicker__input-container"
+        >
+          <div
+            className="DateSelector__label-button react-datepicker-ignore-onclickoutside"
+            onClick={[Function]}
+          >
+            <div
+              className="DateSelector__select-date-text"
+            >
+              Select a date
+            </div>
+            <i
+              className="material-icons 18 md-dark "
+              icon="event_note"
+              style={
+                Object {
+                  "color": "",
+                  "fontSize": 18,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots DateSelector date pre selected 1`] = `
+<div
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "height": "100%",
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    className="DateSelector"
+  >
+    <div
+      className="DateSelector__dropdown"
+    >
+      <div
+        className="react-datepicker-wrapper"
+      >
+        <div
+          className="react-datepicker__input-container"
+        >
+          <div
+            className="DateSelector__label-button react-datepicker-ignore-onclickoutside"
+            onClick={[Function]}
+          >
+            <div
+              className="DateSelector__date-text"
+            >
+              Jan 01, 2019
+            </div>
+            <i
+              className="material-icons 18 md-dark "
+              icon="event_note"
+              style={
+                Object {
+                  "color": "",
+                  "fontSize": 18,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Storyshots DateSelector dateSelected 1`] = `
 <div
   style={
