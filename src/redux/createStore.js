@@ -5,7 +5,7 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { createEpicMiddleware } from 'redux-observable';
 import rootReducer from './rootReducer';
-import rootEpic  from './rootEpic';
+//import rootEpic  from './rootEpic';
 
 
 
@@ -51,11 +51,11 @@ const customCreateStore = () => {
   //  load the offline middleware (which has it's own tests) since it can't work for us in these tests anyway.
   const enhancer = process.env.JEST_WORKER_ID ? applyMiddleware(...middleware) : compose(
     applyMiddleware(...middleware),
-    offline(offlineConfig),
+    offline(offlineConfig)
   );
   const store = createStore(rootReducer, enhancer);
 
-  epicMiddleware.run(rootEpic)
+  //epicMiddleware.run(rootEpic)
   return { store, };
 };
 

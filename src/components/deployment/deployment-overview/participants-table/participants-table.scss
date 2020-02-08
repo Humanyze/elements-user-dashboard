@@ -1,7 +1,7 @@
 @import '~Src/Global.scss';
 
 .ParticipantsTable {
-    padding: 0 40px;
+    //padding: 0 40px;
     margin-bottom: 50px;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .ParticipantsTable__table-padding {
-    padding: 40px 40px 20px;
+    padding: 20px 0px 0px 20px;
     background-color: $grey-2;
 }
 .ParticipantsTable__table-wrapper {
@@ -26,18 +26,53 @@
     margin-bottom: 40px;
 }
 
-
 .ParticipantsTable__table {
     background-color: white;
-    height: 100%;
-    width: 100%;
     border-spacing: 0;
 
-    td, th {
-        min-width: 200px;
-        max-width: 100%;
+    .td, .th {
         white-space: nowrap;
-        overflow: visible;
+        overflow: hidden;
+        padding: .5em;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+    }
+
+    .td {
+        &.gender, &.isManager, &.teamsManaged, &.timezone, &.active_badge, &.active_digital {
+            text-align: center;
+        }
+        &.working_hours_start::after, &.working_hours_end::after {
+            content: ":00";
+        }
+        &.working_hours_start, &.working_hours_end {
+            text-align: right;
+        }
+    }
+
+    .th {
+        font-weight: bold;
+        text-align: center;
+    }
+    .resizer {
+        display: inline-block;
+        background: blue;
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translateX(50%);
+        z-index: 1;
+        touch-action:none; /* prevents from scrolling while dragging on touch devices */
+
+    .resizer::hover {
+        width: 10px;
+    }
+
+        &.isResizing {
+          background: red;
+        }
     }
 }
 
