@@ -39,7 +39,7 @@
     }
 
     .td {
-        &.gender, &.isManager, &.teamsManaged, &.timezone, &.active_badge, &.active_digital {
+        &.gender, &.isManager, &.teamsManaged, &.timezone, &.active_badge, &.active_digital, &.selection {
             text-align: center;
         }
         &.working_hours_start::after, &.working_hours_end::after {

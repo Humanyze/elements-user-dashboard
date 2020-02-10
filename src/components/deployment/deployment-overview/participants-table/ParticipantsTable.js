@@ -164,8 +164,7 @@ const IndeterminateCheckbox = React.forwardRef(
       resolvedRef.current.indeterminate = indeterminate;
     }, [
       resolvedRef,
-      indeterminate
-      ,
+      indeterminate,
     ]);
 
     return (
@@ -203,33 +202,7 @@ function Table(props) {
     useResizeColumns,
     useFilters,
     useSortBy,
-    useRowSelect,
-    (hooks) => {
-      hooks.flatColumns.push((columns) => [
-        // Let's make a column for selection
-        {
-          id: 'selection',
-          // The header can use the table's getToggleAllRowsSelectedProps method
-          // to render a checkbox
-          Header: ({ getToggleAllRowsSelectedProps, }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-            </div>
-          ),
-          // The cell can use the individual row's getToggleRowSelectedProps method
-          // to the render a checkbox
-          Cell: ({ row, }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
-          canResize: false,
-          disableSortBy: true,
-          width: 150,
-        },
-        ...columns,
-      ]);
-    }
+    useRowSelect
   );
 
   const {
@@ -277,6 +250,8 @@ function Table(props) {
     }
   );
 
+  const bodyProps = getTableBodyProps();
+
   // Render the UI for your table
   return (
     <div {...getTableProps()} className={props.className}>
@@ -305,12 +280,13 @@ function Table(props) {
         ))}
       </div>
 
-      <div {...getTableBodyProps()}>
+      <div {...bodyProps}>
         <FixedSizeList
           width={totalColumnWidth}
           height={400}
           itemCount={rows.length}
           itemSize={35}
+          selectedItems={tableObject.selectedFlatRows.length}
         >
           {RenderRow}
         </FixedSizeList>
@@ -323,6 +299,33 @@ function ParticipantsTable(props) {
 
   const columns = React.useMemo(
     () => [
+      {
+        id: 'selection',
+        // The header can use the table's getToggleAllRowsSelectedProps method
+        // to render a checkbox
+        Header: ({ getToggleAllRowsSelectedProps, }) => {
+          const props = getToggleAllRowsSelectedProps();
+          return (
+            <div>
+              <IndeterminateCheckbox {...props} />
+            </div>
+          );
+        },
+        // The cell can use the individual row's getToggleRowSelectedProps method
+        // to the render a checkbox
+        Cell: ({ row, }) => {
+          const rowProps = row.getToggleRowSelectedProps();
+          console.log(rowProps.checked, rowProps.indeterminate);
+          return (
+            <div className={'selection'}>
+              <IndeterminateCheckbox {...rowProps} />
+            </div>
+          );
+        },
+        canResize: false,
+        disableSortBy: true,
+        width: 50,
+      },
       {
         id: 'email',
         Header: 'email',
@@ -403,8 +406,7 @@ function ParticipantsTable(props) {
         filter: 'equals',
         width: 80,
       },
-
-    ]);
+    ], []);
 
   const {
     showLoading,
@@ -420,7 +422,7 @@ function ParticipantsTable(props) {
       <Table
         className='ParticipantsTable__table'
         columns={columns}
-        data={participants || []} />
+        data={participants || []}/>
     );
   };
 
