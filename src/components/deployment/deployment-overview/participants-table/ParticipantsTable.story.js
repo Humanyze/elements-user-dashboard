@@ -69,7 +69,7 @@ function makeData(...lens) {
 
   return makeDataLevel();
 }
-const participants = makeData(100);
+const participants = makeData(1000);
 
 const defaultProps = {
     translations: translations,

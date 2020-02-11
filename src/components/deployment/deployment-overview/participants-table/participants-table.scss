@@ -24,6 +24,22 @@
 .ParticipantsTable__table-wrapper {
     overflow-x: scroll;
     margin-bottom: 40px;
+
+    .counts {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1em;
+
+        .value {
+            font-weight: bold;
+        }
+
+        .selected, .filtered, .available, .visible {
+            display: inline-block;
+        }
+    }
 }
 
 .ParticipantsTable__table {
@@ -80,3 +96,22 @@
     position: relative;
     height: 500px;
 }
+
+div.sort-button {
+    display: inline-block;
+    margin-left: 1em;
+}
+
+span.sort-indicator {
+    font-family: FontAwesome;
+    &.sortable::after {
+        content: fa-content($fa-var-sort);
+    }
+    &.ascending::after {
+        content: fa-content($fa-var-sort-up);
+    }
+    &.descending:after {
+        content: fa-content($fa-var-sort-down);
+    }
+}
+

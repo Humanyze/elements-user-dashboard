@@ -32,6 +32,7 @@
     "html2canvas": "^1.0.0-rc.5",
     "js-file-download": "^0.4.9",
     "lodash.isequal": "^4.5.0",
+    "lodash.size": "^4.2.0",
     "match-sorter": "^4.0.2",
     "material-icons-react": "^1.0.4",
     "moment-locales-webpack-plugin": "^1.1.2",
