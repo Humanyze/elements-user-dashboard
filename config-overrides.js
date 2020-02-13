@@ -40,7 +40,7 @@ const addResolveAliases = (config) => {
     'Assets': path.resolve(`${paths.appSrc}/assets`),
     'Utils': path.resolve(`${paths.appSrc}/elements-web-common/assets/utils`),
     'Redux': path.resolve(`${paths.appSrc}/redux`),
-    'ReduxCommon': path.resolve(`${paths.appSrc}/elements-web-common/src/redux`),
+    'ReduxCommon': path.resolve(`${paths.appSrc}/elements-web-common/redux`),
     'Common': path.resolve(`${paths.appSrc}/components/common`),
     'Story': path.resolve(paths.storybookConfig),
     'TestUtils': path.resolve(`${paths.appSrc}/tests`),

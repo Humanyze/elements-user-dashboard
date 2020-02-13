@@ -228,8 +228,7 @@ function Table(props) {
         const { selected, } = action;
         const { isAllRowsSelected, flatRowsById, } = instance;
 
-        const selectAll =
-      typeof selected !== 'undefined' ? selected : !isAllRowsSelected;
+        const selectAll = typeof selected !== 'undefined' ? selected : !isAllRowsSelected;
 
         // Only remove/add the rows that are visible on the screen
         //  Leave all the other rows that are selected alone.

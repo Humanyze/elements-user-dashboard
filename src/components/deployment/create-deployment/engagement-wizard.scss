@@ -1,0 +1,115 @@
+/* These should come from the variable/_colors.scss file once I figure out how
+     to manage the import paths in SASS */
+$grey-cf:    #cfcfcf;
+$blue-1: #25b3d5;
+$blue-3: #5ad1e5;
+$humanyze-blue: $blue-1;
+
+$failed: red;
+$pending: $grey-cf;
+$complete: $humanyze-blue;
+$complete-icon: $blue-3;
+
+.engagement-wizard {
+
+  .wizard-steps {
+
+    .wizard-step-circle {
+      fill: transparent;
+
+      stroke-width: 2px;
+      stroke: $pending;
+    }
+
+    .process .wizard-step-icon path {
+      fill: none;
+      stroke-width: 3px;
+    }
+
+    .wizard-step-text {
+      text-transform: uppercase;
+      text-anchor: middle;
+    }
+
+    .wizard-step-text,
+    .metadata .wizard-step-icon path,
+    .participants .wizard-step-icon path {
+      fill: $pending;
+    }
+
+    .process .wizard-step-icon path {
+      stroke: $pending;
+    }
+
+    .metadata.active,
+    .participants.active,
+    .process.active {
+
+      .wizard-step-text {
+        fill: $complete;
+      }
+    }
+
+    .metadata.complete,
+    .participants.complete {
+
+      .wizard-step-text {
+        fill: $complete;
+      }
+
+      .wizard-step-icon path {
+        fill: $complete-icon;
+      }
+    }
+
+    .process.failed {
+      .wizard-step-text {
+        fill: $failed;
+      }
+      .wizard-step-icon path {
+        fill: $failed;
+      }
+      .wizard-step-circle {
+        stroke: $failed;
+      }
+    }
+
+    .process.complete {
+
+      .wizard-step-text {
+        fill: $complete;
+      }
+
+      .wizard-step-icon path {
+        stroke: $complete-icon;
+      }
+    }
+  }
+}
+
+.wizard-connector {
+  stroke-width: 2px;
+  fill: none;
+  stroke: $pending;
+
+  &.complete, &.active {
+    .background {
+      stroke: $complete;
+    }
+  }
+  &.failed {
+    stroke: $failed;
+  }
+}
+
+.wizard-step {
+
+  &.complete {
+    .wizard-step-circle {
+      stroke: $complete;
+    }
+  }
+  &.pending {
+    stroke: $pending;
+  }
+}
