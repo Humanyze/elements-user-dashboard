@@ -6,9 +6,7 @@
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@humanyze/react-with-analytics": "https://github.com/Humanyze/react-with-analytics.git#master",
-    "@material-ui/core": "^4.8.3",
     "@redux-offline/redux-offline": "^2.5.2",
-    "@sambego/storybook-state": "^2.0.1",
     "@sentry/browser": "^5.12.0",
     "browser-detect": "^0.2.28",
     "chai": "^4.2.0",
@@ -36,7 +34,6 @@
     "match-sorter": "^4.0.2",
     "material-icons-react": "^1.0.4",
     "moment-locales-webpack-plugin": "^1.1.2",
-    "node-sass": "^4.13.0",
     "normalize-scss": "^7.0.1",
     "papaparse": "^5.1.1",
     "pluralize": "^8.0.0",
@@ -66,9 +63,6 @@
     "redux-thunk": "^2.3.0",
     "require-context.macro": "^1.2.2",
     "reselect": "^4.0.0",
-    "sass-loader": "^8.0.1",
-    "storybook": "^5.3.0",
-    "storybook-react-router": "^1.0.8",
     "styled-components": "^4.4.1"
   },
   "scripts": {
@@ -119,6 +113,7 @@
     ]
   },
   "devDependencies": {
+    "@sambego/storybook-state": "^2.0.1",
     "@storybook/addon-actions": "^5.3.9",
     "@storybook/addon-console": "^1.2.1",
     "@storybook/addon-knobs": "^5.3.0",
@@ -127,6 +122,10 @@
     "@storybook/addon-viewport": "^5.3.0",
     "@storybook/preset-create-react-app": "^1.5.2",
     "@storybook/react": "^5.3.0",
-    "namor": "^2.0.2"
+    "namor": "^2.0.2",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.1",
+    "storybook": "^5.3.0",
+    "storybook-react-router": "^1.0.8"
   }
 }
