@@ -29,13 +29,21 @@ const AuthenticatedRoutes = compose(onWillMount)(({ path, userLoaded, }) => {
 });
 
 
-const LoginRedirect = () => <Route component={ () => window.location.assign('/login') }/>;
+const LoginRedirect = (props) => {
+  const { currentLocation, } = props;
 
-const AppRoutesPure = withRouter(({ authenticated, userLoaded, match, setUserDataByAuthId, }) => {
+  const url = currentLocation ? `/login?next=${encodeURIComponent(currentLocation)}` : '/login';
+  return (
+    <Route component={ () => window.location.assign(url) }/>
+  );
+};
+
+const AppRoutesPure = withRouter(({ authenticated, userLoaded, match, setUserDataByAuthId, location ,}) => {
 
   if (!authenticated) {
-    window.location.assign('/login');
-    return null;
+    return (
+      <LoginRedirect currentLocation={location} />
+    );
   }
 
   const { path, } = match;
@@ -48,7 +56,7 @@ const AppRoutesPure = withRouter(({ authenticated, userLoaded, match, setUserDat
         <AuthenticatedRoutes path={path}
           setUserData={setUserDataByAuthId}
           userLoaded={userLoaded}/>
-        : <LoginRedirect/>
+        : <LoginRedirect currentLocation={location}/>
       }
     </div>
   );

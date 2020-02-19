@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './participants-table.scss';
+
+
+import { FixedSizeList } from 'react-window';
+import _size from 'lodash.size';
+import { withRouter } from 'react-router-dom';
+import { elementsReact, elementsRedux } from 'ElementsWebCommon';
+
 import {
   actions,
   useTable,
@@ -10,11 +16,16 @@ import {
   useBlockLayout,
   useResizeColumns
 } from 'react-table';
-import { FixedSizeList } from 'react-window';
-import matchSorter from 'match-sorter';
-import _size from 'lodash.size';
-import { withRouter } from 'react-router-dom';
-import { elementsReact, elementsRedux } from 'ElementsWebCommon';
+import {
+  DefaultColumnFilter,
+  TableCount,
+  IndeterminateCheckbox,
+  SelectColumnFilter,
+  NumberRangeColumnFilter,
+  sortingIndicator
+} from '../../../table-utils';
+
+import './participants-table.scss';
 
 const {
   LoadingUI,
@@ -24,169 +35,6 @@ const {
 } = elementsRedux;
 
 
-// Define a default UI for filtering
-function DefaultColumnFilter({
-  column: { filterValue, preFilteredRows, setFilter, },
-}) {
-  const count = preFilteredRows.length;
-
-  return (
-    <input
-      value={filterValue || ''}
-      onChange={(e) => {
-        setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
-      }}
-      placeholder={`Search ${count} records...`}
-    />
-  );
-}
-
-// This is a custom filter UI for selecting
-// a unique option from a list
-function SelectColumnFilter({
-  column: { filterValue, setFilter, preFilteredRows, id, },
-}) {
-  // Calculate the options for filtering
-  // using the preFilteredRows
-  const options = React.useMemo(() => {
-    const options = new Set();
-    preFilteredRows.forEach((row) => {
-      options.add(row.values[id]);
-    });
-    return [ ...options.values() , ];
-  }, [
-    id,
-    preFilteredRows
-    ,
-  ]);
-
-  // Render a multi-select box
-  return (
-    <select
-      value={filterValue}
-      onChange={(e) => {
-        setFilter(e.target.value || undefined);
-      }}
-    >
-      <option value=''>All</option>
-      {options.map((option, i) => (
-        <option key={i} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
-  );
-}
-
-// This is a custom UI for our 'between' or number range
-// filter. It uses two number boxes and filters rows to
-// ones that have values between the two
-function NumberRangeColumnFilter({
-  column: { filterValue = [], preFilteredRows, setFilter, id, },
-}) {
-  const [
-    min,
-    max
-    ,
-  ] = React.useMemo(() => {
-    let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
-    let max = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
-    preFilteredRows.forEach((row) => {
-      min = Math.min(row.values[id], min);
-      max = Math.max(row.values[id], max);
-    });
-    return [
-      min,
-      max
-      ,
-    ];
-  }, [
-    id,
-    preFilteredRows
-    ,
-  ]);
-
-  return (
-    <div
-      style={{
-        display: 'flex',
-      }}
-    >
-      <input
-        value={filterValue[0] || ''}
-        type='number'
-        onChange={(e) => {
-          const val = e.target.value;
-          setFilter((old = []) => [
-            val ? parseInt(val, 10) : undefined,
-            old[1],
-          ]);
-        }}
-        placeholder={`Min (${min})`}
-        style={{
-          width: '70px',
-          marginRight: '0.5rem',
-        }}
-      />
-      to
-      <input
-        value={filterValue[1] || ''}
-        type='number'
-        onChange={(e) => {
-          const val = e.target.value;
-          setFilter((old = []) => [
-            old[0],
-            val ? parseInt(val, 10) : undefined,
-          ]);
-        }}
-        placeholder={`Max (${max})`}
-        style={{
-          width: '70px',
-          marginLeft: '0.5rem',
-        }}
-      />
-    </div>
-  );
-}
-
-function fuzzyTextFilterFn(rows, id, filterValue) {
-  return matchSorter(rows, filterValue, { keys: [ (row) => row.values[id] , ], });
-}
-
-// Let the table remove the filter if the string is empty
-fuzzyTextFilterFn.autoRemove = (val) => !val;
-
-const IndeterminateCheckbox = React.forwardRef(
-  ({ indeterminate, ...rest }, ref) => {
-    const defaultRef = React.useRef();
-    const resolvedRef = ref || defaultRef;
-
-    React.useEffect(() => {
-      resolvedRef.current.indeterminate = indeterminate;
-    }, [
-      resolvedRef,
-      indeterminate,
-    ]);
-
-    return (
-      <>
-        <input type='checkbox' ref={resolvedRef} {...rest} />
-      </>
-    );
-  }
-);
-
-const TableCount = (props) => {
-  return (
-    <div className={props.className}>
-      <span className='value'>{props.value}</span> {props.legend}
-    </div>);
-};
-TableCount.propTypes = {
-  className: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-  legend: PropTypes.string.isRequired,
-};
 
 // Our actual table component
 function Table(props) {
@@ -205,6 +53,8 @@ function Table(props) {
     []
   );
 
+  // The useRowSelect that comes with react-table is broken.  This fixes it
+  //   and needs to remain here until they fix the package itself.
   const useFixedRowSelect = (hooks) => {
     useRowSelect(hooks);
     hooks.stateReducers.pop();  // Remove the damaged reducer
@@ -354,26 +204,6 @@ function Table(props) {
     }
   );
 
-  const sortingIndicator = (column) => {
-    if (column.disableSortBy) {
-      return null;
-    }
-    let className = 'sort-indicator';
-    if (column.isSorted) {
-      className += ' ascending';
-    } else if (column.isSortedDesIc) {
-      className += ' descending';
-    } else {
-      className += ' sortable';
-    }
-    return (<div className='sort-button' {...column.getSortByToggleProps()}>
-      <span className={className} />
-    </div>);
-  };
-
-  const renderHeader = (column) => {
-    return column.render('Header');
-  };
   // Render the UI for your table
   return (
     <React.Fragment>
@@ -383,7 +213,7 @@ function Table(props) {
             <div {...headerGroup.getHeaderGroupProps()} width='100%' className='tr'>
               {headerGroup.headers.map((column) => (
                 <div {...column.getHeaderProps()} width={column.width} className='th'>
-                  {renderHeader(column)}
+                  {column.render('Header')}
                   {/* Add a sort direction indicator */}
                   {sortingIndicator(column)}
                   {/* Render the columns filter UI */}

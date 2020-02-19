@@ -83,7 +83,6 @@ const onLoad = {
 
 const normalParticipants = {
     participants,
-    loading: false
 }
 
 const createComp = (props) => {

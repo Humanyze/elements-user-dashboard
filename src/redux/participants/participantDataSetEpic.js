@@ -1,5 +1,6 @@
-import { ofType, combineEpics, switchMap, mergeMap, catchError, takeUntil } from 'redux-observable';
+import { ofType, combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs';
+import { catchError, mergeMap, switchMap, takeUntil  } from 'rxjs/operators';
 import { elementsRedux } from 'ElementsWebCommon';
 
 import PARTICIPANTS_ACTION_TYPES from 'Redux/participants/participantsActionTypes';

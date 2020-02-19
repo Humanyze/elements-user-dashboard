@@ -6,6 +6,7 @@
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@humanyze/react-with-analytics": "https://github.com/Humanyze/react-with-analytics.git#master",
+    "@material-ui/core": "^4.9.3",
     "@redux-offline/redux-offline": "^2.5.2",
     "@sentry/browser": "^5.12.0",
     "browser-detect": "^0.2.28",

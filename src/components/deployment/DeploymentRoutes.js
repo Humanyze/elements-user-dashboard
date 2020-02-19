@@ -10,6 +10,7 @@ import CompanyModule from '../company-module/CompanyModule';
 const DeploymentRoutes = ({ match, }) => {
   const { path, } = match;
 
+  console.log(path, match);
   return (
     <Switch>
       <Route path={`${path}deployment/:datasetId/:perPage?/:page?`} component={DeploymentOverview}/>
