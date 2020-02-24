@@ -34,7 +34,7 @@ const CompanyModule = connect(
 }) => {
   React.useEffect(() => {
     fetchCompaniesForUser();
-  }, []);
+  }, [ fetchCompaniesForUser, ]);
   return (
     <CompanyModuleRoutes />
   );

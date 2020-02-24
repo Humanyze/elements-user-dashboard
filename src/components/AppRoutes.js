@@ -38,7 +38,7 @@ const LoginRedirect = (props) => {
   );
 };
 
-const AppRoutesPure = withRouter(({ authenticated, userLoaded, match, setUserDataByAuthId, location ,}) => {
+const AppRoutesPure = withRouter(({ authenticated, userLoaded, match, setUserDataByAuthId, location, }) => {
 
   if (!authenticated) {
     return (

@@ -30,7 +30,7 @@ const {
   deploymentSelectors: {
     getSelectedDeployment,
   },
-  translationPropTypeShape
+  translationPropTypeShape,
 } = elementsRedux;
 
 const withLifecycle = lifecycle({
@@ -136,17 +136,17 @@ const DeploymentOverviewPure = ({ selectedDeployment, activePageNumber, numberOf
 };
 
 DeploymentOverviewPure.propTypes = {
-    translations: translationPropTypeShape.isRequired,
-    selectedDeployment: PropTypes.object.isRequired,
-    activePageNumber: PropTypes.number.isRequired,
-    numberOfPages: PropTypes.number.isRequired,
-    onPaginationPageClicked: PropTypes.func.isRequired,
-    participants: PropTypes.arrayOf(PropTypes.object).isRequired,
-    showLoading: PropTypes.bool.isRequired,
-    paginationLoading: PropTypes.bool.isRequired,
-    match: PropTypes.object.isRequired,
-    fetchDeploymentById: PropTypes.func.isRequired,
-}
+  translations: translationPropTypeShape.isRequired,
+  selectedDeployment: PropTypes.object.isRequired,
+  activePageNumber: PropTypes.number.isRequired,
+  numberOfPages: PropTypes.number.isRequired,
+  onPaginationPageClicked: PropTypes.func.isRequired,
+  participants: PropTypes.arrayOf(PropTypes.object).isRequired,
+  showLoading: PropTypes.bool.isRequired,
+  paginationLoading: PropTypes.bool.isRequired,
+  match: PropTypes.object.isRequired,
+  fetchDeploymentById: PropTypes.func.isRequired,
+};
 
 const DeploymentOverview = connect(
   (state) => ({
@@ -166,7 +166,7 @@ const DeploymentOverview = connect(
     setPage,
     setInitialPage,
     setLimit,
-  },
+  }
 )(withRouter(enhance(DeploymentOverviewPure)));
 
 console.log(DeploymentOverview, DeploymentOverviewPure);

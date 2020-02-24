@@ -8,7 +8,7 @@ yarn
 
 # Make sure that if yarn has been run outside the container, that node is fixed so that it will run inside the container
 #  Sass has a binary component that cannot be shared between Mac and Linux
-npm rebuild node-sass
+# npm rebuild node-sass
 
 # Start the dev server after compiling the code.  When this exits, the container will end
 yarn run start

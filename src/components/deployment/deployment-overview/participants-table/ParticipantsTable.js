@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { FixedSizeList } from 'react-window';
 import _size from 'lodash.size';
 import { withRouter } from 'react-router-dom';
-import { elementsReact, elementsRedux } from 'ElementsWebCommon';
+import { elementsReact /*, elementsRedux */ } from 'ElementsWebCommon';
 
 import {
   actions,
@@ -30,9 +30,9 @@ import './participants-table.scss';
 const {
   LoadingUI,
 } = elementsReact;
-const {
-  translationPropTypeShape,
-} = elementsRedux;
+// const {
+//   translationPropTypeShape,
+// } = elementsRedux;
 
 
 
@@ -366,7 +366,7 @@ function ParticipantsTable(props) {
   const {
     showLoading,
     participants,
-    translations,
+    //translations,
   } = props;
 
   const TableOrLoading = () => {
@@ -393,7 +393,7 @@ function ParticipantsTable(props) {
 }
 
 ParticipantsTable.propTypes = {
-  translations: translationPropTypeShape.isRequired,
+  //translations: translationPropTypeShape.isRequired,
   showLoading: PropTypes.bool.isRequired,
   participants: PropTypes.arrayOf(PropTypes.object), // NOT required
 };
