@@ -15,6 +15,7 @@ const safePostCssParser = require('postcss-safe-parser');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const WebpackConfigDumpPlugin = require('webpack-config-dump-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
@@ -64,7 +65,7 @@ module.exports = function(webpackEnv) {
   // In development, we always serve from the root. This makes config easier.
   const publicPath = isEnvProduction
     ? paths.servedPath
-    : isEnvDevelopment && '/';
+    : isEnvDevelopment && '/deployments/';
   // Some apps do not use client-side routing with pushState.
   // For these, "homepage" can be set to "." to enable relative asset paths.
   const shouldUseRelativeAssetPaths = publicPath === './';
@@ -74,7 +75,7 @@ module.exports = function(webpackEnv) {
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
   const publicUrl = isEnvProduction
     ? publicPath.slice(0, -1)
-    : isEnvDevelopment && '';
+    : isEnvDevelopment && '/deployments';
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(publicUrl);
 
@@ -542,15 +543,19 @@ module.exports = function(webpackEnv) {
     },
     plugins: [
     // ...
-      { // anonymous plugin
-        apply(compiler) {
-          compiler.hooks.beforeRun.tapAsync('MyCustomBeforeRunPlugin', function(compiler, callback) {
-          // debugger
-            console.dir(compiler.options);
-            callback();
-          });
-        },
-      },
+      new WebpackConfigDumpPlugin({
+        // Path to store config dump
+        outputPath: './',
+
+        // Config dump filename
+        name: 'webpack.config.dump',
+
+        // Config depth. Since webpack config is circulary locked,
+        // we can't dump whole config. This parameter sets how deep
+        // config dump will be stored
+        depth: 8, // Default is: 4,
+
+      }),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
@@ -718,7 +723,7 @@ module.exports = function(webpackEnv) {
   //  console.log(util.inspect(rule, true, 8));
   //});
   //console.log(modules.webpackAliases);
-  //console.log(util.inspect(webpackConfig, true, 8));
+  //console.log('webpackConfig', util.inspect(webpackConfig, true, 8));
   //process.exit(-1);
   return webpackConfig;
 };

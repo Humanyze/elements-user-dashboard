@@ -114,12 +114,13 @@
     "ts-pnp": "1.1.5",
     "url-loader": "2.3.0",
     "webpack": "4.41.2",
+    "webpack-config-dump-plugin": "^1.0.5",
     "webpack-dev-server": "3.9.0",
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-    "start": "PORT=3000 node scripts/start",
+    "start": "PORT=3000 PUBLIC_URL=/deployment node scripts/start",
     "build": "node scripts/build",
     "test": "node scripts/test --env=jsdom",
     "test:container": "node scripts/test --env=jsdom --runInBand",
