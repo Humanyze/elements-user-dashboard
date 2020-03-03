@@ -28,7 +28,9 @@ const STEP_1_HORIZONTAL = 50;
 
 const enhance = compose();
 
+// Below are the translation keys for this component in the various states they can presented in.
 const metadataStates = {
+  'pending': 'EngagementWizard__metadata-active',
   'active': 'EngagementWizard__metadata-active',
   'complete': 'EngagementWizard__metadata-complete',
 };
@@ -80,6 +82,9 @@ const EngagementWizardPure = (props) => {
   const processingStates = engagementExists ? updateStates : createStates;
 
   function metadataStateClassname() {
+    if (machineState === machineStates.ENTER_METADATA) {
+      return 'pending';
+    }
     if (machineState < machineStates.METADATA_ENTERED) {
       return 'active';
     }

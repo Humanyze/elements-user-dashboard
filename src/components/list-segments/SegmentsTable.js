@@ -15,7 +15,7 @@ import {
 } from '../table-utils';
 import { FixedSizeList } from 'react-window';
 
-import './studies-table.scss';
+import './segments-table.scss';
 
 const {
   LoadingUI,
@@ -137,7 +137,7 @@ function Table(props) {
   );
 }
 
-function StudiesTable(props) {
+function SegmentsTable(props) {
 
   const columns = React.useMemo(
     () => [
@@ -187,6 +187,8 @@ function StudiesTable(props) {
     translations,
   } = props;
 
+  console.log(translations.length);
+
   const TableOrLoading = () => {
     if (showLoading) {
       return <LoadingUI/>;
@@ -200,7 +202,7 @@ function StudiesTable(props) {
   };
 
   return (
-    <div className='StudiesTable'>
+    <div className='SegmentsTable'>
       <div className='StudiesTable__table-padding'>
         <div className='StudiesTable__table-wrapper'>
           <TableOrLoading/>
@@ -210,10 +212,10 @@ function StudiesTable(props) {
   );
 }
 
-StudiesTable.propTypes = {
+SegmentsTable.propTypes = {
   translations: translationPropTypeShape.isRequired,
   showLoading: PropTypes.bool.isRequired,
   studies: PropTypes.arrayOf(PropTypes.object), // NOT required
 };
 
-export default withRouter(StudiesTable);
+export default withRouter(SegmentsTable);

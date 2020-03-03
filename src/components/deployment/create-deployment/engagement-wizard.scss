@@ -24,6 +24,7 @@ $complete-icon: $blue-3;
     .process .wizard-step-icon path {
       fill: none;
       stroke-width: 3px;
+      stroke: $pending;
     }
 
     .wizard-step-text {

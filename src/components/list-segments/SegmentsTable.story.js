@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { RouterContext, StoreContext } from 'TestUtils/contextCreators.js';
 import { ErrorBoundary } from 'ElementsWebCommon';
 
-import StudiesTable from './StudiesTable';
+import SegmentsTable from './SegmentsTable';
 import { translations } from 'Src/tests/contextCreators';
 
 const studies = [
@@ -56,7 +56,7 @@ const createComp = (props) => {
         <StoreContext>
             <RouterContext>
                 <ErrorBoundary>
-                    <StudiesTable {...defaultProps} {...props}/>
+                    <SegmentsTable {...defaultProps} {...props}/>
                 </ErrorBoundary>
             </RouterContext>
         </StoreContext>
