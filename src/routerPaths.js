@@ -5,6 +5,7 @@ const paths = {
   login: '/login',
   deploymentSelection: '/select-deployment',
   deploymentOverview: '/deployment-overview',
+  segmentsOverview: '/segments-overview',
 };
 
 

@@ -1,19 +1,20 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { SegmentsOverviewPure as SegmentsOverview } from './SegmentsOverview';
+
+import SegmentsTable from './SegmentsTable';
 import { translations } from 'Src/tests/contextCreators';
 
-const defaultProps = {
+export const defaultProps = {
     translations: translations,
     showLoading: false,
-    segments: [],
+    segments: null,
 };
 
 const onLoad = {
     showLoading:  true
 };
 
-const withSegments = {
+export const withSegments = {
     showLoading: false,
     segments: [
     {
@@ -82,14 +83,14 @@ const withSegments = {
         "status": "pending",
         "participant_count": 5
     }
-]}
+]};
 
-const createComp = (props) => {
+export const createComp = (props) => {
     return (
-        <SegmentsOverview {...defaultProps} {...props}/>
+        <SegmentsTable {...defaultProps} {...props}/>
     );
 };
 
-storiesOf('SegmentsOverview', module)
+storiesOf('Segments Table', module)
     .add('loading', () => createComp(onLoad))
-    .add('With Segments Loaded', () => createComp(withSegments));
+    .add('loaded', () => createComp(withSegments));

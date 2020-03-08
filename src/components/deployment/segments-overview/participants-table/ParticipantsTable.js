@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { FixedSizeList } from 'react-window';
 import _size from 'lodash.size';
-import { withRouter } from 'react-router-dom';
-import { elementsReact /*, elementsRedux */ } from 'ElementsWebCommon';
+import { elementsReact, elementsRedux } from 'ElementsWebCommon';
 
 import {
   actions,
@@ -30,9 +28,9 @@ import './participants-table.scss';
 const {
   LoadingUI,
 } = elementsReact;
-// const {
-//   translationPropTypeShape,
-// } = elementsRedux;
+const {
+  translationPropTypeShape,
+} = elementsRedux;
 
 
 
@@ -198,11 +196,11 @@ function Table(props) {
     ]
   );
 
-  const totalColumnWidth = tableObject.flatColumns.reduce(
+  // Earlier versions did not set totalColumnsWidth, so be preparied to calculate it if needed
+  const totalColumnWidth = tableObject.totalColumnsWidth || tableObject.allColumns.reduce(
     (accum, column) => {
       return accum + column.width;
-    }
-  );
+    },0);
 
   // Render the UI for your table
   return (
@@ -393,9 +391,9 @@ function ParticipantsTable(props) {
 }
 
 ParticipantsTable.propTypes = {
-  //translations: translationPropTypeShape.isRequired,
+  translations: translationPropTypeShape.isRequired,
   showLoading: PropTypes.bool.isRequired,
   participants: PropTypes.arrayOf(PropTypes.object), // NOT required
 };
 
-export default withRouter(ParticipantsTable);
+export default ParticipantsTable;

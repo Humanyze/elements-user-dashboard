@@ -4,9 +4,10 @@ module.exports = {
     '!src/**/*.story.js',
     '!src/tests/**',
   ],
-  'coveragePathIgnorePatterns': [
-    // 'src/**/*.{js,jsx,mjs}'
-  ],
+  //'snapshotSerializers': [ 'enzyme-to-json/serializer', ],
+
+  //'coveragePathIgnorePatterns': ['src/**/*.{js,jsx,mjs}',],
+
   'setupFiles': [
     '<rootDir>/config/polyfills.js',
     '<rootDir>/src/setupTests.js',

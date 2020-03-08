@@ -5,7 +5,7 @@
     margin-bottom: 50px;
 }
 
-.StudiesTable__title {
+.SegmentsTable__title {
     background-color: $blue-3;
     position: relative;
     font-size: 36px;
@@ -17,11 +17,11 @@
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
 }
 
-.StudiesTable__table-padding {
+.SegmentsTable__table-padding {
     padding: 20px 0px 0px 20px;
     background-color: $grey-2;
 }
-.StudiesTable__table-wrapper {
+.SegmentsTable__table-wrapper {
     overflow-x: scroll;
     margin-bottom: 40px;
 
@@ -42,7 +42,7 @@
     }
 }
 
-.StudiesTable__table {
+.SegmentsTable__table {
     background-color: white;
     border-spacing: 0;
 
@@ -54,14 +54,15 @@
         border-right: 1px solid black;
     }
 
+    /* */
     .td {
-        &.gender, &.isManager, &.teamsManaged, &.timezone, &.active_badge, &.active_digital, &.selection {
+        &.status {
             text-align: center;
         }
-        &.working_hours_start::after, &.working_hours_end::after {
-            content: ":00";
+        &.name, &.actions {
+            text-align: left;
         }
-        &.working_hours_start, &.working_hours_end {
+        &.participant_count, &.start_date, &.end_date {
             text-align: right;
         }
     }
@@ -92,7 +93,7 @@
     }
 }
 
-.StudiesTable__loading-wrapper {
+.SegmentsTable__loading-wrapper {
     position: relative;
     height: 500px;
 }
@@ -103,7 +104,7 @@ div.sort-button {
 }
 
 span.sort-indicator {
-    font-family: FontAwesome;
+    font-family: "Font Awesome 5 Free";
     &.sortable::after {
         content: fa-content($fa-var-sort);
     }

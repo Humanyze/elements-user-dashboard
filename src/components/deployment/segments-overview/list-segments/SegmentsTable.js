@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import { elementsReact, elementsRedux } from 'ElementsWebCommon';
 
 import {
@@ -12,7 +11,7 @@ import {
 import {
   DefaultColumnFilter,
   sortingIndicator
-} from '../table-utils';
+} from 'Src/components/table-utils';
 import { FixedSizeList } from 'react-window';
 
 import './segments-table.scss';
@@ -91,11 +90,11 @@ function Table(props) {
     ]
   );
 
-  const totalColumnWidth = tableObject.flatColumns.reduce(
+  // Earlier versions did not set totalColumnsWidth, so be preparied to calculate it if needed
+  const totalColumnWidth = tableObject.totalColumnsWidth || tableObject.allColumns.reduce(
     (accum, column) => {
       return accum + column.width;
-    }
-  );
+    },0);
 
   // Render the UI for your table
   return (
@@ -139,6 +138,12 @@ function Table(props) {
 
 function SegmentsTable(props) {
 
+  const {
+    showLoading,
+    segments,
+    translations,
+  } = props;
+
   const columns = React.useMemo(
     () => [
       {
@@ -153,22 +158,31 @@ function SegmentsTable(props) {
         id: 'start_date',
         Header: 'Start Date',
         accessor: 'start_date',
+        className: 'start_date',
       },
       {
         id: 'end_date',
         Header: 'End Date',
         accessor: 'end_date',
+        className: 'end_date',
       },
       {
         id: 'participant_count',
-        Header: 'Participants',
+        Header: 'Count',
         accessor: 'partcipant_count',
         className: 'participant_count',
-        width: 80,
+        width: 100,
+      },
+      {
+        id: 'status',
+        Header: translations['Segments_Table__header-status'],
+        accessor: 'status',
+        className: 'status',
+        width: 100,
       },
       {
         id: 'actions',
-        Header: 'Actions',
+        Header: translations['Segments_Table__header-actions'],
         accessor: 'end_date',
         Cell: ({ row, }) => {
           return (
@@ -179,33 +193,21 @@ function SegmentsTable(props) {
           );
         },
       },
-    ], []);
+    ], [ translations ,]);
 
-  const {
-    showLoading,
-    studies,
-    translations,
-  } = props;
-
-  console.log(translations.length);
-
-  const TableOrLoading = () => {
-    if (showLoading) {
-      return <LoadingUI/>;
-    }
-    return (
-      <Table
-        className='StudiesTable__table'
-        columns={columns}
-        data={studies || []}/>
-    );
-  };
+  if (showLoading) {
+    return <LoadingUI/>;
+  }
 
   return (
     <div className='SegmentsTable'>
-      <div className='StudiesTable__table-padding'>
-        <div className='StudiesTable__table-wrapper'>
-          <TableOrLoading/>
+      <div className='SegmentsTable__table-padding'>
+        <div className='SegmentsTable__table-wrapper'>
+          <Table
+            className='SegmentsTable__table'
+            columns={columns}
+            data={segments || []}
+          />
         </div>
       </div>
     </div>
@@ -215,7 +217,7 @@ function SegmentsTable(props) {
 SegmentsTable.propTypes = {
   translations: translationPropTypeShape.isRequired,
   showLoading: PropTypes.bool.isRequired,
-  studies: PropTypes.arrayOf(PropTypes.object), // NOT required
+  segments: PropTypes.arrayOf(PropTypes.object), // NOT required
 };
 
-export default withRouter(SegmentsTable);
+export default SegmentsTable;

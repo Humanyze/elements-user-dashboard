@@ -173,12 +173,12 @@ const sortingIndicator = (column) => {
   let className = 'sort-indicator';
   if (column.isSorted) {
     className += ' ascending';
-  } else if (column.isSortedDesIc) {
+  } else if (column.isSortedDesc) {
     className += ' descending';
   } else {
     className += ' sortable';
   }
-  return (<div className='sort-button' {...column.getSortByToggleProps()}>
+  return (<div className='fas sort-button' data-test={`sort-${column.id}`} {...column.getSortByToggleProps()}>
     <span className={className} />
   </div>);
 };

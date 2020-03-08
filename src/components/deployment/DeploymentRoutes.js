@@ -10,13 +10,13 @@ import CompanyModule from '../company-module/CompanyModule';
 const DeploymentRoutes = ({ match, }) => {
   const { path, } = match;
 
-  console.log(path, match);
   return (
     <Switch>
-      <Route path={`${path}deployment/:datasetId/:perPage?/:page?`} component={SegmentsOverview}/>
+      <Route path={`${path}deployment`} component={SegmentsOverview}/>
+      <Route path={`${path}select-segment`} component={SegmentsOverview} />
       <Route path={`${path}select-deployment`} component={DeploymentSelection} />
       <Route path={`${path}company`} component={CompanyModule} />
-      <Route component={() => <Redirect to={`${path}select-deployment`}/> }/>
+      <Route component={() => <Redirect to={`${path}company`}/> }/>
     </Switch>
   );
 };

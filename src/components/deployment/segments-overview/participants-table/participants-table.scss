@@ -103,7 +103,6 @@ div.sort-button {
 }
 
 span.sort-indicator {
-    font-family: FontAwesome;
     &.sortable::after {
         content: fa-content($fa-var-sort);
     }

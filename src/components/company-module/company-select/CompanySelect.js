@@ -14,7 +14,7 @@ const {
 
 const CompanySelect = connect(
   (state) => ({
-    companies: getAllCompanies(state),
+    companies: Object.values(getAllCompanies(state)),
   })
 )(({
   companies,
