@@ -35,20 +35,22 @@ global.WithRouterContext = WithRouterContext;
 global.testRender = (Component, props) => {
   const wrapper = shallow(<Component {...props} />);
 
-  return () => {
-    it('should render', () => {
-      expect(wrapper).toHaveLength(1);
-    });
+  it('should render without exploding', () => {
+    expect(wrapper).toHaveLength(1);  // Not sure how this can be thought to test anything really
+    // The ErrorBoundary can fool this test, so watch out for it happening
+    expect(wrapper.find('.ErrorMessage')).toHaveLength(0);
+  });
 
-    // TODO: add default snapshot testing
-    // TODO: current issue is store context
-    // it('should match snapshot', () => {
-    //     const tree = renderer.create(
-    //         <WithRouterContext><Component {...props} /></WithRouterContext>
-    //     ).toJSON();
-    //     expect(tree).toMatchSnapshot()
-    // })
-  };
+  // TODONE with StoryShot addon
+  // TODO: add default snapshot testing
+  // TODO: current issue is store context
+  // it('should match snapshot', () => {
+  //     const tree = renderer.create(
+  //         <WithRouterContext><Component {...props} /></WithRouterContext>
+  //     ).toJSON();
+  //     expect(tree).toMatchSnapshot()
+  // })
+  return wrapper;
 };
 
 global.testRenderWithStore = (Component, props) => {
@@ -64,8 +66,8 @@ global.testRenderWithStore = (Component, props) => {
     it(`${Component.displayName} should render`, () => {
       expect(wrapper).toHaveLength(1);
     });
-  }
-}
+  };
+};
 
 
 

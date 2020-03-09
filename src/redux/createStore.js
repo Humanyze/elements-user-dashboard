@@ -20,9 +20,11 @@ const offlineConfig = {
       'modal',
       'error',
       'user',
-      'participant',
+      'participants',
       'language',
       'deployment',
+      'segments',
+      'company',
     ],
   },
 };

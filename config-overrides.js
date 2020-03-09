@@ -42,7 +42,7 @@ const addResolveAliases = (config) => {
     'Redux': path.resolve(`${paths.appSrc}/redux`),
     'ReduxCommon': path.resolve(`${paths.appSrc}/elements-web-common/redux`),
     'Common': path.resolve(`${paths.appSrc}/components/common`),
-    'Story': path.resolve(paths.storybookConfig),
+    //'Story': path.resolve(paths.storybookConfig),
     'TestUtils': path.resolve(`${paths.appSrc}/tests`),
     'ElementsWebCommon': path.resolve(`${paths.appSrc}/elements-web-common`),
     // file aliases
