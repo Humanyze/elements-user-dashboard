@@ -2,7 +2,7 @@
   "name": "root-dashboard",
   "version": "0.2.0",
   "private": true,
-  "homepage": "http://localhost:81/deployments",
+  "homepage": "http://localhost:81/",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/react-fontawesome": "^0.1.8",
