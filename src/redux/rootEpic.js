@@ -1,8 +1,10 @@
 import { combineEpics } from 'redux-observable';
-import participantDataSetEpic from './participants/participantDataSetEpic';
+import { elementsRedux } from 'ElementsWebCommon';
+
+const { metricDataEpic, } = elementsRedux;
 
 const rootEpic = combineEpics(
-  participantDataSetEpic
+  metricDataEpic
 );
 
 export default rootEpic;

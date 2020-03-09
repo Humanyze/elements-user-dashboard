@@ -1,7 +1,5 @@
 import { combineReducers } from 'redux';
 import { elementsRedux } from 'ElementsWebCommon';
-import participantsUIReducer from './participants-ui/participantsUIReducer';
-import participantsReducer from './participants/participantsReducer';
 
 const {
   authReducer,
@@ -30,8 +28,6 @@ const AppReducer = combineReducers({
   groupUI: groupUIReducer,
   company: companyReducer,
   filterUI: filterUIReducer,
-  participants: participantsReducer,
-  participantsUI: participantsUIReducer,
   color: colorReducer,
 });
 

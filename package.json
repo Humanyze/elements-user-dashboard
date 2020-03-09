@@ -1,5 +1,5 @@
 {
-  "name": "deployment-dashboard",
+  "name": "root-dashboard",
   "version": "0.2.0",
   "private": true,
   "dependencies": {
@@ -120,7 +120,7 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-    "start": "PORT=3000 PUBLIC_URL=/deployment node scripts/start",
+    "start": "PORT=7000 PUBLIC_URL=/ node scripts/start",
     "build": "node scripts/build",
     "test": "node scripts/test --env=jsdom",
     "test:container": "node scripts/test --env=jsdom --runInBand",
@@ -163,7 +163,7 @@
       "^.+\\.module\\.(css|sass|scss)$"
     ],
     "modulePaths": [
-      "/Users/mark/dev/humanyze/client-docker/deployment-dashboard/src"
+      "/Users/mark/dev/humanyze/client-docker/root-dashboard/src"
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",

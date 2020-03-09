@@ -1,1 +1,1 @@
-export CONTAINER_NAME=client-docker_deployment-dashboard_1
+export CONTAINER_NAME=client-docker_root-dashboard_1
