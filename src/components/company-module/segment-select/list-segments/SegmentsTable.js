@@ -193,7 +193,7 @@ function SegmentsTable(props) {
           );
         },
       },
-    ], [ translations ,]);
+    ], [ translations, ]);
 
   if (showLoading) {
     return <LoadingUI/>;

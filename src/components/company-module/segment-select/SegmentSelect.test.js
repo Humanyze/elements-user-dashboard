@@ -1,4 +1,4 @@
-import SegmentsOverview from './SegmentsOverview';
+import SelectSegment from './SelectSegment';
 
 const mockProps = {
     match: {
@@ -9,4 +9,4 @@ const mockProps = {
     fetchDeploymentById: () => {}
 };
 
-testRenderWithStore(SegmentsOverview, mockProps)();
+testRenderWithStore(SelectSegment, mockProps)();

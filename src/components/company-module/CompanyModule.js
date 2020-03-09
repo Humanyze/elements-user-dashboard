@@ -9,6 +9,10 @@ import CompanySelect from './company-select/CompanySelect';
 import CompanyDetails from './company-details/CompanyDetails';
 import CompanyCreate from './company-create/CompanyCreate';
 
+import SelectSegment from './segment-select/SegmentSelect';
+import SegmentDetails from './segment-details/SegmentDetails';
+import SegmentCreate from './segment-create/SegmentCreate';
+
 const {
   companyActions: {
     fetchCompaniesForUser,
@@ -21,6 +25,9 @@ const CompanyModuleRoutes = () => {
       <Route path={routerPaths.selectCompany} component={CompanySelect} />
       <Route path={routerPaths.companyDetails} component={CompanyDetails} />
       <Route path={routerPaths.companyCreate} component={CompanyCreate} />
+      <Route path={routerPaths.selectSegment} component={SelectSegment} />
+      <Route path={routerPaths.segmentCreate} component={SegmentCreate} />
+      <Route path={routerPaths.segmentDetails} component={SegmentDetails} />
       <Route component={() => <Redirect to={routerPaths.selectCompany}/> }/>
     </Switch>
   );

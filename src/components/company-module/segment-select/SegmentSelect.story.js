@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { SegmentsOverviewPure as SegmentsOverview } from './SegmentsOverview';
-import { translations } from 'Src/tests/contextCreators';
+import { SelectSegmentPure as SelectSegment } from './SegmentSelect';
+import { translations } from 'TestUtils/contextCreators';
 
 const defaultProps = {
     translations: translations,
@@ -86,10 +86,10 @@ const withSegments = {
 
 const createComp = (props) => {
     return (
-        <SegmentsOverview {...defaultProps} {...props}/>
+        <SelectSegment {...defaultProps} {...props}/>
     );
 };
 
-storiesOf('SegmentsOverview', module)
+storiesOf('Select Segment', module)
     .add('loading', () => createComp(onLoad))
-    .add('With Segments Loaded', () => createComp(withSegments));
+    .add('loaded', () => createComp(withSegments));
