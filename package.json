@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
   "name": "root-dashboard",
   "version": "0.2.0",
-=======
-  "name": "deployment-dashboard",
-  "version": "1.2.0",
->>>>>>> endgame
   "private": true,
   "homepage": "http://localhost:81/deployments",
   "dependencies": {
@@ -121,11 +116,7 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-<<<<<<< HEAD
     "start": "PORT=7000 PUBLIC_URL=/ node scripts/start",
-=======
-    "start": "PORT=3000 PUBLIC_URL=/deployments node scripts/start",
->>>>>>> endgame
     "build": "node scripts/build",
     "test": "node scripts/test --env=jsdom",
     "test:container": "node scripts/test --env=jsdom --runInBand --coverage --collectCoverageFrom  src/",
@@ -138,7 +129,6 @@
   "eslintConfig": {
     "extends": "eslint-config-humanyze"
   },
-<<<<<<< HEAD
   "jest": {
     "roots": [
       "<rootDir>/src"
@@ -203,8 +193,6 @@
       "jest-watch-typeahead/testname"
     ]
   },
-=======
->>>>>>> endgame
   "browserslist": {
     "production": [
       ">0.2%",
