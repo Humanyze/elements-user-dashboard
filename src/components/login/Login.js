@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { elementsReact, elementsRedux, assets, routerPaths } from 'ElementsWebCommon';
+import { elementsReact, elementsRedux, assets } from 'ElementsWebCommon';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { lighten } from 'polished';
 
 
@@ -17,7 +17,7 @@ const {
   languageSelectors: {
     getCurrentTranslations,
   },
-  authSelectors: { getAuthErrorCode, },
+  authSelectors: { getAuthErrorCode, isUserAuthenticated, },
   authActions: { loginUser, },
 } = elementsRedux;
 
@@ -131,7 +131,7 @@ const LoginFormWrapper = ({ translations, loginUser, }) => {
     e.preventDefault();
     setLoginPending(true);
     try {
-      const loginResponse = await loginUser(email, password);
+      await loginUser(email, password);
     }
     catch (e) {
       console.log('error logging in');
@@ -171,26 +171,32 @@ const enhance = compose(
     (state) => ({
       translations: getCurrentTranslations(state),
       authError: getAuthErrorCode(state),
+      isAuthenticated: isUserAuthenticated(state),
     }),
     { loginUser, }
   ),
   withRouter
 );
 
-const Login = enhance(({ translations, loginUser, authError, }) => {
+const Login = enhance(({ translations, loginUser, authError, isAuthenticated, location, })  => {
+
+  const redirectTo = location.state ? location.state.redirectFrom : '/landing';
+
   return (
-    <LoginPageWrapper>
-      <div>
-        <LoginFormWrapper {...{ translations, loginUser, } } />
-        <ErrorDisplay>
-          {authError && authError.response ?
-            authError.response.status === 400 ?
-              <Translation translationKey={'Login__api-login-error'} />
-              : <Translation translationKey={'Login__api-error-generic'} />
-            : null}
-        </ErrorDisplay>
-      </div>
-    </LoginPageWrapper>
+    isAuthenticated ?
+      <Redirect to={redirectTo}/> :
+      <LoginPageWrapper>
+        <div>
+          <LoginFormWrapper {...{ translations, loginUser, } } />
+          <ErrorDisplay>
+            {authError && authError.response ?
+              authError.response.status === 400 ?
+                <Translation translationKey={'Login__api-login-error'} />
+                : <Translation translationKey={'Login__api-error-generic'} />
+              : null}
+          </ErrorDisplay>
+        </div>
+      </LoginPageWrapper>
   );
 });
 

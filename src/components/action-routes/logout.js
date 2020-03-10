@@ -27,5 +27,3 @@ const Logout = connect(
 )(enhance(LogoutPure));
 
 export default Logout;
-
-

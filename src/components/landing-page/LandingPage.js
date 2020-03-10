@@ -1,6 +1,7 @@
 import React from 'react';
-import { elementsReact, elementsRedux, assets, routerPaths } from 'ElementsWebCommon';
+import { elementsReact, assets } from 'ElementsWebCommon';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 
 const {
   headerHeight,
@@ -31,17 +32,24 @@ const WelcomeMessageBlock = styled.div`
   color: ${humanyzeBlue};
 `;
 
+const MyButton = styled.button`
+`;
+
 const LandingPage = () => {
   return (
     <div>
     <LandingPageWrapper>
       <WelcomeMessageBlock>
         Hi Welcome to Humanyze!
+       <div>
+        <MyButton onClick={() => window.location.href='/logout'}>LOGOUT</MyButton>
+        <MyButton onClick={() => window.location.href='/deployments'}>COMPANIES</MyButton>
+       </div>
       </WelcomeMessageBlock>
+
     </LandingPageWrapper>
     </div>
   );
 };
-
 
 export default LandingPage;

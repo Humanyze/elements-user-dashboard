@@ -16,7 +16,7 @@ const offlineConfig = {
   persistOptions: {
     // note: may switch this to whitelist over blacklist, although persistence in certain cases doesn't hurt
     blacklist: [
-      'auth',
+      //'auth',
       'modal',
       'error',
       'user',
