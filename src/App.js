@@ -11,11 +11,15 @@ import withAnalytics, { initAnalytics } from '@humanyze/react-with-analytics';
 import { elementsReact, routerPaths } from 'ElementsWebCommon';
 import Register from './components/register/Register';
 import LandingPage from './components/landing-page/LandingPage';
+import Login from './components/login/Login';
+import Logout from './components/action-routes/logout';
+
 
 const {
   Header,
   ModalRoot,
   WithEnvClassWrapper,
+  PrivateRoute,
 } = elementsReact;
 
 const GAToken = process.env.REACT_APP_GA_TRACKING_ID;
@@ -27,13 +31,17 @@ const enhanceCreator = (configOptions) => compose(
 );
 
 export const landingRoute = '/landing';
+export const loginRoute = '/login';
+export const registerRoute = '/register';
 
 const CorePure = () => (
   <div>
     <Header hideUserAvatar={true} />
     <Switch>
-      <Route component={LandingPage} path={landingRoute} />
-      <Route component={Register} />
+      <PrivateRoute component={LandingPage} path={landingRoute} />
+      <Route component={Register} path={registerRoute}/>
+      <Route component={Logout} path={'/logout'}/>
+      <Route component={Login}/>
     </Switch>
     <ModalRoot />
   </div>

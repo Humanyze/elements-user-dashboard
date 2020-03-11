@@ -1,5 +1,5 @@
 import React from 'react';
-// TODO: TEMP PAGE, WILL ULTIMATELY REDIRECT TO EMBER AUTH, SHARING TOKEN
+// NOTE: TEMP PAGE, WILL ULTIMATELY REDIRECT TO EMBER AUTH, SHARING TOKEN
 import { compose, withState, withHandlers } from 'recompose';
 import { connect } from 'react-redux';
 import { loginUser } from './redux/common/auth/authActions';
@@ -25,17 +25,15 @@ const LoginPure = ({
   username, onUsernameChange,
   password, onPasswordChange,
   onSubmit,
-}) => {
-  return (
-    <div className='Login'>
-      <form onSubmit={onSubmit}>
-        <input value={username} onChange={onUsernameChange} placeholder='username' />
-        <input value={password} onChange={onPasswordChange} placeholder='username' />
-        <button type='submit'>Login</button>
-      </form>
-    </div>
-  );
-};
+}) => (
+  <div className='Login'>
+    <form onSubmit={onSubmit}>
+      <input value={username} onChange={onUsernameChange} placeholder='username'/>
+      <input value={password} onChange={onPasswordChange} placeholder='username'/>
+      <button type='submit'>Login</button>
+    </form>
+  </div>
+);
 
 
 const Login = connect(

@@ -1,3 +1,10 @@
 {
-  "extends": "eslint-config-humanyze"
+  "extends": "eslint-config-humanyze",
+  // TODO: add backtick styling to ESLINT by default 
+  // "rules": {
+  //   "quotes": [
+  //     "warn",
+  //     "backtick"
+  //   ]
+  // }
 }

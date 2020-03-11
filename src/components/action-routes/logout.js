@@ -10,7 +10,7 @@ const {
 
 const enhance = compose(
   lifecycle({
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       this.props.logout();
     },
   })
@@ -27,5 +27,3 @@ const Logout = connect(
 )(enhance(LogoutPure));
 
 export default Logout;
-
-

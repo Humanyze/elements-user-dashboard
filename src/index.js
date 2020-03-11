@@ -2,28 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './Global.scss';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import { unregister } from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import createStore from './redux/createStore';
-import { elementsReact } from 'ElementsWebCommon';
-import mixpanel from 'mixpanel-browser';
-import Raven from 'raven-js';
-const { EventTrackingProvider, } = elementsReact;
+import * as Sentry from '@sentry/browser';
+
+// TODO:  Set up separate dsn's for qa, develop, and production once we move to self hosted
+Sentry.init({ dsn: 'https://4836424eaaa046c29e7024b09682cc3e@sentry.io/2217351' , });
 
 const { store, } = createStore();
 
-mixpanel.init('23071668534d0dd256d9c4e570d30052');
-const raven = Raven.config('https://d5d5ac2c4f7744d782b534b892ae3fc5@sentry.io/1221842').install();
-
-
-
-// FIND HOOK LUCAS EVENT TRACKER
 ReactDOM.render(
-  <EventTrackingProvider mixpanel={mixpanel} raven={raven}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </EventTrackingProvider>
+  <Provider store={store}>
+    <App/>
+  </Provider>
   , document.getElementById('root'));
 
-registerServiceWorker();
+unregister();

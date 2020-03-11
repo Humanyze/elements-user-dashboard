@@ -89,7 +89,7 @@ const RegisterFormLabeledInput = styled(LabeledInput)`
     height: ${boxHeight};
     display: flex;
     align-items: center;
-  }
+  } 
 `;
 
 const SubmitButton = styled.button(({ disabled, }) => `
@@ -193,7 +193,7 @@ const enhance = compose(
     }),
     { loginUser, }
   ),
-  withRouter,
+  withRouter
 );
 
 const useInputState = (initialState) => {

@@ -12,20 +12,23 @@ const {
   metaDataReducer,
   filterUIReducer,
   deploymentReducer,
-  metricReducer,
+  companyReducer,
+  colorReducer,
 } = elementsRedux;
+
 
 const AppReducer = combineReducers({
   auth: authReducer,
-  metaData: metaDataReducer,
   language: languageReducer,
+  metaData: metaDataReducer,
   error: errorReducer,
   user: userDataReducer,
-  deployment: deploymentReducer,
   modal: modalReducer,
+  deployment: deploymentReducer,
   groupUI: groupUIReducer,
+  company: companyReducer,
   filterUI: filterUIReducer,
-  metric: metricReducer,
+  color: colorReducer,
 });
 
 const RootReducer = (state, action) => {
